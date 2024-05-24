@@ -1,0 +1,9 @@
+ww main.c libftprintf.a -o test
+	compile with main.c
+	
+ar -t libft.a
+	show the content of the library
+
+Check:
+	https://github.com/xicodomingues/francinette
+	https://github.com/alelievr/libft-unit-test	(use the ubuntu commands
