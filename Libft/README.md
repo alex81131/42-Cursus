@@ -8,30 +8,33 @@ This project aims to code a C library regrouping usual functions that we’ll be
 # Libft Functions
 
 ## Functions from `<ctype.h>`
-- [`ft_isalpha`](https://github.com/alex81131/Libft/blob/main/ctype.h/ft_isalpha.c) - checks for an alphabetic character.
-- [`ft_isdigit`](https://github.com/alex81131/Libft/blob/main/ctype.h/ft_isdigit.c) - checks for a digit (0 through 9).
-- [`ft_isalnum`](https://github.com/alex81131/Libft/blob/main/ctype.h/ft_isalnum.c) - checks for an alphanumeric character.
-- [`ft_isascii`](https://github.com/alex81131/Libft/blob/main/ctype.h/ft_isascii.c) - checks whether c fits into the ASCII character set.
-- [`ft_isprint`](https://github.com/alex81131/Libft/blob/main/ctype.h/ft_isprint.c) - checks for any printable character.
-- [`ft_toupper`](https://github.com/alex81131/Libft/blob/main/ctype.h/ft_toupper.c) - convert char to uppercase.
-- [`ft_tolower`](https://github.com/alex81131/Libft/blob/main/ctype.h/ft_tolower.c) - convert char to lowercase.
+- [`ft_isalpha`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_isalpha.c) - checks for an alphabetic character.
+- [`ft_isdigit`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_isdigit.c) - checks for a digit (0 through 9).
+- [`ft_isalnum`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_isalnum.c) - checks for an alphanumeric character.
+- [`ft_isascii`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_isascii.c) - checks whether c fits into the ASCII character set.
+- [`ft_isprint`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_isprint.c) - checks for any printable character.
+- [`ft_toupper`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_toupper.c) - convert char to uppercase.
+- [`ft_tolower`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_tolower.c) - convert char to lowercase.
 
 ## Functions from `<string.h>`
-- [`ft_strlen`](https://github.com/alex81131/Libft/blob/main/string.h/ft_strlen.c) - computes the length of the string.
-- [`ft_strcpy`](https://github.com/alex81131/Libft/blob/main/string.h/ft_strlcpy.c) - copies the string src to dst.
-- [`ft_strcmp`](#ft_strcmp) - compares two strings.
-- [`ft_strdup`]() - duplicates a string.
-- [`ft_strcat`](#ft_strcat) - concatenates two strings.
-- [`ft_strrchr`](#ft_strrchr) - locate character in string.
-- [`ft_strncmp`](#ft_strncmp) - compare two strings.
-- [`ft_memchr`](#ft_memchr) - scan memory for a character.
-- [`ft_memcmp`](#ft_memcmp) - compare memory areas.
-- [`ft_strnstr`](#ft_strnstr) - locate a substring in a string.
-- [`ft_strdup`](#ft_strdup) - creates a duplicate for the string passed as parameter.
+- [`ft_memset`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_memset.c) - fill memory with a constant byte.
+- [`ft_strlen`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strlen.c) - calculate the length of a string.
+- [`ft_bzero`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_bzero.c) - zero a byte string.
+- [`ft_memcpy`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_memcpy.c) - copy memory area.
+- [`ft_memmove`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_memmove.c) - copy memory area.
+- [`ft_strlcpy`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strlcpy.c) - copy string to an specific size.
+- [`ft_strlcat`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strlcat.c) - concatenate string to an specific size.
+- [`ft_strchr`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strchr.c) - locate character in string.
+- [`ft_strrchr`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strrchr.c) - locate character in string.
+- [`ft_strncmp`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strncmp.c) - compare two strings.
+- [`ft_memchr`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_memchr.c) - scan memory for a character.
+- [`ft_memcmp`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_memcmp.c) - compare memory areas.
+- [`ft_strnstr`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strnstr.c) - locate a substring in a string.
+- [`ft_strdup`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strdup.c) - creates a duplicate for the string passed as parameter.
 
 ## Functions from `<stdlib.h>`
-- [`ft_atoi`](#ft_atoi) - convert a string to an integer.
-- [`ft_calloc`](#ft_calloc) - allocates memory and sets its bytes' values to 0.
+- [`ft_atoi`](https://github.com/alex81131/42-Cursus/blob/main/Libft/stdlib.h/ft_atoi.c) - convert a string to an integer.
+- [`ft_calloc`](https://github.com/alex81131/42-Cursus/blob/main/Libft/stdlib.h/ft_calloc.c) - allocates memory and sets its bytes' values to 0.
 
 ## Non-standard functions
 - [`ft_substr`](#ft_substr) - returns a substring from a string.
