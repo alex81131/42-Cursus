@@ -49,7 +49,7 @@ This project aims to code a C library regrouping usual functions that we’ll be
 - [`ft_putendl_fd`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Non-standard%20functions/ft_putendl_fd.c) - output a string to a file descriptor, followed by a new line.
 - [`ft_putnbr_fd`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Non-standard%20functions/ft_putnbr_fd.c) - output a number to a file descriptor.
 
-## Linked list functions
+### Linked list functions
 - [`ft_lstnew`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Linked%20list%20functions/ft_lstnew_bonus.c) - creates a new list element.
 - [`ft_lstadd_front`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Linked%20list%20functions/ft_lstadd_front_bonus.c) - adds an element at the beginning of a list.
 - [`ft_lstsize`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Linked%20list%20functions/ft_lstsize_bonus.c) - counts the number of elements in a list.
