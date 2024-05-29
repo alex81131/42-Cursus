@@ -7,7 +7,7 @@ This project aims to code a C library regrouping usual functions that we’ll be
 
 # Libft Functions
 
-## Functions from `<ctype.h>`
+### Functions from `<ctype.h>`
 - [`ft_isalpha`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_isalpha.c) - checks for an alphabetic character.
 - [`ft_isdigit`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_isdigit.c) - checks for a digit (0 through 9).
 - [`ft_isalnum`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_isalnum.c) - checks for an alphanumeric character.
@@ -16,7 +16,7 @@ This project aims to code a C library regrouping usual functions that we’ll be
 - [`ft_toupper`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_toupper.c) - convert char to uppercase.
 - [`ft_tolower`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_tolower.c) - convert char to lowercase.
 
-## Functions from `<string.h>`
+### Functions from `<string.h>`
 - [`ft_memset`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_memset.c) - fill memory with a constant byte.
 - [`ft_strlen`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strlen.c) - calculate the length of a string.
 - [`ft_bzero`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_bzero.c) - zero a byte string.
@@ -32,11 +32,11 @@ This project aims to code a C library regrouping usual functions that we’ll be
 - [`ft_strnstr`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strnstr.c) - locate a substring in a string.
 - [`ft_strdup`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strdup.c) - creates a duplicate for the string passed as parameter.
 
-## Functions from `<stdlib.h>`
+### Functions from `<stdlib.h>`
 - [`ft_atoi`](https://github.com/alex81131/42-Cursus/blob/main/Libft/stdlib.h/ft_atoi.c) - convert a string to an integer.
 - [`ft_calloc`](https://github.com/alex81131/42-Cursus/blob/main/Libft/stdlib.h/ft_calloc.c) - allocates memory and sets its bytes' values to 0.
 
-## Non-standard functions
+### Non-standard functions
 - [`ft_substr`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Non-standard%20functions/ft_substr.c) - returns a substring from a string.
 - [`ft_strjoin`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Non-standard%20functions/ft_strjoin.c) - concatenates two strings.
 - [`ft_strtrim`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Non-standard%20functions/ft_strtrim.c) - trims the beginning and end of string with specific set of chars.
