@@ -1,5 +1,5 @@
-# ft_printf
-This project is pretty straight forward. We will recode printf. Hopefully we will be able to reuse it in future projects without the fear of being flagged as a cheater. We will mainly learn how to use variadic arguments.
+# get_next_line
+The aim of this 42 project is to make us code a function that returns a line, read from a file descriptor.
 
 # Resources
-https://github.com/48d31kh413k/1337-ft_printf-42/blob/main/README.md?plain=1
+https://github.com/48d31kh413k/1337-Get_Next_Line-42
