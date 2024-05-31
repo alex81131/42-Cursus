@@ -22,7 +22,7 @@ echo -n "#User log: "; users | wc -w; \
 #users: user logged in | wc - w :count words
 echo -n "#Network: "; echo -n "IP " && hostname -I | tr '\n' '(' && ip link | awk '$1 == "link/ether" {print $2}' | tr '\n' ')' && printf "\n"; \
 #hostname -I : IP | ip link : network device configuration | tr : translate or delete
-echo -n "#Sudo: "; grep "COMMAND" /var/log/sudo/sudo.log | wc -l | tr '\n' ' ' && echo "cmd"; \
+echo -n "#Sudo: "; grep "COMMAND" /var/log/sudo/sudo.log | wc -l | tr '\n' ' ' && echo "cmd"\
 )
 
 # Check for the control file
