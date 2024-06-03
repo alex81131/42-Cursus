@@ -7,3 +7,7 @@
 |01| [Get Next Line](https://github.com/alex81131/42-Cursus/tree/main/get_next_line) | C | Function that returns a line, read from a file descriptor. | 125% |
 |01| [Born2beroot](https://github.com/alex81131/42-Cursus/tree/main/Born2beRoot) | Network & system Administration | System Administration. | 103% |
 |02| [Exam 02](https://github.com/48d31kh413k/1337-exam_rank_02-42) | C | Final Exam piscine. | ???% |
+|02| [Minitalk](https://github.com/48d31kh413k/1337-minitalk-42) | C | small data exchange program using UNIX signals. | ???% |
+|02| [Push Swap](https://github.com/48d31kh413k/1337-push_swap-42) | C | Sorting Data Algorithms. | ???% |
+|02| [so Long](https://github.com/48d31kh413k/1337-so_long-42) | C | Small 2D game. | ???% |
+|03| [Exam 03](https://github.com/48d31kh413k/1337-exam_rank_03-42) | C | Printf/gnl. | ???% |
