@@ -1,7 +1,39 @@
-#include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
+#include <stdlib.h>
 
+void	fprime(int nb)
+{
+	int i;
+
+	i = 2;
+	if (nb == 1)
+	{
+		printf("1");
+		return ;
+	}
+	while (nb >= i)
+	{
+		if (nb % i == 0)
+		{
+			printf("%d", i);
+			if (nb != i)
+				printf("*");
+			nb /= i;
+			i--;
+		}
+		i++;
+	}
+}
+
+int		main(int ac, char **av)
+{
+	if (ac == 2)
+		fprime(atoi(av[1]));
+	printf("\n");
+	return (0);
+}
+//  偉哉 48d31kh413k
+/*
 int	prime_check(int n)
 {
 	int	i = 2;
@@ -71,41 +103,6 @@ int	*ft_break(int n)
 	}
 	return (list);
 }
-/*
-int	*prime_list(int *list)
-{
-	int	i = 0;
-	int	len = 0;
-	int	*p_list;
-
-	while (list[i])
-	{
-		if (prime_check(list[i] == 1))
-		{
-			len++;
-			i++;
-		}
-		i++;
-	}
-	p_list = (int*)malloc(len * sizeof(int));
-	if (!p_list)
-		return (NULL);
-	i = 0;
-	len = 0;
-	while (list[i])
-	{
-		if (prime_check(list[i] == 1))
-		{
-			p_list[len] = list[i];
-			len++;
-			i++;
-		}
-		i++;
-	}
-	free (list);
-	return (p_list);
-}
-*/
 
 int	main(int ac, char **av)
 {
@@ -135,3 +132,4 @@ int	main(int ac, char **av)
 		printf("\n");
 	return (0);
 }
+*/
