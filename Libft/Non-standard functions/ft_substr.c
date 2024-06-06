@@ -32,7 +32,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	str[len_str] = '\0';
 	return (str);
 }
-/*
+/*	Returns a substring from a string.
 ft_strlcpy, copies up to size - 1, ensuring the NUL-termination.
 If s or start condition is not legit → empty string;
 	if len = 0 → empty string.
