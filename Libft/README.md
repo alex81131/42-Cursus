@@ -26,6 +26,7 @@ This project aims to code a C library regrouping usual functions that we’ll be
 - [`ft_strlcat`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strlcat.c) - concatenate string to an specific size.
 - [`ft_strchr`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strchr.c) - locate character in string.
 - [`ft_strrchr`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strrchr.c) - locate character in string.
+- [`ft_strcmp`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strcmp.c) - compare two strings.
 - [`ft_strncmp`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strncmp.c) - compare two strings.
 - [`ft_memchr`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_memchr.c) - scan memory for a character.
 - [`ft_memcmp`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_memcmp.c) - compare memory areas.
