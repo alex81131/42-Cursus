@@ -38,16 +38,15 @@ ${NAME}:
 all: $(NAME)
 
 clean:
-	$(RM) $(NAME)
 	make clean -C libft+
 
-fclean: clean
+fclean:
 	$(RM) $(NAME)
 	make fclean -C libft+
 
 re:	fclean all
 
-bonus:	clean
+bonus:	fclean
 	make all -C libft+
 	gcc $(CFLAGS) $(SRC_BONUS) -o $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:29:10 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/10 15:51:07 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/10 15:06:58 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ void	exe(char *cmd, char **env)
 
 	s_cmd = ft_split(cmd, ' ');
 	pathcmd = ft_pathcmd(s_cmd[0], env);
+	if (!pathcmd)
+	{
+		perror("pipex: command not found: ");
+		ft_putendl_fd(s_cmd[0], 2);
+		ft_freetab(s_cmd);
+		exit(EXIT_FAILURE);
+	}
 	if (execve(pathcmd, s_cmd, env) == -1)
 	{
 		perror("pipex: command not found: ");
