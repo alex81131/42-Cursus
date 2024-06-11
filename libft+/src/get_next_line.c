@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line[fd] = ft_input_gnl(fd, line[fd]);
 	if (!line[fd])
-		return (NULL);e
+		return (NULL);
 	next_line = ft_get_line(line[fd]);
 	line[fd] = new_line(line[fd]);
 	return (next_line);

@@ -15,8 +15,8 @@ void	*ft_calloc(size_t nb, size_t size)
 {
 	void	*array;
 
-	if (nb > SIZE_MAX || size > SIZE_MAX ||
-		(size != 0 && nb > SIZE_MAX / size ))
+	if (nb > SIZE_MAX || size > SIZE_MAX
+		|| (size != 0 && nb > SIZE_MAX / size))
 		return (NULL);
 	array = (void *)malloc(nb * size);
 	if (!array)
