@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:29:10 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/10 15:51:07 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/11 13:38:38 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exe(char *cmd, char **env)
 	pathcmd = ft_pathcmd(s_cmd[0], env);
 	if (execve(pathcmd, s_cmd, env) == -1)
 	{
-		perror("pipex: command not found: ");
+		perror("exe: command not found");
 		ft_putendl_fd(s_cmd[0], 2);
 		ft_freetab(s_cmd);
 		free(pathcmd);
@@ -37,9 +37,9 @@ void	child(char **av, int *p_fd, char **env)
 	fd = open_file(av[1], 0);
 	if (fd == -1)
 		error_exit("open_file");
-	if(dup2(fd, 0) == -1)
+	if (dup2(fd, 0) == -1)
 		error_exit("dup2-STDIN_FILENO");
-	if(dup2(p_fd[1], 1) == -1)
+	if (dup2(p_fd[1], 1) == -1)
 		error_exit("dup2-STDOUT_FILENO");
 	close(fd);
 	close(p_fd[1]);
@@ -54,9 +54,9 @@ void	parent(char **av, int *p_fd, char **env)
 	fd = open_file(av[4], 1);
 	if (fd == -1)
 		error_exit("open_file");
-	if(dup2(fd, 1) == -1)
+	if (dup2(fd, 1) == -1)
 		error_exit("dup2-STDOUT_FILENO");
-	if(dup2(p_fd[0], 0) == -1)
+	if (dup2(p_fd[0], 0) == -1)
 		error_exit("dup2-STDIN_FILENO");
 	close(fd);
 	close(p_fd[0]);
@@ -65,11 +65,11 @@ void	parent(char **av, int *p_fd, char **env)
 
 int	main(int ac, char **av, char **env)
 {
-	int	p_fd[2];
+	int		p_fd[2];
 	pid_t	pid;
 
 	if (ac != 5)
-		error_exit("Usage: ./pipex infile cmd1 cmd2 outfile\n");
+		error_exit_ac("Usage: ./pipex infile \"cmd1\" \"cmd2\" outfile\n");
 	if (pipe(p_fd) == -1)
 		error_exit("Error creating pipe");
 	pid = fork();
@@ -86,6 +86,16 @@ int	main(int ac, char **av, char **env)
 /*
 ft_putendl_fd = ft_putstr_fd + \n
 
+dup2(fd1, fd2):
+It creates a copy of the file descriptor fd1 and assigns that copy to the 
+file descriptor fd2.
+After the call, any operations performed on fd2 will be directed to the 
+same underlying file or device as fd1.
+So with dup2, we  redirect the place the functions read and write onto 
+the specific fd we want, but the functions don't know that and they still 
+think that they read and write on STDIN/OUT_FILENO.
+
+[Analogies for dup2]
 dup2(fd, 0)
 Analogy:
 Imagine you have a hose (standard input, STDIN_FILENO) that is usually 

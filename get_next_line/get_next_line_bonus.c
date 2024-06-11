@@ -12,7 +12,7 @@
 
 #include "get_next_line_bonus.h"
 
-char	*ft_input(int fd, char *line)
+char	*ft_input_gnl(int fd, char *line)
 {
 	char	*buffer;
 	ssize_t	read_bytes;
@@ -21,6 +21,8 @@ char	*ft_input(int fd, char *line)
 	if (!buffer)
 		return (NULL);
 	read_bytes = 1;
+	if (!line)
+		line = ini_strjoin(line);
 	while (!ft_strchr(line, '\n') && read_bytes > 0)
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
@@ -57,7 +59,7 @@ char	*ft_get_line(char *line)
 		str[i] = line[i];
 		i++;
 	}
-	if (line[i] == '\n')
+	if (line[i] && line[i] == '\n')
 		str[i++] = '\n';
 	str[i] = '\0';
 	return (str);
@@ -96,9 +98,9 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	line[fd] = ft_input(fd, line[fd]);
+	line[fd] = ft_input_gnl(fd, line[fd]);
 	if (!line[fd])
-		return (NULL);
+		return (NULL);e
 	next_line = ft_get_line(line[fd]);
 	line[fd] = new_line(line[fd]);
 	return (next_line);

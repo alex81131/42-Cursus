@@ -35,7 +35,7 @@ char	*ft_strchr(const char *str, int c)
 	return ((char *)str);
 }
 
-static char	*ini_strjoin(char *s1)
+char	*ini_strjoin(char *s1)
 {
 	if (!s1)
 	{

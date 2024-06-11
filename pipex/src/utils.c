@@ -6,17 +6,11 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:52:28 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/10 14:37:37 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/11 13:38:10 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-void	error_exit(const char *message)
-{
-	perror(message);
-	exit(EXIT_FAILURE);
-}
 
 int	open_file(char *file, int in_or_out)
 {

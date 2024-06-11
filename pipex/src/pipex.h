@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:47:59 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/10 14:09:06 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/11 13:39:54 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <stdlib.h>
 
 void	error_exit(const char *message);
+void	error_exit_ac(const char *message);
 //Handle error
 int		open_file(char *file, int in_or_out);
 void	ft_freetab(char **tab);

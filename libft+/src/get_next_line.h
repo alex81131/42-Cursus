@@ -26,6 +26,7 @@
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
 char	*ft_strchr(const char *str, int c);
+char	*ini_strjoin(char *s1);
 char	*ft_realloc_strjoin(char *s1, char const*s2);
 char	*ft_input(int fd, char *line);
 char	*ft_get_line(char *line);

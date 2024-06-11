@@ -21,6 +21,8 @@ char	*ft_input_gnl(int fd, char *line)
 	if (!buffer)
 		return (NULL);
 	read_bytes = 1;
+	if (!line)
+		line = ini_strjoin(line);
 	while (!ft_strchr(line, '\n') && read_bytes > 0)
 	{
 		read_bytes = read(fd, buffer, BUFFER_SIZE);
@@ -57,7 +59,7 @@ char	*ft_get_line(char *line)
 		str[i] = line[i];
 		i++;
 	}
-	if (line[i] == '\n')
+	if (line[i] && line[i] == '\n')
 		str[i++] = '\n';
 	str[i] = '\0';
 	return (str);
@@ -94,6 +96,7 @@ char	*get_next_line(int fd)
 	static char	*line[FOPEN_MAX];
 	char		*next_line;
 
+	ft_putstr_fd("> ", 1);
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	line[fd] = ft_input_gnl(fd, line[fd]);

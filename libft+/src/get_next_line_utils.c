@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-static char	*ini_strjoin(char *s1)
+char	*ini_strjoin(char *s1)
 {
 	if (!s1)
 	{

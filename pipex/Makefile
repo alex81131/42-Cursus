@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/06 17:47:50 by kyeh              #+#    #+#              #
-#    Updated: 2024/06/07 19:34:11 by kyeh             ###   ########.fr        #
+#    Updated: 2024/06/11 13:39:06 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,14 @@ LIBC	= ar rcs
 # Source files
 SRC =	src/pipex.c \
 		src/utils.c \
+		src/utils_error.c \
 		libft+/libft.a
 
 SRC_BONUS = \
 		src_bonus/pipex_bonus.c \
 		src_bonus/utils_bonus.c \
-		libft+/lift.a
+		src_bonus/utils_error_bonus.c \
+		libft+/libft.a
 
 NAME	= pipex
 RM		= rm -rf
