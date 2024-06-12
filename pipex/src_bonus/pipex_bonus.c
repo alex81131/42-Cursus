@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 14:29:10 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/11 18:12:34 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/12 12:02:54 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,10 +158,11 @@ Usage2: ./pipex here_doc LIMITER cmd cmd1 file
 //Here Document with Command Substitution
 ./pipex here_doc LIMITER "grep $(echo important)" "wc -w" file1
 grep $(echo important) << LIMITER | wc -w >> file2
+(Normally >> is not tied to << LIMITER)
 
 //Here Document with Multiple Commands
 ./pipex here_doc LIMITER "grep pattern" "sort" "uniq -c" file1
-grep pattern << LIMITER | sort | uniq -c > file2
+grep pattern << LIMITER | sort | uniq -c >> file2
 
 //Here Document with Arguments(case-insensitive)
 ./pipex here_doc LIMITER "grep -i pattern" "sort" "uniq -c" file1
@@ -169,7 +170,7 @@ grep -i pattern << LIMITER | sort | uniq -c >> file2
 
 //Here Document with Command Substitution
 ./pipex here_doc LIMITER "grep $(echo pattern)" "sort -r" "uniq -c" file1
-grep $(echo pattern) << LIMITER | sort -r | uniq -c > file2
+grep $(echo pattern) << LIMITER | sort -r | uniq -c >> file2
 
 //Invalid infile
 ./pipex nonexistent_file "ls -l" "wc -l" outfile
