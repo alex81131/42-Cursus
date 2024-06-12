@@ -1,5 +1,7 @@
-# ft_printf
-This project is pretty straight forward. We will recode printf. Hopefully we will be able to reuse it in future projects without the fear of being flagged as a cheater. We will mainly learn how to use variadic arguments.
+# Pipex
+Replicate shell's pipe functionality (cmd1 | cmd2).
 
 # Resources
-https://github.com/48d31kh413k/1337-ft_printf-42/blob/main/README.md?plain=1
+- https://github.com/jdecorte-be/42-Pipex/tree/master
+- [Tutorial on Medium (mieux)](https://medium.com/@lannur-s/pipex-42-chapter-4-pipe-5b4afa4a37b7)
+- [Tutorial on Medium](https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901)
