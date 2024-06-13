@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:44:53 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/12 18:21:34 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/13 10:33:16 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,27 @@ void	check_doubles(int *pile, int size)
 				ps_error(pile);
 		i++;
 		j = i + 1;
+	}
+}
+
+int	check_sorted(int *pile, int size, int order)
+{
+	int	i;
+
+	if (order == 0)
+	{
+		i = 1;
+		while (i < size)
+			if (pile[i - 1] > pile[i++])
+				return (0);
+		return (1);
+	}
+	else
+	{
+		i = 1;
+		while (i < size)
+			if (pile[i - 1] < pile[i++])
+				return (0);
+		return (1);
 	}
 }

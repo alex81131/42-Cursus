@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:36:43 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/12 18:21:35 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/13 12:55:21 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@ void	reverse_rotate_r(t_pile *pile, int bonus);
 void	push_b(t_pile *pile, int bonus);
 void	push_a(t_pile *pile, int bonus);
 //Sort
-int		sort(t_pile *pile, int size);
 int		check_sorted(int *pile, int size, int order);
-void	three_number_case_pile_a(t_pile *three);
-void	tmp_sort(int *pile_tmp, int size);
+void	three_number_case_pile_a(t_pile *trois);
+int		sort(t_pile *pile, int size);
+void	median_sort(int *pile_temp, int size);
 //Quicksort
+void	qs_3_ab(t_pile *pile, int len);
+int		sort_3_b(t_pile *pile, int len);
+int		qs_median(int *pivot, int *pile, int size);
 int		qs_pile_a(t_pile *pile, int len, int count_r);
 int		qs_pile_b(t_pile *pile, int len, int count_r);
-void	qs_3pile_ab(t_pile *pile, int len);
-int		sort_3b
