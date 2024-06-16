@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:32 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/12 16:59:57 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/16 11:44:16 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	push_swap(char **av)
 	while (i < size)
 		pile.a[i++] = ps_atoi(av[i], pile.a);
 	check_doubles(pile.a, size);
-	sort(&pile, size);
+	qs_pile_a(&pile, size, 0);
 	free(pile.a);
 	free(pile.b);
 }
@@ -47,7 +47,6 @@ int	main(int ac, char **av)
 		if (ac == 2)
 			av = ft_split(*av, ' ');
 		push_swap(av);
-		return (0);
 	}
 	return (0);
 }

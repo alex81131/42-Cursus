@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:36:43 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/13 12:55:21 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/16 11:47:21 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ typedef struct s_pile
 }	t_pile;
 
 void	push_swap(char **av);
-void	ps_error(int *pile);
-int		ps_strlen(char **str);
-int		ps_atoi(const char *str, int *pile);
-void	check_doubles(int *pile, int size);
 //Operations
 void	swap_a(t_pile *pile, int bonus);
 void	swap_b(t_pile *pile, int bonus);
@@ -41,14 +37,26 @@ void	reverse_rotate_b(t_pile *pile, int bonus);
 void	reverse_rotate_r(t_pile *pile, int bonus);
 void	push_b(t_pile *pile, int bonus);
 void	push_a(t_pile *pile, int bonus);
-//Sort
-int		check_sorted(int *pile, int size, int order);
-void	three_number_case_pile_a(t_pile *trois);
-int		sort(t_pile *pile, int size);
+int		ft_push(t_pile *pile, int range, int push);
+//Utils
+void	ps_error(int *pile);
+int		ps_strlen(char **str);
+int		ps_atoi(const char *str, int *pile);
+void	check_doubles(int *pile, int size);
+int		sort_check(int *pile, int size, int order);
+//Quicksort utils
+void	three_number_case(t_pile *trois);
 void	median_sort(int *pile_temp, int size);
-//Quicksort
-void	qs_3_ab(t_pile *pile, int len);
-int		sort_3_b(t_pile *pile, int len);
 int		qs_median(int *pivot, int *pile, int size);
-int		qs_pile_a(t_pile *pile, int len, int count_r);
-int		qs_pile_b(t_pile *pile, int len, int count_r);
+//Quicksort
+void	qs_3a(t_pile *pile, int range);
+void	qs_3b(t_pile *pile, int range);
+int		qs_pile_a(t_pile *pile, int range, int rotation);
+int		qs_pile_b(t_pile *pile, int range, int rotation);
+//Bonus
+void	read_stdin(t_pile *pile);
+int		*c_error(char **av);
+void	exe_instruction(t_pile *pile, char *instruction);
+void	free_error(t_pile *pile, int choix);
+
+#endif

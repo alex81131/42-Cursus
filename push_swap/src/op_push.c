@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:35:59 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/12 17:39:09 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/14 19:40:07 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,16 @@ void	push_a(t_pile *pile, int bonus)
 	else
 		return ;
 }
+
+int	ft_push(t_pile *pile, int range, int push)
+{
+	if (push == 0)
+		push_b(pile, 0);
+	else
+		push_a(pile, 0);
+	size--;
+	return (size);
+}
+/*
+ft_push is needed to keep track of the range size.
+*/

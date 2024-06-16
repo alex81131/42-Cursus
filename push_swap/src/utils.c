@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:44:53 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/13 10:33:16 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/14 19:49:13 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ps_error(int *pile)
 {
 	free(pile);
-	ft_printf("error\n");
+	ft_printf("Error\n");
 	exit(EXIT_FAILURE);
 }
 
@@ -72,7 +72,7 @@ void	check_doubles(int *pile, int size)
 	}
 }
 
-int	check_sorted(int *pile, int size, int order)
+int	sort_check(int *pile, int size, int order)
 {
 	int	i;
 
@@ -93,3 +93,8 @@ int	check_sorted(int *pile, int size, int order)
 		return (1);
 	}
 }
+/*
+The order in sort_check is to check the order of elements in stack a and b:
+a: order = 0;
+b: order = 1;
+*/

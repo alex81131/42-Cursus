@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/06 17:47:50 by kyeh              #+#    #+#              #
-#    Updated: 2024/06/12 12:34:44 by kyeh             ###   ########.fr        #
+#    Updated: 2024/06/14 19:12:50 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address -g3
 
 # Source files
 SRC =	src/push_swap.c \
-		src/sort.c \
+		src/qs_utils.c \
 		src/utils.c \
 		src/quicksort.c \
 		src/op_push.c \
