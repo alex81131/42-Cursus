@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:44:53 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/14 19:49:13 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/17 16:19:29 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ps_error(int *pile)
 {
 	free(pile);
-	ft_printf("Error\n");
+	ft_putstr_fd("Error\n", 2);
 	exit(EXIT_FAILURE);
 }
 

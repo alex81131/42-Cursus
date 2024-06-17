@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:36:43 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/16 11:47:21 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/17 15:59:14 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int		qs_pile_a(t_pile *pile, int range, int rotation);
 int		qs_pile_b(t_pile *pile, int range, int rotation);
 //Bonus
 void	read_stdin(t_pile *pile);
-int		*c_error(char **av);
+int		*checker_array(char **av);
 void	exe_instruction(t_pile *pile, char *instruction);
-void	free_error(t_pile *pile, int choix);
+void	ps_free_error(t_pile *pile, int error);
 
 #endif
