@@ -170,4 +170,50 @@ t_point	fdf_get_coords(t_vars *vars, t_point point);
 
 // error.c
 void	fdf_err_exit(const char *err, const char *msg);
-void	fdf_perror
+void	fdf_perror_exit(const char *str);
+
+// map_utils.c
+void	fdf_get_min_max_z(t_map *map);
+void	fdf_free_map(t_map *tab);
+void	fdf_alloc_map(t_map *map);
+t_map	*fdf_initialise_map(char *file);
+
+// handle_args.c
+void	fdf_handle_args(t_map **map, int ac, char **av);
+
+// mlx_main.c
+int		fdf_mlx_main(t_map *map);
+
+// mlx_hook.c
+int		fdf_close_win(t_vars *vars);
+int		fdf_key_hook(int keycode, t_vars *vars);
+
+// mlx_loop.c
+int		fdf_update(t_vars *vars);
+
+// mlx_utils.c
+void	fdf_reset_vars(t_vars *vars);
+int		fdf_initialise_vars(t_vars *vars, t_map *map);
+void	fdf_initialise_mlx(t_vars *vars);
+
+// draw.c
+void	fdf_draw(t_vars *vars);
+
+// draw_utils.c
+void	fdf_isometric(t_vars *vars, int *x, int *y, int z);
+void	fdf_rot_x(t_vars *vars, int *y, int *z);
+void	fdf_rot_y(t_vars *vars, int *x, int *z);
+void	fdf_rot_z(t_vars *vars, int *x, int *y);
+void	fdf_img_pixel_put(t_vars *vars, int x, int y, int color);
+
+// controls.c
+void	fdf_handle_zoom(int keycode, t_vars *vars);
+void	fdf_handle_move(int keycode, t_vars *vars);
+void	fdf_handle_rot(int keycode, t_vars *vars);
+void	fdf_handle_flattening(int keycode, t_vars *vars);
+
+// color.c
+int		fdf_get_color(t_point current, t_point start, t_point end, t_point delta);
+int		fdf_get_z_color(t_vars *vars, int cur_z);
+
+#endif
