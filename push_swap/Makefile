@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/06 17:47:50 by kyeh              #+#    #+#              #
-#    Updated: 2024/06/14 19:12:50 by kyeh             ###   ########.fr        #
+#    Updated: 2024/06/17 18:30:21 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,14 @@ SRC =	src/push_swap.c \
 		src/op_push.c \
 		src/op_rotate.c \
 		src/op_rrotate.c \
-		src/op_swap.c \
-		libft+/libft.a
+		src/op_swap.c
 
 SRC_BONUS = \
-		checker.c \
-		libft+/libft.a
+		checker.c
+
+# Object files
+OBJ = $(SRC:.c=.o)
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 NAME	= push_swap
 BONUS_NAME = checker
@@ -37,23 +39,25 @@ RM		= rm -rf
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-${NAME}:
-	make all -C libft+
-	gcc $(CFLAGS) $(SRC) -o $(NAME)
+${NAME}: libft+/libft.a $(OBJ)
+	gcc $(CFLAGS) $(OBJ) libft+/libft.a -o $(NAME)
 
 all: $(NAME)
 
+libft+/libft.a:
+	make -C libft+
+
 clean:
 	make clean -C libft+
+	$(RM) $(OBJ) $(OBJ_BONUS)
 
-fclean:
+fclean: clean
 	$(RM) $(NAME)
 	make fclean -C libft+
 
 re:	fclean all
 
-bonus:	
-	make all -C libft+
-	gcc $(CFLAGS) $(SRC_BONUS) -o $(BONUS_NAME)
+bonus:	libft+/libft.a $(OBJ_BONUS)
+	gcc $(CFLAGS) $(OBJ_BONUS) libft+/libft.a -o $(BONUS_NAME)
 
-.PHONY: all clean fclean re bonus
+.PHONY: all libft+/libft.a clean fclean re bonus

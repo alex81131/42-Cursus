@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/06 17:47:50 by kyeh              #+#    #+#              #
-#    Updated: 2024/06/11 13:39:06 by kyeh             ###   ########.fr        #
+#    Updated: 2024/06/17 18:26:50 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,15 @@ LIBC	= ar rcs
 SRC =	src/pipex.c \
 		src/utils.c \
 		src/utils_error.c \
-		libft+/libft.a
 
 SRC_BONUS = \
 		src_bonus/pipex_bonus.c \
 		src_bonus/utils_bonus.c \
 		src_bonus/utils_error_bonus.c \
-		libft+/libft.a
+
+# Object files
+OBJ = $(SRC:.c=.o)
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 NAME	= pipex
 RM		= rm -rf
@@ -33,23 +35,25 @@ RM		= rm -rf
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-${NAME}:
-	make all -C libft+
-	gcc $(CFLAGS) $(SRC) -o $(NAME)
+${NAME}: libft+/libft.a $(OBJ) 
+	gcc $(CFLAGS) $(OBJ) libft+/libft.a -o $(NAME)
 
 all: $(NAME)
 
+libft+/libft.a:
+	make -C libft+
+
 clean:
 	make clean -C libft+
+	$(RM) $(OBJ) $(OBJ_BONUS)
 
-fclean:
+fclean: clean
 	$(RM) $(NAME)
 	make fclean -C libft+
 
 re:	fclean all
 
-bonus:	fclean
-	make all -C libft+
-	gcc $(CFLAGS) $(SRC_BONUS) -o $(NAME)
+bonus:	libft+/libft.a $(OBJ_BONUS)
+	gcc $(CFLAGS) $(OBJ_BONUS) libft+/libft.a -o $(NAME)
 
-.PHONY: all clean fclean re bonus
+.PHONY: all libft+/libft.a clean fclean re bonus
