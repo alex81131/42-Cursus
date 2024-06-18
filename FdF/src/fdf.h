@@ -13,6 +13,11 @@
 #ifndef FDF_H
 # define FDF_H
 
+# include "../libft+/src/libft.h"
+# include "../libft+/src/ft_printf.h"
+# include <stdlib.h>
+# include <fcntl.h>  
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
 # endif
