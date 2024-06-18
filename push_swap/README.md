@@ -1,7 +1,6 @@
-# Pipex
-Replicate shell's pipe functionality (cmd1 | cmd2).
+# push_swap
+Data sorting algorithm.
 
 # Resources
-- https://github.com/jdecorte-be/42-Pipex/tree/master
-- [Tutorial on Medium (mieux)](https://medium.com/@lannur-s/pipex-42-chapter-4-pipe-5b4afa4a37b7)
-- [Tutorial on Medium](https://csnotes.medium.com/pipex-tutorial-42-project-4469f5dd5901)
+- https://github.com/48d31kh413k/1337-push_swap-42/tree/main
+- [Random Number Generator](https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php)
