@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:32 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/18 14:14:03 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/18 16:34:48 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,12 @@ int	main(int ac, char **av)
 		if (ac == 2)
 			av = ft_split(*av, ' ');
 		push_swap(av);
-		free_array(av, ps_strlen(av));
+		if (ac == 2)
+			free_array(av, ps_strlen(av));
 	}
 	return (0);
 }
+/*
+Sorting 100 random values: 700±2.5% steps
+Sorting 500 random values: ~5200 steps
+*/

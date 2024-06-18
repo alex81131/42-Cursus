@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:13:09 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/18 12:55:17 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/18 15:22:43 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	qs_3a(t_pile *pile, int range)
 		three_number_case(pile);
 	else if (range == 3)
 	{
-		while (range != 3 || !(pile->a[0] < pile->a[1]
-						&& pile->a[1] < pile->a[2]))
+		while (range != 3 || !(pile->a[0] < pile->a[1] \
+								&& pile->a[1] < pile->a[2]))
 		{
 			if (range == 3 && pile->a[0] > pile->a[1] && pile->a[2])
 				swap_a(pile, 0);
-			else if (range == 3 && !(pile->a[2] > pile->a[0]
+			else if (range == 3 && !(pile->a[2] > pile->a[0] \
 									&& pile->a[2] > pile->a[1]))
 				range = ft_push(pile, range, 0);
 			else if (pile->a[0] > pile->a[1])
@@ -38,6 +38,7 @@ void	qs_3a(t_pile *pile, int range)
 		}
 	}
 }
+
 void	qs_3b(t_pile *pile, int range)
 {
 	if (range == 1)
@@ -51,12 +52,12 @@ void	qs_3b(t_pile *pile, int range)
 	}
 	else if (range == 3)
 	{
-		while (range || !(pile->a[0] < pile->a[1]
+		while (range || !(pile->a[0] < pile->a[1] \
 						&& pile->a[1] < pile->a[2]))
 		{
 			if (range == 1 && pile->a[0] > pile->a[1])
 				swap_a(pile, 0);
-			else if (range == 1 || (range >= 2 && pile->b[0] > pile->b[1])
+			else if (range == 1 || (range >= 2 && pile->b[0] > pile->b[1]) \
 								|| (range == 3 && pile->b[0] > pile->b[2]))
 				range = ft_push(pile, range, 1);
 			else
@@ -65,7 +66,7 @@ void	qs_3b(t_pile *pile, int range)
 	}
 }
 
-int		qs_pile_a(t_pile *pile, int range, int rotation)
+int	qs_pile_a(t_pile *pile, int range, int rotation)
 {
 	int	pivot;
 	int	subrange;
@@ -87,13 +88,13 @@ int		qs_pile_a(t_pile *pile, int range, int rotation)
 		else if (++rotation)
 			rotate_a(pile, 0);
 	}
-	while (rotation--)
+	while (subrange != pile->size_a && rotation--)
 		reverse_rotate_a(pile, 0);
-	return (qs_pile_a(pile, subrange, 0)
+	return (qs_pile_a(pile, subrange, 0) \
 			&& qs_pile_b(pile, range - subrange, 0));
 }
 
-int		qs_pile_b(t_pile *pile, int range, int rotation)
+int	qs_pile_b(t_pile *pile, int range, int rotation)
 {
 	int	pivot;
 	int	subrange;
@@ -116,14 +117,20 @@ int		qs_pile_b(t_pile *pile, int range, int rotation)
 		else if (++rotation)
 			rotate_b(pile, 0);
 	}
-	while (rotation--)
+	while (subrange != pile->size_b && rotation--)
 		reverse_rotate_b(pile, 0);
-	return (qs_pile_a(pile, range - subrange, 0)
+	return (qs_pile_a(pile, range - subrange, 0) \
 			&& qs_pile_b(pile, subrange, 0));
 }
 
 /*	Recursively grouping the numbers in halves
 If size = 0: all returns 1, everything checks out.
+
+In qs_pile_a, the condition is crucial:
+while(rotation--)		is NOT equivalent to
+while(subrange != pile->size_a && rotation--)
+The number of steps will increase by 12-13% when using while(rotation--)
+(5221->5966 steps)
 
 qs_3a, else if (range == 3):
 [0, 1, 2] -> sorted

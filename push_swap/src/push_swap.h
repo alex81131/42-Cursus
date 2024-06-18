@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:36:43 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/18 12:52:21 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/18 15:57:49 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft+/src/libft.h"
 # include "../libft+/src/ft_printf.h"
+# include "../libft+/src/get_next_line.h"
 # include <stdlib.h>
 
 typedef struct s_pile

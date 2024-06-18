@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 10:21:06 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/18 12:45:29 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/18 15:17:15 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	median_sort(int *pile_temp, int size)
 	}
 }
 
-int		qs_median(int *pivot, int *pile, int size)
+int	qs_median(int *pivot, int *pile, int size)
 {
 	int	*temp;
 	int	i;

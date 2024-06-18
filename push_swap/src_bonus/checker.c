@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../src/push_swap.h"
 
 void	ps_free_error(t_pile *pile, int error)
 {
@@ -21,7 +21,7 @@ void	ps_free_error(t_pile *pile, int error)
 	exit(EXIT_FAILURE);
 }
 
-void exe_instruction(t_pile *pile, char *instruction)
+void	exe_instruction(t_pile *pile, char *instruction)
 {
 	if (!ft_strcmp(instruction, "sa\n"))
 		swap_a(pile, 1);
@@ -51,7 +51,7 @@ void exe_instruction(t_pile *pile, char *instruction)
 
 void	read_stdin(t_pile *pile)
 {
-	char	*instructionn;
+	char	*instruction;
 
 	instruction = get_next_line(STDIN_FILENO);
 	while (instruction)
@@ -77,8 +77,9 @@ int	*checker_array(char **av)
 	arr = (int *)malloc(size * sizeof(int));
 	if (!arr)
 		return (NULL);
-	while (i < size)
-		arr[i++] = ps_atoi(av[i], arr);
+	i = -1;
+	while (++i < size)
+		arr[i] = ps_atoi(av[i], arr);
 	check_doubles(arr, size);
 	return (arr);
 }
@@ -100,8 +101,10 @@ int	main(int ac, char **av)
 			free(pile.a);
 			return (0);
 		}
-		pile.b = 0;
+		pile.size_b = 0;
 		read_stdin(&pile);
+		if (ac == 2)
+			free_array(av, ps_strlen(av));
 	}
 	return (0);
 }

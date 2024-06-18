@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:44:53 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/18 12:45:09 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/18 15:33:10 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ int	ps_atoi(const char *str, int *pile)
 			ps_error(pile);
 		result = result * 10 + str[i++] - '0';
 	}
+	if ((result > 2147483647 && sign == 1) \
+		|| (result > 2147483648 && sign == -1))
+		ps_error(pile);
 	return (sign * result);
 }
 
