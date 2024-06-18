@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:18:24 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/12 17:39:21 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/18 14:16:49 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	rotate_a(t_pile *pile, int bonus)
 		return ;
 	i = 0;
 	temp = pile->a[i];
-	while (i < pile->size_a - 1)
-		pile->a[i++] = pile->a[i + 1];
-	pile->a[i] = temp;
+	while (++i < pile->size_a)
+		pile->a[i - 1] = pile->a[i];
+	pile->a[i - 1] = temp;
 	if (!bonus)
 		ft_printf("ra\n");
 }
@@ -37,9 +37,9 @@ void	rotate_b(t_pile *pile, int bonus)
 		return ;
 	i = 0;
 	temp = pile->b[i];
-	while (i < pile->size_b - 1)
-		pile->b[i++] = pile->b[i + 1];
-	pile->b[i] = temp;
+	while (++i < pile->size_b)
+		pile->b[i - 1] = pile->b[i];
+	pile->b[i - 1] = temp;
 	if (!bonus)
 		ft_printf("rb\n");
 }
@@ -54,14 +54,14 @@ void	rotate_r(t_pile *pile, int bonus)
 		return ;
 	i = 0;
 	temp = pile->a[i];
-	while (i < pile->size_a - 1)
-		pile->a[i++] = pile->a[i + 1];
-	pile->a[i] = temp;
+	while (++i < pile->size_a)
+		pile->a[i - 1] = pile->a[i];
+	pile->a[i - 1] = temp;
 	i = 0;
 	temp = pile->b[i];
-	while (i < pile->size_b - 1)
-		pile->b[i++] = pile->b[i + 1];
-	pile->b[i] = temp;
+	while (++i < pile->size_b)
+		pile->b[i - 1] = pile->b[i];
+	pile->b[i - 1] = temp;
 	if (!bonus)
 		ft_printf("rr\n");
 }

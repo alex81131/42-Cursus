@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:44:53 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/17 16:19:29 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/18 12:45:09 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,17 @@ int	sort_check(int *pile, int size, int order)
 
 	if (order == 0)
 	{
-		i = 1;
-		while (i < size)
-			if (pile[i - 1] > pile[i++])
+		i = 0;
+		while (++i < size)
+			if (pile[i - 1] > pile[i])
 				return (0);
 		return (1);
 	}
 	else
 	{
-		i = 1;
-		while (i < size)
-			if (pile[i - 1] < pile[i++])
+		i = 0;
+		while (++i < size)
+			if (pile[i - 1] < pile[i])
 				return (0);
 		return (1);
 	}

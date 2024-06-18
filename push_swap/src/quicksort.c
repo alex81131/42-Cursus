@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:13:09 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/16 11:47:03 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/18 12:55:17 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,6 @@ void	qs_3b(t_pile *pile, int range)
 				swap_b(pile, 0);
 		}
 	}
-}
-
-int		qs_median(int *pivot, int *pile, int size)
-{
-	int	*temp;
-	int	i;
-
-	temp = (int *)malloc(size * sizeof(int));
-	if (!temp)
-		return (0);
-	i = 0;
-	while (i < size)
-		temp[i] = pile[i++];
-	median_sort(temp, size);
-	*pivot = median_sort[size / 2];
-	free(temp);
-	return (1);
 }
 
 int		qs_pile_a(t_pile *pile, int range, int rotation)

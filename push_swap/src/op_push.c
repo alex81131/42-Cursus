@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:35:59 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/14 19:40:07 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/18 14:20:49 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	push_b(t_pile *pile, int bonus)
 	{
 		pile->size_b++;
 		i = pile->size_b;
-		while (i > 0)
-			pile->b[i--] = pile->b[i - 1];
+		while (--i > 0)
+			pile->b[i] = pile->b[i - 1];
 		pile->b[0] = pile->a[0];
 		pile->size_a--;
-		i = 0;
-		while (i < pile->size_a)
-			pile->a[i++] = pile->a[i + 1];
+		i = -1;
+		while (++i < pile->size_a)
+			pile->a[i] = pile->a[i + 1];
 		if (!bonus)
 			ft_printf("pb\n");
 	}
@@ -42,13 +42,13 @@ void	push_a(t_pile *pile, int bonus)
 	{
 		pile->size_a++;
 		i = pile->size_a;
-		while (i > 0)
-			pile->a[i--] = pile->a[i - 1];
+		while (--i > 0)
+			pile->a[i] = pile->a[i - 1];
 		pile->a[0] = pile->b[0];
 		pile->size_b--;
-		i = 0;
-		while (i < pile->size_b)
-			pile->b[i++] = pile->b[i + 1];
+		i = -1;
+		while (++i < pile->size_b)
+			pile->b[i] = pile->b[i + 1];
 		if (!bonus)
 			ft_printf("pa\n");
 	}
@@ -62,8 +62,8 @@ int	ft_push(t_pile *pile, int range, int push)
 		push_b(pile, 0);
 	else
 		push_a(pile, 0);
-	size--;
-	return (size);
+	range--;
+	return (range);
 }
 /*
 ft_push is needed to keep track of the range size.

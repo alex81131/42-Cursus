@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 10:21:06 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/16 11:45:53 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/18 12:45:29 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int		qs_median(int *pivot, int *pile, int size)
 	temp = (int *)malloc(size * sizeof(int));
 	if (!temp)
 		return (0);
-	i = 0;
-	while (i < size)
-		temp[i] = pile[i++];
+	i = -1;
+	while (++i < size)
+		temp[i] = pile[i];
 	median_sort(temp, size);
 	*pivot = temp[size / 2];
 	free(temp);

@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 12:36:43 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/17 15:59:14 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/18 12:52:21 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../libft+/src/libft.h"
+# include "../libft+/src/ft_printf.h"
 # include <stdlib.h>
 
 typedef struct s_pile

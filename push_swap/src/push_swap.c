@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 14:56:32 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/16 11:44:16 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/18 14:14:03 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	push_swap(char **av)
 	}
 	pile.size_a = size;
 	pile.size_b = 0;
-	i = 0;
-	while (i < size)
-		pile.a[i++] = ps_atoi(av[i], pile.a);
+	i = -1;
+	while (++i < size)
+		pile.a[i] = ps_atoi(av[i], pile.a);
 	check_doubles(pile.a, size);
 	qs_pile_a(&pile, size, 0);
 	free(pile.a);
@@ -47,6 +47,7 @@ int	main(int ac, char **av)
 		if (ac == 2)
 			av = ft_split(*av, ' ');
 		push_swap(av);
+		free_array(av, ps_strlen(av));
 	}
 	return (0);
 }
