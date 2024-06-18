@@ -2,5 +2,6 @@
 Data sorting algorithm.
 
 # Resources
-- [`Quicksort`](https://github.com/48d31kh413k/1337-push_swap-42/tree/main)
+- [`Reference`](https://github.com/48d31kh413k/1337-push_swap-42/tree/main)
+- [`Quicksort`](https://en.wikipedia.org/wiki/Quicksort)
 - [`Random Number Generator`](https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php)
