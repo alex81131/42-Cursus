@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:34 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/07 19:39:52 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/19 17:49:15 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 char	*ft_strdup(const char *src);
 //		<stdlib.h>
 int		ft_atoi(const char *str);
+int		ft_atoi_base(const char *str, const char *base);
 void	*ft_calloc(size_t nmemb, size_t size);
 //		<stdio.h>
 int		ft_putchar(int c);
