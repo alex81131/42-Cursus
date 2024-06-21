@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:35:49 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/18 13:12:37 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/21 15:09:25 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static char	*ft_strdup_len(const char *str, int len)
 	return (s);
 }
 
-void	free_array(char **array, int len)
+void	free_array_len(char **array, int len)
 {
 	int	i;
 

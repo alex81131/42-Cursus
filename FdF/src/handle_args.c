@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:14:10 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/18 17:21:55 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/21 15:36:45 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,58 @@ static int	parse_color(t_map *map, char *c)
 	else 
 		return (WHITE);
 	return (0);
+}
+
+static void	fill_matrix(t_map *map, int fd)
+{
+	int		x;
+	int		y;
+	char	*line;
+	char	**array;
+
+	y = -1;
+	while (++y < map->h)
+	{
+		line = get_next_line(fd);
+		array = ft_split(line, ' ');
+		if (!array)
+		{
+			fdf_free_map(map);
+			err_exit("Error", MAL_ERROR);
+		}
+		x = -1;
+		while (++x < map->w)
+		{
+			map->z_mt[y][x] = ft_atoi(array[x]);
+			map->clrs[y][x] = parse_color(map, array[x]);
+		}
+		free_array(array);
+		free(line);
+	}
+}
+
+static void	parse_file(t_map *map, char *file)
+{
+	int	fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		fdf_free_map(map, fd);
+		close(fd);
+	}
+}
+
+void	handle_args(t_map **map, int ac, char **av)
+{
+	char	*file;
+
+	if (ac != 2)
+		err_exit("Error", "Invalid arguments");
+	ft_printf("Reading map...\n");
+	file = av[1];
+	*map = fdf_initialize_map(file);
+	fdf_alloc_map(*map);
+	parse_file(*map, file);
+	fdf_get_min_max_z(*map);
 }

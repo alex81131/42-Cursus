@@ -16,7 +16,9 @@
 # include "../libft+/src/libft.h"
 # include "../libft+/src/ft_printf.h"
 # include <stdlib.h>
-# include <fcntl.h>  
+# include <stdio.h>
+# include <fcntl.h>
+# include <mlx.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
@@ -143,7 +145,7 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_vars
+typedef struct s_var
 {
 	void	*mlx;
 	void	*win;
@@ -153,10 +155,11 @@ typedef struct s_vars
 	int		shift_y;
 	float	zoom;
 	int		iso;
+	float	flat;
 	float	rot_x;
 	float	rot_y;
 	float	rot_z;
-}	t_vars;
+}	t_var;
 
 typedef struct s_point
 {
@@ -167,21 +170,21 @@ typedef struct s_point
 }	t_point;
 
 // utils.c
-void	fdf_free_split(char **str);
-void	fdf_free_vars(t_vars *vars);
-void	fdf_free_all(t_vars *vars);
-t_point	fdf_new_point(int x, int y, t_vars *vars);
-t_point	fdf_get_coords(t_vars *vars, t_point point);
+void	free_array(char **array);
+void	fdf_free_var(t_var *var);
+void	fdf_free_all(t_var *var);
+t_point	fdf_new_point(int x, int y, t_var *var);
+t_point	fdf_get_coords(t_var *var, t_point point);
 
 // error.c
-void	fdf_err_exit(const char *err, const char *msg);
-void	fdf_perror_exit(const char *str);
+void	err_exit(const char *err, const char *msg);
+void	perror_exit(const char *msg);
 
 // map_utils.c
 void	fdf_get_min_max_z(t_map *map);
 void	fdf_free_map(t_map *tab);
 void	fdf_alloc_map(t_map *map);
-t_map	*fdf_initialise_map(char *file);
+t_map	*fdf_initialize_map(char *file);
 
 // handle_args.c
 void	fdf_handle_args(t_map **map, int ac, char **av);
@@ -190,35 +193,35 @@ void	fdf_handle_args(t_map **map, int ac, char **av);
 int		fdf_mlx_main(t_map *map);
 
 // mlx_hook.c
-int		fdf_close_win(t_vars *vars);
-int		fdf_key_hook(int keycode, t_vars *vars);
+int		fdf_close_win(t_var *var);
+int		fdf_key_hook(int keycode, t_var *var);
 
 // mlx_loop.c
-int		fdf_update(t_vars *vars);
+int		fdf_update(t_var *var);
 
 // mlx_utils.c
-void	fdf_reset_vars(t_vars *vars);
-int		fdf_initialise_vars(t_vars *vars, t_map *map);
-void	fdf_initialise_mlx(t_vars *vars);
+void	fdf_reset_var(t_var *var);
+int		fdf_initialise_var(t_var *var, t_map *map);
+void	fdf_initialise_mlx(t_var *var);
 
 // draw.c
-void	fdf_draw(t_vars *vars);
+void	fdf_draw(t_var *var);
 
 // draw_utils.c
-void	fdf_isometric(t_vars *vars, int *x, int *y, int z);
-void	fdf_rot_x(t_vars *vars, int *y, int *z);
-void	fdf_rot_y(t_vars *vars, int *x, int *z);
-void	fdf_rot_z(t_vars *vars, int *x, int *y);
-void	fdf_img_pixel_put(t_vars *vars, int x, int y, int color);
+void	fdf_isometric(t_var *var, int *x, int *y, int z);
+void	fdf_rot_x(t_var *var, int *y, int *z);
+void	fdf_rot_y(t_var *var, int *x, int *z);
+void	fdf_rot_z(t_var *var, int *x, int *y);
+void	fdf_img_pixel_put(t_var *var, int x, int y, int color);
 
 // controls.c
-void	fdf_handle_zoom(int keycode, t_vars *vars);
-void	fdf_handle_move(int keycode, t_vars *vars);
-void	fdf_handle_rot(int keycode, t_vars *vars);
-void	fdf_handle_flattening(int keycode, t_vars *vars);
+void	fdf_handle_zoom(int keycode, t_var *var);
+void	fdf_handle_move(int keycode, t_var *var);
+void	fdf_handle_rot(int keycode, t_var *var);
+void	fdf_handle_flattening(int keycode, t_var *var);
 
 // color.c
 int		fdf_get_color(t_point current, t_point start, t_point end, t_point delta);
-int		fdf_get_z_color(t_vars *vars, int cur_z);
+int		fdf_get_z_color(t_var *var, int cur_z);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:40:16 by kyeh              #+#    #+#             */
-/*   Updated: 2024/05/31 13:12:49 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/21 19:53:06 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 # include <unistd.h>
 # include "libft.h"
 
+//		<printf_fd>
+int		ft_printf_fd(int fd, const char *format, ...);
+int		ft_putptr_fd(uintptr_t ptr, int fd);
+int		ft_uputnbr_fd(unsigned int n, int fd);
+int		ft_puthex_fd(unsigned int n, const char format, int fd);
+
+int		ft_printf(const char *format, ...);
 //		<printf>
 int		ft_putchar(int c);
 int		ft_putstr(char *str);
