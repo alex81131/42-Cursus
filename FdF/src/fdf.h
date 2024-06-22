@@ -161,6 +161,17 @@ typedef struct s_var
 	float	rot_z;
 }	t_var;
 
+/* 
+ * RGB Color Representation:
+ * Each component takes 8 bits = 1 byte, ranging 0-255 in decimal,
+ * which takes up two digits in hexadecimal: FF
+ * 
+ * Using a single int (4 bytes) to store the color is memory-efficient.
+ * Each color component (Red, Green, Blue, and optionally Alpha) fits neatly
+ * into one byte of the int.
+ * Storing colors as int values allows for efficient bitwise operations to extract
+ * or manipulate individual color components: 0xAARRGGBB
+*/
 typedef struct s_point
 {
 	int	x;
@@ -187,6 +198,7 @@ void	fdf_alloc_map(t_map *map);
 t_map	*fdf_initialize_map(char *file);
 
 // handle_args.c
+void	ft_tolower_char(char *c);
 void	fdf_handle_args(t_map **map, int ac, char **av);
 
 // mlx_main.c
