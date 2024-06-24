@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <mlx.h>
+# include <limits.h>
+# include <math.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
