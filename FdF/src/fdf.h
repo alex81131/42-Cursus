@@ -21,6 +21,7 @@
 # include <mlx.h>
 # include <limits.h>
 # include <math.h>
+# include <unistd.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
@@ -195,7 +196,7 @@ void	perror_exit(const char *msg);
 
 // map_utils.c
 void	fdf_get_min_max_z(t_map *map);
-void	fdf_free_map(t_map *tab);
+void	fdf_free_map(t_map *map);
 void	fdf_alloc_map(t_map *map);
 t_map	*fdf_initialize_map(char *file);
 
@@ -215,14 +216,14 @@ int		fdf_update(t_var *var);
 
 // mlx_utils.c
 void	fdf_reset_var(t_var *var);
-int		fdf_initialise_var(t_var *var, t_map *map);
-void	fdf_initialise_mlx(t_var *var);
+int		fdf_initialize_var(t_var *var, t_map *map);
+void	fdf_initialize_mlx(t_var *var);
 
 // draw.c
 void	fdf_draw(t_var *var);
 
 // draw_utils.c
-void	fdf_isometric(t_var *var, int *x, int *y, int z);
+void	isometric(t_var *var, int *x, int *y, int z);
 void	fdf_rot_x(t_var *var, int *y, int *z);
 void	fdf_rot_y(t_var *var, int *x, int *z);
 void	fdf_rot_z(t_var *var, int *x, int *y);
