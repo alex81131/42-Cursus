@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/06/21 20:07:52 by kyeh             ###   ########.fr        #
+#    Updated: 2024/06/27 16:28:11 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ FT_PRINTF = \
 		ft_putchar.c ft_putstr.c ft_putnbr.c \
 		ft_printf.c ft_printf_number_hex.c\
 		ft_printf_ptr.c ft_printf_unsigned_int.c \
-		ft_printf_fd.c ft_printf_ptr_fd ft_printf_number_hex_fd.c
+		ft_printf_fd.c ft_printf_ptr_fd.c ft_printf_number_hex_fd.c
 GNL = \
 		get_next_line.c get_next_line_utils.c
 

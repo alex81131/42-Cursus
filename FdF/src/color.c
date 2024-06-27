@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf"
+#include "fdf.h"
 
 static double	percent(int start, int end, int current)
 {
@@ -26,7 +26,7 @@ static double	percent(int start, int end, int current)
 
 static int	mix_colors(int start, int end, double percent)
 {
-	return ((int)(1 - percent) * start + percent * end);
+	return ((int)((1 - percent) * start + percent * end));
 }
 
 int	fdf_get_color(t_point current, t_point start, t_point end, t_point delta)
@@ -42,9 +42,9 @@ int	fdf_get_color(t_point current, t_point start, t_point end, t_point delta)
 		percentage = percent(start.x, end.x, current.x);
 	else
 		percentage = percent(start.y, end.y, current.y);
-	r = mix_colors((start.color >> 16) & 0xFF, (end.color >>16) & 0xFF, \
+	r = mix_colors((start.color >> 16) & 0xFF, (end.color >> 16) & 0xFF, \
 															percentage);
-	g = mix_colors((start.color >> 8) & 0xFF, (end.color >>8) & 0xFF, \
+	g = mix_colors((start.color >> 8) & 0xFF, (end.color >> 8) & 0xFF, \
 															percentage);
 	b = mix_colors(start.color & 0xFF, end.color & 0xFF, percentage);
 	return ((r << 16) | (g << 8) | b);
@@ -54,7 +54,7 @@ int	fdf_get_z_color(t_var *var, int cur_z)
 {
 	double	percentage;
 
-	percentatge = percent(var->map->min_z, var->map->max_z, cur_z);
+	percentage = percent(var->map->min_z, var->map->max_z, cur_z);
 	if (percentage < 0.2)
 		return (COLOR_1);
 	else if (percentage < 0.4)

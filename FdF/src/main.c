@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:11:22 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/18 17:13:44 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/27 16:28:48 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 	t_map	*map;
 
 	map = NULL;
-	handle_args(&map, ac, av);
+	fdf_handle_args(&map, ac, av);
 	mlx_main(map);
 	return (0);
 }

@@ -38,9 +38,21 @@ void	fdf_free_map(t_map *map)
 	if (!map)
 		return ;
 	if (map->z_mt)
-		free_array(map->z_mt);
+	{
+		i = -1;
+		while (++i < map->h)
+			if (map->z_mt[i])
+				free(map->z_mt[i]);
+		free(map->z_mt);
+	}
 	if (map->clrs)
-		free_array(map->clrs);
+	{
+		i = -1;
+		while (++i < map->h)
+			if (map->clrs[i])
+				free(map->clrs[i]);
+		free(map->clrs);
+	}
 	free(map);
 }
 
@@ -85,13 +97,13 @@ static int	measure_width(t_map *map, char *line, char *file)
 		err_exit("Error", MAL_ERROR);
 	}
 	count = 0;
-	while (arr[i])
+	while (arr[count])
 		count++;
 	free_array(arr);
 	return (count);
 }
 
-t_map	fdf_initialize_map(char *file)
+t_map	*fdf_initialize_map(char *file)
 {
 	int		fd;
 	t_map	*map;

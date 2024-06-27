@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:35:49 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/21 15:09:25 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/27 15:57:27 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static char	**split_action(char const *s, char c, char **array)
 			array[j] = ft_strdup_len(s, i);
 			if (!array[j])
 			{
-				free_array(array, j);
+				free_array_len(array, j);
 				return (NULL);
 			}
 			j++;

@@ -15,6 +15,7 @@
 
 # include "../libft+/src/libft.h"
 # include "../libft+/src/ft_printf.h"
+# include "../libft+/src/get_next_line.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -164,7 +165,7 @@ typedef struct s_var
 	float	rot_z;
 }	t_var;
 
-/* 
+/*
  * RGB Color Representation:
  * Each component takes 8 bits = 1 byte, ranging 0-255 in decimal,
  * which takes up two digits in hexadecimal: FF
@@ -172,8 +173,8 @@ typedef struct s_var
  * Using a single int (4 bytes) to store the color is memory-efficient.
  * Each color component (Red, Green, Blue, and optionally Alpha) fits neatly
  * into one byte of the int.
- * Storing colors as int values allows for efficient bitwise operations to extract
- * or manipulate individual color components: 0xAARRGGBB
+ * Storing colors as int values allows for efficient bitwise operations to
+ * extract or manipulate individual color components: 0xAARRGGBB
 */
 typedef struct s_point
 {
@@ -205,7 +206,7 @@ void	ft_tolower_char(char *c);
 void	fdf_handle_args(t_map **map, int ac, char **av);
 
 // mlx_main.c
-int		fdf_mlx_main(t_map *map);
+int		mlx_main(t_map *map);
 
 // mlx_hook.c
 int		fdf_close_win(t_var *var);
@@ -236,7 +237,8 @@ void	fdf_handle_rot(int keycode, t_var *var);
 void	fdf_handle_flattening(int keycode, t_var *var);
 
 // color.c
-int		fdf_get_color(t_point current, t_point start, t_point end, t_point delta);
+int		fdf_get_color(t_point current, t_point start, t_point end, \
+														t_point delta);
 int		fdf_get_z_color(t_var *var, int cur_z);
 
 #endif

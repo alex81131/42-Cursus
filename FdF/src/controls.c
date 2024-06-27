@@ -14,16 +14,28 @@
 
 void	fdf_handle_zoom(int keycode, t_var *var)
 {
-	if (key_code == KEY_DOWN)
+	if (keycode == KEY_DOWN)
 	{
 		if (var->zoom > 0)
 			var->zoom -= ZOOM_SHIFT;
 	}
-	if (key_code == KEY_UP)
+	if (keycode == KEY_UP)
 	{
 		if (var->zoom < INT_MAX)
 			var->zoom += ZOOM_SHIFT;
 	}
+}
+
+void	fdf_handle_move(int keycode, t_var *var)
+{
+	if (keycode == KEY_W)
+		var->shift_y += SHIFT;
+	if (keycode == KEY_S)
+		var->shift_y -= SHIFT;
+	if (keycode == KEY_A)
+		var->shift_x += SHIFT;
+	if (keycode == KEY_D)
+		var->shift_x -= SHIFT;
 }
 
 void	fdf_handle_flattening(int keycode, t_var *var)

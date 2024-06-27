@@ -96,7 +96,6 @@ char	*get_next_line(int fd)
 	static char	*line[FOPEN_MAX];
 	char		*next_line;
 
-	ft_putstr_fd("> ", 1);
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	line[fd] = ft_input_gnl(fd, line[fd]);

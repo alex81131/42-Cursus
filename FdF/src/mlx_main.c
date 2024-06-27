@@ -17,7 +17,7 @@ int	mlx_main(t_map *map)
 	t_var	*var;
 
 	ft_printf("Starting MiniLibX... \n");
-	var = (t_var)ft_calloc(1, sizeof(t_var));
+	var = (t_var *)ft_calloc(1, sizeof(t_var));
 	if (!var)
 		err_exit("Error", MAL_ERROR);
 	if (fdf_initialize_var(var, map))

@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:14:10 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/21 15:36:45 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/27 17:38:46 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ void	ft_tolower_char(char *c)
 	*c = ft_tolower(*c);
 }
 
-static int	parse_color(t_map *map, char *c)
+static int	parse_color(t_map *map, char *s)
 {
-	while (*c && (ft_isdigit(*c) || *s == '-' || *s == '+' || *s == ','))
-		c++;
-	if (*c && *c == 'x')
+	while (*s && (ft_isdigit(*s) || *s == '-' || *s == '+' || *s == ','))
+		s++;
+	if (*s && *s == 'x')
 	{
 		map->iscolor = 1;
 		ft_striter(s + 1, ft_tolower_char);
 		return (ft_atoi_base(s + 1, LHEX));
 	}
-	else 
+	else
 		return (WHITE);
 	return (0);
 }
@@ -67,12 +67,12 @@ static void	parse_file(t_map *map, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
-		fdf_free_map(map, fd);
+		fill_matrix(map, fd);
 		close(fd);
 	}
 }
 
-void	handle_args(t_map **map, int ac, char **av)
+void	fdf_handle_args(t_map **map, int ac, char **av)
 {
 	char	*file;
 

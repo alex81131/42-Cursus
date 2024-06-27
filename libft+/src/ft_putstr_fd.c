@@ -6,17 +6,23 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:46:33 by kyeh              #+#    #+#             */
-/*   Updated: 2024/05/17 11:22:39 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/27 16:11:46 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
 	unsigned int	i;
 
 	i = 0;
+	if (!s)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	while (s[i])
 		ft_putchar_fd(s[i++], fd);
+	return (i);
 }

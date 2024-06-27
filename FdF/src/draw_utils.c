@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-void	isometric(t_var *var, int *x, int *y, int *z)
+void	isometric(t_var *var, int *x, int *y, int z)
 {
 	int	prev_x;
 	int	prev_y;
@@ -52,11 +52,11 @@ void	fdf_rot_z(t_var *var, int *x, int *y)
 	*y = (prev_x * sin(var->rot_z)) + (*y * cos(var->rot_z));
 }
 
-fdf_img_pixel_put(t_var *var, int x, int y, int color)
+void	fdf_img_pixel_put(t_var *var, int x, int y, int color)
 {
 	int	pixel;
 
-	if (y >=WIN_H || x >= WIN_W || y < 0 || x < 0)
+	if (y >= WIN_H || x >= WIN_W || y < 0 || x < 0)
 		return ;
 	pixel = (y * var->img->sz_l) + (x * (var->img->bpp / 8));
 	if (var->img->endian == 1)

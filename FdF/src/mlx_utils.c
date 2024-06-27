@@ -23,7 +23,7 @@ void	fdf_reset_var(t_var *var)
 {
 	var->zoom = ft_max((WIN_W / var->map->w / 2), (WIN_H / var->map->h / 2));
 	var->shift_x = WIN_W / 2;
-	var->shift_y = (WIN_h - var->map->h * var->zoom) / 2;
+	var->shift_y = (WIN_H - var->map->h * var->zoom) / 2;
 	var->iso = 1;
 	var->flat = 1;
 	var->rot_x = 0;
@@ -37,7 +37,7 @@ int	fdf_initialize_var(t_var *var, t_map *map)
 	var->img = (t_img *)ft_calloc(1, sizeof(t_img));
 	if (!var->img)
 		return (1);
-	reset_var(var);
+	fdf_reset_var(var);
 	return (0);
 }
 

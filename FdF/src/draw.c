@@ -12,9 +12,9 @@
 
 #include "fdf.h"
 
-static void draw_menu(t_var *var)
+static void	draw_menu(t_var *var)
 {
-	int	y;;
+	int		y;
 	void	*mlx;
 	void	*win;
 
@@ -62,10 +62,10 @@ static void	bresenham(t_var *var, t_point start, t_point end)
 	int		line;
 	int		temp;
 
-	initialize_besenham(&start, &end, &delta, &sign)
+	initialize_besenham(&start, &end, &delta, &sign);
 	line = delta.x - delta.y;
 	cur = start;
-	while (cur.x != end.x || cur.y != end.y
+	while (cur.x != end.x || cur.y != end.y)
 	{
 		fdf_img_pixel_put(var, cur.x, cur.y, fdf_get_color(cur, start, end, \
 																	delta));
@@ -75,7 +75,7 @@ static void	bresenham(t_var *var, t_point start, t_point end)
 			line -= delta.y;
 			cur.x += sign.x;
 		}
-		if (temp < detla.x)
+		if (temp < delta.x)
 		{
 			line += delta.x;
 			cur.y += sign.y;
@@ -99,12 +99,12 @@ void	fdf_draw(t_var *var)
 			{
 				if (x < var->map->w - 1)
 					bresenham(var, \
-						fdf_get_coords(var, new_point(x, y, var)), \
-						fdf_get_coords(var, new_point(x + 1, y, var)));
+						fdf_get_coords(var, fdf_new_point(x, y, var)), \
+						fdf_get_coords(var, fdf_new_point(x + 1, y, var)));
 				if (y < var->map->h - 1)
 					bresenham(var, \
-						fdf_get_coords(var, new_point(x, y, var)), \
-						fdf_get_coords(var, new_point(x, y + 1, var)));
+						fdf_get_coords(var, fdf_new_point(x, y, var)), \
+						fdf_get_coords(var, fdf_new_point(x, y + 1, var)));
 			}
 		}
 	}
