@@ -127,11 +127,3 @@ t_map	*fdf_initialize_map(char *file)
 	close(fd);
 	return (map);
 }
-/*Check if bugs:
-1. fdf_get_min_max_z:
-	Changed from else if to if.
-2. fdf_free_map:
-	if can use free_array
-3. fdf_initialize_map:
-	if ">" appears
-*/

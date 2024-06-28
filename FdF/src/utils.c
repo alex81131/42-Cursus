@@ -27,6 +27,8 @@ void	fdf_free_var(t_var *var)
 	fdf_free_map(var->map);
 	if (var->img)
 		free(var->img);
+	if (var->mlx)
+		free(var->mlx);
 	free(var);
 }
 
@@ -34,6 +36,7 @@ void	fdf_free_all(t_var *var)
 {
 	mlx_destroy_window(var->mlx, var->win);
 	mlx_destroy_image(var->mlx, var->img->img);
+	mlx_destroy_display(var->mlx);
 	fdf_free_var(var);
 }
 
@@ -64,3 +67,13 @@ t_point	fdf_get_coords(t_var *var, t_point point)
 	point.y += var->shift_y;
 	return (point);
 }
+/*
+mlx_destroy_window(var->mlx, var->win)
+	deallocates resources associated with the window
+	and removes it from the display.
+mlx_destroy_image(var->mlx, var->img->img)
+	Frees the memory used by the image.
+mlx_destroy_display(var->mlx)
+	Closes the connection to the graphics server
+	and releases all associated resources.
+*/

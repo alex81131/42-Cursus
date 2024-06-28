@@ -5,142 +5,76 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 12:12:53 by kyeh              #+#    #+#             */
-/*   Updated: 2024/05/20 12:12:53 by kyeh             ###   ########.fr       */
+/*   Created: 2024/06/28 16:38:15 by kyeh              #+#    #+#             */
+/*   Updated: 2024/06/28 16:41:28 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_input_gnl(int fd, char *line)
+static char	*return_next_line(char **s)
 {
-	char	*buffer;
-	ssize_t	read_bytes;
+	char	*out;
+	char	*tmp;
+	size_t	len;
 
-	buffer = (char *)malloc(BUFFER_SIZE + 1);
-	if (!buffer)
-		return (NULL);
-	read_bytes = 1;
-	if (!line)
-		line = ini_strjoin(line);
-	while (!ft_strchr(line, '\n') && read_bytes > 0)
+	len = 0;
+	out = NULL;
+	while ((*s)[len] != '\n' && (*s)[len])
+		len++;
+	if ((*s)[len] == '\n')
 	{
-		read_bytes = read(fd, buffer, BUFFER_SIZE);
-		if (read_bytes == -1)
+		out = ft_substr(*s, 0, len + 1);
+		tmp = ft_strdup(*s + len + 1);
+		free(*s);
+		*s = tmp;
+		if (!**s)
 		{
-			free (buffer);
-			return (NULL);
+			free(*s);
+			*s = NULL;
 		}
-		if (read_bytes == 0)
-			break ;
-		buffer[read_bytes] = '\0';
-		line = ft_realloc_strjoin(line, buffer);
+		return (out);
 	}
-	free(buffer);
-	return (line);
+	out = ft_strdup(*s);
+	free(*s);
+	*s = NULL;
+	return (out);
 }
 
-char	*ft_get_line(char *line)
+static char	*check_and_return(char **s, ssize_t n, int fd)
 {
-	int		i;
-	char	*str;
-
-	i = 0;
-	if (!line || !line[i])
+	if (n < 0)
 		return (NULL);
-	while (line [i] && line[i] != '\n')
-		i++;
-	str = (char *)malloc(i + 2);
-	if (!str)
+	if (!n && (!s[fd] || !*s[fd]))
 		return (NULL);
-	i = 0;
-	while (line [i] && line[i] != '\n')
-	{
-		str[i] = line[i];
-		i++;
-	}
-	if (line[i] && line[i] == '\n')
-		str[i++] = '\n';
-	str[i] = '\0';
-	return (str);
-}
-
-char	*new_line(char *line)
-{
-	int		i;
-	int		j;
-	char	*str;
-
-	i = 0;
-	while (line[i] && line[i] != '\n')
-		i++;
-	if (!line[i])
-	{
-		free(line);
-		return (NULL);
-	}
-	str = (char *)malloc((ft_strlen(line) - i + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	i++;
-	j = 0;
-	while (line[i])
-		str[j++] = line[i++];
-	str[j] = '\0';
-	free(line);
-	return (str);
+	return (return_next_line(&s[fd]));
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*line[FOPEN_MAX];
-	char		*next_line;
+	char		*tmp;
+	char		*buf;
+	static char	*s[FOPEN_MAX];
+	ssize_t		n;
 
-	ft_putstr_fd("> ", 1);
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	line[fd] = ft_input_gnl(fd, line[fd]);
-	if (!line[fd])
+	buf = malloc(BUFFER_SIZE + 1);
+	if (!buf)
 		return (NULL);
-	next_line = ft_get_line(line[fd]);
-	line[fd] = new_line(line[fd]);
-	return (next_line);
-}
-/*
-//	cc -Wall -Werror -Wextra get_next_line_bonus.c get_next_line_utils_bonus.c
-//	./a.out test.txt small_test.txt
-int	main(int ac, char *av[])
-{
-	(void)ac;
-	int	fd;
-	int	fd2;
-	char	*line;
-	char	*line2;
-
-	fd = open(av[1], O_RDONLY);
-	fd2 = open(av[2], O_RDONLY);
-	line = get_next_line(fd);
-	line2 = get_next_line(fd2);
-	while (line && line2)
+	n = read(fd, buf, BUFFER_SIZE);
+	while (n > 0)
 	{
-		printf("%s", line);
-		printf("%s", line2);
-		free(line);
-		free(line2);
-		line = get_next_line(fd);
-		line2 = get_next_line(fd2);
+		buf[n] = '\0';
+		if (!s[fd])
+			s[fd] = ft_strdup("");
+		tmp = ft_strjoin(s[fd], buf);
+		free(s[fd]);
+		s[fd] = tmp;
+		if (ft_strchr(buf, '\n'))
+			break ;
+		n = read(fd, buf, BUFFER_SIZE);
 	}
-	free(line);
-	free(line2);
-	close(fd);
-	close(fd2);
-	return (0);
+	free(buf);
+	return (check_and_return(s, n, fd));
 }
-*/
-/*
--D BUFFER_SIZE=n
-
-Only changed:
-1. static char	*line[FOPEN_MAX];
-2. line[fd]
-*/

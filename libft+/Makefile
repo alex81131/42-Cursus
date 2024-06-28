@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/06/27 16:28:11 by kyeh             ###   ########.fr        #
+#    Updated: 2024/06/28 16:46:08 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ LIBFT = \
 		ft_atoi.c ft_atoi_base.c ft_calloc.c \
 		\
 		ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c \
-		ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c \
-		ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
+		ft_itoa.c ft_strmapi.c ft_striter.c ft_striteri.c \
+		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 		\
 		ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
@@ -41,7 +41,7 @@ FT_PRINTF = \
 		ft_printf_ptr.c ft_printf_unsigned_int.c \
 		ft_printf_fd.c ft_printf_ptr_fd.c ft_printf_number_hex_fd.c
 GNL = \
-		get_next_line.c get_next_line_utils.c
+		get_next_line.c
 
 SRC = \
 		$(addprefix src/, $(LIBFT)) \
