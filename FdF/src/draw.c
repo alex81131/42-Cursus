@@ -58,26 +58,26 @@ static void	bresenham(t_var *var, t_point start, t_point end)
 {
 	t_point	cur;
 	t_point	sign;
-	t_point	delta;
-	int		line;
-	int		temp;
+	t_point	d;
+	int		error;
+	int		k;
 
-	initialize_besenham(&start, &end, &delta, &sign);
-	line = delta.x - delta.y;
+	initialize_besenham(&start, &end, &d, &sign);
+	error = d.x - d.y;
 	cur = start;
 	while (cur.x != end.x || cur.y != end.y)
 	{
-		fdf_img_pixel_put(var, cur.x, cur.y, fdf_get_color(cur, start, end, \
-																	delta));
-		temp = line * 2;
-		if (temp > -delta.y)
+		fdf_img_pixel_put(var, cur.x, cur.y, \
+							fdf_get_color(cur, start, end, d));
+		k = error * 2;
+		if (k > -d.y)
 		{
-			line -= delta.y;
+			error -= d.y;
 			cur.x += sign.x;
 		}
-		if (temp < delta.x)
+		if (k < d.x)
 		{
-			line += delta.x;
+			error += d.x;
 			cur.y += sign.y;
 		}
 	}
@@ -111,3 +111,14 @@ void	fdf_draw(t_var *var)
 	mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
 	draw_menu(var);
 }
+/*
+bresenham:
+k = error * 2, error = d.x - d.y
+	to avoid dealing with fractional values, making the comparison
+	more sensitive, simpler and faster.
+	(error is used to determine which makes a more significant move:
+	d.x or d.y)
+The reason for the conditions k > -d.y and k < d.x, check Wiki:
+https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
+#Algorithm_for_integer_arithmetic
+*/

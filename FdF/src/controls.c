@@ -57,13 +57,13 @@ void	fdf_handle_rot(int keycode, t_var *var)
 	if (keycode == KEY_U)
 		var->rot_x += ROT_SHIFT;
 	if (keycode == KEY_J)
-		var->rot_x += ROT_SHIFT;
+		var->rot_x -= ROT_SHIFT;
 	if (keycode == KEY_I)
-		var->rot_x += ROT_SHIFT;
+		var->rot_y += ROT_SHIFT;
 	if (keycode == KEY_K)
-		var->rot_x += ROT_SHIFT;
+		var->rot_y -= ROT_SHIFT;
 	if (keycode == KEY_O)
-		var->rot_x += ROT_SHIFT;
+		var->rot_z += ROT_SHIFT;
 	if (keycode == KEY_L)
-		var->rot_x += ROT_SHIFT;
+		var->rot_z -= ROT_SHIFT;
 }

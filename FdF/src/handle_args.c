@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:14:10 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/27 17:38:46 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/06/28 12:46:14 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,11 @@ static void	parse_file(t_map *map, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
+		fdf_free_map(map);
+		perror_exit(file);
+	}
 		fill_matrix(map, fd);
 		close(fd);
-	}
 }
 
 void	fdf_handle_args(t_map **map, int ac, char **av)

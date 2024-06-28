@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 18:42:47 by kyeh              #+#    #+#              #
-#    Updated: 2024/06/27 17:29:41 by kyeh             ###   ########.fr        #
+#    Updated: 2024/06/28 14:43:30 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ CCFLAGS = -Wall -Wextra -Werror
 #LIBC	= ar rcs
 
 CFLAGS += -D WIN_H=720 -D WIN_W=1280
-#CCFLAGS += -D WIN_H=1080 -D WIN_W=1920
+CCFLAGS += -D WIN_H=1080 -D WIN_W=1920
 
 CFLAGS += -D BUFFER_SIZE=10
-#CCFLAGS += -D BUFFER_SIZE=500
+CCFLAGS += -D BUFFER_SIZE=500
 
 CFLAGS += -O3
 CCFLAGS += -O3
@@ -52,6 +52,7 @@ LMLX_DIR_MACOS_SIERRA = lib/mlx_macos_sierra
 LMLX = $(LMLX_DIR)/$(LMLX_NAME)
 
 CFLAGS += -I ./$(LMLX_DIR)
+CCFLAGS += -I ./$(LMLX_DIR)
 
 # Source files
 SRC_FILES = \
@@ -93,7 +94,7 @@ RM		= rm -rf
 #######################################################
 
 ${NAME}: libft+/libft.a $(LMLX_NAME) $(OBJ)
-	gcc $^ -o  $@ $(CFLAGS) $(LDFLAGS) $(LDLIBS)
+	gcc $^ -o  $@ $(CCFLAGS) $(LDFLAGS) $(LDLIBS)
 
 all: $(NAME)
 
@@ -103,7 +104,7 @@ $(LMLX_NAME):
 
 obj/%.o: src/%.c
 	@mkdir -p obj
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CCFLAGS) -c $< -o $@
 
 libft+/libft.a:
 	make -C libft+
