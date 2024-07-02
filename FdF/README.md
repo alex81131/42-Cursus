@@ -13,4 +13,4 @@ Represent a landscape as a 3D wireframe.
 
 <br>
 
-- [Help](https://github.com/izenynn/fdf/blob/main/inc/fdf.h)
+- [Help](https://github.com/izenynn/fdf/tree/main)
