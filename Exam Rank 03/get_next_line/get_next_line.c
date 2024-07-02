@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 16:38:15 by kyeh              #+#    #+#             */
-/*   Updated: 2024/07/02 16:40:42 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/07/02 16:59:01 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,8 @@ char	*get_next_line(int fd)
 	free(buf);
 	return (check_and_return(s, n, fd));
 }
-/*	./a.out small_test.txt
+/*
+//	./a.out test.txt
 int	main(int ac, char *av[])
 {
 	(void)ac;
@@ -215,4 +216,9 @@ The +1 in ft_substr is to include the \n
 (len + 1 is the total length to be copied);
 the +1 in ft_strdup is to start after the \n
 (len + 1 is the starting point after \n).
+
+stdlib: free, malloc
+fcntl: open
+stdio; printf, FOPEN_MAX
+unistd: read, close
 */
