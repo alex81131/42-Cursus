@@ -10,4 +10,6 @@
 |02| [Pipex](https://github.com/alex81131/42-Cursus/tree/main/pipex) | C | Replicate shell's pipe functionality (cmd1 \| cmd2). | 125% |
 |02| [Push Swap](https://github.com/alex81131/42-Cursus/tree/main/push_swap) | C | Sorting Data Algorithms. | 125% |
 |02| [FdF](https://github.com/alex81131/42-Cursus/tree/main/FdF) | C | Represent a landscape as a 3D wireframe. | ???% |
-|03| [Exam 03](https://github.com/48d31kh413k/1337-exam_rank_03-42) | C | Printf/gnl. | ???% |
+|03| [Exam 03](https://github.com/48d31kh413k/1337-exam_rank_03-42) | C | ft_printf / get_next_line. | ???% |
+|03| [Minishell]() | C | Simple Shell. | ???% |
+|03| [Philosophers]() | C | Parallel programming. | ???% |
