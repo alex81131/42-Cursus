@@ -24,14 +24,6 @@ void	perror_exit(const char *msg)
 	exit(EXIT_FAILURE);
 }
 
-int	fdf_extension(char *file)
-{
-	char	*dot;
-
-	dot = ft_strrchr(file, '.');
-	return (dot && ft_strcmp(dot, ".fdf") == 0);
-}
-
 int	ft_access(const char *pathname, int mode)
 {
 	struct stat	buffer;

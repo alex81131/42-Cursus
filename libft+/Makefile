@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/06/28 16:46:08 by kyeh             ###   ########.fr        #
+#    Updated: 2024/07/03 19:01:56 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ LIBFT = \
 		ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
 		ft_lstmap.c 
-
 FT_PRINTF = \
 		ft_putchar.c ft_putstr.c ft_putnbr.c \
 		ft_printf.c ft_printf_number_hex.c\
@@ -42,6 +41,8 @@ FT_PRINTF = \
 		ft_printf_fd.c ft_printf_ptr_fd.c ft_printf_number_hex_fd.c
 GNL = \
 		get_next_line.c
+FDF = \
+		error.c handle_args.c utils.c 
 
 SRC = \
 		$(addprefix src/, $(LIBFT)) \
