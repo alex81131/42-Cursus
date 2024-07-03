@@ -194,6 +194,7 @@ t_point	fdf_get_coords(t_var *var, t_point point);
 // error.c
 void	err_exit(const char *err, const char *msg);
 void	perror_exit(const char *msg);
+int		fdf_extension(char *file);
 
 // map_utils.c
 void	fdf_get_min_max_z(t_map *map);

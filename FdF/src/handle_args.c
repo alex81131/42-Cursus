@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:14:10 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/28 16:01:54 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/07/03 17:14:29 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ void	fdf_handle_args(t_map **map, int ac, char **av)
 
 	if (ac != 2)
 		err_exit("Error", "Invalid arguments");
+	if (access(av[1], F_OK) == -1)
+		err_exit("Error", "File does not exist.");
+	if (!fdf_extension(av[1]))
+		err_exit("Error", "Invalid file extension. Expected a .fdf file.");
 	ft_printf("Reading map...\n");
 	file = av[1];
 	*map = fdf_initialize_map(file);
