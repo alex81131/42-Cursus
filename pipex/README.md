@@ -1,5 +1,7 @@
 # Pipex
-Replicate shell's pipe functionality (cmd1 | cmd2).
+Replicate shell's pipe functionality (cmd1 | cmd2). <br>
+I've heard people said that whilst Pipex gives you a good base to connect Minishell afterwards, Minitalk does fuck all. <br>
+Therefore, it's recommended to choose Pipex over Minitalk, which on the other hand could be useful for the parsing part in Minishell, they said.
 
 # Resources
 - https://github.com/jdecorte-be/42-Pipex/tree/master
