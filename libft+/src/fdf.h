@@ -31,7 +31,6 @@ void	free_array(char **array);
 // error.c
 void	err_exit(const char *err, const char *msg);
 void	perror_exit(const char *msg);
-int		ft_access(const char *pathname, int mode);
 
 // handle_args.c
 void	ft_tolower_char(char *c);

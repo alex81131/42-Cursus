@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/07/03 19:01:56 by kyeh             ###   ########.fr        #
+#    Updated: 2024/07/03 21:40:42 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ FT_PRINTF = \
 GNL = \
 		get_next_line.c
 FDF = \
-		error.c handle_args.c utils.c 
+		fdf.c
 
 SRC = \
 		$(addprefix src/, $(LIBFT)) \

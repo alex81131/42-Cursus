@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 17:14:10 by kyeh              #+#    #+#             */
-/*   Updated: 2024/07/03 18:47:39 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/07/03 21:48:57 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,23 @@ static void	parse_file(t_map *map, char *file)
 void	fdf_handle_args(t_map **map, int ac, char **av)
 {
 	char	*file;
+	int		fd;
 
 	if (ac != 2)
 		err_exit("Error", "Invalid arguments");
-	if (ft_access(av[1], F_OK) == -1)
-		err_exit("Error", "File does not exist.");
-	if (!fdf_extension(av[1]))
+	file = av[1];
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		err_exit("Error", "Error opening file.");
+	close(fd);
+	if (!fdf_extension(file))
 		err_exit("Error", "Invalid file extension. Expected a .fdf file.");
 	ft_printf("Reading map...\n");
-	file = av[1];
 	*map = fdf_initialize_map(file);
 	fdf_alloc_map(*map);
 	parse_file(*map, file);
 	fdf_get_min_max_z(*map);
 }
+/*
+fd = open(file, O_RDONLY); to check if file is existent.
+*/

@@ -31,17 +31,3 @@ int	fdf_extension(char *file)
 	dot = ft_strrchr(file, '.');
 	return (dot && ft_strcmp(dot, ".fdf") == 0);
 }
-
-int	ft_access(const char *pathname, int mode)
-{
-	struct stat	buffer;
-
-	if (mode == F_OK)
-	{
-		if (stat(pathname, &buffer) == 0)
-			return (0);
-		else
-			return (-1);
-	}
-	return (-1);
-}
