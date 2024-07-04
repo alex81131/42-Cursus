@@ -20,55 +20,25 @@ int	ft_putstr(char *str)
 	return (i);
 }
 
-int	ft_digit(int n)
+int	ft_putnbr(int n)
 {
-	int	i = 0;
-
-	if (n <= 0)
-		i++;
-	while (n != 0)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_itoa(int n)
-{
-	int			len = ft_digit(n);
-	char		*str;
+	int				len = 0;
 	unsigned int	nb;
 
-	str = (char *)malloc((len + 1) * sizeof(char));
-	if (!str)
-		return (NULL);
-	str[len--] = '\0';
 	if (n < 0)
 	{
-		str[0] = '-';
+		len += ft_putchar('-');
 		nb = -n;
 	}
 	else
 		nb = n;
-	if (nb == 0)
-		str[0] = '0';
-	while (nb > 0)
+	if (nb < 10)
+		len += ft_putchar(nb + '0');
+	else
 	{
-		str[len--] = nb % 10 + '0';
-		nb /= 10;
+		len += ft_putnbr(nb / 10);
+		len += ft_putnbr(nb % 10);
 	}
-	return (str);
-}
-
-int	ft_putnbr(int n)
-{
-	char		*str;
-	int			len;
-
-	str = ft_itoa(n);
-	len = ft_putstr(str);
-	free(str);
 	return (len);
 }
 
