@@ -11,12 +11,12 @@ int	ft_strlen(char *str)
 {
 	int	i = 0;
 
-	while(str[i])
+	while (str[i])
 		i++;
 	return (i);
 }
 
-void	*ft_memcpy(void *dest, const void *src, int len)
+char	*ft_memcpy(char *dest, char *src, int len)
 {
 	int	i = 0;
 
@@ -26,7 +26,7 @@ void	*ft_memcpy(void *dest, const void *src, int len)
 	{
 		while (i < len)
 		{
-			((unsigned char*)dest)[i] = ((unsigned char*)src)[i];
+			dest[i] = src[i];
 			i++;
 		}
 	}
@@ -156,3 +156,41 @@ char	*get_next_line(int fd)
 	free(buff);
 	return (check_and_return(line, n, fd));
 }
+/*
+int	main(int ac, char **av)
+{
+	int		fd = open(av[1], O_RDONLY);
+	char	*line;
+
+	(void)ac;
+	line = get_next_line(fd);
+	while (line)
+	{
+		printf("%s", line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(line);
+	close(fd);
+	return (0);
+}
+*/
+/*
+In check_and_return:
+	The condition (!s[fd] || !*s[fd]) checks if the buffer for the given
+	file descriptor fd is NULL or empty.
+In return_next_line:
+	out = ft_substr(*s, 0, len + 1);
+	tmp = ft_strdup(*s + len + 1);
+	*s			*s+len
+	0	1	2	\n		3			len = 3
+						tmp
+The +1 in ft_substr is to include the \n
+(len + 1 is the total length to be copied);
+the +1 in ft_strdup is to start after the \n
+(len + 1 is the starting point after \n).
+stdlib: free, malloc
+fcntl: open
+stdio; printf, FOPEN_MAX
+unistd: read, close
+*/
