@@ -1,6 +1,5 @@
-#include <stdarg.h>
 #include <unistd.h>
-#include <stdlib.h>
+#include <stdarg.h>
 
 int	ft_putchar(char c)
 {
@@ -22,8 +21,8 @@ int	ft_putstr(char *str)
 
 int	ft_putnbr(int n)
 {
-	int				len = 0;
 	unsigned int	nb;
+	int				len = 0;
 
 	if (n < 0)
 	{
@@ -61,56 +60,55 @@ int	ft_puthex(unsigned int n)
 	return (len);
 }
 
-int	input(va_list vl, const char format)
+int	ft_input(va_list vl, const char format)
 {
-	int	n = 0;
+	int	len = 0;
 
 	if (format == 's')
-		n += ft_putstr(va_arg (vl, char *));
+		len += ft_putstr(va_arg(vl, char *));
 	else if (format == 'd')
-		n += ft_putnbr(va_arg (vl, int));
+		len += ft_putnbr(va_arg(vl, int));
 	else if (format == 'x')
-		n += ft_puthex(va_arg (vl, unsigned int));
+		len += ft_puthex(va_arg(vl, unsigned int));
 	else if (format == '%')
-		n += ft_putchar('%');
-	return (n);
+		len += ft_putchar('%');
+	return (len);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	va_list	vl;
 	int		i = 0;
-	int		printed = 0;
+	va_list	vl;
+	int		len = 0;
 
 	va_start(vl, format);
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			printed += input(vl, format[i + 1]);
+			len += ft_input(vl, format[i + 1]);
 			i++;
 		}
 		else
-			printed += ft_putchar(format[i]);
+			len += ft_putchar(format[i]);
 		i++;
 	}
 	va_end(vl);
-	return (printed);
+	return (len);
 }
 /*
 #include <stdio.h>
+#include <limits.h>
 
-int	main(void)
+int	main()
 {
 	int	i;
 	int	j;
 
-	printf("[ft_printf]\n");
-	i = ft_printf("s: %s, d: %d, x: %x.\n", "Eleonore", -2147483648, 635);
-	ft_printf("Word count = %d\n\n", i);
-	printf("[printf]\n");
-	j = printf("s: %s, d: %ld, x: %x.\n", "Eleonore", -2147483648, 635);
-	printf("Word count = %d\n", j);
+	i = printf("%s, %d, %x\n", "Eleonore", INT_MIN, 653);
+	printf("%d\n", i);
+	j = ft_printf("%s, %d, %x\n", "Eleonore", INT_MIN, 653);
+	printf("%d\n", j);
 	return (0);
 }
 */
