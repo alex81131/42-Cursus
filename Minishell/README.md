@@ -2,4 +2,4 @@
 Simple Shell.
 
 # Resources
-[`Help`]()
+[`Help`](https://github.com/tclaudel/minishell/tree/master)
