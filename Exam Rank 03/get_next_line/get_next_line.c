@@ -177,12 +177,12 @@ int	main(int ac, char **av)
 */
 /*
 In check_and_return:
-	The condition (!s[fd] || !*s[fd]) checks if the buffer for the given
+	The condition (!line[fd] || !*line[fd]) checks if the buffer for the given
 	file descriptor fd is NULL or empty.
 In return_next_line:
-	out = ft_substr(*s, 0, len + 1);
-	tmp = ft_strdup(*s + len + 1);
-	*s			*s+len
+	out = ft_substr(*line, 0, len + 1);
+	tmp = ft_strdup(*line + len + 1);
+	*line			*line+len
 	0	1	2	\n		3			len = 3
 						tmp
 The +1 in ft_substr is to include the \n
