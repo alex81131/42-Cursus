@@ -12,7 +12,7 @@ int	ft_putstr(char *str)
 	int	i = 0;
 
 	if (!str)
-		ft_putstr("(null)");
+		i += ft_putstr("(null)");
 	else
 		while (str[i])
 			ft_putchar(str[i++]);
@@ -104,10 +104,11 @@ int	main()
 {
 	int	i;
 	int	j;
+ 	char	*str = NULL;
 
-	i = printf("%s, %d, %x\n", "Eleonore", INT_MIN, 653);
+	i = printf("%s, %s, %d, %x\n", "Eleonore", str, INT_MIN, 653);
 	printf("%d\n", i);
-	j = ft_printf("%s, %d, %x\n", "Eleonore", INT_MIN, 653);
+	j = ft_printf("%s, %s, %d, %x\n", "Eleonore", str, INT_MIN, 653);
 	printf("%d\n", j);
 	return (0);
 }
