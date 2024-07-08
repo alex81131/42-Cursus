@@ -96,14 +96,14 @@ char	*return_next_line(char **line)
 {
 	char	*res;
 	char	*next;
-	int		i = 0;
+	int		len = 0;
 
-	while ((*line)[i] && (*line)[i] != '\n')
-		i++;
-	if ((*line)[i] == '\n')
+	while ((*line)[len] && (*line)[len] != '\n')
+		len++;
+	if ((*line)[len] && (*line)[len] == '\n')
 	{
-		res = ft_substr(*line, 0, i + 1);
-		next = ft_strdup(*line + i + 1);
+		res = ft_substr(*line, 0, len + 1);
+		next = ft_strdup(*line + len + 1);
 		free(*line);
 		*line = next;
 		if (!**line)
@@ -176,6 +176,10 @@ int	main(int ac, char **av)
 }
 */
 /*
+In return_next_line:
+	*line[fd] is the first character on the fd-th key of the keychain;
+	(*line)[fd] is the fd-th character on the first key of the keychain.
+
 In check_and_return:
 	The condition (!line[fd] || !*line[fd]) checks if the buffer for the given
 	file descriptor fd is NULL or empty.
