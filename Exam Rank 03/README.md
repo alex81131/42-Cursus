@@ -7,6 +7,7 @@ This exam has only 1 assignment:  get_next_line 👀, or if you're lucky, ft_pri
 - ft_putstr：else 後再 while   <br>
    <br>
 #### `get_next_line`
+fcntl = file control   <br>
 只有 strjoin 以外的 str-function 都不用保護   <br>
 <br>
 - *get_next_line   <br>
