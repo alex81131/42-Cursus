@@ -194,7 +194,7 @@ The +1 in ft_substr is to include the \n
 the +1 in ft_strdup is to start after the \n
 (len + 1 is the starting point after \n).
 stdlib: free, malloc
-fcntl: open
+fcntl: open	(fcntl = file control)
 stdio; printf, FOPEN_MAX
 unistd: read, close
 */
