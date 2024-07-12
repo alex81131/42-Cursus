@@ -6,11 +6,11 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:42:57 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/21 19:28:07 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/07/10 18:15:56 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_uputnbr_fd(unsigned int n, int fd)
 {

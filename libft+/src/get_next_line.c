@@ -6,19 +6,11 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 16:38:15 by kyeh              #+#    #+#             */
-/*   Updated: 2024/07/02 16:30:56 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/07/10 18:15:38 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <unistd.h>
 #include "libft.h"
-
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 12
-#endif
 
 static char	*return_next_line(char **s)
 {

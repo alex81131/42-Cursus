@@ -6,11 +6,11 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 16:57:09 by kyeh              #+#    #+#             */
-/*   Updated: 2024/05/21 11:02:45 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/07/10 18:15:59 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_udigit(unsigned int n)
 {

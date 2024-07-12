@@ -6,11 +6,11 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:07:13 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/27 16:19:32 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/07/10 18:15:58 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 void	ft_put_ptr_fd(uintptr_t n, int fd)
 {

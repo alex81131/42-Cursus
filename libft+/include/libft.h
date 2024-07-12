@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:34 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/27 17:01:49 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/07/12 11:49:06 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,12 @@
 # include <stddef.h>
 # include <stdint.h>
 # include <limits.h>
+//	<ft_printf>
+# include <stdarg.h>
+//	<get_next_line>
+# include <fcntl.h>
 
+//	<libft>
 typedef struct s_list
 {
 	void			*content;
@@ -79,5 +84,48 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+//	<ft_printf>
+//		<printf_fd>
+int		ft_printf_fd(int fd, const char *format, ...);
+int		ft_putptr_fd(uintptr_t ptr, int fd);
+int		ft_puthex_fd(unsigned int n, const char format, int fd);
+
+int		ft_printf(const char *format, ...);
+//		<printf>
+int		ft_putchar(int c);
+int		ft_putstr(char *str);
+int		ft_printf(const char *format, ...);
+//		<int_decimal>
+char	*ft_inttochar(char *str, unsigned int m, int len);
+int		ft_putnbr(int n);
+//		<unsigned_int>
+int		ft_uputnbr(unsigned int n);
+//		<number_hex>
+int		hex_digit(unsigned int n);
+int		ft_puthex(unsigned int n, const char format);
+//		<ptr>
+int		ptr_digit(uintptr_t n);
+int		ft_putptr(uintptr_t ptr);
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+//	<get_next_line>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 12
+# endif
+
+char	*get_next_line(int fd);
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+//	<fdf>
+//		utils.c
+void	free_array(char **array);
+//		error.c
+void	err_exit(const char *err, const char *msg);
+void	perror_exit(const char *msg);
+//		handle_args.c
+void	ft_tolower_char(char *c);
 
 #endif

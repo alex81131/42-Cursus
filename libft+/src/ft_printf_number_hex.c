@@ -6,11 +6,11 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 16:13:02 by kyeh              #+#    #+#             */
-/*   Updated: 2024/05/21 11:00:42 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/07/10 18:15:58 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	hex_digit(unsigned int n)
 {

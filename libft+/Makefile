@@ -6,13 +6,13 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/07/03 21:40:42 by kyeh             ###   ########.fr        #
+#    Updated: 2024/07/10 17:44:03 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler and flags
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -fPIC
+CC		= cc
+CFLAGS	= -Wall -Wextra -Werror -g3 -fsanitize=address
 LIBC	= ar rcs
 
 # Source files
@@ -44,17 +44,23 @@ GNL = \
 FDF = \
 		fdf.c
 
-SRC = \
-		$(addprefix src/, $(LIBFT)) \
-		$(addprefix src/, $(FT_PRINTF)) \
-		$(addprefix src/, $(GNL))
-OBJ	= ${SRC:.c=.o}
+SRC_FILES = \
+		$(LIBFT) $(FT_PRINTF) $(GNL) $(FDF)
+SRC_PATH = src
+SRC = $(addprefix $(SRC_PATH), $(SRC_FILES))
+OBJ_FILES	= ${SRC_FILES:.c=.o}
+OBJ_PATH = obj
+OBJ = $(addprefix $(OBJ_PATH), $(OBJ_FILES))
+
 
 NAME	= libft.a
 RM		= rm -f
+HEADER	= include
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER) Makefile
+	@mkdir -p $(OBJ_PATH)
+	@printf "\033[2K\r\033[0;31;5;110mCompiling...	\033[37m$<\033[36m \033[0m"
+	$(CC) $(CFLAGS) -I $(HEADER) -c $< -o $@
 
 ${NAME}: $(OBJ)
 	$(LIBC) $@ $^
