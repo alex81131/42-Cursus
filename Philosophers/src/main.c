@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:15:36 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/12 15:20:54 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/12 18:22:24 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,5 @@ int	main(int argc, char **argv)
 		return (ph_error());
 	
 }
+// nb_philo, time_to_die, time_to_eat, time_to_sleep, [max_eat]
+// 5 800 200 200 7

@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:54:41 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/12 15:15:07 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/12 18:32:42 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,23 @@ typedef struct	s_philo
 	pthread_mutex_t	fork;
 	struct s_philo	*before;
 	struct s_philo	*next;
-	struct s_table	*tab;
+	struct s_info	*info;
 }	t_philo;
 
-typedef struct	s_table
+typedef struct	s_info
 {
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				nb_of_philo;
-	int				nb_of_meal;
+	int				nb_philo;
+	int				max_eat;
 	int				fed;
 	int				dead;
 	size_t			t_0;
 	t_philo			*philo;
 	pthread_mutex_t	show;
 	pthread_mutex_t	check;
-}	t_table;
+}	t_info;
 
 int		ft_isdigit(int c);
 size_t	ft_strlen(const char *str);
