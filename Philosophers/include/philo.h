@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:54:41 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/13 16:48:31 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/13 18:53:51 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,6 @@ int		check_arg(int argc, char **argv, t_info *info);
 
 
 #endif
+
+// pthread_mutex_t:
+// 	Variable used to control access to shared resources
