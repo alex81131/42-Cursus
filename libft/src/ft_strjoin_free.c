@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/21 15:37:30 by kyeh              #+#    #+#             */
-/*   Updated: 2024/06/21 15:37:30 by kyeh             ###   ########.fr       */
+/*   Created: 2024/07/20 16:59:04 by kyeh              #+#    #+#             */
+/*   Updated: 2024/07/20 16:59:04 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	err_exit(const char *err, const char *msg)
+char	*ft_strjoin_free(char *s1, char *s2, int option)
 {
-	ft_printf_fd(STDERR_FILENO, "%s: %s\n", err, msg);
-	exit(EXIT_FAILURE);
-}
+	char	*res;
 
-void	perror_exit(const char *msg)
-{
-	perror(msg);
-	exit(EXIT_FAILURE);
-}
-
-void	ft_tolower_char(char *c)
-{
-	*c = ft_tolower(*c);
-}
-
-void	free_array(char **array)
-{
-	int	i;
-
-	if (!array)
-		return ;
-	i = 0;
-	while (array[i])
-		free(array[i++]);
-	free(array);
+	if (!s1 && !s2)
+		return (NULL);
+	else if (!s2)
+		return (s1);
+	else if (!s1)
+		return (s2);
+	res = ft_strjoin(s1, s2);
+	if (!res)
+		return (NULL);
+	if (option == 1)
+		free(s1);
+	if (option == 2)
+		free(s2);
+	if (option == 3)
+	{
+		free(s1);
+		free(s2);
+	}
+	return (res);
 }

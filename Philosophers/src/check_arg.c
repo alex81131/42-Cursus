@@ -6,13 +6,64 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:21:10 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/12 18:42:50 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/13 16:46:34 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-static int	check
+static int	check_positive_nb(int argc, char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (++i < argc)
+	{
+		j = -1;
+		if (argv[i][0] == '-')
+			return (1);
+		else if (argv[i][0] == '+')
+			j++;
+		if (!ft_isdigit(argv[i][j + 1]))
+			return (1);
+		while (argv[i][++j])
+			if(!ft_isdigit(argv[i][j]))
+				return (1);
+	}
+	return (0);
+}
+
+static int	check_integer(char *str)
+{
+	size_t	len;
+
+	len = ft_strlen(str);
+	if (*str == '+' && str++)
+		len--;
+	while (*str && *str == '0' && len--)
+		str++;
+	if (len > 10)
+		return(1);
+	else if (len < 10)
+		return (0);
+	if (ft_strncmp(str, "2147483648", 10) >= 0)
+		return (1);
+	return (0);
+}
+
+static int	check_number(int argc, char **argv)
+{
+	int	i;
+
+	if (check_positive_nb(argc, argv))
+		return (1);
+	i = 0;
+	while (++i < argc)
+		if (check_integer(argv[i]))
+			return (1);
+	retur (0);
+}
 
 static void	initialize_info(t_info *info)
 {
@@ -45,7 +96,7 @@ static void	initialize_info(t_info *info)
 
 int	check_arg(int argc, char **argv, t_info *info)
 {
-	if (check_arg(argc, argv))
+	if (check_number(argc, argv))
 		return (1);
 	info->nb_philo = ft_atoi(argv[1]);
 	info->time_to_die = ft_atoi(argv[2]);

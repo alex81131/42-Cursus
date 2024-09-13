@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
+#    By: tkaragoz <tkaragoz@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/07/10 17:44:03 by kyeh             ###   ########.fr        #
+#    Updated: 2024/09/13 17:17:45 by tkaragoz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ LIBFT = \
 		\
 		ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
-		ft_lstmap.c 
+		ft_lstmap.c
 FT_PRINTF = \
 		ft_putchar.c ft_putstr.c ft_putnbr.c \
 		ft_printf.c ft_printf_number_hex.c\
@@ -43,13 +43,15 @@ GNL = \
 		get_next_line.c
 FDF = \
 		fdf.c
+MINISHELL = \
+		ft_strndup.c ft_strjoin_free.c
 
 SRC_FILES = \
-		$(LIBFT) $(FT_PRINTF) $(GNL) $(FDF)
-SRC_PATH = src
+		$(LIBFT) $(FT_PRINTF) $(GNL) $(FDF) $(MINISHELL)
+SRC_PATH = src/
 SRC = $(addprefix $(SRC_PATH), $(SRC_FILES))
 OBJ_FILES	= ${SRC_FILES:.c=.o}
-OBJ_PATH = obj
+OBJ_PATH = obj/
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_FILES))
 
 

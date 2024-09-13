@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tkaragoz <tkaragoz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:34 by kyeh              #+#    #+#             */
-/*   Updated: 2024/07/12 11:49:06 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/13 16:26:35 by tkaragoz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,11 @@ int		ft_putchar(int c);
 int		ft_putstr(char *str);
 int		ft_printf(const char *format, ...);
 //		<int_decimal>
-char	*ft_inttochar(char *str, unsigned int m, int len);
+char	*ft_inttochar(char *str, unsigned int m, unsigned int len);
 int		ft_putnbr(int n);
 //		<unsigned_int>
 int		ft_uputnbr(unsigned int n);
+char	*ft_uitoa(unsigned int n);
 //		<number_hex>
 int		hex_digit(unsigned int n);
 int		ft_puthex(unsigned int n, const char format);
@@ -125,7 +126,13 @@ void	free_array(char **array);
 //		error.c
 void	err_exit(const char *err, const char *msg);
 void	perror_exit(const char *msg);
-//		handle_args.c
+//		handle_arg.c
 void	ft_tolower_char(char *c);
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+//	<Minishell>
+char	*ft_strndup(const char *str, int n);
+char	*ft_strjoin_free(char *s1, char *s2, int option);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:54:41 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/12 18:32:42 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/13 16:48:31 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,8 @@ int		ft_isdigit(int c);
 size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *str);
+
+int		check_arg(int argc, char **argv, t_info *info);
+
 
 #endif
