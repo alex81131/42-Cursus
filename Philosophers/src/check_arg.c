@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:21:10 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/13 16:46:34 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/14 23:41:16 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	check_positive_nb(int argc, char **argv)
 		if (!ft_isdigit(argv[i][j + 1]))
 			return (1);
 		while (argv[i][++j])
-			if(!ft_isdigit(argv[i][j]))
+			if (!ft_isdigit(argv[i][j]))
 				return (1);
 	}
 	return (0);
@@ -44,7 +44,7 @@ static int	check_integer(char *str)
 	while (*str && *str == '0' && len--)
 		str++;
 	if (len > 10)
-		return(1);
+		return (1);
 	else if (len < 10)
 		return (0);
 	if (ft_strncmp(str, "2147483648", 10) >= 0)
@@ -62,7 +62,7 @@ static int	check_number(int argc, char **argv)
 	while (++i < argc)
 		if (check_integer(argv[i]))
 			return (1);
-	retur (0);
+	return (0);
 }
 
 static void	initialize_info(t_info *info)
@@ -71,7 +71,7 @@ static void	initialize_info(t_info *info)
 
 	info->dead = 0;
 	info->fed = 0;
-	info->philo = (t_pilo *)malloc(info->nb_philo * sizeof(t_philo));
+	info->philo = (t_philo *)malloc(info->nb_philo * sizeof(t_philo));
 	if (!info->philo)
 		return ;
 	i = -1;
@@ -79,7 +79,7 @@ static void	initialize_info(t_info *info)
 	{
 		info->philo[i].id = i + 1;
 		info->philo[i].info = info;
-		info->philo[i].max_eat = 0;
+		info->philo[i].meals_eaten = 0;
 		if (i + 1 == info->nb_philo)
 			info->philo[i].next = &info->philo[0];
 		else

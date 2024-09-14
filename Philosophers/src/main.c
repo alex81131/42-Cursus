@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:15:36 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/13 18:53:59 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/15 01:05:29 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,49 @@
 
 static int	ph_error(void)
 {
-	write(2, "Error! Invalid arguments.\n", 27);
+	write(2, "Error: invalid arguments.\n", 27);
 	return (1);
 }
-int	main(int argc, char **argv)
-{
-	int			i;
-	t_table		tab;
-	pthread_t	*id;
 
-	if ((argc < 5 || argc > 6) || check_arg(argc, argv, &tab))
-		return (ph_error());
-	id = (pthread_t *)malloc(info.nb_philo * sizeof(pthread_t));
-	info.t_0 = get_realtime();
+static int	create_threads(t_info *info, pthread_t*id)
+{
+	int	i;
+
 	i = -1;
-	while (++i < info.nb_philo)
+	while (++i < info->nb_philo)
 	{
-		if (pthread_create(&id[i], NULL, &routine, &info.philo[i]))
+		if (pthread_create(&id[i], NULL, &routine, &info->philo[i]))
 		{
-			write(2, "Error! Cannot create thread.\n", 29);
-			free(info.philo);
-			free(id);
+			write(2, "Error: cannot create thread.\n", 29);
 			return (1);
 		}
-		pthread_mutex_lock(&info.check);
-		info.philo[i].last_meal = info.t_0;
-		pthread_mutex_unlock(&info.check);
+		pthread_mutex_lock(&info->check);
+		info->philo[i].last_meal = info->t_0;
+		pthread_mutex_unlock(&info->check);
 	}
-	check_dead
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_info		info;
+	pthread_t	*id;
+
+	if ((argc < 5 || argc > 6) || check_arg(argc, argv, &info))
+		return (ph_error());
+	id = (pthread_t *)malloc(info.nb_philo * sizeof(pthread_t));
+	if (!id)
+		return (1);
+	info.t_0 = get_realtime();
+	if (create_threads(&info, id))
+	{
+		free(info.philo);
+		free(id);
+		return (1);
+	}
+	check_dead(&info);
+	ph_exit(&info, id);
+	return (0);
 }
 // nb_philo, time_to_die, time_to_eat, time_to_sleep, [max_eat]
 // 5 800 200 200 7

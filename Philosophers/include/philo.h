@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:54:41 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/13 18:53:51 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/15 01:15:24 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ enum e_msg
 	MESSAGE_DIE
 };
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	int				id;
 	int				meals_eaten;
@@ -39,7 +39,7 @@ typedef struct	s_philo
 	struct s_info	*info;
 }	t_philo;
 
-typedef struct	s_info
+typedef struct s_info
 {
 	int				time_to_die;
 	int				time_to_eat;
@@ -54,13 +54,22 @@ typedef struct	s_info
 	pthread_mutex_t	check;
 }	t_info;
 
+//	utils_lib
 int		ft_isdigit(int c);
 size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_atoi(const char *str);
-
+//	check_arg
 int		check_arg(int argc, char **argv, t_info *info);
-
+//	utils
+size_t	get_realtime(void);
+void	pass_usec(t_info *info, size_t time);
+void	check_dead(t_info *info);
+void	ph_exit(t_info *info, pthread_t *id);
+//	send_message
+void	send_message(t_philo *philo, int message);
+//	routine
+void	*routine(void *arg);
 
 #endif
 
