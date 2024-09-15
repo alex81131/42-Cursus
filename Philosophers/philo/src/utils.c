@@ -6,23 +6,23 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 17:51:50 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/14 23:39:13 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/15 19:33:10 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-size_t	get_realtime(void)
+long long	get_realtime(void)
 {
 	struct timeval	t;
 
 	gettimeofday(&t, NULL);
-	return (t.tv_sec * 1000 + t.tv_usec / 1000);
+	return ((long long)(t.tv_sec * 1000 + t.tv_usec / 1000));
 }
 
-void	pass_usec(t_info *info, size_t time)
+void	pass_usec(t_info *info, long long time)
 {
-	size_t	t;
+	long long	t;
 
 	t = get_realtime();
 	while (!info->dead)
@@ -37,15 +37,16 @@ static void	check_fed(t_info *info)
 {
 	int	i;
 
+	if (info->max_eat <= 0)
+		return ;
 	i = 0;
-	while (info->max_eat != -1 && i < info->nb_philo
-		&& info->philo[i].meals_eaten >= info->max_eat)
+	while (i < info->nb_philo && info->philo[i].meals_eaten >= info->max_eat)
 		i++;
 	if (i == info->nb_philo)
 		info->fed = 1;
 }
 
-void	check_dead(t_info *info)
+void	check_fed_dead(t_info *info)
 {
 	int	i;
 
@@ -56,13 +57,13 @@ void	check_dead(t_info *info)
 		{
 			pthread_mutex_lock(&info->check);
 			if (get_realtime() - info->philo[i].last_meal \
-				> (size_t)info->time_to_die)
+				> (long long)info->time_to_die)
 			{
 				send_message(&info->philo[i], MESSAGE_DIE);
 				info->dead = 1;
 			}
 			pthread_mutex_unlock(&info->check);
-			usleep(100);
+			usleep(1000);
 		}
 		if (info->dead)
 			break ;
@@ -85,6 +86,10 @@ void	ph_exit(t_info *info, pthread_t *id)
 	free(info->philo);
 	free(id);
 }
+// check_fed_dead:
+// 	usleep(1000), increase sleep interval usleep to avoid busy-waiting,
+// 	reducing CPU usage.
+
 // Process as the Road:
 // 	The process is like the road that provides the structure, direction,
 // 	and space for everything to happen. Each process has its own separate road
@@ -102,7 +107,7 @@ void	ph_exit(t_info *info, pthread_t *id)
 // 	ptr points to a place storing the return value of the waited thread id[i]
 // 	and releases the resources used by id[i].
 
-// check_dead:
+// check_fed_dead:
 // 	Check if anyone dies and flag fed if everyone's fed.
 
 // tv_sec: The number of seconds since the Epoch (January 1, 1970).

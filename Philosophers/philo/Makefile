@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 14:58:30 by kyeh              #+#    #+#              #
-#    Updated: 2024/09/14 22:17:40 by kyeh             ###   ########.fr        #
+#    Updated: 2024/09/15 19:15:11 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 
 # Source files
-SRC_FILES	=	main.c utils_lib.c utils.c check_arg.c send_message.c routine.c
+SRC_FILES	=	main.c			utils_lib.c			utils.c \
+				check_arg.c		initialize_info.c	send_message.c \
+				routine.c
 SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 

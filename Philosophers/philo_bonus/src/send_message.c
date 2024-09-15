@@ -10,35 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include <philo_bonus.h>
 
 static char	*choose_message(int message)
 {
 	if (message == MESSAGE_FORK)
-		return ("has taken a fork\n");
+		return ("has taken a fork");
 	if (message == MESSAGE_EAT)
-		return ("is eating\n");
+		return ("is eating");
 	if (message == MESSAGE_SLEEP)
-		return ("is sleeping\n");
+		return ("is sleeping");
 	if (message == MESSAGE_THINK)
-		return ("is thinking\n");
+		return ("is thinking");
 	if (message == MESSAGE_DIE)
-		return ("died\n");
-	return ("Error: not valid msg id.\n");
+		return ("died");
+	return ("Error: not valid msg id.");
 }
 
 void	send_message(t_philo *philo, int message)
 {
-	size_t	t;
+	long long	t;
 
 	t = get_realtime() - philo->info->t_0;
-	pthread_mutex_lock(&philo->info->show);
+	sem_wait(philo->info->show);
 	if (!philo->info->dead && !philo->info->fed)
-	{
-		printf("%ld ", t);
-		printf(" %d ", philo->id);
-		printf("%s", choose_message(message));
-		printf("\n");
-	}
-	pthread_mutex_unlock(&philo->info->show);
+		printf("%lld %d %s\n", t, philo->id, choose_message(message));
+	sem_post(philo->info->show);
 }
+// sem_wait = pthread_mutex_lock
+// sem_post = pthread_mutex_unlock

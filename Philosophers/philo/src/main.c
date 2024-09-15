@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:15:36 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/15 01:05:29 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/15 20:06:37 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int argc, char **argv)
 		free(id);
 		return (1);
 	}
-	check_dead(&info);
+	check_fed_dead(&info);
 	ph_exit(&info, id);
 	return (0);
 }
@@ -62,7 +62,11 @@ int	main(int argc, char **argv)
 // 5 800 200 200 7
 
 // pthread_create: 
-// 	(thread_id, NULL=default_attributes, function_to_execute, arguments)
+// 	thread_id, NULL=default_attributes, function_to_execute, arguments
+// The the moment pthread_create() is called, it creates a new thread
+// 	that begins executing concurrently with the main thread and other
+// 	philosopher threads.
+// -> Implement odd-even strategy for preventing deadlock
 
 // The Dining Philosophers problem requires concurrent execution
 // 	of multiple philosophers who act independently. In real life,
