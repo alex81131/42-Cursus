@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:15:36 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/15 19:54:47 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/16 15:53:44 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	ph_error(void)
 	return (1);
 }
 
-static int	create_threads(t_info *info)
+static void	create_children(t_info *info)
 {
 	int	i;
 
@@ -29,32 +29,31 @@ static int	create_threads(t_info *info)
 		if (info->philo[i].pid == -1)
 		{
 			write(2, "Error: fork failed.\n", 20);
-			return (1);
+			exit (1);
 		}
-		if (info->philos[i].pid == 0)
-			routine((void *)info->philo[i]);
+		if (info->philo[i].pid == 0)
+			routine(&info->philo[i]);
 	}
-	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_info		info;
+	t_info	info;
 
+	ph_sem_clean();
 	if ((argc < 5 || argc > 6) || check_arg(argc, argv, &info))
 		return (ph_error());
 	info.t_0 = get_realtime();
-	if (create_threads(&info))
-	{
-		free(info.philo);
-		free(id);
-		return (1);
-	}
+	create_children(&info);
 	ph_exit(&info);
 	return (0);
 }
 // nb_philo, time_to_die, time_to_eat, time_to_sleep, [max_eat]
 // 5 800 200 200 7
+
+ph_sem_clean:
+	clean up left-over semaphores due to program termination,
+	otherwise there would be no forks inside.
 
 // pthread_create: 
 // 	thread_id, NULL=default_attributes, function_to_execute, arguments

@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:54:41 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/15 20:03:36 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/16 15:49:19 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ int			initialize_info(t_info *info);
 //	utils
 long long	get_realtime(void);
 void		pass_usec(t_info *info, long long time);
-void		check_fed_dead(t_info *info);
-void		ph_exit(t_info *info, pthread_t *id);
+void		*check_fed_dead(void *arg);
+void		ph_exit(t_info *info);
+void		ph_sem_clean(void);
 //	send_message
 void		send_message(t_philo *philo, int message);
 //	routine

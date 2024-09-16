@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/15 19:13:17 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/15 19:43:27 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/16 14:20:32 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	initialize_philo(t_info *info)
 			info->philo[i].before = &info->philo[info->nb_philo - 1];
 		else
 			info->philo[i].before = &info->philo[i - 1];
-		pthread_mutex_init(&info->philo[i].fork, NULL);
 	}
 }
 
@@ -42,7 +41,5 @@ int	initialize_info(t_info *info)
 	if (!info->philo)
 		return (1);
 	initialize_philo(info);
-	pthread_mutex_init(&info->show, NULL);
-	pthread_mutex_init(&info->check, NULL);
 	return (0);
 }

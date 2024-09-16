@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 17:51:50 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/15 20:38:44 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/16 15:48:53 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,44 +33,31 @@ void	pass_usec(t_info *info, long long time)
 	}
 }
 
-static void	check_fed(t_info *info)
-{
-	int	i;
-
-	if (info->max_eat <= 0)
-		return ;
-	i = 0;
-	while (i < info->nb_philo && info->philo[i].meals_eaten >= info->max_eat)
-		i++;
-	if (i == info->nb_philo)
-		info->fed = 1;
-}
-
-void	check_fed_dead(void *arg)
+void	*check_fed_dead(void *arg)
 {
 	t_philo	*philo;
 	t_info	*info;
 
 	philo = (t_philo *)arg;
-	while (!info->fed)
+	info = philo->info;
+	while (1)
 	{
-
-		while (1)
+		sem_wait(info->check);
+		if (get_realtime() - philo->last_meal \
+			> (long long)info->time_to_die)
 		{
-			pthread_mutex_lock(&info->check);
-			if (get_realtime() - info->philo[i].last_meal \
-				> (long long)info->time_to_die)
-			{
-				send_message(&info->philo[i], MESSAGE_DIE);
-				info->dead = 1;
-			}
-			pthread_mutex_unlock(&info->check);
-			usleep(1000);
+			send_message(philo, MESSAGE_DIE);
+			info->dead = 1;
+			exit (1);
 		}
+		sem_post(info->check);
 		if (info->dead)
 			break ;
-		check_fed(info);
+		usleep(1000);
+		if (info->max_eat > 0 && philo->meals_eaten >= info->max_eat)
+			break ;
 	}
+	return (NULL);
 }
 
 void	ph_exit(t_info *info)
@@ -85,7 +72,7 @@ void	ph_exit(t_info *info)
 		if (WEXITSTATUS(status) == 1)
 		{
 			i = -1;
-			while (++ < info->nb_philo)
+			while (++i < info->nb_philo)
 				kill(info->philo[i].pid, SIGTERM);
 			break ;
 		}
@@ -95,8 +82,15 @@ void	ph_exit(t_info *info)
 	sem_close(info->fork);
 	sem_unlink("/sem_show");
 	sem_unlink("/sem_check");
-	sem_unlink("/fork");
+	sem_unlink("/sem_fork");
 	free(info->philo);
+}
+
+void	ph_sem_clean(void)
+{
+	sem_unlink("/sem_show");
+	sem_unlink("/sem_check");
+	sem_unlink("/sem_fork");
 }
 // waitpid(-1, &status, 0)
 // 	normally(0) wait for any child process(-1) to terminate.

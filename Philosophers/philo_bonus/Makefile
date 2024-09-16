@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/10 14:58:30 by kyeh              #+#    #+#              #
-#    Updated: 2024/09/15 19:48:07 by kyeh             ###   ########.fr        #
+#    Updated: 2024/09/16 14:06:47 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ RM		=	rm -rf
 
 $(NAME): $(OBJ)
 	@gcc $(CFLAGS) $^ -o  $@
-	@printf "	\033[2K\r$(DARK_BLUE)philo\t: $(LIGHT_GREEN)Updated\n\033[0m"
+	@printf "	\033[2K\r$(DARK_BLUE)philo_bonus\t: $(LIGHT_GREEN)Updated\n\033[0m"
 
 all: $(OBJ_PATH) $(NAME) $(HEADER)
 	@:
@@ -59,27 +59,27 @@ all: $(OBJ_PATH) $(NAME) $(HEADER)
 $(OBJ_PATH):
 	@mkdir -p obj/ 2> /dev/null
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER)/philo.h Makefile
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER)/philo_bonus.h Makefile
 	@mkdir -p $(dir $@)
 	@printf "\033[2K\r$(LIGHT_RED)Compiling...	\033[37m$<\033[36m \033[0m"
 	@gcc $(CFLAGS) -I $(HEADER) -c $< -o $@
 
 clean:
-	@printf "\33[2K\r$(LIGHT_RED)Deleting philo srcs/	\033[37m"
+	@printf "\33[2K\r$(LIGHT_RED)Deleting philo_bonus srcs/	\033[37m"
 	@sleep 0.1
-	@printf "\33[2K\r$(LIGHT_RED)Deleting philo srcs/.	\033[37m"
+	@printf "\33[2K\r$(LIGHT_RED)Deleting philo_bonus srcs/.	\033[37m"
 	@sleep 0.1
-	@printf "\33[2K\r$(LIGHT_RED)Deleting philo srcs/..	\033[37m"
+	@printf "\33[2K\r$(LIGHT_RED)Deleting philo_bonus srcs/..	\033[37m"
 	@sleep 0.1
-	@printf "\33[2K\r$(LIGHT_RED)Deleting philo srcs/...	\033[37m"
+	@printf "\33[2K\r$(LIGHT_RED)Deleting philo_bonus srcs/...	\033[37m"
 	@sleep 0.1
-	@printf "\33[2K\r$(LIGHT_RED)Deleting philo srcs/	\033[37m"
+	@printf "\33[2K\r$(LIGHT_RED)Deleting philo_bonus srcs/	\033[37m"
 	@sleep 0.1
-	@printf "\33[2K\r$(LIGHT_RED)Deleting philo srcs/.	\033[37m"
+	@printf "\33[2K\r$(LIGHT_RED)Deleting philo_bonus srcs/.	\033[37m"
 	@sleep 0.1
-	@printf "\33[2K\r$(LIGHT_RED)Deleting philo srcs/..	\033[37m"
+	@printf "\33[2K\r$(LIGHT_RED)Deleting philo_bonus srcs/..	\033[37m"
 	@sleep 0.1
-	@printf "\33[2K\r$(LIGHT_RED)Deleting philo srcs/...	\033[37m"
+	@printf "\33[2K\r$(LIGHT_RED)Deleting philo_bonus srcs/...	\033[37m"
 	@sleep 0.1
 	@${RM} ${OBJ_PATH} cube3D.dSYM
 	@printf "\33[2K\r$(LIGHT_RED)Deleted successfully!\n\033[0m"
