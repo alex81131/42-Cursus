@@ -1,5 +1,5 @@
 # Philosophers
-Parallel programming.
+Parallel programming and resource management.
 
 # Resources
 
