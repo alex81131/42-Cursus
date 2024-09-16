@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:15:36 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/16 15:53:44 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/16 16:06:17 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int	main(int argc, char **argv)
 // nb_philo, time_to_die, time_to_eat, time_to_sleep, [max_eat]
 // 5 800 200 200 7
 
-ph_sem_clean:
-	clean up left-over semaphores due to program termination,
-	otherwise there would be no forks inside.
+// ph_sem_clean:
+// 	clean up left-over semaphores due to program termination,
+// 	otherwise there would be no forks inside.
 
 // pthread_create: 
 // 	thread_id, NULL=default_attributes, function_to_execute, arguments

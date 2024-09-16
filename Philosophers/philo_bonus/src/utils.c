@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 17:51:50 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/16 15:48:53 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/16 16:06:03 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,14 @@ void	ph_sem_clean(void)
 	sem_unlink("/sem_check");
 	sem_unlink("/sem_fork");
 }
+// sem_unlink:
+// 	Remove the semaphore from the system, ensuring that old
+// 	semaphores do not interfere with new ones.
+// sem_open:
+// 	Create new semaphores with the desired initial values.
+// sem_close:
+// 	Close semaphore descriptors when they are no longer needed in the process.
+
 // waitpid(-1, &status, 0)
 // 	normally(0) wait for any child process(-1) to terminate.
 // WEXITSTATUS(status) == 1
