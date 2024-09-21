@@ -3,17 +3,47 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tkaragoz <tkaragoz@student.42.fr>          +#+  +:+       +#+         #
+#    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/09/13 17:17:45 by tkaragoz         ###   ########.fr        #
+#    Updated: 2024/09/21 19:23:43 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler and flags
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g3 -fPIC #-fsanitize=address
 LIBC	= ar rcs
+
+# Colors
+DEFAULT		= \e[0;39m
+BLACK		= \e[0;30m
+WHITE		= \e[0;97m
+WHITE_BOLD	= \e[1;97m
+GREY		= \e[0;37m
+GREY_DARK	= \e[0;90m
+GREY_ITALIC	= \e[3;90m
+RED			= \e[0;31m
+RED_BOLD	= \e[1;31m
+RED_LIGHT	= \e[0;31;110m
+RED_FLASH	= \e[0;31;5;110m
+PINK		= \e[0;38;5;198m
+PINK_BOLD	= \e[1;95m
+PINK_LIGHT	= \e[0;38;5;200m
+ORANGE_ITALIC= \e[3;91m
+YELLOW		= \e[0;33m
+YELLOW_BOLD	= \e[1;33m
+GREEN		= \e[1;32;111m
+GREEN_BOLD	= \e[1;32m
+GREEN_LIGHT	= \e[0;38;5;121m
+BLUE_BOLD	= \e[1;34m
+BLUE_LIGHT	= \e[0;38;5;123m
+BLUE_GREY	= \e[1;38;5;110m
+SKY			= \e[0;36m
+SKY_BOLD	= \e[1;36m
+CYAN_LIGHT	= \e[0;96m
+NOCOLOR		= \e[0m
+RESET_LINE	= \e[2K\r
 
 # Source files
 LIBFT = \
@@ -56,21 +86,39 @@ OBJ = $(addprefix $(OBJ_PATH), $(OBJ_FILES))
 
 
 NAME	= libft.a
-RM		= rm -f
+RM		= rm -rf
 HEADER	= include
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER) Makefile
 	@mkdir -p $(OBJ_PATH)
-	@printf "\033[2K\r\033[0;31;5;110mCompiling...	\033[37m$<\033[36m \033[0m"
-	$(CC) $(CFLAGS) -I $(HEADER) -c $< -o $@
+	@printf "$(RESET_LINE)$(RED_FLASH)Compiling...	$(GREY)$<$(SKY) $(NOCOLOR)"
+	@$(CC) $(CFLAGS) -I $(HEADER) -c $< -o $@
 
 ${NAME}: $(OBJ)
-	$(LIBC) $@ $^
+	@$(LIBC) $@ $^
+	@printf "$(RESET_LINE)$(BLUE_GREY)libft\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJ)
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/	$(GREY)"
+	@sleep 0.1
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/.	$(GREY)"
+	@sleep 0.1
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/..	$(GREY)"
+	@sleep 0.1
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/...	$(GREY)"
+	@sleep 0.1
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/	$(GREY)"
+	@sleep 0.1
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/.	$(GREY)"
+	@sleep 0.1
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/..	$(GREY)"
+	@sleep 0.1
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/...	$(GREY)"
+	@sleep 0.1
+	$(RM) $(OBJ_PATH)
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"
 
 fclean: clean
 	$(RM) $(NAME)
@@ -78,6 +126,7 @@ fclean: clean
 re:	fclean all
 
 .PHONY: all clean fclean re
+# @ suppresses the command being printed to the terminal when it's executed.
 # all, clean,... are phony targets, not actual files, used as conditions after make command
 # when "make", it builds only the first target in the makefile
 #
