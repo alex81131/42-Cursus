@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/09/21 19:23:43 by kyeh             ###   ########.fr        #
+#    Updated: 2024/09/21 19:43:51 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,34 +47,34 @@ RESET_LINE	= \e[2K\r
 
 # Source files
 LIBFT = \
-		ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
-		ft_isprint.c ft_toupper.c ft_tolower.c \
+		ft_isalpha.c	ft_isdigit.c	ft_isalnum.c	ft_isascii.c\
+		ft_isprint.c	ft_toupper.c	ft_tolower.c\
 		\
-		ft_memset.c ft_strlen.c ft_bzero.c ft_memcpy.c \
-		ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_strchr.c \
-		ft_strrchr.c ft_strcmp.c ft_strncmp.c ft_memchr.c \
-		ft_memcmp.c ft_strnstr.c ft_strdup.c \
+		ft_memset.c		ft_strlen.c		ft_bzero.c		ft_memcpy.c\
+		ft_memmove.c	ft_strlcpy.c	ft_strlcat.c	ft_strchr.c\
+		ft_strrchr.c	ft_strcmp.c		ft_strncmp.c	ft_memchr.c\
+		ft_memcmp.c		ft_strnstr.c	ft_strdup.c\
 		\
-		ft_atoi.c ft_atoi_base.c ft_calloc.c \
+		ft_atoi.c		ft_atoi_base.c	ft_calloc.c\
 		\
-		ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c \
-		ft_itoa.c ft_strmapi.c ft_striter.c ft_striteri.c \
-		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
+		ft_substr.c		ft_strjoin.c	ft_strtrim.c	ft_split.c\
+		ft_itoa.c		ft_strmapi.c	ft_striter.c	ft_striteri.c\
+		ft_putchar_fd.c	ft_putstr_fd.c	ft_putendl_fd.c	ft_putnbr_fd.c\
 		\
-		ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
-		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
+		ft_lstnew.c		ft_lstadd_front.c	ft_lstsize.c	ft_lstlast.c\
+		ft_lstadd_back.c	ft_lstdelone.c	ft_lstclear.c	ft_lstiter.c\
 		ft_lstmap.c
 FT_PRINTF = \
-		ft_putchar.c ft_putstr.c ft_putnbr.c \
-		ft_printf.c ft_printf_number_hex.c\
-		ft_printf_ptr.c ft_printf_unsigned_int.c \
-		ft_printf_fd.c ft_printf_ptr_fd.c ft_printf_number_hex_fd.c
+		ft_putchar.c				ft_putstr.c				ft_putnbr.c\
+		ft_printf.c					ft_printf_number_hex.c	ft_printf_ptr.c\
+		ft_printf_fd.c				ft_printf_ptr_fd.c\
+		ft_printf_number_hex_fd.c	ft_printf_unsigned_int.c
 GNL = \
 		get_next_line.c
 FDF = \
 		fdf.c
 MINISHELL = \
-		ft_strndup.c ft_strjoin_free.c
+		ft_strndup.c	ft_strjoin_free.c
 
 SRC_FILES = \
 		$(LIBFT) $(FT_PRINTF) $(GNL) $(FDF) $(MINISHELL)
@@ -117,11 +117,11 @@ clean:
 	@sleep 0.1
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/...	$(GREY)"
 	@sleep 0.1
-	$(RM) $(OBJ_PATH)
+	@$(RM) $(OBJ_PATH)
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re:	fclean all
 
