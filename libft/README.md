@@ -1,5 +1,3 @@
 # libft+
-Integrated libft with
-- [`ft_printf`](https://github.com/alex81131/42-Cursus/tree/main/ft_printf)
-- [`get_next_line`](https://github.com/alex81131/42-Cursus/tree/main/get_next_line)
-- etc.
+Updated libft with useful functions from later projects <br>
+(I have a beautiful makefile btw
