@@ -11,6 +11,6 @@
 |02| [Push Swap](https://github.com/alex81131/42-Cursus/tree/main/push_swap) | C | Sorting data algorithms | 125% |
 |02| [FdF](https://github.com/alex81131/42-Cursus/tree/main/FdF) | C | Represent a landscape as a 3D wireframe | 125% |
 |03| [Exam 03](https://github.com/alex81131/42-Cursus/tree/main/Exam%20Rank%2003) | C | ft_printf / get_next_line | 100% |
-|03| [Minishell](https://github.com/alex81131/Minishell) | C | Simple shell | ???% |
+|03| [Minishell](https://github.com/alex81131/Minishell) | C | Simple shell | 101% |
 |03| [Philosophers](https://github.com/alex81131/42-Cursus/tree/main/Philosophers) | C | Parallel programming | ???% |
 |04| [Exam 04](https://github.com/alex81131/42-Cursus/tree/main/Exam%20Rank%2004) | C | Microshell| ???% |
