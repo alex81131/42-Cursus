@@ -12,7 +12,7 @@
 |02| [FdF](https://github.com/alex81131/42-Cursus/tree/main/FdF) | C | Represent a landscape as a 3D wireframe | 125% |
 |03| [Exam 03](https://github.com/alex81131/42-Cursus/tree/main/Exam%20Rank%2003) | C | ft_printf / get_next_line | 100% |
 |03| [Minishell](https://github.com/alex81131/Minishell) | C | Simple shell | 101% |
-|03| [Philosophers](https://github.com/alex81131/42-Cursus/tree/main/Philosophers) | C | Parallel programming | ???% |
+|03| [Philosophers](https://github.com/alex81131/42-Cursus/tree/main/Philosophers) | C | Parallel programming | 125% |
 |04| [Exam 04](https://github.com/alex81131/42-Cursus/tree/main/Exam%20Rank%2004) | C | Microshell| ???% |
 |04| [Cub3D](https://harm-smits.github.io/42docs/projects/cub3d) | C | Ray-casting game | ???% |
 |04| [Net Practice] | Network | general practice| ???% |
