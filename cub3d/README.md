@@ -8,13 +8,14 @@ A ray-casting game: an advanced graphical project where we create a simplified 3
 4. What is Raycasting and how it helps to make 3D rendering efficient?
 5. What is DDA algorithm? Why it helps to optimize rendering?
 6. Rendering images in a resized fashion (Wall texture rendering)
-6. Create multiple images and put in in the same window (Mini map, Sprite)
-7. Create a script of frames and generate animation effects (Animation)
+7. Create multiple images and put in in the same window (Mini map, Sprite)
+8. Create a script of frames and generate animation effects (Animation)
 
 ## Resources
 1. [`Guide`](https://harm-smits.github.io/42docs/projects/cub3d) <br>
 2. [`Reference`](https://github.com/pasqualerossi/Cub3D) <br>
-3. [`Reference to Tsunghao`](https://github.com/Tsunghao-C/Common-Course/tree/main/cub3d) <br>
-4. [`Maximum effort`](https://github.com/ael-bekk/Cub3d-Advanced-Raycasting) <br>
-5. [`Tutorial of building a ray casting game`](https://lodev.org/cgtutor/raycasting.html) <br>
-6. [`DDA algorithm`](https://youtu.be/NbSee-XM7WA?si=taWsY2doGi90ieGD) <br>
+3. [`Guide from Tsunghao`](https://github.com/Tsunghao-C/Common-Course/tree/main/cub3d) <br>
+4. [`Reference to Jean`](https://github.com/Haliris/cub3d/tree/main) <br>
+5. [`Maximum effort`](https://github.com/ael-bekk/Cub3d-Advanced-Raycasting) <br>
+6. [`Tutorial of building a ray casting game`](https://lodev.org/cgtutor/raycasting.html) <br>
+7. [`DDA algorithm`](https://youtu.be/NbSee-XM7WA?si=taWsY2doGi90ieGD) <br>
