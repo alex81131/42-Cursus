@@ -1,6 +1,20 @@
 # cub3d
-A ray-casting game.
-# Resources
+A ray-casting game: an advanced graphical project where we create a simplified 3D game, whose goal is to learn a rendering technique called ray casting.
+
+## Key Concepts
+1. Parsing Maps, Wall texture paths, and initializing images.
+2. Use a recursive function (floodfill) to check if a Map is valid that the player will never go outside of bound.
+3. Building a vector library for vector calculations (optional)
+4. What is Raycasting and how it helps to make 3D rendering efficient?
+5. What is DDA algorithm? Why it helps to optimize rendering?
+6. Rendering images in a resized fashion (Wall texture rendering)
+6. Create multiple images and put in in the same window (Mini map, Sprite)
+7. Create a script of frames and generate animation effects (Animation)
+
+## Resources
 [`Guide`](https://harm-smits.github.io/42docs/projects/cub3d) <br>
 [`Reference`](https://github.com/pasqualerossi/Cub3D) <br>
+[`Reference to Tsunghao`](https://github.com/Tsunghao-C/Common-Course/tree/main/cub3d) <br>
 [`Maximum effort`](https://github.com/ael-bekk/Cub3d-Advanced-Raycasting) <br>
+[`Tutorial of building a ray casting game`](https://lodev.org/cgtutor/raycasting.html) <br>
+[`DDA algorithm`](https://youtu.be/NbSee-XM7WA?si=taWsY2doGi90ieGD) <br>
