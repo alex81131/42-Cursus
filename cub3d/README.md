@@ -12,9 +12,9 @@ A ray-casting game: an advanced graphical project where we create a simplified 3
 7. Create a script of frames and generate animation effects (Animation)
 
 ## Resources
-[`Guide`](https://harm-smits.github.io/42docs/projects/cub3d) <br>
-[`Reference`](https://github.com/pasqualerossi/Cub3D) <br>
-[`Reference to Tsunghao`](https://github.com/Tsunghao-C/Common-Course/tree/main/cub3d) <br>
-[`Maximum effort`](https://github.com/ael-bekk/Cub3d-Advanced-Raycasting) <br>
-[`Tutorial of building a ray casting game`](https://lodev.org/cgtutor/raycasting.html) <br>
-[`DDA algorithm`](https://youtu.be/NbSee-XM7WA?si=taWsY2doGi90ieGD) <br>
+1. [`Guide`](https://harm-smits.github.io/42docs/projects/cub3d) <br>
+2. [`Reference`](https://github.com/pasqualerossi/Cub3D) <br>
+3. [`Reference to Tsunghao`](https://github.com/Tsunghao-C/Common-Course/tree/main/cub3d) <br>
+4. [`Maximum effort`](https://github.com/ael-bekk/Cub3d-Advanced-Raycasting) <br>
+5. [`Tutorial of building a ray casting game`](https://lodev.org/cgtutor/raycasting.html) <br>
+6. [`DDA algorithm`](https://youtu.be/NbSee-XM7WA?si=taWsY2doGi90ieGD) <br>
