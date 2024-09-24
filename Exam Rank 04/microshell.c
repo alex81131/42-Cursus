@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unistd.h"
-#include "string.h"
-#include "sys/wait.h"
+#include <unistd.h>
+#include <string.h>
+#include <sys/wait.h>
 
 int	err(char *str)
 {
@@ -25,8 +25,8 @@ int	cd(char **argv, int i)
 {
 	if (i != 2)
 		return (err("error: cd: bad arguments\n"));
-	else if (chdir(argv[1]) == -1)
-		return (err("error: cd: cannot change directory to"), err(argv[1]), err("\n"));
+	if (chdir(argv[1]) == -1)
+		return (err("error: cd: cannot change directory to "), err(argv[1]), err("\n"));
 	return (0);
 }
 
@@ -37,7 +37,7 @@ int	exe(char **argv, char **env, int i)
 	int	have_pipe = argv[i] && !strcmp(argv[i], "|");
 
 	if (have_pipe && pipe(fd) == -1)
-		return (err("err: fatal\n"));
+		return (err("error: fatal\n"));
 	int	pid = fork();
 	if (!pid)
 	{
