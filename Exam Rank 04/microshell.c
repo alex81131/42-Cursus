@@ -74,6 +74,10 @@ int	main(int argc, char **argv, char **env)
 	}
 	return (status);
 }
+// In exe's child process: argv[i] = 0
+//	to replace "|" and ";" with NULL,
+//	putting an end for execve, ignoring the rest of the array.
+
 // int	have_pipe = argv[i] && !strcmp(argv[i]. "|")
 // = int	have_pipe = (argv[i] && !strcmp(argv[i]. "|"))
 // 	returns 1 if both arguments are true.
