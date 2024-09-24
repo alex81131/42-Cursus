@@ -6,3 +6,4 @@ Data sorting algorithm.
 - [`Quicksort`](https://en.wikipedia.org/wiki/Quicksort)
 - [`Random Number Generator`](https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php)
 - [`Visualizer`](https://github.com/o-reo/push_swap_visualizer)
+- [`Best algorithm so far`](https://github.com/Schmoov/push_swap_master)
