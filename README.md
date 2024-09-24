@@ -14,7 +14,7 @@
 |03| [Minishell](https://github.com/alex81131/Minishell) | C | Simple shell | 101% |
 |03| [Philosophers](https://github.com/alex81131/42-Cursus/tree/main/Philosophers) | C | Parallel programming | 125% |
 |04| [Exam 04](https://github.com/alex81131/42-Cursus/tree/main/Exam%20Rank%2004) | C | Microshell| ???% |
-|04| [Cub3D](https://harm-smits.github.io/42docs/projects/cub3d) | C | Ray-casting game | ???% |
-|04| [MiniRT](https://harm-smits.github.io/42docs/projects/cub3d) | C | Introduction to ray tracing | ???% |
-|04| [Net Practice] | Network | general practice| ???% |
-|04| [CPP00-09](https://github.com/48d31kh413k/1337-CPP-42) | C++ | C++ concepts | ???% |
+|04| [Cub3D](https://github.com/alex81131/42-Cursus/tree/main/cub3d) | C | Ray-casting game | ???% |
+|04| [MiniRT](https://github.com/alex81131/42-Cursus/tree/main/miniRT) | C | Introduction to ray tracing | ???% |
+|04| [Net Practice](https://github.com/alex81131/42-Cursus/tree/main/NetPractice) | Network | general practice| ???% |
+|04| [CPP](https://github.com/alex81131/42-Cursus/tree/main/CPP) | C++ | C++ concepts | ???% |
