@@ -41,7 +41,7 @@ int	exe(char **argv, char **env, int i)
 	int	pid = fork();
 	if (!pid)
 	{
-		argv[i] = 0;
+		argv[i] = NULL;
 		if (have_pipe && (dup2(fd[1], 1) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
 			return (err("error: fatal\n"));
 		execve(*argv, argv, env);
