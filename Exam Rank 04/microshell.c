@@ -78,6 +78,14 @@ int	main(int argc, char **argv, char **env)
 //	to replace "|" and ";" with NULL,
 //	putting an end for execve, ignoring the rest of the array.
 
+// dup2(fd[1], 1):
+//	The child needs an output port to write, which by default is stdout.
+//	dup2(fd[1], 1) closes the stdout and redirects the output port to fd[1],
+//	so the new output port for the child becomes fd[1].
+// dup2(fd[1], 1) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1)
+//	all in one line is not problematic, because the redirection has been set,
+//	the close the pipe will not affect the connection.
+
 // int	have_pipe = argv[i] && !strcmp(argv[i]. "|")
 // = int	have_pipe = (argv[i] && !strcmp(argv[i]. "|"))
 // 	returns 1 if both arguments are true.
