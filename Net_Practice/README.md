@@ -13,9 +13,6 @@ TCP stands for **Transmission Control Protocol**. It is a communications standar
 
 TCP guarantees the integrity of the data being communicated over a network. Before it transmits data, TCP establishes a connection between a source and its destination, which remains active until communication begins. It then breaks large amounts of data into smaller packets, while ensuring end-to-end delivery without loss of any data.
 
-<div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 ---
@@ -64,9 +61,6 @@ When a network is connected to the internet, it cannot use an IP address from th
 10.0.0.0 – 10.255.255.255     (16,777,216 IP addresses)
 ```
 
-<div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 ---
@@ -150,9 +144,6 @@ The mask can also be represented with the Classless Inter-Domain Routing (CIDR).
 
 Therefore, the mask in the example above of `255.255.255.128`, is equivalent to a mask of `/25` using the CIDR notation, since 25 bits out of 32 bits represent the network address.
 
-<div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 ---
@@ -167,9 +158,6 @@ Therefore, the mask in the example above of `255.255.255.128`, is equivalent to 
 
 A switch connects multiple devices together in a single network. Unlike a router, the switch does not have any interfaces since it only distributes packets to its local network, and cannot talk directly to a network outside of its own.
 
-<div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 ---
@@ -468,9 +456,6 @@ We can now put this address of **40.178.145.128** in the Internet destination. T
 <br>
 A destination of _40.178.145.227/25_ is equivalent to the destination address _40.178.145.128/25_, since the mask of _/25_ will turn all the bits after the 25th to 0 to get the destination's network address.
 
-  <div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 </details>
@@ -511,9 +496,6 @@ To calculate the possible ranges of a mask:
 <br>
 https://www.calculator.net/ip-subnet-calculator.html?cclass=any&csubnet=28&cip=93.198.14.2&ctype=ipv4&printit=0&x=97&y=13
 
-  <div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 </details>
@@ -587,9 +569,6 @@ Remember not to use the network addresses from the reserved private IP ranges.
 <br>
 It is normal to have an empty field for the 3rd destination of the _internet_, and in _Router R1's_ destination. Not all fields of the routing tables need to be filled.
 
-  <div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 </details>
@@ -638,9 +617,6 @@ With the IP addresses already entered (greyed out), let's examine the ranges cov
 
 The only IP addresses left for the network "Router R2 to Client H3" are **70.101.30.192 - 70.101.30.251**. We can pick any mask that will let us take 2 IP addresses from that range to put in _Interface R22_ and _Interface R31_.
 
-  <div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 </details>
