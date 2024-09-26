@@ -13,7 +13,7 @@
 |03| [Exam 03](https://github.com/alex81131/42-Cursus/tree/main/Exam%20Rank%2003) | C | ft_printf / get_next_line | 100% |
 |03| [Minishell](https://github.com/alex81131/Minishell) | C | Simple shell | 101% |
 |03| [Philosophers](https://github.com/alex81131/42-Cursus/tree/main/Philosophers) | C | Parallel programming | 125% |
-|04| [Exam 04](https://github.com/alex81131/42-Cursus/tree/main/Exam%20Rank%2004) | C | Microshell| ???% |
+|04| [Exam 04](https://github.com/alex81131/42-Cursus/tree/main/Exam%20Rank%2004) | C | Microshell| 100% |
 |04| [Cub3D](https://github.com/alex81131/42-Cursus/tree/main/cub3d) | C | Ray-casting game | ???% |
 |04| [MiniRT](https://github.com/alex81131/42-Cursus/tree/main/miniRT) | C | Introduction to ray tracing | ???% |
 |04| [Net_Practice](https://github.com/alex81131/42-Cursus/tree/main/Net_Practice) | Network |  Networking | ???% |
