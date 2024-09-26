@@ -49,7 +49,7 @@ int	exe(char **argv, char **env, int i)
 	}
 	waitpid(pid, &status, 0);
 	if (have_pipe && (dup2(fd[0], 0) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
-			return (err("error: fatal\n"));
+		return (err("error: fatal\n"));
 	return (WIFEXITED(status) && WEXITSTATUS(status));
 }
 
