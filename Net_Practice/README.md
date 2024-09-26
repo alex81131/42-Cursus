@@ -3,10 +3,11 @@ Configure small-scale networks. <br>
 - Click [here](https://ricardoreves.github.io/42-net-practice/) to start training.
 ## Resources
 [`Simple Guide`](https://github.com/ricardoreves/42-net-practice) <br>
-[`Detailed Guide:`](https://github.com/lpaube/NetPractice) <br>
+[`Tutorial`](https://github.com/tblaase/Net_Practice) <br>
+[`Detailed Tutorial:`](https://github.com/lpaube/NetPractice) <br>
 
 ## Levels
-(modified with ChatGPT based on Detailed Guild above)<br>
+(modified with ChatGPT based on Detailed Tutorial above)<br>
 <details>
   <summary>Level 1</summary>
   <br>
