@@ -5,198 +5,8 @@ Configure small-scale networks. <br>
 [`Simple Guide`](https://github.com/ricardoreves/42-net-practice) <br>
 [`Detailed Guide:`](https://github.com/lpaube/NetPractice) <br>
 
-### TCP: Transport Layer
-
-</br>
-
-TCP stands for **Transmission Control Protocol**. It is a communications standard that enables application programs and devices to exchange messages over a network. It is used to send packets across the internet.
-
-TCP guarantees the integrity of the data being communicated over a network. Before it transmits data, TCP establishes a connection between a source and its destination, which remains active until communication begins. It then breaks large amounts of data into smaller packets, while ensuring end-to-end delivery without loss of any data.
-
-</br>
-
----
-
-### IP Address: Network Layer
-
-</br>
-<p align="center">
-  <kbd><img src="https://github.com/lpaube/NetPractice/blob/main/img/ip1.png?raw=true" height=250 alt="mask"></kbd>
-</p>
-</br>
-
-IP is part of an internet protocol suite, which also includes the transmission control protocol. Together, these two are known as TCP/IP. The internet protocol suite governs rules for packetizing, addressing, transmitting, routing, and receiving data over networks.
-
-IP addressing is a logical means of assigning addresses to devices on a network. Each device connected to the internet requires a unique IP address.
-
-An IP address has two parts; one part identifies the host such as a computer or other device, and the other part identifies the network it belongs to. TCP/IP uses a [subnet mask](#subnet-mask) to separate them.
-</br>
-</br>
-
-#### IPv4 vs. IPv6
-
-IP addresses come in 2 versions--IPv4 and IPv6:
-<br>
-
-<p align="center">
-  <kbd><img src="https://github.com/lpaube/NetPractice/blob/main/img/ip_version.png?raw=true" height=100 alt="ip_versions"></kbd>
-</p>
-<br>
-
-Internet Protocol version 4 (IPv4) defines an IP address as a 32-bit number. However, because of the growth of the Internet and the depletion of available IPv4 addresses, a new version of IP (IPv6), using 128 bits for the IP address, was standardized in 1998. However, only IPv4 addresses are used in NetPractice.
-</br>
-</br>
-
-#### Public Address vs. Private Address
-
-A public IP address is an IP address that can be accessed directly over the internet and is assigned to your network router by your internet service provider (ISP). A public (or external) IP address helps you connect to the internet from inside your network, to outside your network.
-
-A private IP address is an address your network router assigns to your device. Each device within the same network is assigned a unique private IP address (sometimes called a private network address) — this is how devices on the same internal network talk to each other.
-
-When a network is connected to the internet, it cannot use an IP address from the reserved private IP addresses. The following ranges are reserved for private IP addresses:
-
-```
-192.168.0.0 – 192.168.255.255 (65,536 IP addresses)
-172.16.0.0 – 172.31.255.255   (1,048,576 IP addresses)
-10.0.0.0 – 10.255.255.255     (16,777,216 IP addresses)
-```
-
-</br>
-
----
-
-### Subnet Mask
-
-</br>
-<p align="center">
-  <kbd><img src="https://github.com/lpaube/NetPractice/blob/main/img/mask1.png?raw=true" height=250 alt="mask"></kbd>
-</p>
-</br>
-
-A subnet mask is a 32 bits (4 bytes) address used to distinguish between a network address and a host address in the IP address. It defines the range of IP addresses that can be used within a network or a subnet.
-</br>
-</br>
-
-#### Finding the network address
-
-The _Interface A1_ above has the following properties:
-
-```
-IP address | 104.198.241.125
-Mask       | 255.255.255.128
-```
-
-To determine which portion of the IP address is the network address, we need to apply the mask to the IP address. Let's first convert the mask to its binary form:
-
-```
-Mask | 11111111.11111111.11111111.10000000
-```
-
-The bits of a mask that are 1 represent the network address, while the remaining bits of a mask that are 0 represent the host address. Let's now convert the IP address to its binary form:
-
-```
-IP address | 01101000.11000110.11110001.01111101
-Mask       | 11111111.11111111.11111111.10000000
-```
-
-We can now apply the mask to the IP address through a [bitwise AND](https://en.wikipedia.org/wiki/Bitwise_operation#AND) to find the network address of the IP:
-
-```
-Network address | 01101000.11000110.11110001.00000000
-```
-
-Which translates to a network address of `104.198.241.0`.
-</br>
-</br>
-
-#### Finding the range of host addresses
-
-To determine what host addresses we can use on our network, we have to use the bits of our IP address dedicated to the host address. Let's use our previous IP address and mask:
-
-```
-IP address | 01101000.11000110.11110001.01111101
-Mask       | 11111111.11111111.11111111.10000000
-```
-
-The possible range of our host addresses is expressed through the last 7 bits of the mask which are all 0. Therefore, the range of host addresses is:
-
-```
-BINARY  | 0000000 - 1111111
-DECIMAL | 0 - 127
-```
-
-To get the range of possible IP addresses for our network, we add the range of host addresses to the network address. Our range of possible IP addresses becomes `104.198.241.0 - 104.198.241.127`.
-
-<ins>HOWEVER</ins>, the extremities of the range are reserved for specific uses and cannot be given to an interface:
-
-```
-104.198.241.0   | Reserved to represent the network address.
-104.198.241.127 | Reserved as the broadcast address; used to send packets to all hosts of a network.
-```
-
-Therefore, our real IP range becomes `104.198.241.1 - 104.198.241.126`, which could have been found using an [IP calculator](https://www.calculator.net/ip-subnet-calculator.html).
-</br>
-</br>
-
-#### CIDR Notation (/24)
-
-The mask can also be represented with the Classless Inter-Domain Routing (CIDR). This form represents the mask as a slash "/", followed by the number of bits that serve as the network address.
-
-Therefore, the mask in the example above of `255.255.255.128`, is equivalent to a mask of `/25` using the CIDR notation, since 25 bits out of 32 bits represent the network address.
-
-</br>
-
----
-
-### Switch
-
-</br>
-<p align="center">
-  <kbd><img src="https://github.com/lpaube/NetPractice/blob/main/img/switch1.png?raw=true" height=150 alt="switch"></kbd>
-</p>
-</br>
-
-A switch connects multiple devices together in a single network. Unlike a router, the switch does not have any interfaces since it only distributes packets to its local network, and cannot talk directly to a network outside of its own.
-
-</br>
-
----
-
-### Router
-
-</br>
-<p align="center">
-  <kbd><img src="https://github.com/lpaube/NetPractice/blob/main/img/route1.png?raw=true" height=200 alt="router"></kbd>
-</p>
-</br>
-
-Just as the switch connects multiple devices on a single network, the router connects multiple networks together. The router has an interface for each network it connects to.
-
-Since the router separates different networks, the range of possible IP addresses on one of its interfaces must not overlap with the range of its other interfaces. An overlap in the IP address range would imply that the interfaces are on the same network.
-</br>
-</br>
-
-#### Routing Table
-
-</br>
-<p align="center">
-  <kbd><img src="https://github.com/lpaube/NetPractice/blob/main/img/routing_table1.png?raw=true" height=150 alt="routing_table"></kbd>
-</p>
-</br>
-
-A routing table is a data table stored in a router or a network host that lists the routes to particular network destinations. In NetPractice, the routing table consists of 2 elements:
-
-- **Destination**: The destination specifies a network address on which a host is the end target of the packets. The route of `default` or `0.0.0.0/0`, is the route that takes effect when no other route is available for an IP destination address. The default route will use the next-hop address to send the packets on their way without giving a specific destination. The default route will match any network.
-
-- **Next hop**: The next hop refers to the next closest router a packet can go through. It is the IP address of the next router on the packet's way. Every single router maintains its routing table with a next hop address.
-
-<div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
-</br>
-
 ## Levels
-
+(modified with ChatGPT based on Detailed Guild above)<br>
 <details>
   <summary>Level 1</summary>
   <br>
@@ -204,27 +14,24 @@ A routing table is a data table stored in a router or a network host that lists 
   <br>
   <br>
 
-**1.** Since _Client A_ and _Client B_ are on the same network, their IP address must represent the same network in accordance with the subnet mask.
+**1.** Subnet mask shows the format of how an IP address is divided into its network and host components.<br>
 <br>
-The subnet mask is _255.255.255.0_, which means that the first 3 bytes of the IP address represent the network, and the 4th byte represents the host. Since we are on the same network, only the host can change.
+Since Client A and Client B are on the same network, their IP addresses must share the same network portion (**104.96.23**). The host portion can differ between devices on the same network.<br>
 <br>
-The solution will be anything in the range of **104.96.23.0 - 104.96.23.255** excluding the following 3:
+The available range for host addresses is from **104.96.23.1 to 104.96.23.254**.<br>
+The range excludes:<br>
+- **104.96.23.0** (the network address): This represents the network itself and can't be assigned to any host.
+- **104.96.23.255** (the broadcast address): This is used to communicate with all devices on the network simultaneously.
+- **104.96.23.12**: This IP is already taken by Client B.<br>
+(Don't be afraid, the answer is simply the first address **1**)<br>
 
-- **104.96.23.0:** The first number in the range of hosts (0 in this case) represents the network and cannot be used by a host.
-- **104.96.23.255:** The last number in the range of hosts (255 in this case) represents the broadcast address.
-- **104.96.23.12:** This address is already used by the host _Client B_.
-
-**2.** The same reasoning as _1._, however the subnet mask is _255.255.0.0_ in this case. The first 2 bytes of the IP address will represent the network; and the last 2 bytes, the host address.
+**2.** Same as **1.**, but the subnet mask is **255.255.0.0**. The first 2 bytes of the IP address will represent the network; and the last 2 bytes, the host address.
 <br>
 The solution will be anything in the range of **211.191.0.0 - 211.191.255.255**, excluding:
 
 - **211.191.0.0:** Represents the network address.
 - **211.191.255.255:** Represents the broadcast address.
 - **211.191.89.75:** Already taken by host _Client C_.
-
-<div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 </details>
@@ -268,9 +75,9 @@ DEC:  192.168.20.192 - 192.168.20.223
 Excluding:
 <br>
 
-- **11000000.10101000.00010100.11000000:** Represents the network address (notice all 0 in the last 5 bits).
-- **11000000.10101000.00010100.11011111:** Represents the broadcast address (notice all 1 in the last 5 bits).
-- **11000000.10101000.00010100.11011110:** _Client B_ already has that address.
+- **192.168.20.192:** Represents the network address.
+- **192.168.20.223:** Represents the broadcast address.
+- **192.168.20.222:** _Client B_ already has that address.
 
 **3.** Here we are introduced the slash "/" notation for the subnet mask on _Interface D1_. A subnet mask of _/30_ means that the first 30 bits of the IP address represent the network address, and the remaining 2 bits represent the host address:
 
@@ -287,13 +94,13 @@ We can see that this binary number corresponds to the decimal _255.255.255.252_,
 <br>
 The answers can then be any address, as long as they meet the following conditions:
 
+- If you're assigning IP addresses for devices within a private network (such as a home, office, or internal network that isn't directly connected to the public internet), the IP addresses should be chosen from one of the private IP address spaces (**192.168.0.0**/16 address block)
 - The network address (first 30 bits) must be identical for _Client D_ and _Client C_.
 - The host bits (last 2 bits) cannot be all 1, nor all 0.
 - _Client D_ and _Client C_ do not have identical IP addresses.
+</br>
+ex. 192.168.0.1-2
 
-<div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 </details>
@@ -325,9 +132,6 @@ The IP address of _Interface B1_ and _Interface C1_ must be on the same network 
   </center>
   Excluding of course the network address and the broadcast address.
 
-  <div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 </details>
@@ -363,9 +167,6 @@ The IP address of _Interface B1_ and _Interface R1_ must have the same network a
 
 Note that we did not interact with the router _Interface R2_ and _Interface R3_, since none of our communications had to reach these sides of the router.
 
-  <div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 </details>
@@ -380,23 +181,20 @@ Note that we did not interact with the router _Interface R2_ and _Interface R3_,
   <br>
 
 This level introduces **routes**. A route contains 2 fields, the first one is the **destination** of outbound packets, the second one is the **next hop** of the packets.
-<br>
-
-The **destination** _default_ is equivalent to _0.0.0.0/0_, which will send the packets indiscriminately to the first network address it encounters. A destination address of _122.3.5.3/24_ would send the packets to the network _122.3.5.0_.
-
+<br><br>
+In order to make routers work, each machine must define a route to the router, with which it also needs to define the interface IP and mask.
+<br><br>
+The **destination** is where the packet is supposed to end up. If there isn’t one, the default route (0.0.0.0/0) is used, which says, "Send all unknown traffic to the next hop."
+<br><br>
+The **next hop** is the IP address of the next device in the path toward the destination. For Client A, this would be Router R1 (because R1 is the first router along the way to Client B). 
   <br>
-  The **next hop** is the IP address of the next  router (or internet) interface to which the interface of the current machine must send its packets. 
-  <br>
   <br>
 
-**1.** _Client A_ only has 1 route through which it can send its packets. There is no use specifying a numbered destination. The destination _default_ will send the packets to the only path available.
+**1.** _Client A_ only has 1 route through which it can send its packets. By simply setting the  destination to _default_ will send the packets to the only path available.
 <br>
 <br>
-The next hop address must be the IP address of the next router's interface on the packets' way. The next interface is _Interface R1_, with the IP address of _54.117.30.126_. Note that the next interface is not _Interface A1_, since this is the sender's own interface.
+The **next hop** address must be the IP address of the next router's interface on the packets' way. The next interface is _Interface R1_, with the IP address of _54.117.30.126_. Note that the next interface is not _Interface A1_, since this is the sender's own interface.
 
-  <div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 </details>
