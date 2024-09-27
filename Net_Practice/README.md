@@ -19,12 +19,28 @@ Configure small-scale networks. <br>
 <br>
 Since Client A and Client B are on the same network, their IP addresses must share the same network portion (**104.96.23**). The host portion can differ between devices on the same network.<br>
 <br>
-The available range for host addresses is from **104.96.23.1 to 104.96.23.254**.<br>
+`How to determine the range of usable IPs (Internet Protocal address)?`<br>
+The subnet mask determines the format:
+```
+MASK can have 2 representations:
+A: 255.255.255.0
+B: /24
+(both have the same value in BIN)
+BIN: 11111111.11111111.11111111.00000000
+```
+`Translation A`<br>
+0 out of 256 ports are used for the network. Hence, we have 256 possible ports for the host.<br>
+`Translation B`<br>
+The first 24 bits are network portion, and the last 32-24=**8** bits are host portion, which can be assigned to hosts-- 2^**8** = 256 possible ports.
+<br>
+***
+
+In this exercise, assuming there's no subnets, the available IP range for host addresses is **104.96.23.0~255**.<br>
 The range excludes:<br>
-- **104.96.23.0** (the network address): This represents the network itself and can't be assigned to any host.
-- **104.96.23.255** (the broadcast address): This is used to communicate with all devices on the network simultaneously.
+- **104.96.23.0** (the network address): The first address always represents the network itself and can't be assigned to any host.
+- **104.96.23.255** (the broadcast address): The last address is always used to communicate with all devices on the network simultaneously.
 - **104.96.23.12**: This IP is already taken by Client B.<br>
-(Don't be afraid, the answer is simply the first address **1**)<br>
+(Don't be afraid, the answer can be simply the first address **1**)<br>
 
 **2.** Same as **1.**, but the subnet mask is **255.255.0.0**. The first 2 bytes of the IP address will represent the network; and the last 2 bytes, the host address.
 <br>
@@ -45,40 +61,65 @@ The solution will be anything in the range of **211.191.0.0 - 211.191.255.255**,
   <img src="https://github.com/LPaube/42_NetPractice/blob/main/img/level2_paint.png?raw=true" alt="level2">
   <br>
   <br>
+First of all, we need to know that:<br>
+The subnet mask determines the size of the subnet.<br><br>
 
+Yes, submasks are used to divide the main network (255.255.255.0) into smaller subnets.<br>
+<br>
+For example, a /24 (255.255.255.0) network can be divided into multiple /29 (255.255.255.248) subnets:
+<br>
+_Each subnet has 256-248 = 2^3 = 8 possible ports._
+<br>
+`For a main network 192.168.1.0/24, you could have:`<br>
+```
+Subnet A: 192.168.1.0/29
+Network Address: 192.168.1.0
+Usable: 192.168.1.1~6
+Broadcast: 192.168.1.7
+```
+```
+Subnet B: 192.168.1.8/29
+Network Address: 192.168.1.8
+Usable: 192.168.1.9~14
+Broadcast: 192.168.1.15
+```
+...<br>
+and so on.<br><br>
 **1.** Since _Client B_ is on the same private network as _Client A_, they should have the exact same subnet mask.
 <br>
 The solution can only be **255.255.255.224**.
 
-**2.** To understand the subnet mask of _255.255.255.224_, let's look at it in binary form, along with the IP _192.168.20.222_ of _Client B_:
+***
+
+**2.** To calculate the IP range of the subnet mask of _255.255.255.224_, you can <br>
+##### a. perform a `Bitwise AND` operation with the IP _192.168.20.222_ of _Client B_:
 
 <center>
-
+  
 ```
-MASK: 11111111.11111111.11111111.11100000
-IP:   11000000.10101000.00010100.11011101
+IP Address:     11000000.10101000.00010100.11011101 (192.168.20.222)
+Subnet Mask:    11111111.11111111.11111111.11100000 (255.255.255.224)
+Network Address:11000000.10101000.00010100.11000000 (192.168.20.192)
 ```
 
 </center>
-As we can see, the first 27 bits represent the IP address, while only the last 5 bits represent the host address.
-<br>
-All these 27 bits representing the network must stay the same in the IP addresses of hosts on the same network. To get the answer, we can only change the last 5 bits.
-<br>
-<br>
-The answer is in the range of:
 
-```
-BIN:  11000000.10101000.00010100.11000000 - 11000000.10101000.00010100.11011111
-or
-DEC:  192.168.20.192 - 192.168.20.223
-```
+As we can see, this subnet block has the size of **32** and starts at **192.168.20.192**, falling in the range of 192.168.20.**192~223**.<br>
+<br><br>
+##### Or b. calculate the size of each subnet block and determine in which block it is:
+_255.255.255.224_ says the size of the subnet is **256-224 = 32**,<br>
+and by **222÷32 ≒ 6.94** with the IP _192.168.20.**222**_ of _Client B_,<br>
+we know that this IP falls in the later part of the block **6**. That means the address of the subnet is 32x6 = **192**.
 
-Excluding:
+
+The range is 192.168.20.**192~223**:
 <br>
 
 - **192.168.20.192:** Represents the network address.
 - **192.168.20.223:** Represents the broadcast address.
 - **192.168.20.222:** _Client B_ already has that address.
+
+***
 
 **3.** Here we are introduced the slash "/" notation for the subnet mask on _Interface D1_. A subnet mask of _/30_ means that the first 30 bits of the IP address represent the network address, and the remaining 2 bits represent the host address:
 
