@@ -4,7 +4,8 @@ Configure small-scale networks. <br>
 ## Resources
 [`Simple Guide`](https://github.com/ricardoreves/42-net-practice) <br>
 [`Tutorial`](https://github.com/tblaase/Net_Practice) <br>
-[`Detailed Tutorial:`](https://github.com/lpaube/NetPractice) <br>
+[`Detailed Tutorial`](https://github.com/lpaube/NetPractice) <br>
+[`Evaluation Sheet`](https://web.archive.org/web/20231228101420/https://rphlr.github.io/42-Evals/Cursus/NetPractice/)<br>
 
 ## Levels
 (modified with ChatGPT based on Detailed Tutorial above)<br>
