@@ -141,7 +141,7 @@ The answers can then be any address, as long as they meet the following conditio
 - The host bits (last 2 bits) cannot be all 1, nor all 0.
 - _Client D_ and _Client C_ do not have identical IP addresses.
 </br>
-ex. 192.168.0.1-2
+ex. 192.168.0.1~2
 
 </br>
 
@@ -258,7 +258,7 @@ This level introduces the **internet**. The internet behaves like a router. Howe
 10.0.0.0 - 10.255.255.255     (16,777,216 IP addresses)
 ```
 
-**1.** The **next hop** of the internet is already entered, and matches the IP address of the _Interface R2_. Therefore we only need to bother with the destination of the internet.
+**1.** The **next hop** of the internet is already entered, and matches the IP address of the _Interface R2_. Therefore we only need to fix with the destination of the internet.
 <br>
 <br>
 The internet must send its packets to _Client A_. To do so, the internet's **destination must match the network address** of _Client A_. Let's find the network address of _Client A_:
@@ -285,7 +285,7 @@ A destination of _40.178.145.227/25_ is equivalent to the destination address _4
   <br>
   <br>
 
-This level introduces the concept of **overlaps**. The range of IP addresses of a network must not overlap the range of IP addresses of a separate network. Networks are separated by routers.
+This level introduces the concept of **overlaps**. The range of IP addresses of a network must not overlap the range of IP addresses of a separate network. Networks are separated by routers
 <br>
 <br>
 
@@ -300,18 +300,19 @@ For _Interface A1_, we cannot choose our IP address freely since the IP of _Inte
 <br>
 <br>
 
-Since we need addresses for 3 separate networks, it is convenient to split the last bytes of the address into 4 or more address ranges. We do this by using a mask of _/26_ or higher. The mask of _/28_ for example will give us 16 ranges, from which we use the following 3:
-
-```
-93.198.14.1 - 93.198.14.14    (Client A to Router R1)
-93.198.14.65 - 93.198.14.78   (Router R1 to Router R2)
-93.198.14.241 - 93.198.14.254 (Router R2 to Client C)
-```
-
-To calculate the possible ranges of a mask:
+Since we need addresses for 3 separate networks, we have to split the last bytes of the address into at least 4 address ranges. Here I divide it into 4 blocks for example: the size of each subnet should be 256÷4= **64**.
 <br>
-https://www.calculator.net/ip-subnet-calculator.html?cclass=any&csubnet=28&cip=93.198.14.2&ctype=ipv4&printit=0&x=97&y=13
+```
+Therefore possible range is as follows:
+93.198.14.0 ~ 93.198.14.63
+93.198.14.64 ~ 93.198.14.127
+93.198.14.128 ~ 93.198.14.191
+93.198.14.192 ~ 93.198.14.255
+```
 
+Assign the IPs separately by your choice.<br>
+<br>
+**2.** The destination of each route can be set to default, and the next hop should be the **next router**. Both routers should put each other as the next hop.
 </br>
 
 </details>
@@ -325,22 +326,14 @@ https://www.calculator.net/ip-subnet-calculator.html?cclass=any&csubnet=28&cip=9
   <br>
   <br>
 
-**1.** The hosts _Client C_ and _Client D_ will send packets to the internet, then the internet will respond by sending packets all the way back to the initial sender. To send these packets, the internet uses the destination _49.175.13.0/26_ to send the packets to the networks in the range of `49.175.13.0 - 49.175.13.63`.
+**0.** Before we start, do you notice that the Internet has different IP than the local network? That's because the 163.136.250.x is a **public IP address** and the 49.175.13.x is a **private IP address**.<br>
+In this exercise we focus rather on the private IP address.<br><br>
+**1.**  In the scenario where there are **multiple** machines behind a router on a local network (like in the image you linked), the **destination** for the incoming packets from the Internet would typically be the public IP of the **router** or gateway. The internet sends packets to the destination _49.175.13.0/26_, aka the network address of our main network. Since it's /26, only 6 out of 32 bits are reserved for hosts, meaning this _**main network**_ has the size of 2^**6** = **64**, ranging `49.175.13.0~63`.
 <br>
 <br>
-All the receiving networks must be in this range, without overlapping each other.
-<br>
-<br>
-
-**2.** On _Interface R23_ and _Interface R22_ we use the mask _255.255.255.240_ (or _/28_), to conveniently split the range of _/26_ from the destination address, into 4 separate ranges. This separation of 4 is necessary since we have the following 3 networks that must not overlap:
-<br>
-
-1. _Router R1_ to _Router R2_.
-2. _Router R2_ to _Client C_.
-3. _Router R2_ to _Client D_.
-
-Each of these networks can then be attributed one of the following IP ranges with a mask of _/28_:
-
+In order to create at least 3 non-overlapping subnets under a network of the size of 64, I choose to divide it up into 4 subnets of the size of 16: (255.255.255.240 or /28)<br>
+`PS. Only 16 out of 256 are for hosts, therefore 256-16 = 240.`<br>
+`PPS. For 16 = 2^4, 4 out of 32 bits are for hosts, therefore 32-4 = 28.`
 ```
 49.175.13.0 - 49.175.13.15
 49.175.13.16 - 49.175.13.31
@@ -348,15 +341,10 @@ Each of these networks can then be attributed one of the following IP ranges wit
 49.175.13.48 - 49.175.13.63
 ```
 
-Note that the network address (first) and the broadcast address (last) must be excluded from each range.
 <br>
 <br>
 
 **3.** The destination and next hop for the internet are already entered. We only need to enter the next hop for the _Router R2_, which is the IP on the _Interface R21_.
-
-<div align="right">
-  <b><a href="#top">↥ back to top</a></b>
-</div>
 </br>
 
 </details>
@@ -370,23 +358,51 @@ Note that the network address (first) and the broadcast address (last) must be e
   <br>
   <br>
 
-This level is quite straightforward since the internet does not initially send its packets to a specific network. Therefore, the separate networks do not need to share a common address range. I would suggest simply following the 6 goals of the level one by one until the level is completed.
+This level is a small exercise of what we've learned so far. Since the internet does not initially send packets to a _specific network_. We don't have to divide the main network and have the liberty to **create up to 3 networks**. (because there are only 3 destinations on the `Internet Routes`.
 <br>
 <br>
-Remember not to use the network addresses from the reserved private IP ranges.
+Remember, if an interface is connected directly or indirectly to the internet, it **cannot** have an IP address in the following reserved private IP ranges:
+
+```
+192.168.0.0 - 192.168.255.255 (65,536 IP addresses)
+172.16.0.0 - 172.31.255.255   (1,048,576 IP addresses)
+10.0.0.0 - 10.255.255.255     (16,777,216 IP addresses)
+```
+Therefore, I have created the following destinations for the Internet:
+`1.0.0.0/24` for the network on the left (A1-B1-R11);<br>
+`2.0.0.0/24` for the network on the right (C1-R22).<br>
+(The IP of the network at the bottom (D1-R23) is pre-determined and it doesn't have to connect to the Internet, so we don't have to put a thrid destination. However, as a challenge, can you find the network address of this network?)
+
 <br>
 <br>
 
-**1.** **Goal 3** states that we must connect _meson_ with the _internet_. The _internet_ will then have to respond to _meson_, so we enter _meson's_ network address in the _internet's_ destination.
+**1.** `Network on the left (A1-B1-R11)`<br>
+Put the same mask and assign IP **1.0.0.1~254** of your choice.<br>
+Put the IP of R11 to the **next hops** of both clients.
 <br>
 <br>
-**Goal 6** states that we must connect _cation_ with the _internet_, so we enter _cation's_ network address in the _internet's_ destination.
+**2.** `Network on the right (C1-R22)`<br>
+Simply put the basic mask **255.255.255.0 (/24)** and assign IP **2.0.0.1~254** of your choice.<br>
+Put the IP of R21 to the **next hops** of both clients.
+<br>
+<br>
+**3.** `Network at the bottom (D1-R23)`<br>
+Put the same mask and assign IP as you please<br>
+(/18 is quite big, so a simple 73.110.148.12 would do the trick)
+<br>
+<br>
+**4.** Assign a simple IP **3.0.0.1~254** to the routers and put the IP of one router to the other one's **net hop**.
 <br>
 <br>
 It is normal to have an empty field for the 3rd destination of the _internet_, and in _Router R1's_ destination. Not all fields of the routing tables need to be filled.
-
-</br>
-
+<br>
+<br>
+**[Bonus]** The network address of the network at the bottom is `73.110.128.0/18`.<br>
+/18=8+8+2 shows that there are **6 bits** can be used for hosts in the third octet.<br>
+So the block size would be 2^6 = **64**, and 148÷64=2.x, meaning it's the second block.<br>
+So we have 64×2 = **128** in `73.110.128.0/18` as the address of the network, and if we assign this address as the third destination route of the Internet, D1 would be able to connect to the Internet as well.
+<br>
+<br>
 </details>
 
 ---
