@@ -414,41 +414,37 @@ So we have 64×2 = **128** in `73.110.128.0/18` as the address of the network, a
   <br>
   <br>
 
-At this level, there are 4 different networks:
-<br>
+- The IP address is covered by the _internet_ destination.
+- The IP address range of the various networks does not overlap.
 
-1. _Router R1_ to _Switch S1_
-2. _Router R1_ to _Router R2_
-3. _Router R2_ to _Client H4_
-4. _Router R2_ to _Client H3_
-   <br>
+**1.** Let's start with the network on the top-right (H1-H2-R1). You can see that the network's address is **70.101.30.0/25**, with the range:<br>
+```
+70.101.30.    0~127
+```
 
-**1.** The internet must be able to send its packets to all the hosts, so its destination must cover the range of networks of all the hosts.
-<br>
-<br>
+**2.** Next, bottom-left (H4-R2). The network's address is **70.101.30.0/26**, with the range:<br>
+```
+70.101.30.    128~191
+```
 
-_Interface R11_ and _Interface R13_ already have an IP address entered. This IP address only differs in its last byte. _Interface R11_ has for last byte **1**, and _Interface R13_ has for last byte **254**. To cover this wide range to IP addresses, we take a mask of **/24** for the _internet's_ destination. This destination will cover a range of `70.101.30.0 - 70.101.30.255`.
+**3.** And the routers are in **70.101.30.252/30**, with the range:<br>
+```
+70.101.30.    252~255
+```
 
-  <br>
-  <br>
-
-**2.** When choosing the IP addresses, we must make sure of 2 things:
-<br>
-
-1. The IP address is covered by the _internet_ destination.
-2. The IP address range of the various networks does not overlap.
-   <br>
-
-With the IP addresses already entered (greyed out), let's examine the ranges covered by the various networks:
-<br>
-
-1. _Router R1_ to _Switch S1_ - Covers the range **70.101.30.0 - 70.101.30.127** (mask /25).
-2. _Router R2_ to _Client H4_ - Covers the range **70.101.30.128 - 70.101.30.191** (mask /26).
-3. _Router R1_ to _Router R2_ - Covers the range **70.101.30.252 - 70.101.30.255** (mask /30).
-4. _Router R2_ to _Client H3_ - ??? (mask ???).
-
-The only IP addresses left for the network "Router R2 to Client H3" are **70.101.30.192 - 70.101.30.251**. We can pick any mask that will let us take 2 IP addresses from that range to put in _Interface R22_ and _Interface R31_.
-
+**4.** Now, the bottom-right (H3-R2). We need a network smaller than **/26** so that it'll not overlap, which would be **70.101.30.192/27**, with the range:<br>
+```
+70.101.30.    192~223
+```
+(if the same mask as bottom-left network, **255.255.255.192** or **/26**, the range would be 70.101.30.**192~255**, which would overlap with the network of the routers.)</br>
 </br>
+**5.** We need to choose a destination for the router R1 that would cover
+```
+70.101.30.    0~127, 128~191, 192~223 and 252~255
+```
+A simple **default** or **70.101.30.0/24** would work.<br>
+<br>
+**6.** Lastly, for everyone to have access to the Internet, we simple assign the full range of the network **70.101.30.0/24**. (default doesn't work here)
+
 
 </details>
