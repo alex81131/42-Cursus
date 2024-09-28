@@ -6,15 +6,41 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/09/24 18:57:53 by kyeh             ###   ########.fr        #
+#    Updated: 2024/09/28 15:13:12 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# Name
+NAME	= cub3d
 
 # Compiler and flags
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror -g3 #-fsanitize=address
-LIBC	= ar rcs
 
+# Source files
+SRC_PAR	=	$(addprefix parser/, \
+				parser.c			expansion.c			quote.c \
+				parser_utils.c		expand_utils.c		heredoc.c)
+
+SRC_FILES	=	main.c $(SRC_PAR)
+SRC_PATH	=	src/
+SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
+
+HEADER		=	include/
+
+# Object files
+OBJ_FILES	=	$(SRC_FILES:%.c=%.o)
+OBJ_PATH	=	obj/
+OBJ			=	$(addprefix $(OBJ_PATH), $(OBJ_FILES))
+
+RM			=	rm -rf
+
+LIBFT_PATH	=	libft/
+LIBFT		=	$(addprefix $(LIBFT_PATH), libft.a)
+
+MLX_PATH	= minilibx-linux/
+MLXFLAGS	= -L $(MLX_PATH) -lmlx -lXext -lX11 -lXext -lm -lz -Ofast
+#######################################################
 # Colors
 DEFAULT		= \e[0;39m
 BLACK		= \e[0;30m
@@ -44,88 +70,69 @@ SKY_BOLD	= \e[1;36m
 CYAN_LIGHT	= \e[0;96m
 NOCOLOR		= \e[0m
 RESET_LINE	= \e[2K\r
+#######################################################
+all: $(MLX) $(NAME)
 
-# Source files
-LIBFT = \
-		ft_isalpha.c	ft_isdigit.c	ft_isalnum.c	ft_isascii.c\
-		ft_isprint.c	ft_toupper.c	ft_tolower.c\
-		\
-		ft_memset.c		ft_strlen.c		ft_bzero.c		ft_memcpy.c\
-		ft_memmove.c	ft_strlcpy.c	ft_strlcat.c	ft_strchr.c\
-		ft_strrchr.c	ft_strcmp.c		ft_strncmp.c	ft_memchr.c\
-		ft_memcmp.c		ft_strnstr.c	ft_strdup.c\
-		\
-		ft_atoi.c		ft_atoi_base.c	ft_calloc.c\
-		\
-		ft_substr.c		ft_strjoin.c	ft_strtrim.c	ft_split.c\
-		ft_itoa.c		ft_strmapi.c	ft_striter.c	ft_striteri.c\
-		ft_putchar_fd.c	ft_putstr_fd.c	ft_putendl_fd.c	ft_putnbr_fd.c\
-		\
-		ft_lstnew.c		ft_lstadd_front.c	ft_lstsize.c	ft_lstlast.c\
-		ft_lstadd_back.c	ft_lstdelone.c	ft_lstclear.c	ft_lstiter.c\
-		ft_lstmap.c
-FT_PRINTF = \
-		ft_putchar.c				ft_putstr.c				ft_putnbr.c\
-		ft_printf.c					ft_printf_number_hex.c	ft_printf_ptr.c\
-		ft_printf_fd.c				ft_printf_ptr_fd.c\
-		ft_printf_number_hex_fd.c	ft_printf_unsigned_int.c
-GNL = \
-		get_next_line.c
-FDF = \
-		fdf.c
-MINISHELL = \
-		ft_strndup.c	ft_strjoin_free.c
+$(NAME): $(OBJ) $(LIBFT)
+	@$(CC) $(CFLAGS) $^ $(MLX_PATH) -lreadline -o  $@
+	@printf "	\033[2K\r$(DARK_BLUE)cub3d\t: $(LIGHT_GREEN)Updated\n\033[0m"
 
-SRC_FILES = \
-		$(LIBFT) $(FT_PRINTF) $(GNL) $(FDF) $(MINISHELL)
-SRC_PATH = src/
-SRC = $(addprefix $(SRC_PATH), $(SRC_FILES))
-OBJ_FILES	= ${SRC_FILES:.c=.o}
-OBJ_PATH = obj/
-OBJ = $(addprefix $(OBJ_PATH), $(OBJ_FILES))
+$(LIBFT):
+	@$(MAKE) -C $(LIBFT_PATH)
 
+$(MLX):
+	@$(MAKE) -C $(MLX_PATH)
 
-NAME	= libft.a
-RM		= rm -rf
-HEADER	= include
+minilibx-linux:
+	@if [ ! -d "$@" ]; then \
+		git clone https://github.com/42Paris/minilibx-linux.git $@; \
+	else \
+		echo "mlx already present in the working directory, aborting clone."; \
+	fi
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER) Makefile
-	@mkdir -p $(OBJ_PATH)
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER)/cub3d.h Makefile
+	@mkdir -p $(dir $@)
 	@printf "$(RESET_LINE)$(RED_FLASH)Compiling...	$(GREY)$<$(SKY) $(NOCOLOR)"
-	@$(CC) $(CFLAGS) -I $(HEADER) -c $< -o $@
+	@gcc $(CFLAGS) -I $(HEADER) -I libft/include -c $< -o $@
 
-${NAME}: $(OBJ)
-	@$(LIBC) $@ $^
-	@printf "$(RESET_LINE)$(BLUE_GREY)libft\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
-
-all: $(NAME)
-
-clean:
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/	$(GREY)"
+clean: cleanlib cleanmlx
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/...	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting libft srcs/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/...	$(GREY)"
 	@sleep 0.1
 	@$(RM) $(OBJ_PATH)
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"
 
-fclean: clean
+cleanlib:
+	@$(MAKE) -C $(LIBFT_PATH) clean
+
+cleanmlx:
+	@$(MAKE) -C $(MLX_PATH) clean
+
+fclean: fcleanlib clean
 	@$(RM) $(NAME)
+
+fcleanlib:
+	@$(MAKE) -C $(LIBFT_PATH) fclean
 
 re:	fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean cleanlib cleanmlx fclean fcleanlib re
+# minilibx-linux:
+# 	! -d checks if a directory doesn't exist
+
 # @ suppresses the command being printed to the terminal when it's executed.
 # all, clean,... are phony targets, not actual files, used as conditions after make command
 # when "make", it builds only the first target in the makefile
