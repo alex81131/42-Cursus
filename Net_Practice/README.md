@@ -50,8 +50,8 @@ The solution will be anything in the range of **211.191.0.0 - 211.191.255.255**,
 - **211.191.0.0:** Represents the network address.
 - **211.191.255.255:** Represents the broadcast address.
 - **211.191.89.75:** Already taken by host _Client C_.
-</br>
 
+<br><br><br>
 </details>
 
 ---
@@ -141,11 +141,11 @@ The answers can then be any address, as long as they meet the following conditio
 - The network address (first 30 bits) must be identical for _Client D_ and _Client C_.
 - The host bits (last 2 bits) cannot be all 1, nor all 0.
 - _Client D_ and _Client C_ do not have identical IP addresses.
-</br>
+
 ex. 192.168.0.1~2
 
-</br>
 
+<br><br><br>
 </details>
 
 ---
@@ -175,8 +175,8 @@ The IP address of _Interface B1_ and _Interface C1_ must be on the same network 
   </center>
   Excluding of course the network address and the broadcast address.
 
-</br>
 
+<br><br><br>
 </details>
 
 ---
@@ -210,8 +210,8 @@ The IP address of _Interface B1_ and _Interface R1_ must have the same network a
 
 Note that we did not interact with the router _Interface R2_ and _Interface R3_, since none of our communications had to reach these sides of the router.
 
-</br>
 
+<br><br><br>
 </details>
 
 ---
@@ -238,8 +238,8 @@ The **next hop** is the IP address of the next device in the path toward the des
 <br>
 The **next hop** address must be the IP address of the next router's interface on the packets' way. The next interface is _Interface R1_, with the IP address of _54.117.30.126_. Note that the next interface is not _Interface A1_, since this is the sender's own interface.
 
-</br>
 
+<br><br><br>
 </details>
 
 ---
@@ -267,14 +267,15 @@ The internet must send its packets to _Client A_. To do so, the internet's **des
 _Client A_'s mask is _255.255.255.128_, meaning the size of the subnet block is 256-128 = **128**. For 256÷128 = **2**, we know there can be only 2 blocks (0\~127, 128\~255) and this IP falls in the second block, meaning _40.178.145.**129~254**_ are available.
 <br>
 <br>
-We can now put this address of **40.178.145.227** in the Internet destination. The **/25** following the destination address represents the mask applied to its address.<br>
-128 = `1000 0000` in binary, showing that 24+1= **25** bits are used for network.
-<br>
-<br>
-A destination of _40.178.145.227/25_ is equivalent to the destination address _40.178.145.128/25_, since the mask of _/25_ will turn all the bits after the 25th to 0 to get the destination's network address.
+Thus, both addresses, **40.178.145.227/25** and **40.178.145.128/25**, are valid.<br>
+1. `40.178.145.227/25` identifies the specific host 40.178.145.227 in this network.<br>
+2. `40.178.145.128/25` refers to the entire network to which this IP belongs, covering all the hosts in the range.<br>
+(The **/25** following the destination address represents the mask applied to its address.<br>
+128 = `1000 0000` in binary, showing that 24+1= **25** bits are used for network.)<br>
 
-</br>
+While a destination of _40.178.145.227/25_ makes only this **specific host** be able to connect to the Internet, _40.178.145.128/25_ grants the access to the **whole network**.
 
+<br><br><br>
 </details>
 
 ---
@@ -314,8 +315,8 @@ Therefore possible range is as follows:
 Assign the IPs separately by your choice.<br>
 <br>
 **2.** The destination of each route can be set to default, and the next hop should be the **next router**. Both routers should put each other as the next hop.
-</br>
 
+<br><br><br>
 </details>
 
 ---
@@ -346,8 +347,8 @@ In order to create at least 3 non-overlapping subnets under a network of the siz
 <br>
 
 **3.** The destination and next hop for the internet are already entered. We only need to enter the next hop for the _Router R2_, which is the IP on the _Interface R21_.
-</br>
 
+<br><br><br>
 </details>
 
 ---
@@ -402,8 +403,7 @@ It is normal to have an empty field for the 3rd destination of the _internet_, a
 /18=8+8+2 shows that there are **6 bits** can be used for hosts in the third octet.<br>
 So the block size would be 2^6 = **64**, and 148÷64=2.x, meaning it's the second block.<br>
 So we have 64×2 = **128** in `73.110.128.0/18` as the address of the network, and if we assign this address as the third destination route of the Internet, D1 would be able to connect to the Internet as well.
-<br>
-<br>
+<br><br><br>
 </details>
 
 ---
@@ -437,8 +437,8 @@ So we have 64×2 = **128** in `73.110.128.0/18` as the address of the network, a
 ```
 70.101.30.    192~223
 ```
-(if the same mask as bottom-left network, **255.255.255.192** or **/26**, the range would be 70.101.30.**192~255**, which would overlap with the network of the routers.)</br>
-</br>
+(if the same mask as bottom-left network, **255.255.255.192** or **/26**, the range would be 70.101.30.**192~255**, which would overlap with the network of the routers.)
+
 **5.** We need to choose a destination for the router R1 that would cover
 ```
 70.101.30.    0~127, 128~191, 192~223 and 252~255
