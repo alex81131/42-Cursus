@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/09/28 15:13:12 by kyeh             ###   ########.fr        #
+#    Updated: 2024/09/30 16:08:53 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,8 @@ $(NAME): $(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $^ $(MLX_PATH) -lreadline -o  $@
 	@printf "	\033[2K\r$(DARK_BLUE)cub3d\t: $(LIGHT_GREEN)Updated\n\033[0m"
 
+bonus:	$(NAME)
+
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_PATH)
 
@@ -129,7 +131,7 @@ fcleanlib:
 
 re:	fclean all
 
-.PHONY: all clean cleanlib cleanmlx fclean fcleanlib re
+.PHONY: all bonus minilibx-linux clean cleanlib cleanmlx fclean fcleanlib re
 # minilibx-linux:
 # 	! -d checks if a directory doesn't exist
 

@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:16:09 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/28 15:31:59 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/09/30 16:10:51 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include "libft.h"
+
+# include "parser.h"
 
 //	screen
 # define SCREEN_HEIGHT			1000
