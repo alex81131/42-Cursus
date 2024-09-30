@@ -346,7 +346,8 @@ In order to create at least 3 non-overlapping subnets under a network of the siz
 <br>
 <br>
 
-**3.** The destination and next hop for the internet are already entered. We only need to enter the next hop for the _Router R2_, which is the IP on the _Interface R21_.
+**3.** The destination and next hop for the internet are already entered. We need to enter the first _destination=>net hop_ of the router R1: the **address of the network** => **IP on the Interface R21**.<br>
+(The test website in the description is outdated and will only take default as answer. Use the net_practice.1.5.tgz and run index.html instead)
 
 <br><br><br>
 </details>
