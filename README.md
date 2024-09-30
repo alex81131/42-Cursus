@@ -19,3 +19,4 @@
 |04| [Net_Practice](https://github.com/alex81131/42-Cursus/tree/main/Net_Practice) | Network |  Networking | 100% |
 |04| [C++](https://github.com/alex81131/42-Cursus/tree/main/CPP) | C++ | C++ concepts | ???% |
 |05| [Exam Rank 05](https://github.com/pasqualerossi/42-School-Exam-Rank-05) | C++ | 3 questions in C++ |  100% |
+|05| [(ft_irc)](https://github.com/El-cmd/ft_irc) | C++ | Internet relay chat |  ???% |
