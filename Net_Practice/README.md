@@ -1,6 +1,7 @@
 # Net Practice
 Configure small-scale networks. <br>
-- Click [here](https://ricardoreves.github.io/42-net-practice/) to start training.
+- Click [here](https://ricardoreves.github.io/42-net-practice/) to start training.<br>
+(There's a problem in ex.8 on this site)<br>
 ## Resources
 [`Simple Guide`](https://github.com/ricardoreves/42-net-practice) <br>
 [`Tutorial`](https://github.com/tblaase/Net_Practice) <br>
