@@ -358,7 +358,7 @@ In order to create at least 3 non-overlapping subnets under a network of the siz
 <details>
   <summary>Level 9</summary>
   <br>
-  <img src="https://github.com/LPaube/42_NetPractice/blob/main/img/level9_paint.png?raw=true" alt="level9">
+  <img src="https://github.com/alex81131/42-Cursus/blob/main/Net_Practice/Screenshot_lv.9.png?raw=true" alt="level9">
   <br>
   <br>
 
