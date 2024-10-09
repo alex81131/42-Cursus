@@ -33,6 +33,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (str);
 }
 /*
+1. if s1 or set is NULL, it returns NULL.
+2. if every char in s1 is part of set, it returns a free-able empty string "".
+3. if malloc fail, it returns NULL.
+
 j > i in the 2nd while already, as a failsafe,
 ensures that j doesn't go past i,the beginning of the string.
 Therefore, we don't need s1[j] to avoid segmentation fault.

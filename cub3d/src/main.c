@@ -6,24 +6,24 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:11:20 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/30 17:43:16 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/09 17:16:13 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
-static t_bool check_cub(char *filename)
+static t_bool	check_cub(char *filename)
 {
 	unsigned int	i;
 
 	i = 0;
 	if (!filename)
 		return (FALSE);
-	while (file[i] && file[i] != ".")
+	while (file[i] && file[i] != '.')
 		i++;
 	if (!ft_strncmp(&filename[i], FILE_EXTENSION, 5))
 		return (TRUE);
-	ft_printf_fd(STDERR_FILENO, "Bad file extension, expected a .cub file.\n");
+	ft_printf_fd(ERR, "Bad file extension, expected a .cub file.\n");
 	return (FALSE);
 }
 
@@ -34,7 +34,7 @@ static int	ini_data(t_data *data, char *file)
 	data->map_fd = open(file, O_RDONLY);
 	if (data->map_fd < 0)
 	{
-		ft_printf_fd(STDERR_FILENO, "Cannot open file.\n");
+		ft_printf_fd(ERR, "Cannot open file.\n");
 		return (FALSE);
 	}
 	data->map_width = 0;
@@ -42,7 +42,7 @@ static int	ini_data(t_data *data, char *file)
 	return (SUCCESS);
 }
 
-static int	cub_launch(t_data *data)
+static void	cub_launch(t_data *data)
 {
 	mlx_loop_hook(data->mlx, rc_rendering, data);
 	mlx_hook(data->window, KeyPress, KeyPressMask, &key_events, data);
@@ -64,7 +64,7 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	if (parse_map(&data) == FAILURE)
 		return (EXIT_FAILURE);
-	if (initialize(&data) == FAILURE)
+	if (initialize_game(&data) == FAILURE)
 		return (EXIT_FAILURE);
 	cub_launch(&data);
 	cub_clean(&data);

@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:16:09 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/30 16:10:51 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/09 17:53:10 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,189 +33,140 @@
 # include "libft.h"
 
 # include "parser.h"
+# include "frame.h"
+# include "ray.h"
+
+# define SUCCESS 0
+# define FAILURE 1
+
+# define OUT STDOUT_FILENO
+# define IN STDIN_FILENO
+# define ERR STDERR_FILENO
+# define NAME "cub3d"
 
 //	screen
-# define SCREEN_HEIGHT			1000
-# define SCREEN_WIDTH			1500
+# define WIDTH 1280
+# define HEIGHT 720
+# define FOV 90
+# define ROT_STEP 1.5f
+# define MOUSE_ROT_STEP 1.0f
+# define MOVE_STEP 0.1f
+# define MINIMAP_W 200
+# define MINIMAP_H 200
+# define MINIMAP_X 15
+# define MINIMAP_Y 505
+# define KEY_PRESS 2
+# define MOUSE_PRESS 4
+# define MOUSE_MOVE 6
+# define FILE_EXTENSION ".cub"
+# define FRAME_SCRIPT "./assets/animations/door_frame.txt"
 
-//	texture
-# define TEXTURE_HEIGHT			64
-# define TEXTURE_WIDTH			64
-
-//	game controls
-# define ESC 					53
-# define X_EVENT_KEY_PRESS		2
-# define X_EVENT_KEY_RELEASE	3
-# define X_EVENT_EXIT			17
-
-//	player controls
-# define W						13
-# define A						0
-# define S						1
-# define D						2
-# define UP						126
-# define DOWN					125
-# define LEFT					123
-# define RIGHT					124
-
-//	game structs
-typedef struct s_point
+typedef enum e_texture		t_texture;
+typedef struct s_texdata	t_texData;
+typedef struct s_image		t_image;
+typedef struct s_wall
 {
-	double		x;
-	double		y;
-}	t_point;
+	int	height;
+	int	boundary[2];
+	int	w_pos[2];
+}	t_wall;
 
-typedef struct s_state
+typedef enum e_key
 {
-	t_point	position;
-	t_point	direction;
-	t_point	plane;
-}	t_state;
-
-typedef struct s_var
-{
-	double	position_x;
-	double	position_y;
-	double	direction_x;
-	double	direction_y;
-	double	plane_x;
-	double	plane_y;
-	double	camera_x;
-	double	ray_direction_x;
-	double	ray_direction_y;
-	double	side_distance_x;
-	double	side_distance_y;
-	double	delta_distance_x;
-	double	delta_distance_y;
-	double	perspective_wall_distance;
-	double	wall_x;
-	double	step;
-	double	texture_position;
-	double	frame_time;
-	double	move_speed;
-	double	rotate_speed;
-
-	int		map_x;
-	int		map_y;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		texture_number;
-	int		texture_y;
-	int		texture_x;
-
-	unsigned int	color;
-}	t_var;
-
-//	screen struct
-typedef struct s_img
-{
-	void	*pointer_to_image;
-	char	*address;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-}	t_img;
-
-//	textures struct
-typedef struct s_img2
-{
-	void	*pointer_to_image;
-	int		*address;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-}	t_img2;
-
-//	player struct
-typedef struct s_key
-{
-	int	w;
-	int	s;
-	int	a;
-	int	d;
-	int	right;
-	int	left;
-	int	p;
+	ARROW_RIGHT = 65363,
+	ARROW_LEFT = 65361,
+	ARROW_UP = 65362,
+	ARROW_DOWN = 65364,
+	ESC_KEY = 65307,
+	SPACE_KEY = 32,
+	W_KEY = 119,
+	A_KEY = 97,
+	S_KEY = 115,
+	D_KEY = 100,
+	R_KEY = 114,
+	M1 = 65307,
+	P_KEY = 112,
 }	t_key;
 
-//	map struct
-typedef struct s_cub
+typedef enum e_bool
 {
-	void			*mlx;
-	void			*win;
-	t_img			img;
-	t_img2			img2[4];
-	char			**rgb;
-	char			**xpm;
+	FALSE,
+	TRUE,
+}	t_bool;
+
+typedef enum e_rot
+{
+	CLOCK,
+	CCLOCK,
+}	t_rot;
+
+typedef enum e_move
+{
+	FORWARD,
+	BACKWARD,
+	LEFT,
+	RIGHT,
+}	t_move;
+
+typedef struct s_image
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_image;
+
+typedef struct s_data
+{
+	char			*map_path;
+	int				map_fd;
+	size_t			map_boundary;
+	size_t			map_width;
 	char			**map;
-	unsigned long	floor;
-	unsigned long	ceilling;
-	t_var			var;
-	int				texture[4][TEXTURE_HEIGHT * TEXTURE_WIDTH];
-	t_key			key;
-}	t_cub;
+	void			*mlx;
+	void			*window;
+	int				pause;
+	t_image			image;
+	t_image			minimap;
+	t_texture_data	*texture;
+	t_frame			*frames;
+	t_wall			w_data;
+	t_vec			ava_pos;
+	t_vec			ava_dir;
+	t_vec			ava_cam;
+	t_vec			ray_dir;
+	int				side;
+}	t_data;
 
-//	ray-casting struct
-typedef struct s_ray
-{
-	t_point	ray_dir;
-	t_point	side_dist;
-	t_point	delta_dist;
-	int		map_x;
-	int		map_y;
-	double	perspective_wall_distance;
-	int		step_x;
-	int		step_y;
-	int		side;
-}	t_ray;
+int		cub_clean(t_data *data);
+void	cub_free_texture(t_texdata *texture, void *mlx);
+int		initialize_game(t_data *data);
+int		key_events(int keycode, t_data *data);
+int		mouse_move(int x, int y, t_data *data);
+int		mouse_press(int button, int x, int y, t_data *data);
+void	interact_door(t_data *data);
+void	move_check(t_vec *step, t_data *data, int add_or_min);
 
-//	src/map
-int				init_colours(void);
-int				parse_info(int fd);
-int				init_textures(void);
-int				validate_map(void);
-int				check_characters(void);
-int				parse_map(int fd);
-int				parse(char *file);
-void			mlx_place_pixel(int x, int y, int color);
-void			draw_floor(void);
-void			draw_ceiling(void);
-void			init(void);
-void			calculate_ray_position_and_direction(int x);
-void			set_box_position(void);
-void			calculate_delta_distance(void);
-void			calculate_step_and_side_distance_x(void);
-void			calculate_step_and_side_distance_y(void);
-void			raycast_loop(void);
-void			calculate_distance_perspective(void);
-void			calculate_vertical_line_height(void);
-void			calculate_draw_start_and_draw_end(void);
+// /* * * * * * * * * * * color.c * * * * * * * * * * */
+int		create_trgb(int t, int r, int g, int b);
+// int		get_color(int trgb, char index);
+// int		add_shade(double factor, int color);
+// int		get_opposite(int color);
 
-//------------game_player_folder------------//
-int				key_press(int keycode);
-void			hooks(void);
-void			player_move_forward(void);
-void			player_move_backwards(void);
-void			player_move_left(void);
-void			player_move_right(void);
+// /* * * * * * * * * * * RC Rendering * * * * * * * * * * */
+int		rc_rendering(t_data *data);
+void	rc_ray_ini(t_ray *d, t_ray *pos, t_ray *dir, t_ray *unit_d);
+int		rc_update_pos(t_ray *d, t_ray *unit_d, t_ray *pos, t_ray *dir);
+void	rc_draw_stripe_column(t_data *data, int x, double ray_d);
+void	rc_render_wall(t_data *data, int x, int y, double ray_d);
+void	rc_set_pixel_color(t_image *image, int x, int y, int color);
 
-//------------game_utils_folder------------//
-const char		*get_exit(const char *file);
-unsigned long	rgb_to_hex(int red, int green, int blue);
-int				ft_new_line(char *buf);
-int				ft_array_length(char **arr);
+// /* * * * * * * * * * * Minimap * * * * * * * * * * */
+void	put_minimap(t_data *data);
 
-//------------main.c------------//
-int				quit_game(void);
-t_cub			*data(void);
+// /* * * * * * * * * * * Sprite * * * * * * * * * * */
+void	play_sprite_forward(t_data *data, int map_x, int map_y);
+void	play_sprite_backward(t_data *data, int map_x, int map_y);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/09/30 16:08:53 by kyeh             ###   ########.fr        #
+#    Updated: 2024/10/09 18:30:57 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,21 @@ CFLAGS	= -Wall -Wextra -Werror -g3 #-fsanitize=address
 
 # Source files
 SRC_PAR	=	$(addprefix parser/, \
-				parser.c			expansion.c			quote.c \
-				parser_utils.c		expand_utils.c		heredoc.c)
+				parser.c				parser_utils.c		build_map.c \
+				get_texture.c			get_texture_utils.c)
+SRC_F	=	$(addprefix frame/, \
+				frame_lst.c				sprite.c)
+SRC_RC	=	$(addprefix ray_casting/, \
+				ray_casting.c			render_color.c		render_wall.c)
+SRC_VEC	=	$(addprefix vector/, \
+				vector_arithmetics.c	vector_plane.c		vector_cos_scale.c)
+SRC_MAP	=	$(addprefix minimap/, \
+				put_minimap.c)
+SRC_EVE	=	$(addprefix events/, \
+				key_events.c			mouse_door.c		wall_collision.c)
+SRC_MAIN	=	main.c cub_free.c color.c initialize_game.c
 
-SRC_FILES	=	main.c $(SRC_PAR)
+SRC_FILES	=	$(SRC_MAIN) $(SRC_PAR) $(SRC_F) $(SRC_RC) $(SRC_RAY) $(SRC_MAP)
 SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
@@ -38,8 +49,8 @@ RM			=	rm -rf
 LIBFT_PATH	=	libft/
 LIBFT		=	$(addprefix $(LIBFT_PATH), libft.a)
 
-MLX_PATH	= minilibx-linux/
-MLXFLAGS	= -L $(MLX_PATH) -lmlx -lXext -lX11 -lXext -lm -lz -Ofast
+MLX			= minilibx-linux
+MLXFLAGS	= -L $(MLX) -lmlx -lXext -lX11 -lXext -lm -lz -Ofast
 #######################################################
 # Colors
 DEFAULT		= \e[0;39m
@@ -74,16 +85,14 @@ RESET_LINE	= \e[2K\r
 all: $(MLX) $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	@$(CC) $(CFLAGS) $^ $(MLX_PATH) -lreadline -o  $@
+	@$(MAKE) -C $(MLX) all
+	@$(CC) $(CFLAGS) $^ $(MLXFLAGS) -lreadline -o  $@
 	@printf "	\033[2K\r$(DARK_BLUE)cub3d\t: $(LIGHT_GREEN)Updated\n\033[0m"
 
 bonus:	$(NAME)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_PATH)
-
-$(MLX):
-	@$(MAKE) -C $(MLX_PATH)
 
 minilibx-linux:
 	@if [ ! -d "$@" ]; then \
@@ -121,7 +130,7 @@ cleanlib:
 	@$(MAKE) -C $(LIBFT_PATH) clean
 
 cleanmlx:
-	@$(MAKE) -C $(MLX_PATH) clean
+	@$(MAKE) -C $(MLX) clean
 
 fclean: fcleanlib clean
 	@$(RM) $(NAME)
