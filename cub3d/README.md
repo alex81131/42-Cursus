@@ -19,3 +19,4 @@ A ray-casting game: an advanced graphical project where we create a simplified 3
 5. [`Maximum effort`](https://github.com/ael-bekk/Cub3d-Advanced-Raycasting) <br>
 6. [`Tutorial of building a ray casting game`](https://lodev.org/cgtutor/raycasting.html) <br>
 7. [`DDA algorithm`](https://youtu.be/NbSee-XM7WA?si=taWsY2doGi90ieGD) <br>
+8. [`Evaluation sheet`](https://www.42evals.com/sheets/66ba244998d302d110c31b6a) <br>
