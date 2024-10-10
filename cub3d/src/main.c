@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:11:20 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/10 16:10:08 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/10 16:47:20 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,3 +71,8 @@ int	main(int ac, char **av)
 	cub_clean(&data);
 	return (0);
 }
+// Move: WASD
+// Turn your head: arrows or mouse
+// Open a door: space or left click
+// Exit: escape
+// Sprite: doors
