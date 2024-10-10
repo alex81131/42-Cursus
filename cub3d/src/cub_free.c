@@ -6,13 +6,27 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:54:48 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/09 17:15:14 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/10 15:53:34 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	cub_free_texture(t_texdata *texture, void *mlx)
+void	cub_free_texture(t_texture_data *texture)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < TEXTURE_PATH)
+	{
+		if (texture->path[i])
+			free(texture->path[i]);
+		i++;
+	}
+	free(texture);
+}
+
+void	cub_free_texture_mlx(t_texture_data *texture, void *mlx)
 {
 	if (texture->img[N])
 		mlx_destroy_image(mlx, texture->img[N]);
@@ -50,10 +64,10 @@ static void	cub_free_frame(t_frame *frame, void *mlx)
 	}
 }
 
-in	cub_clean(t_data *data)
+int	cub_clean(t_data *data)
 {
 	if (data->texture)
-		cub_free_texture(data->texture, data->mlx);
+		cub_free_texture_mlx(data->texture, data->mlx);
 	if (data->frame)
 		cub_free_frame(data->frame, data->mlx);
 	if (data->image.img)

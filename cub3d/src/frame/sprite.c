@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:51:42 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/03 18:20:16 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/10 15:56:54 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	play_sprite_forward(t_data *data, int map_x, int map_y)
 		data->texture->addr[D] = sprite->addr;
 		data->texture->height[D] = sprite->height;
 		data->texture->width[D] = sprite->width;
-		rc_render(data);
+		rc_rendering(data);
 		mlx_do_sync(data->mlx);
 		sprite = sprite->next;
 		usleep(100000);
@@ -57,7 +57,7 @@ void	play_sprite_backward(t_data *data, int map_x, int map_y)
 		data->texture->addr[D] = sprite->addr;
 		data->texture->height[D] = sprite->height;
 		data->texture->width[D] = sprite->width;
-		rc_render(data);
+		rc_rendering(data);
 		mlx_do_sync(data->mlx);
 		sprite = sprite->before;
 		usleep(100000);

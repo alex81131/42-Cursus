@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:11:20 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/09 17:16:13 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/10 16:10:08 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static t_bool	check_cub(char *filename)
 {
-	unsigned int	i;
+	uint32_t	i;
 
 	i = 0;
 	if (!filename)
 		return (FALSE);
-	while (file[i] && file[i] != '.')
+	while (filename[i] && filename[i] != '.')
 		i++;
 	if (!ft_strncmp(&filename[i], FILE_EXTENSION, 5))
 		return (TRUE);
@@ -46,7 +46,8 @@ static void	cub_launch(t_data *data)
 {
 	mlx_loop_hook(data->mlx, rc_rendering, data);
 	mlx_hook(data->window, KeyPress, KeyPressMask, &key_events, data);
-	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &cleanup, data);
+	mlx_hook(data->window, DestroyNotify, StructureNotifyMask, \
+														&cub_clean, data);
 	mlx_hook(data->window, ButtonPress, ButtonPressMask, &mouse_press, data);
 	mlx_hook(data->window, MotionNotify, PointerMotionMask, &mouse_move, data);
 	mlx_loop(data->mlx);
@@ -58,7 +59,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (EXIT_FAILURE);
-	if (check_cub(av[1] == FALSE))
+	if (check_cub(av[1]) == FALSE)
 		return (EXIT_FAILURE);
 	if (ini_data(&data, av[1]) == FAILURE)
 		return (EXIT_FAILURE);

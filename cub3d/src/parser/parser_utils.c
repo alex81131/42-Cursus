@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 16:50:41 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/09 17:17:01 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/10 16:10:31 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static t_bool	is_invalid_char(char c)
 
 t_parse_status	check_invalid_char(char **map)
 {
-	unsigned int	x;
-	unsigned int	y;
+	uint32_t	x;
+	uint32_t	y;
 
 	x = 0;
 	y = 0;
@@ -46,8 +46,8 @@ t_parse_status	check_invalid_char(char **map)
 
 void	cub_fill_whitespace(char **map)
 {
-	unsigned int	x;
-	unsigned int	y;
+	uint32_t	x;
+	uint32_t	y;
 
 	x = 0;
 	y = 0;
@@ -71,8 +71,8 @@ static uint32_t	is_cardinal(char c)
 
 t_parse_status	find_start(int coordinate[], char **map)
 {
-	unsigned int	x;
-	unsigned int	y;
+	uint32_t	x;
+	uint32_t	y;
 
 	x = 0;
 	y = 0;
@@ -82,10 +82,10 @@ t_parse_status	find_start(int coordinate[], char **map)
 		{
 			if (is_cardinal(map[x][y]))
 			{
-				if (cooridinate[0] != -1 || cooridinate[1] != -1)
+				if (coordinate[0] != -1 || coordinate[1] != -1)
 					return (MAP_ERR);
-				cooridinate[0] = x;
-				cooridinate[1] = y;
+				coordinate[0] = x;
+				coordinate[1] = y;
 			}
 			y++;
 		}

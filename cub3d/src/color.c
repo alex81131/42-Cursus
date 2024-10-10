@@ -6,13 +6,13 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:37:00 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/02 18:38:14 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/10 16:05:21 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	creat_trgb(int t, int r, int g, int b)
+int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }

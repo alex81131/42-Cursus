@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 15:49:44 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/09 16:15:16 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/10 16:13:34 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ double	vec_dot(const t_vec *vec_1, const t_vec *vec_2)
 {
 	double	res;
 
-	res = (vec_1->x * vec_2->x) + (vec_1->y * vec_2->x);
+	res = (vec_1->x * vec_2->x) + (vec_1->y * vec_2->y);
 	return (res);
 }
 // int	main(void)

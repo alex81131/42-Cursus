@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:48:20 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/09 17:18:54 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/10 15:55:57 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	parse_texture_line(char **line, \
 		{
 			free(*line);
 			*line = NULL;
-			free_texture(texture);
+			cub_free_texture(texture);
 			return (FAILURE);
 		}
 		free(*line);
@@ -59,7 +59,7 @@ static int	parse_texture_line(char **line, \
 	}
 	if (!*line)
 	{
-		free_texture(texture);
+		cub_free_texture(texture);
 		return (FAILURE);
 	}
 	return (SUCCESS);
@@ -76,7 +76,7 @@ t_texture_data	*get_texture_data(t_data *data, char **line)
 		return (NULL);
 	if (check_texture_path(texture->path) == FAILURE)
 	{
-		free_texture(texture);
+		cub_free_texture(texture);
 		return (NULL);
 	}
 	return (texture);

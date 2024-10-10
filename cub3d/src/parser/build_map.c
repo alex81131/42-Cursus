@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:57:11 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/03 11:47:41 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/10 15:45:28 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ char	**build_map(t_data *data, char *line)
 		temp = temp->next;
 	}
 	map[i] = NULL;
-	ft_lstclear_top(&map_list);
+	ft_lstclear_no_content(&map_list);
 	return (map);
 }

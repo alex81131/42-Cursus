@@ -6,16 +6,20 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:38:13 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/03 11:58:35 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/10 16:08:40 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
+
 # include "cub3d.h"
+
 # define TEXTURE_NB 7
 # define TEXTURE_PATH 5
 
+typedef enum e_bool		t_bool;
+typedef struct s_data	t_data;
 typedef enum e_texture
 {
 	N = 0,
@@ -53,9 +57,9 @@ t_parse_status	find_start(int coordinate[], char **map);
 
 //	get_texture
 t_texture_data	*get_texture_data(t_data *data, char **line);
-int				add_data_buff(char *line, t_texture_data *texture, t_texture type);
+int				add_data_buff(char *line, t_texture_data *texture, \
+														t_texture type);
 int				cub_atoi(char *line, t_texture_data *texture, int *color);
 int				check_texture_path(char **path);
-void			free_texture(t_texture_data *texture);
 
 #endif

@@ -6,38 +6,38 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:37:33 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/09 17:20:06 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/10 16:11:10 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	ini_player_direction(t_data *data, unsigned int x, unsigned int y)
+static void	ini_player_direction(t_data *data, uint32_t x, uint32_t y)
 {
 	if (data->map[x][y] == 'N')
 	{
-		ini_ava(&data->ava_dir, -1.0f, 0.0f);
-		ini_ava(&data->ava_cam, 0.0f, tan(FOV / 2));
+		vec_ini(&data->ava_dir, -1.0f, 0.0f);
+		vec_ini(&data->ava_cam, 0.0f, tan(FOV / 2));
 	}
 	else if (data->map[x][y] == 'S')
 	{
-		ini_ava(&data->ava_dir, 1.0f, 0.0f);
-		ini_ava(&data->ava_cam, 0.0f, tan(FOV / 2) * -1);
+		vec_ini(&data->ava_dir, 1.0f, 0.0f);
+		vec_ini(&data->ava_cam, 0.0f, tan(FOV / 2) * -1);
 	}
 	else if (data->map[x][y] == 'E')
 	{
-		ini_ava(&data->ava_dir, 0.0f, 1.0f);
-		ini_ava(&data->ava_cam, tan(FOV / 2), 0.0f);
+		vec_ini(&data->ava_dir, 0.0f, 1.0f);
+		vec_ini(&data->ava_cam, tan(FOV / 2), 0.0f);
 	}
 	else if (data->map[x][y] == 'W')
 	{
-		ini_ava(&data->ava_dir, 0.0f, -1.0f);
-		ini_ava(&data->ava_cam, tan(FOV / 2) * -1, 0.0f);
+		vec_ini(&data->ava_dir, 0.0f, -1.0f);
+		vec_ini(&data->ava_cam, tan(FOV / 2) * -1, 0.0f);
 	}
-	ava_ini(&data->ava_pos, (double)x, (double)y);
+	vec_ini(&data->ava_pos, (double)x, (double)y);
 }
 
-static t_parse_status	check_wall(char **map, unsigned int x, unsigned int y, \
+static t_parse_status	check_wall(char **map, uint32_t x, uint32_t y, \
 									size_t boundary)
 {
 	if (x == boundary || y >= ft_strlen(map[x]))
@@ -101,11 +101,11 @@ int	parse_map(t_data *data)
 	data->map = build_map(data, line);
 	close(data->map_fd);
 	if (!data->map)
-		return (free_texture(data->texture, data->mlx), FAILURE);
+		return (cub_free_texture_mlx(data->texture, data->mlx), FAILURE);
 	if (verify_map(data->map, data) == MAP_ERR)
 	{
 		ft_printf_fd(ERR, "Error.\n");
-		free_texture(data->texture, data->mlx);
+		cub_free_texture_mlx(data->texture, data->mlx);
 		return (free_array(data->map), FAILURE);
 	}
 	return (SUCCESS);

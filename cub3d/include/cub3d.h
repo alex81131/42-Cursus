@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 15:16:09 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/09 17:53:10 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/10 16:07:31 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 # include "parser.h"
 # include "frame.h"
-# include "ray.h"
+# include "vector.h"
 
 # define SUCCESS 0
 # define FAILURE 1
@@ -61,9 +61,9 @@
 # define FILE_EXTENSION ".cub"
 # define FRAME_SCRIPT "./assets/animations/door_frame.txt"
 
-typedef enum e_texture		t_texture;
-typedef struct s_texdata	t_texData;
-typedef struct s_image		t_image;
+typedef enum e_texture			t_texture;
+typedef struct s_texture_data	t_texture_data;
+typedef struct s_image			t_image;
 typedef struct s_wall
 {
 	int	height;
@@ -130,7 +130,7 @@ typedef struct s_data
 	t_image			image;
 	t_image			minimap;
 	t_texture_data	*texture;
-	t_frame			*frames;
+	t_frame			*frame;
 	t_wall			w_data;
 	t_vec			ava_pos;
 	t_vec			ava_dir;
@@ -140,7 +140,8 @@ typedef struct s_data
 }	t_data;
 
 int		cub_clean(t_data *data);
-void	cub_free_texture(t_texdata *texture, void *mlx);
+void	cub_free_texture(t_texture_data *texture);
+void	cub_free_texture_mlx(t_texture_data *texture, void *mlx);
 int		initialize_game(t_data *data);
 int		key_events(int keycode, t_data *data);
 int		mouse_move(int x, int y, t_data *data);
@@ -156,8 +157,8 @@ int		create_trgb(int t, int r, int g, int b);
 
 // /* * * * * * * * * * * RC Rendering * * * * * * * * * * */
 int		rc_rendering(t_data *data);
-void	rc_ray_ini(t_ray *d, t_ray *pos, t_ray *dir, t_ray *unit_d);
-int		rc_update_pos(t_ray *d, t_ray *unit_d, t_ray *pos, t_ray *dir);
+void	rc_ray_ini(t_vec *d, t_vec *pos, t_vec *dir, t_vec *unit_d);
+int		rc_update_pos(t_vec *d, t_vec *unit_d, t_vec *pos, t_vec *dir);
 void	rc_draw_stripe_column(t_data *data, int x, double ray_d);
 void	rc_render_wall(t_data *data, int x, int y, double ray_d);
 void	rc_set_pixel_color(t_image *image, int x, int y, int color);

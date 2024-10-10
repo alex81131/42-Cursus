@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/10/09 18:30:57 by kyeh             ###   ########.fr        #
+#    Updated: 2024/10/10 15:04:07 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRC_EVE	=	$(addprefix events/, \
 				key_events.c			mouse_door.c		wall_collision.c)
 SRC_MAIN	=	main.c cub_free.c color.c initialize_game.c
 
-SRC_FILES	=	$(SRC_MAIN) $(SRC_PAR) $(SRC_F) $(SRC_RC) $(SRC_RAY) $(SRC_MAP)
+SRC_FILES	=	$(SRC_MAIN) $(SRC_PAR) $(SRC_F) $(SRC_RC) $(SRC_VEC) $(SRC_MAP) $(SRC_EVE)
 SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
@@ -85,26 +85,21 @@ RESET_LINE	= \e[2K\r
 all: $(MLX) $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	@$(MAKE) -C $(MLX) all
 	@$(CC) $(CFLAGS) $^ $(MLXFLAGS) -lreadline -o  $@
 	@printf "	\033[2K\r$(DARK_BLUE)cub3d\t: $(LIGHT_GREEN)Updated\n\033[0m"
 
 bonus:	$(NAME)
 
+$(MLX):
+	@$(MAKE) -C $(MLX) all
+
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_PATH)
-
-minilibx-linux:
-	@if [ ! -d "$@" ]; then \
-		git clone https://github.com/42Paris/minilibx-linux.git $@; \
-	else \
-		echo "mlx already present in the working directory, aborting clone."; \
-	fi
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER)/cub3d.h Makefile
 	@mkdir -p $(dir $@)
 	@printf "$(RESET_LINE)$(RED_FLASH)Compiling...	$(GREY)$<$(SKY) $(NOCOLOR)"
-	@gcc $(CFLAGS) -I $(HEADER) -I libft/include -c $< -o $@
+	@gcc $(CFLAGS) -I $(HEADER) -I libft/include -I $(MLX) -c $< -o $@
 
 clean: cleanlib cleanmlx
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/	$(GREY)"

@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 19:12:10 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/09 17:03:45 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/10 16:12:05 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ void	rc_render_wall(t_data *data, int x, int y, double ray_d)
 	get_x(w_data.w_pos, data, ray_d);
 	get_y(w_data.w_pos, data, w_data.height, y);
 	color_index = w_data.w_pos[1] * texture->width[dir] + w_data.w_pos[0];
-	color = ((unsigned int *)texture->addr[dir])[color_index];
+	color = ((uint32_t *)texture->addr[dir])[color_index];
 	rc_set_pixel_color(&data->image, x, y, color);
 }
