@@ -15,6 +15,7 @@ int	main(int ac, char **av)
 			std::cout << (char)std::toupper(str[j]);
 	}
 	std::cout << std::endl;
+	return 0;
 }
 // 1. <iostream>
 // 	for input and output operations

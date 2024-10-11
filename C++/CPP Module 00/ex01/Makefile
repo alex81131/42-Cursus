@@ -1,16 +1,19 @@
 # Name
-NAME	= megaphone
+NAME	= phonebook
 
 # Compiler and flags
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC_FILES	=	megaphone.cpp
-SRC_PATH	=	./
+SRC_FILES	=	Phonebook.cpp Contact.cpp main.cpp
+SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
-HEADER		=	include/
+# Headers
+H_FILES		=	Phonebook.hpp Contact.hpp
+H_PATH		=	include/
+HEADER		=	$(addprefix $(H_PATH), $(H_FILES))
 
 # Object files
 OBJ_FILES	=	$(SRC_FILES:%.cpp=%.o)
@@ -53,29 +56,29 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $^ -lreadline -o  $@
-	@printf "	$(RESET_LINE)$(BLUE_LIGHT)megaphone\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
+	@printf "	$(RESET_LINE)$(BLUE_LIGHT)phonebook\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp Makefile
+$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@mkdir -p $(dir $@)
 	@printf "$(RESET_LINE)$(RED_FLASH)Compiling...	$(GREY)$<$(SKY)$(NOCOLOR)"
-	@$(CC) $(CFLAGS) -I $(HEADER) -c $< -o $@
+	@$(CC) $(CFLAGS) -I $(H_PATH) -c $< -o $@
 
 clean:
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/...	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/...	$(GREY)"
 	@sleep 0.1
 	@$(RM) $(OBJ_PATH)
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"
