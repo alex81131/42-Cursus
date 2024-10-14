@@ -6,12 +6,14 @@ CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC_FILES	=	Phonebook.cpp Contact.cpp main.cpp
+SRC_FILES	=	phonebook.cpp \
+				contact.cpp \
+				main.cpp
 SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
 # Headers
-H_FILES		=	Phonebook.hpp Contact.hpp
+H_FILES		=	phonebook.hpp contact.hpp
 H_PATH		=	include/
 HEADER		=	$(addprefix $(H_PATH), $(H_FILES))
 

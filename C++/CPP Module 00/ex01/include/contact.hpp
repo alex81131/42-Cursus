@@ -22,14 +22,18 @@ class	Contact {
 		std::string	get_nick(void) const;
 		std::string	get_number(void) const;
 		std::string	get_secret(void) const;
-		void		put_fname(std::string str);
-		void		put_lname(std::string str);
-		void		put_nick(std::string str);
-		void		put_number(std::string str);
-		void		put_secret(std::string str);
+		void		set_fname(std::string str);
+		void		set_lname(std::string str);
+		void		set_nick(std::string str);
+		void		set_number(std::string str);
+		void		set_secret(std::string str);
+
 };
 
 #endif
+// <iostream>:
+// 	std::cin, cout, getline
+
 // <string>:
 // 	std::string
 
