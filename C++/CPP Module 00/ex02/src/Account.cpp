@@ -9,6 +9,7 @@ int	Account::_totalNbWithdrawals = 0;
 
 //	1-2. Create accounts in the constructor
 Account::Account( int initial_deposit ) : _amount(initial_deposit) {
+
 // initialize current account
 	this->_accountIndex = Account::getNbAccounts();
 	this->_nbDeposits = 0;
@@ -23,6 +24,7 @@ Account::Account( int initial_deposit ) : _amount(initial_deposit) {
 }
 
 Account::~Account( void ) {
+
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex;
 	std::cout << ";amount:" << this->_amount;
@@ -32,23 +34,28 @@ Account::~Account( void ) {
 }
 
 void	Account::_displayTimestamp( void ) {
+
 	std::cout << "[19920104_091532] ";
 }
 
 //	2. Define related functions
 int	Account::getNbAccounts( void ) {
+
 	return Account::_nbAccounts;
 }
 
 int	Account::getTotalAmount( void ) {
+
 	return Account::_totalAmount;
 }
 
 int	Account::getNbDeposits( void ) {
+
 	return Account::_totalNbDeposits;
 }
 
 int	Account::getNbWithdrawals( void ) {
+
 	return Account::_totalNbWithdrawals;
 }
 
@@ -65,6 +72,7 @@ void	Account::displayAccountsInfos( void ) {
 
 //	4. Define the rest of the functions
 void	Account::makeDeposit( int deposit ) {
+
 	Account::_displayTimestamp();
 //	We deposit and withdraw one by one, just like this. Don't complicate things.
 	std::cout << "index:" << this->_accountIndex;
@@ -80,6 +88,7 @@ void	Account::makeDeposit( int deposit ) {
 }
 
 void	Account::displayStatus( void ) const {
+
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex;
 	std::cout << ";amount:" << this->_amount;
@@ -88,6 +97,7 @@ void	Account::displayStatus( void ) const {
 }
 
 bool	Account::makeWithdrawal( int withdrawal ) {
+
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex;
 	std::cout << ";p_amount:" << this->_amount;
@@ -107,6 +117,7 @@ bool	Account::makeWithdrawal( int withdrawal ) {
 }
 
 int		Account::checkAmount( void ) const {
+
 	return this->_amount;
 }
 
