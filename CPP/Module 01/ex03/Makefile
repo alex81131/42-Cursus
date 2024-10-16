@@ -6,12 +6,15 @@ CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC_FILES	=	main.cpp
+SRC_FILES	=	main.cpp \
+				HumanA.cpp \
+				HumanB.cpp \
+				Weapon.cpp
 SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
 # Headers
-H_FILES		=	
+H_FILES		=	HumanA.hpp		HumanB.hpp		Weapon.hpp
 H_PATH		=	include/
 HEADER		=	$(addprefix $(H_PATH), $(H_FILES))
 
