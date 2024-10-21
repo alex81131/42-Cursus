@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:37:33 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/10 16:11:10 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/21 16:36:43 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,3 +131,11 @@ int	parse_map(t_data *data)
 // 		i++;
 // 	}
 // }
+
+// ini_player_direction:
+// 	N, S, E, W: facing direction;
+// ava_cam:
+// 	This vector could represent the direction perpendicular to ava_dir,
+// 	used to calculate the camera's projection or view plane.
+// 	The tangent of half the field of view (FOV)
+// 	helps determine how wide the camera's vision is on the screen.

@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 17:48:20 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/10 15:55:57 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/21 16:24:18 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static int	check_element(char *line, t_texture_data *texture)
 		return (SUCCESS);
 	else
 		return (FAILURE);
-	return (SUCCESS);
 }
 
 static int	parse_texture_line(char **line, \
@@ -81,3 +80,5 @@ t_texture_data	*get_texture_data(t_data *data, char **line)
 	}
 	return (texture);
 }
+// parse_texture_line:
+// 	updates the line and stops at the beginning of the map.

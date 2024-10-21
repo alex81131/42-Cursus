@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:57:11 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/10 15:45:28 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/21 16:29:09 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,3 +67,7 @@ char	**build_map(t_data *data, char *line)
 	ft_lstclear_no_content(&map_list);
 	return (map);
 }
+// build_map gets the beginning of the map,
+// 	updated by parse_texture_line in parse_texture.
+// 	Then use chained list to calculate the length of the map,
+// 	to create a 2x2 char array to store the map.

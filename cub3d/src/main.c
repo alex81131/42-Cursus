@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:11:20 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/10 16:47:20 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/21 17:07:42 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,3 +76,24 @@ int	main(int ac, char **av)
 // Open a door: space or left click
 // Exit: escape
 // Sprite: doors
+
+// uint32_t:
+// 	unsigned integer with the fixed length of 32-bit
+
+// initialize_game prepares the first image,
+// 	and then cub_launch shows it in a loop.
+
+// cub_launch(t_data *data):
+// mlx_loop_hook(data->mlx, rc_rendering, data);
+// 	Registers rc_rendering as the function to be called repeatedly
+// 	for rendering (or updating) the screen during the main loop.
+// mlx_hook(data->window, KeyPress, KeyPressMask, &key_events, data);
+// 	Hook to call key_events. KeyPress and KeyPressMask are from X11.h
+// mlx_hook(data->window, DestroyNotify, StructureNotifyMask, &cub_clean, data);
+// 	Calls cub_clean when the window close event is triggered.
+// mlx_hook(data->window, ButtonPress, ButtonPressMask, &mouse_press, data);
+// 	Calls mouse_press when a mouse button is pressed.
+// mlx_hook(data->window, MotionNotify, PointerMotionMask, &mouse_move, data);
+// 	Calls mouse_move when the mouse moves within the window.
+// mlx_loop(data->mlx);
+// 	Starts the event loop that keeps the program running.

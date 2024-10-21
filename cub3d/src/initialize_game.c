@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 11:49:29 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/10 15:14:45 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/21 16:45:43 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	load_frame(t_data *data)
 		f = frame_lstnew();
 		if (!f)
 			return (close(frame_fd), FAILURE);
-		if (ini_frame(line, data, f))
+		if (ini_frame(line, data, f) == FAILURE)
 			return (free(line), close(frame_fd), free(f), FAILURE);
 		free(line);
 		line = get_next_line(frame_fd);
@@ -84,7 +84,7 @@ static int	load_assets(t_data *data)
 	if (!t->img[N] || !t->img[S] || !t->img[E] || !t->img[W] || !t->img[D])
 		return (FAILURE);
 	get_texture_addr(t);
-	if (load_frame(data))
+	if (load_frame(data) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }

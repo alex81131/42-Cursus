@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:18:59 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/02 18:53:28 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/21 16:13:18 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,3 +105,7 @@ void	free_texture(t_texture_data *texture)
 	}
 	free(texture);
 }
+// add_data_buff: store texture data
+// if (texture->path[type])
+// 	return (FAILURE);
+// 	checks for duplicates

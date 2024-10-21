@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 18:21:41 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/10 16:03:51 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/21 17:06:25 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,3 +97,8 @@ int	rc_rendering(t_data *data)
 	return (SUCCESS);
 }
 // d for distance
+
+// Casting:
+// 	https://lodev.org/cgtutor/raycasting3.html
+
+// rc_ray_distance - unit_d: step size
