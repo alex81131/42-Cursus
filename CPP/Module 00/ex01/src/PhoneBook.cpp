@@ -19,31 +19,31 @@ void	PhoneBook::add_contact(void) {
 	if (this->_index > 7)
 		std::cout << "Warning: Over maximum capacity of 8 contacts. Overwritting oldest data." << std::endl;
 	while (!std::cin.eof() && str == "") {
-		std::cout << "Enter first name:";
+		std::cout << "Enter first name: ";
 		if (std::getline(std::cin, str) && str != "")
 			this->_contact[i].set_fname(str);
 	}
 	str = "";
 	while (!std::cin.eof() && str == "") {
-		std::cout << "Enter last name:";
+		std::cout << "Enter last name: ";
 		if (std::getline(std::cin, str) && str != "")
 			this->_contact[i].set_lname(str);
 	}
 	str = "";
 	while (!std::cin.eof() && str == "") {
-		std::cout << "Enter nick name:";
+		std::cout << "Enter nick name: ";
 		if (std::getline(std::cin, str) && str != "")
 			this->_contact[i].set_nick(str);
 	}
 	str = "";
 	while (!std::cin.eof() && str == "") {
-		std::cout << "Enter phone number:";
+		std::cout << "Enter phone number: ";
 		if (std::getline(std::cin, str) && str != "")
 			this->_contact[i].set_number(str);
 	}
 	str = "";
 	while (!std::cin.eof() && str == "") {
-		std::cout << "Enter darkest secret:";
+		std::cout << "Enter darkest secret: ";
 		if (std::getline(std::cin, str) && str != "")
 			this->_contact[i].set_secret(str);
 	}

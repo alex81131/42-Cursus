@@ -1,20 +1,18 @@
 # Name
-NAME	= phonebook
+NAME	= Fixed
 
 # Compiler and flags
 CC		= c++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC_FILES	=	PhoneBook.cpp \
-				Contact.cpp \
-				main.cpp
+SRC_FILES	=	main.cpp \
+				Fixed.cpp
 SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
 # Headers
-H_FILES		=	PhoneBook.hpp \
-				Contact.hpp
+H_FILES		=	Fixed.hpp
 H_PATH		=	include/
 HEADER		=	$(addprefix $(H_PATH), $(H_FILES))
 
@@ -59,7 +57,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $^ -lreadline -o  $@
-	@printf "	$(RESET_LINE)$(BLUE_LIGHT)phonebook\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
+	@printf "	$(RESET_LINE)$(BLUE_LIGHT)Fixed\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@mkdir -p $(dir $@)
@@ -67,21 +65,21 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@$(CC) $(CFLAGS) -I $(H_PATH) -c $< -o $@
 
 clean:
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Fixed src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Fixed src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Fixed src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Fixed src/...	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Fixed src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Fixed src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Fixed src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting phonebook src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Fixed src/...	$(GREY)"
 	@sleep 0.1
 	@$(RM) $(OBJ_PATH)
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"
