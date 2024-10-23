@@ -8,8 +8,8 @@ class	Fixed
 {
 	public:
 		Fixed(void);
-		Fixed(const Fixed& other);
-		Fixed&	operator = (const Fixed& other);
+		Fixed(const Fixed& src);
+		Fixed&	operator = (const Fixed& src);
 		~Fixed(void);
 
 		int		getRawBits( void ) const;
@@ -28,8 +28,8 @@ class	Fixed
 // 	2. "copy constructor",
 // 		(implement a copy constructor to specify how instances of that class should be copied)
 // 		Format:
-// 			Fixed(const Fixed& other);
-// 			"other": the other object, meaning the original that is being copied.
+// 			Fixed(const Fixed& src);
+// 			"src": the source object, meaning the original that is being copied.
 // 	3. and "copy assignment operator"
 // 		This operator ensures that the current object is updated to have the same state as the other object,
 // 		handling any necessary resource management (like deep copying) to avoid issues such as memory leaks or

@@ -1,5 +1,5 @@
 # Name
-NAME	= bsp
+NAME	= ClapTrap
 
 # Compiler and flags
 CC		= c++
@@ -7,14 +7,12 @@ CFLAGS	= -Wall -Wextra -Werror -std=c++98
 
 # Source files
 SRC_FILES	=	main.cpp \
-				Fixed.cpp \
-				Point.cpp \
-				bsp.cpp
+				ClapTrap.cpp
 SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
 # Headers
-H_FILES		=	Fixed.hpp Point.hpp
+H_FILES		=	ClapTrap.hpp
 H_PATH		=	include/
 HEADER		=	$(addprefix $(H_PATH), $(H_FILES))
 

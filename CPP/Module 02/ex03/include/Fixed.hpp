@@ -11,23 +11,23 @@ class	Fixed
 		Fixed(void);
 		Fixed(const int i);
 		Fixed(const float f);
-		Fixed(const Fixed& other);
-		Fixed&	operator = (const Fixed& other);
+		Fixed(const Fixed& src);
+		Fixed&	operator = (const Fixed& src);
 		~Fixed(void);
 
 		/*_______________6 comparison operators_______________*/
-		bool	operator > (const Fixed& other) const;
-		bool	operator < (const Fixed& other) const;
-		bool	operator >= (const Fixed& other) const;
-		bool	operator <= (const Fixed& other) const;
-		bool	operator == (const Fixed& other) const;
-		bool	operator != (const Fixed& other) const;
+		bool	operator > (const Fixed& src) const;
+		bool	operator < (const Fixed& src) const;
+		bool	operator >= (const Fixed& src) const;
+		bool	operator <= (const Fixed& src) const;
+		bool	operator == (const Fixed& src) const;
+		bool	operator != (const Fixed& src) const;
 
 		/*_______________4 arithmetic operators_______________*/
-		Fixed	operator + (const Fixed& other) const;
-		Fixed	operator - (const Fixed& other) const;
-		Fixed	operator * (const Fixed& other) const;
-		Fixed	operator / (const Fixed& other) const;
+		Fixed	operator + (const Fixed& src) const;
+		Fixed	operator - (const Fixed& src) const;
+		Fixed	operator * (const Fixed& src) const;
+		Fixed	operator / (const Fixed& src) const;
 
 		/*_______________increments and decrements_______________*/
 		Fixed&	operator ++ (void);		//pre-increment

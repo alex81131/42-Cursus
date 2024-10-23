@@ -6,30 +6,27 @@
 class	Point
 {
 	public:
-		Point(void);
-		Point(const float x, const float y);
-		Point(const Point& other);
-		Point&	operator = (const Point& other);
-		~Point(void);
+		Point(void);								// Default constructor
+		Point(const float x, const float y);		// Construct with inputs
+		Point(const Point& src);					// #Copy constructor
+		Point&	operator = (const Point& src);		// #Copy assignment operator 
+		~Point(void);								// #Deconstructor
+
+		// Return a reference to the Fixed object: _x and _y
+		const Fixed&	getx(void) const;
+		const Fixed&	gety(void) const;
 
 	private:
 		const Fixed	_x;
 		const Fixed	_y;
 };
 
-std::ostream&	operator << (std::ostream& ostream, const Fixed& fp_number);
+Fixed			Area(const Point a, const Point b, const Point c);
+bool			bsp(Point const a, Point const b, Point const c, Point const point);
 
 #endif
 
-// Declare operator<< outside of the class declaration is that operator<< is not inherently part of the Fixed class's functionality.
-// 	Instead, it's a function that facilitates interaction between Fixed and std::ostream (like std::cout).
-
-// Overload the insertion («) operator = implement a new functionality on the operator <<
-// 	Before overloading, << couldn’t print a fixed-point number assigned by the subject.
-// 	By overloading, you define how << should print a custom data type such as "Fixed".
-// ie. in main.cpp
-// 	Without overloading, "std::cout << a" wouldn’t know how to handle a "Fixed object",
-// 	similarly for b, c, and d. Such attemptation would would result in a compilation error.
-
-// <cmath>
-// 	roundf
+// Class:
+// 	A class is like a blueprint or template that defines the structure and behavior of objects.
+// Object:
+// 	An object is an instance of a class.

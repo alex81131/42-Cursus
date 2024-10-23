@@ -14,16 +14,16 @@ Fixed::Fixed(const float f): _raw(static_cast<int>(roundf(f * (1 << Fixed::_frac
 	std::cout << "Float constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& other) {
+Fixed::Fixed(const Fixed& src) {
 	std::cout << "Copy constructor called" << std::endl;
-	*this = other;
+	*this = src;
 }
 
-Fixed&	Fixed::operator = (const Fixed& other)
+Fixed&	Fixed::operator = (const Fixed& src)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &other)
-		this->_raw = other._raw;
+	if (this != &src)
+		this->_raw = src._raw;
 	return *this;
 }
 
@@ -32,54 +32,54 @@ Fixed::~Fixed(void) {
 }
 
 /*_______________comparison operator overloads_______________*/
-bool	Fixed::operator > (const Fixed& other) const
+bool	Fixed::operator > (const Fixed& src) const
 {
-	return this->_raw > other._raw;
+	return this->_raw > src._raw;
 }
 // reusing the > operator:
-bool	Fixed::operator < (const Fixed& other) const
+bool	Fixed::operator < (const Fixed& src) const
 {
-	return other > *this;
+	return src > *this;
 }
-bool	Fixed::operator >= (const Fixed& other) const
+bool	Fixed::operator >= (const Fixed& src) const
 {
-	return !(other > *this);
+	return !(src > *this);
 }
-bool	Fixed::operator <= (const Fixed& other) const
+bool	Fixed::operator <= (const Fixed& src) const
 {
-	return !(*this > other);
+	return !(*this > src);
 }
-bool	Fixed::operator == (const Fixed& other) const
+bool	Fixed::operator == (const Fixed& src) const
 {
-	return this->_raw == other._raw;
+	return this->_raw == src._raw;
 }
-bool	Fixed::operator != (const Fixed& other) const
+bool	Fixed::operator != (const Fixed& src) const
 {
-	return this->_raw != other._raw;
+	return this->_raw != src._raw;
 }
 
 /*_______________arithmetic operator overloads_______________*/
-Fixed	Fixed::operator + (const Fixed& other) const
+Fixed	Fixed::operator + (const Fixed& src) const
 {
 	Fixed	res = *this;
 
-	res._raw += other._raw;
+	res._raw += src._raw;
 	return res;
 }
 
-Fixed	Fixed::operator - (const Fixed& other) const
+Fixed	Fixed::operator - (const Fixed& src) const
 {
-	return Fixed(this->toFloat() - other.toFloat());
+	return Fixed(this->toFloat() - src.toFloat());
 }
 
-Fixed	Fixed::operator * (const Fixed& other) const
+Fixed	Fixed::operator * (const Fixed& src) const
 {
-	return Fixed(this->toFloat() * other.toFloat());
+	return Fixed(this->toFloat() * src.toFloat());
 }
 
-Fixed	Fixed::operator / (const Fixed& other) const
+Fixed	Fixed::operator / (const Fixed& src) const
 {
-	return Fixed(this->toFloat() / other.toFloat());
+	return Fixed(this->toFloat() / src.toFloat());
 }
 
 /*_______________increment and decrement overlaods_______________*/
