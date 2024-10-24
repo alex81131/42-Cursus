@@ -7,10 +7,10 @@ class	Point
 {
 	public:
 		Point(void);								// Default constructor
-		Point(const float x, const float y);		// Construct with inputs
-		Point(const Point& src);					// #Copy constructor
-		Point&	operator = (const Point& src);		// #Copy assignment operator 
-		~Point(void);								// #Deconstructor
+		Point(const float x, const float y);		// Parameterized Constructor
+		Point(const Point& src);					// Copy constructor
+		Point&	operator = (const Point& src);		// Assignment operator
+		~Point(void);								// Deconstructor
 
 		// Return a reference to the Fixed object: _x and _y
 		const Fixed&	getx(void) const;

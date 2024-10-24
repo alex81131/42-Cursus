@@ -11,7 +11,8 @@ class	ClapTrap
 		ClapTrap(std::string name);						// Parameterized Constructor
 		ClapTrap(const ClapTrap& src);					// Copy constructor
 		ClapTrap&	operator = (const ClapTrap& src);	// Assignment operator
-		~ClapTrap(void);								// Deconstructor
+		virtual ~ClapTrap(void);						// Deconstructor
+		// Making it virtual to ensure proper destruction chaining from derived classes like ScavTrap
 
 		void				attack(const std::string& target);
 		void				takeDamage(unsigned int amount);
@@ -19,7 +20,7 @@ class	ClapTrap
 
 		const std::string&	getName(void) const;
 
-	private:
+	protected: // Allow derived classes like ScavTrap to access
 		std::string		_name;
 		unsigned int	_hp;
 		unsigned int	_energy;

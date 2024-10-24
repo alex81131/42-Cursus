@@ -3,19 +3,19 @@
 ClapTrap::ClapTrap():
 	_name("default_name"), _hp(10), _energy(10), _atk(0)
 {
-	std::cout << "A ClapTrap object " << this->_name << " is created by the default constructor." << std::endl;
+	std::cout << "[ClapTrap] " << this->_name << " is created by the default constructor." << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name):
 	_name(name), _hp(10), _energy(10), _atk(0)
 {
-	std::cout << "ClapTrap object \"" << this->_name << "\" is created by the constructor." << std::endl;
+	std::cout << "[ClapTrap] \"" << this->_name << "\" is created by the constructor." << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& src)
 {
 	*this = src;
-	std::cout << "An object is copied from " << src._name << "." << std::endl;
+	std::cout << "[ClapTrap] An object is copied from " << src._name << "." << std::endl;
 }
 
 ClapTrap&	ClapTrap::operator = (const ClapTrap& src)
@@ -33,7 +33,7 @@ ClapTrap&	ClapTrap::operator = (const ClapTrap& src)
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "ClapTrap object \"" << this->_name << "\" is destroyed." << std::endl;
+	std::cout << "[ClapTrap] \"" << this->_name << "\" is destroyed." << std::endl;
 }
 
 void	ClapTrap::attack(const std::string& target)
