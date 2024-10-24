@@ -1,4 +1,5 @@
 # C++ - Module 03
+Inheritance
 
 ### Private, Protected, Public
 1. Public members are available for any scope.
