@@ -1,20 +1,35 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "WrongCat.hpp"
-#include <iostream>
 
-int main(void)
+int main()
 {
-	DiamondTrap a("Ruby");
-	// DiamondTrap a1;			// to show Default constructor
-	// DiamondTrap a2(a);			// to show Copy constructor
-	// DiamondTrap a3 = a;		// to show Copy assignment operator
+	const Animal*	meta = new Animal();
+	const Animal*	i = new Cat();
+	const Animal*	j = new Dog();
 
-	std::cout << "__________________________________________________________" << std::endl;
-	a.attack("Arima Kousei");
-	a.takeDamage(9);
-	a.beRepaired(2);
-	a.whoAmI();
-	std::cout << "__________________________________________________________" << std::endl;
+	std::cout << "_____________________________________" << std::endl;
+	std::cout << i->getType() << " " << std::endl;
+	std::cout << j->getType() << " " << std::endl;
+	i->makeSound(); //will output the cat sound!
+	j->makeSound();
+	meta->makeSound();
+
+	std::cout << "____________Wrong animals____________" << std::endl;
+
+	const WrongAnimal*	k = new WrongAnimal();
+	const WrongCat*		l = new WrongCat();
+	std::cout << "_____________________________________" << std::endl;
+	std::cout << k->getType() << std::endl;
+	k->makeSound();
+	std::cout << l->getType() << std::endl;
+	l->makeSound();
+
+	std::cout << "_____________________________________" << std::endl;
+	delete meta;
+	delete i;
+	delete j;
+	delete k;
+	delete l;
 	return 0;
 }

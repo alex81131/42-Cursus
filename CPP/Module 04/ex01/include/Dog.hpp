@@ -2,6 +2,7 @@
 # define DOG_HPP
 
 # include "Animal.hpp"
+#include "Brain.hpp"
 
 class	Dog: public Animal
 {
@@ -12,7 +13,10 @@ class	Dog: public Animal
 		~Dog(void);								// Destructor, treated as virtual by default
 
 		void	makeSound() const;
+		void	showIdeas(void) const;
 
+	private:
+		Brain	*_brain;
 };
 
 

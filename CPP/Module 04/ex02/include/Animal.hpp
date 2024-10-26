@@ -2,7 +2,6 @@
 # define ANIMAL_HPP
 
 # include <iostream>
-// # include <string>
 
 class	Animal
 {
@@ -13,17 +12,18 @@ class	Animal
 		Animal&	operator = (const Animal& src);	// Assignment operator
 		virtual ~Animal(void);					// Destructor
 
-		virtual void			makeSound() const;
+		virtual void			makeSound() const = 0;	// Make `makeSound()` a pure virtual function
 		const std::string		getType() const;
-// Polymorphism means "many forms."
-// 	It allows a single function to behave differently depending on the type of object it’s working with.
-// 	Hence the "virtual" keyword before the function "only" in the base class,
-// 	though in the derived class it's allowed.
+		// Any derived class (like Dog or Cat) will be required to
+		// 	provide its own implementation of makeSound().
 
 	protected:
 		std::string	_type;
 
 };
 
-
 #endif
+
+// Any class with at least one pure virtual function is considered an abstract class.
+// Instantiate:
+// 	make an instance out of something

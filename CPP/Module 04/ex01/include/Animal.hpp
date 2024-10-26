@@ -2,7 +2,6 @@
 # define ANIMAL_HPP
 
 # include <iostream>
-// # include <string>
 
 class	Animal
 {
@@ -15,15 +14,10 @@ class	Animal
 
 		virtual void			makeSound() const;
 		const std::string		getType() const;
-// Polymorphism means "many forms."
-// 	It allows a single function to behave differently depending on the type of object it’s working with.
-// 	Hence the "virtual" keyword before the function "only" in the base class,
-// 	though in the derived class it's allowed.
 
 	protected:
 		std::string	_type;
 
 };
-
 
 #endif

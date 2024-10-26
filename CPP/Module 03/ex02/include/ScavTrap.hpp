@@ -13,7 +13,7 @@ class	ScavTrap: public ClapTrap
 		ScavTrap(std::string name);						// Parameterized Constructor
 		ScavTrap(const ScavTrap& src);					// Copy constructor
 		ScavTrap&	operator = (const ScavTrap& src);	// Assignment operator
-		virtual ~ScavTrap(void);								// Deconstructor
+		virtual ~ScavTrap(void);								// Destructor
 
 		void	attack(const std::string& target);
 		void	guardGate();

@@ -11,7 +11,7 @@ class	ClapTrap
 		ClapTrap(std::string name);						// Parameterized Constructor
 		ClapTrap(const ClapTrap& src);					// Copy constructor
 		ClapTrap&	operator = (const ClapTrap& src);	// Assignment operator
-		virtual ~ClapTrap(void);						// Deconstructor
+		virtual ~ClapTrap(void);						// Destructor
 		// Making it virtual to ensure proper destruction chaining from derived classes like ScavTrap
 
 		void				attack(const std::string& target);

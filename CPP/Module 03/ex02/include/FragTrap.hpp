@@ -13,7 +13,7 @@ class	FragTrap: public ClapTrap
 		FragTrap(std::string name);						// Parameterized Constructor
 		FragTrap(const FragTrap& src);					// Copy constructor
 		FragTrap&	operator = (const FragTrap& src);	// Assignment operator
-		virtual ~FragTrap(void);								// Deconstructor
+		virtual ~FragTrap(void);								// Destructor
 
 		void	highFivesGuys(void);
 

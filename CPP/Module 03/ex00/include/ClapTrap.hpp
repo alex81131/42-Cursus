@@ -11,7 +11,7 @@ class	ClapTrap
 		ClapTrap(std::string name);						// Parameterized Constructor
 		ClapTrap(const ClapTrap& src);					// Copy constructor
 		ClapTrap&	operator = (const ClapTrap& src);	// Assignment operator
-		~ClapTrap(void);								// Deconstructor
+		~ClapTrap(void);								// Destructor
 
 		void				attack(const std::string& target);
 		void				takeDamage(unsigned int amount);

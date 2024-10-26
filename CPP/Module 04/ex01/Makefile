@@ -1,9 +1,9 @@
 # Name
-NAME	= Polymorphism
+NAME	= DeepCopy
 
 # Compiler and flags
 CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98
+CFLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 
 # Source files
 SRC_FILES	=	main.cpp \
@@ -11,7 +11,8 @@ SRC_FILES	=	main.cpp \
 				Dog.cpp \
 				Cat.cpp \
 				WrongAnimal.cpp \
-				WrongCat.cpp
+				WrongCat.cpp \
+				Brain.cpp
 SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
@@ -20,7 +21,8 @@ H_FILES		=	Animal.hpp \
 				Dog.hpp \
 				Cat.hpp \
 				WrongAnimal.hpp \
-				WrongCat.hpp
+				WrongCat.hpp \
+				Brain.hpp
 H_PATH		=	include/
 HEADER		=	$(addprefix $(H_PATH), $(H_FILES))
 
@@ -65,7 +67,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $^ -lreadline -o  $@
-	@printf "	$(RESET_LINE)$(BLUE_LIGHT)Polymorphism\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
+	@printf "	$(RESET_LINE)$(BLUE_LIGHT)DeepCopy\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@mkdir -p $(dir $@)
@@ -73,21 +75,21 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@$(CC) $(CFLAGS) -I $(H_PATH) -c $< -o $@
 
 clean:
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Polymorphism src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Polymorphism src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Polymorphism src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Polymorphism src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy src/...	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Polymorphism src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Polymorphism src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Polymorphism src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Polymorphism src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy src/...	$(GREY)"
 	@sleep 0.1
 	@$(RM) $(OBJ_PATH)
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"
