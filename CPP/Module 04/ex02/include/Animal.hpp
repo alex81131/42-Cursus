@@ -19,7 +19,6 @@ class	Animal
 
 	protected:
 		std::string	_type;
-
 };
 
 #endif

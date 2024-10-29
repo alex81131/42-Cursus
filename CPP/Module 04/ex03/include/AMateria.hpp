@@ -7,15 +7,19 @@
 class AMateria
 {
 	public:
-		AMateria(std::string const & type);
-		[...]
-		std::string const & getType() const; //Returns the materia type
-		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target);
+		AMateria(void);									// Default constructor
+		AMateria(std::string const & type);				// Parameterized Constructor
+		AMateria(const AMateria& src);					// Copy constructor
+		AMateria&	operator = (const AMateria& src);	// Assignment operator
+		~AMateria(void);								// Destructor
+
+		std::string const&	getType() const; //Returns the materia type
+
+		virtual AMateria*	clone() const = 0;
+		virtual void		use(ICharacter& target);
 
 	protected:
-		[...]
-
+		std::string			_type;
 };
 
 #endif

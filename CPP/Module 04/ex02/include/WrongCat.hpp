@@ -13,7 +13,6 @@ class	WrongCat: public WrongAnimal
 		~WrongCat(void);						// Destructor
 
 		using WrongAnimal::makeSound;
-
 };
 
 

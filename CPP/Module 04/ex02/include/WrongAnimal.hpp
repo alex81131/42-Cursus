@@ -12,7 +12,6 @@ class	WrongAnimal: public Animal
 		~WrongAnimal(void);								// Destructor
 
 		void	makeSound() const;
-
 };
 
 
