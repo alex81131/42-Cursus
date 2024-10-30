@@ -1,5 +1,5 @@
 # Name
-NAME	= Abstract
+NAME	= Interface
 
 # Compiler and flags
 CC		= c++
@@ -7,22 +7,22 @@ CFLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 
 # Source files
 SRC_FILES	=	main.cpp \
-				Animal.cpp \
-				Dog.cpp \
-				Cat.cpp \
-				WrongAnimal.cpp \
-				WrongCat.cpp \
-				Brain.cpp
+				AMateria.cpp \
+				Ice.cpp \
+				Cure.cpp \
+				Character.cpp \
+				MateriaSource.cpp
 SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
 # Headers
-H_FILES		=	Animal.hpp \
-				Dog.hpp \
-				Cat.hpp \
-				WrongAnimal.hpp \
-				WrongCat.hpp \
-				Brain.hpp
+H_FILES		=	AMateria.hpp \
+				Ice.hpp \
+				Cure.hpp \
+				ICharacter.hpp \
+				Character.hpp \
+				IMateriaSource.hpp \
+				MateriaSource.hpp
 H_PATH		=	include/
 HEADER		=	$(addprefix $(H_PATH), $(H_FILES))
 
@@ -67,7 +67,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $^ -lreadline -o  $@
-	@printf "	$(RESET_LINE)$(BLUE_LIGHT)Abstract\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
+	@printf "	$(RESET_LINE)$(BLUE_LIGHT)Interface\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@mkdir -p $(dir $@)
@@ -75,21 +75,21 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@$(CC) $(CFLAGS) -I $(H_PATH) -c $< -o $@
 
 clean:
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Abstract src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Interface src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Abstract src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Interface src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Abstract src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Interface src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Abstract src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Interface src/...	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Abstract src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Interface src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Abstract src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Interface src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Abstract src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Interface src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Abstract src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Interface src/...	$(GREY)"
 	@sleep 0.1
 	@$(RM) $(OBJ_PATH)
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"

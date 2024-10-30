@@ -1,38 +1,36 @@
-#include "Dog.hpp"
+#include "Cure.hpp"
 
-Dog::Dog(void): _brain(new Brain)
+Cure::Cure(void): AMateria("cure")
 {
-	std::cout << "[Dog] Default constructor called." << std::endl;
-	this->_type = "Dog";
-	this->_brain->setIdeas("I wanna eat cakes!");
+	std::cout << "[Cure] Default constructor called." << std::endl;
 }
 
-Dog::Dog(const Dog& src): Animal(src), _brain(new Brain)
+Cure::Cure(const Cure& src): AMateria("cure")
 {
-	std::cout << "[Dog] Copy constructor called." << std::endl;
+	std::cout << "[Cure] Copy constructor called." << std::endl;
 	*this = src;
 }
 
-Dog&	Dog::operator = (const Dog& src)
+Cure&	Cure::operator = (const Cure& src)
 {
-	std::cout << "[Dog] Assignment operator called." << std::endl;
+	std::cout << "[Cure] Assignment operator called." << std::endl;
 	if (this != &src)
-		this->_type = src._type;
+		AMateria::operator=(src);
 	return *this;
 }
 
-Dog::~Dog(void)
+Cure::~Cure(void)
 {
-	std::cout << "[Dog] Destructor called." << std::endl;
-	delete this->_brain;
+	std::cout << "[Cure] Destructor called." << std::endl;
 }
 
-void	Dog::makeSound() const
+Cure*	Cure::clone() const
 {
-	std::cout << "Woof! Woof! ૮⍝• ᴥ •⍝ა" << std::endl;
+	std::cout << "An Cure object is cloned." << std::endl;
+	return new Cure(*this);
 }
 
-void	Dog::showIdeas(void) const
+void	Cure::use(ICharacter& target)
 {
-	_brain->showIdeas();
+	std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

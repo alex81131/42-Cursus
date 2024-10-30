@@ -1,39 +1,64 @@
-#include "Dog.hpp"
-#include "Cat.hpp"
-#include "WrongCat.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
+#include "Character.hpp"
+#include "MateriaSource.hpp"
 
 int main()
 {
-	Animal*	array[100];
+	IMateriaSource*	src = new MateriaSource();
 
-	for (int i = 0; i < 10; i++)
-	{
-		if (i < 5)
-		{
-			array[i] = new Dog();
-			std::cout << "Animal[" << i << "] created." << std::endl;
-		}
-		else
-		{
-			array[i] = new Cat();
-			std::cout << "Animal[" << i << "] created." << std::endl;
-		}
-	}
-	std::cout << "__________Deep copy check____________" << std::endl;
-	for (int i = 0; i < 10; i++)
-	{
-		array[i]->makeSound();
-		if (Cat* cat = dynamic_cast<Cat*>(array[i]))
-			cat->showIdeas();
-		else if (Dog* dog = dynamic_cast<Dog*>(array[i]))
-			dog->showIdeas();
-		std::cout << std::endl;
-	}
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+
 	std::cout << "_____________________________________" << std::endl;
-	for (int i = 0; i < 10; i++)
-	{
-		delete array[i];
-		std::cout << "Animal[" << i << "] deleted." << std::endl;
-	}
+	ICharacter*		me = new Character("me");
+
+	AMateria*	tmp;
+
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+
+	std::cout << "_____________________________________" << std::endl;
+	ICharacter*		bob = new Character("bob");
+
+	me->use(0, *bob);
+	me->use(1, *bob);
+
+	std::cout << std::endl << "-------Materia inventory test--------" << std::endl;
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+
+	AMateria*	tmp_mat = new Ice();
+
+	src->learnMateria(tmp_mat);
+	delete tmp_mat;
+
+	std::cout << std::endl << "----------Materia equip test---------" << std::endl;
+	bob->equip(tmp);
+	tmp = src->createMateria("N/A");
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	me->equip(tmp);
+
+	std::cout << std::endl << "---------Materia unequip test--------" << std::endl;
+	me->unequip(1);
+	me->use(1, *bob);
+	me->unequip(1);
+
+	std::cout << "_____________________________________" << std::endl;
+	delete bob;
+	delete me;
+	delete src;
 	return 0;
 }
+
+// Memory leaks:
+// 1. in MateriaSource:
+// 	src->learnMateria(new Ice()); fails on the 5th element to learn.
+// 	Need to delete the "new Ice()" above.
+// 2. Materias on the characters:
+// 	the materias unequipped won't be able to be cleaned by deleting the character.

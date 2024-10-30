@@ -11,7 +11,7 @@ class AMateria
 		AMateria(std::string const & type);				// Parameterized Constructor
 		AMateria(const AMateria& src);					// Copy constructor
 		AMateria&	operator = (const AMateria& src);	// Assignment operator
-		~AMateria(void);								// Destructor
+		virtual ~AMateria(void);						// Destructor
 
 		std::string const&	getType() const; //Returns the materia type
 
