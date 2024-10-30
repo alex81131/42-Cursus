@@ -32,3 +32,6 @@ int main(void)
 
 	return 0;
 }
+
+// Graphic site:
+// 	https://www.geogebra.org/classic
