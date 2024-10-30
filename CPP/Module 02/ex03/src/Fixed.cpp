@@ -79,7 +79,13 @@ Fixed	Fixed::operator * (const Fixed& src) const
 
 Fixed	Fixed::operator / (const Fixed& src) const
 {
-	return Fixed(this->toFloat() / src.toFloat());
+	if (src.getRawBits() != 0)
+		return Fixed(this->toFloat() / src.toFloat());
+	else
+	{
+		std::cout << "Error: cannot divid by zero." << std::endl;
+		return 0;
+	}
 }
 
 /*_______________increment and decrement overlaods_______________*/
