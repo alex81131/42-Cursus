@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:18:59 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/21 16:13:18 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/31 18:01:25 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,19 +92,6 @@ int	check_texture_path(char **path)
 	return (SUCCESS);
 }
 
-void	free_texture(t_texture_data *texture)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < TEXTURE_PATH)
-	{
-		if (texture->path[i])
-			free(texture->path[i]);
-		i++;
-	}
-	free(texture);
-}
 // add_data_buff: store texture data
 // if (texture->path[type])
 // 	return (FAILURE);
