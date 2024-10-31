@@ -6,7 +6,7 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/09/21 19:43:51 by kyeh             ###   ########.fr        #
+#    Updated: 2024/10/31 18:55:58 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ FT_PRINTF = \
 		ft_printf_fd.c				ft_printf_ptr_fd.c\
 		ft_printf_number_hex_fd.c	ft_printf_unsigned_int.c
 GNL = \
-		get_next_line.c
+		get_next_line.c				get_next_line_utils.c
 FDF = \
 		fdf.c
 MINISHELL = \

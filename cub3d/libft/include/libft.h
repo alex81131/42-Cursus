@@ -6,7 +6,7 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:34 by kyeh              #+#    #+#             */
-/*   Updated: 2024/10/10 15:47:12 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/31 18:56:50 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ int		ft_putptr(uintptr_t ptr);
 # endif
 
 char	*get_next_line(int fd);
+int		find_eol(char *str);
+void	copy_and_cat(char *out, char *cpy_src, char *cat_src);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 //	<fdf>
