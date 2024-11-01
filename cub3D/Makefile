@@ -6,12 +6,12 @@
 #    By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 12:27:51 by kyeh              #+#    #+#              #
-#    Updated: 2024/10/31 18:52:14 by kyeh             ###   ########.fr        #
+#    Updated: 2024/11/01 18:38:36 by kyeh             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Name
-NAME	= cub3d
+NAME	= cub3D
 
 # Compiler and flags
 CC		= cc
@@ -86,7 +86,7 @@ all: $(MLX) $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $^ $(MLXFLAGS) -lreadline -o  $@
-	@printf "	\033[2K\r$(DARK_BLUE)cub3d\t: $(LIGHT_GREEN)Updated\n\033[0m"
+	@printf "	\033[2K\r$(DARK_BLUE)cub3D\t: $(LIGHT_GREEN)Updated\n\033[0m"
 
 bonus:	$(NAME)
 
@@ -96,27 +96,27 @@ $(MLX):
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_PATH)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER)/cub3d.h Makefile
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c $(HEADER)/cub3D.h Makefile
 	@mkdir -p $(dir $@)
 	@printf "$(RESET_LINE)$(RED_FLASH)Compiling...	$(GREY)$<$(SKY) $(NOCOLOR)"
 	@gcc $(CFLAGS) -I $(HEADER) -I libft/include -I $(MLX) -c $< -o $@
 
 clean: cleanlib cleanmlx
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3D srcs/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3D srcs/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3D srcs/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3D srcs/...	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3D srcs/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3D srcs/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3D srcs/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3d srcs/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting cub3D srcs/...	$(GREY)"
 	@sleep 0.1
 	@$(RM) $(OBJ_PATH)
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"
