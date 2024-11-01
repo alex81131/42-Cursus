@@ -1,4 +1,4 @@
-# cub3d
+# cub3D
 A ray-casting game: an advanced graphical project where we create a simplified 3D game, whose goal is to learn a rendering technique called ray casting.
 
 ## Key Concepts
