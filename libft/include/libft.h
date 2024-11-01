@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkaragoz <tkaragoz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:27:34 by kyeh              #+#    #+#             */
-/*   Updated: 2024/09/18 13:30:04 by tkaragoz         ###   ########.fr       */
+/*   Updated: 2024/10/31 18:56:50 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **alst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstclear_no_content(t_list **lst);
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
@@ -96,7 +97,6 @@ int		ft_printf(const char *format, ...);
 //		<printf>
 int		ft_putchar(int c);
 int		ft_putstr(char *str);
-int		ft_printf(const char *format, ...);
 //		<int_decimal>
 char	*ft_inttochar(char *str, unsigned int m, unsigned int len);
 int		ft_putnbr(int n);
@@ -118,6 +118,8 @@ int		ft_putptr(uintptr_t ptr);
 # endif
 
 char	*get_next_line(int fd);
+int		find_eol(char *str);
+void	copy_and_cat(char *out, char *cpy_src, char *cat_src);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 //	<fdf>

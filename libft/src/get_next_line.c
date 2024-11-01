@@ -6,93 +6,159 @@
 /*   By: kyeh <kyeh@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 16:38:15 by kyeh              #+#    #+#             */
-/*   Updated: 2024/07/10 18:15:38 by kyeh             ###   ########.fr       */
+/*   Updated: 2024/10/31 18:55:36 by kyeh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*return_next_line(char **s)
+char	*ft_str_rejoin(char *stash, char *add)
 {
-	char	*out;
-	char	*tmp;
-	size_t	len;
+	char	*joined;
 
-	len = 0;
-	out = NULL;
-	while ((*s)[len] != '\n' && (*s)[len])
-		len++;
-	if ((*s)[len] == '\n')
-	{
-		out = ft_substr(*s, 0, len + 1);
-		tmp = ft_strdup(*s + len + 1);
-		free(*s);
-		*s = tmp;
-		if (!**s)
-		{
-			free(*s);
-			*s = NULL;
-		}
-		return (out);
-	}
-	out = ft_strdup(*s);
-	free(*s);
-	*s = NULL;
-	return (out);
+	if (!stash)
+		return (NULL);
+	joined = ft_calloc((ft_strlen(stash) + ft_strlen(add) + 1), sizeof(char));
+	if (!joined)
+		return (free(stash), NULL);
+	copy_and_cat(joined, stash, add);
+	return (free(stash), joined);
 }
 
-static char	*check_and_return(char **s, ssize_t n, int fd)
+char	*fetch_line(char *line_stash, int fd, int *status)
 {
-	if (n < 0)
+	char	*read_buff;
+
+	if (!line_stash)
 		return (NULL);
-	if (!n && (!s[fd] || !*s[fd]))
+	read_buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!read_buff)
+		return (free(line_stash), NULL);
+	while (!find_eol(line_stash))
+	{
+		*status = read(fd, read_buff, BUFFER_SIZE);
+		if (*status <= 0)
+		{
+			free(read_buff);
+			if (ft_strlen(line_stash) != 0)
+				return (line_stash);
+			return (free(line_stash), NULL);
+		}
+		line_stash = ft_str_rejoin(line_stash, read_buff);
+		ft_bzero(read_buff, BUFFER_SIZE + 1);
+	}
+	return (free(read_buff), line_stash);
+}
+
+void	get_stash(char *stash, char *line)
+{
+	int	i;
+	int	stash_i;
+
+	i = 0;
+	stash_i = 0;
+	if (!line)
+		return ;
+	while (line[i])
+	{
+		if (line[i] == '\n')
+		{
+			i++;
+			break ;
+		}
+		i++;
+	}
+	while (line[i])
+	{
+		stash[stash_i] = line[i];
+		line[i] = '\0';
+		stash_i++;
+		i++;
+	}
+	stash[stash_i] = '\0';
+}
+
+char	*trim_line(char	*untrimmed)
+{
+	int		i;
+	char	*trimmed;
+
+	i = 0;
+	if (!untrimmed)
 		return (NULL);
-	return (return_next_line(&s[fd]));
+	while (untrimmed[i])
+		i++;
+	trimmed = ft_calloc(i + 1, sizeof(char));
+	if (!trimmed)
+		return (free(untrimmed), NULL);
+	i = 0;
+	while (untrimmed[i])
+	{
+		trimmed[i] = untrimmed[i];
+		i++;
+	}
+	trimmed[i] = '\0';
+	return (free(untrimmed), trimmed);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*tmp;
-	char		*buf;
-	static char	*s[FOPEN_MAX];
-	ssize_t		n;
+	static char	stash[1024][BUFFER_SIZE + 1];
+	char		*line;
+	int			status;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	status = 0;
+	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buf = malloc(BUFFER_SIZE + 1);
-	if (!buf)
-		return (NULL);
-	n = read(fd, buf, BUFFER_SIZE);
-	while (n > 0)
+	line = ft_calloc(1, sizeof(char));
+	if (ft_strlen(stash[fd]))
+		line = ft_str_rejoin(line, stash[fd]);
+	line = fetch_line(line, fd, &status);
+	if (status == -1)
 	{
-		buf[n] = '\0';
-		if (!s[fd])
-			s[fd] = ft_strdup("");
-		tmp = ft_strjoin(s[fd], buf);
-		free(s[fd]);
-		s[fd] = tmp;
-		if (ft_strchr(buf, '\n'))
-			break ;
-		n = read(fd, buf, BUFFER_SIZE);
+		ft_bzero(stash[fd], BUFFER_SIZE + 1);
+		return (free(line), NULL);
 	}
-	free(buf);
-	return (check_and_return(s, n, fd));
+	get_stash(stash[fd], line);
+	line = trim_line(line);
+	if (!line)
+		return (NULL);
+	return (line);
 }
-/*
-In check_and_return:
-	The condition (!s[fd] || !*s[fd]) checks if the buffer for the given
-	file descriptor fd is NULL or empty.
 
-In return_next_line:
-	out = ft_substr(*s, 0, len + 1);
-	tmp = ft_strdup(*s + len + 1);
+// #include <fcntl.h>
+// #include <stdio.h>
 
-	*s			*s+len
-	0	1	2	\n		3			len = 3
-						tmp
+// int	main(int argc, char *argv[])
+// {
+// 	int	fd;
+// 	int	fd2;
+// 	int	fd3;
+// 	char	*line;
+// 	char	*line2;
+// 	char	*line3;
+// 	(void)argc;
 
-The +1 in ft_substr is to include the \n
-(len + 1 is the total length to be copied);
-the +1 in ft_strdup is to start after the \n
-(len + 1 is the starting point after \n).
-*/
+// 	fd = open(argv[1], O_RDONLY);
+// 	fd2 = open(argv[2], O_RDONLY);
+// 	fd3 = open(argv[3], O_RDONLY);
+// 	line = get_next_line(fd);
+// 	line2 = get_next_line(fd2);
+// 	line3 = get_next_line(fd3);
+// 	while (line && line2 && line3)
+// 	{
+// 		printf("%s", line);
+// 		printf("%s", line2);
+// 		printf("%s", line3);
+// 		free(line);
+// 		line = get_next_line(fd);
+// 		free(line2);
+// 		line2 = get_next_line(fd2);
+// 		free(line3);
+// 		line3 = get_next_line(fd3);
+// 	}
+// 	free(line);
+// 	free(line2);
+// 	close(fd);
+// 	return (0);
+// }
