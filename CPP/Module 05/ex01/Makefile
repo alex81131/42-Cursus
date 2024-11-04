@@ -1,5 +1,5 @@
 # Name
-NAME	= Exception
+NAME	= SignForms
 
 # Compiler and flags
 CC		= c++
@@ -7,12 +7,13 @@ CFLAGS	= -Wall -Wextra -Werror -std=c++98
 
 # Source files
 SRC_FILES	=	main.cpp \
-				Bureaucrat.cpp
+				Bureaucrat.cpp \
+				Form.cpp
 SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
 # Headers
-H_FILES		=	Bureaucrat.hpp
+H_FILES		=	Bureaucrat.hpp Form.hpp
 H_PATH		=	include/
 HEADER		=	$(addprefix $(H_PATH), $(H_FILES))
 
@@ -57,7 +58,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $^ -lreadline -o  $@
-	@printf "	$(RESET_LINE)$(BLUE_LIGHT)Exception\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
+	@printf "	$(RESET_LINE)$(BLUE_LIGHT)SignForms\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@mkdir -p $(dir $@)
@@ -65,21 +66,21 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@$(CC) $(CFLAGS) -I $(H_PATH) -c $< -o $@
 
 clean:
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Exception src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting SignForms src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Exception src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting SignForms src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Exception src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting SignForms src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Exception src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting SignForms src/...	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Exception src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting SignForms src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Exception src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting SignForms src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Exception src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting SignForms src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Exception src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting SignForms src/...	$(GREY)"
 	@sleep 0.1
 	@$(RM) $(OBJ_PATH)
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"
