@@ -56,7 +56,7 @@ void	Character::equip(AMateria* m)
 			if (!this->_inventory[idx])
 			{
 				this->_inventory[idx] = m;
-				std::cout << "[Character] " << this->_name << " is equipped with a materia" << m->getType() << " at #" << idx << "." <<std::endl;
+				std::cout << "[Character] " << this->_name << " is equipped with a materia " << m->getType() << " at #" << idx << "." <<std::endl;
 				return ;
 			}
 	}
