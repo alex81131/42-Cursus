@@ -37,3 +37,6 @@ int main()
 	}
 	return 0;
 }
+
+// dynamic_cast:
+// 	checks if the element can be cast to a Cat*, returning success only if so.
