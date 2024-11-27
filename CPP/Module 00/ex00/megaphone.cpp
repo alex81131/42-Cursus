@@ -27,6 +27,7 @@ int	main(int ac, char **av) {
 // - std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 // 	The first << operator sends the string literal into the std::cout stream.
 // 	The second << operator takes the std::endl manipulator and inserts it into the same output stream, std::cout.
+// 	(It's to let the compiler understand when compiling, not afterwards like outputting.)
 // 4. endl:
 // 	Inserts a newline character and ensures that all output is displayed immediately.
 // 5. std::string str(av[i]);
