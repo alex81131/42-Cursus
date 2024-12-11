@@ -1,114 +1,114 @@
-#include "AForm.hpp"
+#include "ScalarConverter.hpp"
 
-AForm::AForm(void):
+ScalarConverter::ScalarConverter(void):
 	_signGrade(150), _exeGrade(150)
 {
-	std::cout << "[AForm] Default constructor called." << std::endl;
+	std::cout << "[ScalarConverter] Default constructor called." << std::endl;
 }
 
-AForm::AForm(const std::string& name, const std::string& target, int signGrade, int exeGrade):
+ScalarConverter::ScalarConverter(const std::string& name, const std::string& target, int signGrade, int exeGrade):
 	_name(name), _target(target), _signed(false), _signGrade(signGrade), _exeGrade(exeGrade)
 {
-	std::cout << "[AForm] Parameterized constructor called." << std::endl;
+	std::cout << "[ScalarConverter] Parameterized constructor called." << std::endl;
 	if (signGrade < 1 || exeGrade < 1)
-		throw AForm::GradeTooHighException();
+		throw ScalarConverter::GradeTooHighException();
 	if (signGrade > 150 || exeGrade > 150)
-		throw AForm::GradeTooLowException();
+		throw ScalarConverter::GradeTooLowException();
 }
 
-AForm::AForm(const AForm& src):
+ScalarConverter::ScalarConverter(const ScalarConverter& src):
 	_name(src._name), _target(src._target), _signed(src._signed), _signGrade(src._signGrade), _exeGrade(src._exeGrade)
 {
-	std::cout << "[AForm] Copy constructor called." << std::endl;
+	std::cout << "[ScalarConverter] Copy constructor called." << std::endl;
 	*this = src;
 }
 
-AForm&	AForm::operator = (const AForm& src)
+ScalarConverter&	ScalarConverter::operator = (const ScalarConverter& src)
 {
-	std::cout << "[AForm] Assignment operator called." << std::endl;
+	std::cout << "[ScalarConverter] Assignment operator called." << std::endl;
 	if (this != &src)
 		this->_signed = src._signed;
 	return *this;
 }
 
-AForm::~AForm(void)
+ScalarConverter::~ScalarConverter(void)
 {
-	std::cout << "[AForm] Destructor called." << std::endl;
+	std::cout << "[ScalarConverter] Destructor called." << std::endl;
 }
 
 /*_______________Get info_______________*/
-const std::string&	AForm::getName() const
+const std::string&	ScalarConverter::getName() const
 {
 	return _name;
 }
 
-const std::string&	AForm::getTarget() const
+const std::string&	ScalarConverter::getTarget() const
 {
 	return _target;
 }
 
-bool	AForm::getSignStatus() const
+bool	ScalarConverter::getSignStatus() const
 {
 	return _signed;
 }
 
-int	AForm::getSignGrade() const
+int	ScalarConverter::getSignGrade() const
 {
 	return _signGrade;
 }
 
-int	AForm::getExeGrade() const
+int	ScalarConverter::getExeGrade() const
 {
 	return _exeGrade;
 }
 
 /*______________Exceptions______________*/
-const char*	AForm::GradeTooHighException::what() const throw()
+const char*	ScalarConverter::GradeTooHighException::what() const throw()
 {
 	return "[Exception] Grade too high.\n";
 }
 
-const char*	AForm::GradeTooLowException::what() const throw()
+const char*	ScalarConverter::GradeTooLowException::what() const throw()
 {
 	return "[Exception] Grade too low.\n";
 }
 
-const char*	AForm::NotSigned::what() const throw()
+const char*	ScalarConverter::NotSigned::what() const throw()
 {
 	return "[Exception] Form not signed.\n";
 }
 
 /*________________Utils_________________*/
-void	AForm::beSigned(const Bureaucrat& b)
+void	ScalarConverter::beSigned(const Bureaucrat& b)
 {
 	if (b.getGrade() > this->_signGrade)
 	{
 		std::cout << b.getName() << " couldn’t sign " << this->_name << ", because:" << std::endl << std::endl;
-		throw AForm::GradeTooLowException();
+		throw ScalarConverter::GradeTooLowException();
 	}
 	this->_signed = true;
 	std::cout << b.getName() << " signed " << this->_name << ".\n";
 }
 
-void	AForm::execute(Bureaucrat const& executor) const
+void	ScalarConverter::execute(Bureaucrat const& executor) const
 {
 	if (this->_signed == false)
 	{
 		std::cout << executor.getName() << ": not signed, cannot execute." << std::endl;
-		throw AForm::NotSigned();
+		throw ScalarConverter::NotSigned();
 	}
 	if (executor.getGrade() > this->_exeGrade)
 	{
 		std::cout << executor.getName() << " cannot execute " << this->_name << ", because:" << std::endl << std::endl;
-		throw AForm::GradeTooLowException();
+		throw ScalarConverter::GradeTooLowException();
 	}
 	std::cout << executor.getName() << " executed " << this->_name << "." << std::endl << std::endl;
 	this->doExe();
 }
 
-std::ostream&	operator << (std::ostream& os, const AForm& src)
+std::ostream&	operator << (std::ostream& os, const ScalarConverter& src)
 {
-	os << "AForm name: " << src.getName() << "\n" 
+	os << "ScalarConverter name: " << src.getName() << "\n" 
 		<< "\tSign status: " << src.getSignStatus() << "\n" 
 		<< "\tGrade to sign: " << src.getSignGrade() << "\n" 
 		<< "\tGrade to execute: " << src.getExeGrade() << "\n";
