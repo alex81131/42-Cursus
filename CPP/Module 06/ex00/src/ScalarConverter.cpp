@@ -1,116 +1,75 @@
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter(void):
-	_signGrade(150), _exeGrade(150)
-{
-	std::cout << "[ScalarConverter] Default constructor called." << std::endl;
-}
+ScalarConverter::ScalarConverter(void) {}
 
-ScalarConverter::ScalarConverter(const std::string& name, const std::string& target, int signGrade, int exeGrade):
-	_name(name), _target(target), _signed(false), _signGrade(signGrade), _exeGrade(exeGrade)
+ScalarConverter::ScalarConverter(const ScalarConverter& src)
 {
-	std::cout << "[ScalarConverter] Parameterized constructor called." << std::endl;
-	if (signGrade < 1 || exeGrade < 1)
-		throw ScalarConverter::GradeTooHighException();
-	if (signGrade > 150 || exeGrade > 150)
-		throw ScalarConverter::GradeTooLowException();
-}
-
-ScalarConverter::ScalarConverter(const ScalarConverter& src):
-	_name(src._name), _target(src._target), _signed(src._signed), _signGrade(src._signGrade), _exeGrade(src._exeGrade)
-{
-	std::cout << "[ScalarConverter] Copy constructor called." << std::endl;
-	*this = src;
+	(void) src;
 }
 
 ScalarConverter&	ScalarConverter::operator = (const ScalarConverter& src)
 {
-	std::cout << "[ScalarConverter] Assignment operator called." << std::endl;
-	if (this != &src)
-		this->_signed = src._signed;
+	(void) src;
 	return *this;
 }
 
-ScalarConverter::~ScalarConverter(void)
-{
-	std::cout << "[ScalarConverter] Destructor called." << std::endl;
-}
+ScalarConverter::~ScalarConverter(void) {}
 
-/*_______________Get info_______________*/
-const std::string&	ScalarConverter::getName() const
+/*_______________Breakdown_______________*/
+ScalarConverter::Type	ScalarConverter::getLiteralType(const std::string &s)
 {
-	return _name;
+	// nan
+	if (s == "nan" || s == "nanf" || s == "+nan" || s == "-nan" || s == "+nanf" || s == "-nanf")
+		return NONE;
+	// char
+	if (s.length() == 1 && !isdigit(*s.begin()))
+		return CHAR;
+	// int
+	int	i = std::atoi(s.c_str());
+	std::stringstream	ss;
+	ss << i;
+	// If the literal stays the same after the integer transformation, it is indeed an integer.
+	// 	ss.str(): returns the current content of the string stream as a std::string
+	if (s == ss.str())
+		return INT;
+	// float
+	if (s == "inff" || s == "+inff" || s == "-inff" || is_float(s))
+		return FLOAT;
+	// double
+	if (s == "inf" || s == "+inf" || s == "-inf" || is_double(s))
+		return DOUBLE;
+	return OTHER;
 }
+// s.begin() is an iterator, not a pointer, but it behaves similarly to a pointer in many ways.
+// 	Specifically, it points to the first element of the string s.
+// 	An iterator in C++ is an object that provides access to elements in a container (like std::string),
+// 	and it can be dereferenced to access the value it points to.
+// *s.begin() dereferences the iterator, giving you the first character of the string s.
+// 	So in this case: !isdigit(*s.begin()) = !isdigit(s[0])
+// c_str():
+// 	from std::string to C-style string (i.e., const char*)
 
-const std::string&	ScalarConverter::getTarget() const
+void	ScalarConverter::convert(std::string s)
 {
-	return _target;
-}
-
-bool	ScalarConverter::getSignStatus() const
-{
-	return _signed;
-}
-
-int	ScalarConverter::getSignGrade() const
-{
-	return _signGrade;
-}
-
-int	ScalarConverter::getExeGrade() const
-{
-	return _exeGrade;
-}
-
-/*______________Exceptions______________*/
-const char*	ScalarConverter::GradeTooHighException::what() const throw()
-{
-	return "[Exception] Grade too high.\n";
-}
-
-const char*	ScalarConverter::GradeTooLowException::what() const throw()
-{
-	return "[Exception] Grade too low.\n";
-}
-
-const char*	ScalarConverter::NotSigned::what() const throw()
-{
-	return "[Exception] Form not signed.\n";
-}
-
-/*________________Utils_________________*/
-void	ScalarConverter::beSigned(const Bureaucrat& b)
-{
-	if (b.getGrade() > this->_signGrade)
+	switch(getLiteralType(s))
 	{
-		std::cout << b.getName() << " couldn’t sign " << this->_name << ", because:" << std::endl << std::endl;
-		throw ScalarConverter::GradeTooLowException();
+		case NONE:
+			do_nan();
+			break;
+		case CHAR:
+			do_char(s);
+			break;
+		case INT:
+			do_int(s);
+			break;
+		case FLOAT:
+			do_float(s);
+			break;
+		case DOUBLE:
+			do_double(s);
+			break;
+		default:
+			do_other();
+			break;
 	}
-	this->_signed = true;
-	std::cout << b.getName() << " signed " << this->_name << ".\n";
-}
-
-void	ScalarConverter::execute(Bureaucrat const& executor) const
-{
-	if (this->_signed == false)
-	{
-		std::cout << executor.getName() << ": not signed, cannot execute." << std::endl;
-		throw ScalarConverter::NotSigned();
-	}
-	if (executor.getGrade() > this->_exeGrade)
-	{
-		std::cout << executor.getName() << " cannot execute " << this->_name << ", because:" << std::endl << std::endl;
-		throw ScalarConverter::GradeTooLowException();
-	}
-	std::cout << executor.getName() << " executed " << this->_name << "." << std::endl << std::endl;
-	this->doExe();
-}
-
-std::ostream&	operator << (std::ostream& os, const ScalarConverter& src)
-{
-	os << "ScalarConverter name: " << src.getName() << "\n" 
-		<< "\tSign status: " << src.getSignStatus() << "\n" 
-		<< "\tGrade to sign: " << src.getSignGrade() << "\n" 
-		<< "\tGrade to execute: " << src.getExeGrade() << "\n";
-	return os;
 }
