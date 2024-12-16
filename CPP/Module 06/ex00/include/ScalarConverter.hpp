@@ -20,6 +20,13 @@ class	ScalarConverter
 			OTHER
 		};
 		static void	convert(std::string s);
+		// Static functions can be called "without an instance of the class",
+		// 	because they are associated with the class itself rather than any specific object of the class.
+		// (Non-static functions are tied to an instance of the class,
+		// 	because they operate on the specific object's state (instance data).)
+		// 1. Static functions cannot access non-static members or functions of the class.
+		// 2. Cannot use this pointer.
+
 
 	private:	// Must not be instanciable by users
 		ScalarConverter(void);											// Default constructor
