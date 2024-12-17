@@ -88,14 +88,24 @@ void	ScalarConverter::do_double(const std::string &s)
 // Don't have to handle:
 // 1. "65e0" (scientific notation of 65 (A in ASCII), which is valid for float/double)
 // 2. "0x10" (hexadecimal notation of 16, which is valid for integers but not for float or double)
-void	ScalarConverter::do_other(void)
+void	ScalarConverter::do_other(const std::string &s)
 {
+	long long	i = std::atoll(s.c_str());
+
 	std::cout << "-----------Other-----------" << std::endl;
 	std::cout << "  [Decimal notation only]  " << std::endl;
-	std::cout << "Char:   " << "impossible, wrong format." << std::endl;
-	std::cout << "Int:    " << "impossible, wrong format." << std::endl;
-	std::cout << "Float:  " << "impossible, wrong format." << std::endl;
-	std::cout << "Double: " << "impossible, wrong format." << std::endl;
+	if (i != static_cast<char>(i) || i < std::numeric_limits<char>::min() || i > std::numeric_limits<char>::max())
+		std::cout << "Char:   " << "impossible" << std::endl;
+	else if (i < 32 || i > 126)
+		std::cout << "Char:   " << "Not displayable" << std::endl;
+	else
+		std::cout << "Char:   '" << static_cast<char>(i) << "'" << std::endl;
+	if (i != static_cast<int>(i) || i < std::numeric_limits<int>::min() || i > std::numeric_limits<int>::max())
+		std::cout << "Int:    " << "impossible" << std::endl;
+	else
+		std::cout << "Int:    " << static_cast<int>(i) << std::endl;
+	std::cout << "Float:  " << std::fixed << std::setprecision(2) << static_cast<float>(std::atof(s.c_str())) << "f" << std::endl;
+	std::cout << "Double: " << static_cast<double>(std::atof(s.c_str())) << std::endl;
 }
 
 bool	ScalarConverter::is_float(const std::string &s)
@@ -103,7 +113,7 @@ bool	ScalarConverter::is_float(const std::string &s)
 	std::string::const_iterator	i;						// s.end() returns an iterator
 	std::string::size_type		dotPos = s.find('.');	// s.find() returns in size_type
 
-	if (dotPos ==  std::string::npos)					// npos for no position
+	if (dotPos == std::string::npos)					// npos for no position
 		return false;
 	for (i = s.begin(); i < s.end() - 1; ++i)
 	{

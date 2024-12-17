@@ -40,7 +40,7 @@ class	ScalarConverter
 		static void	do_int(const std::string &s);
 		static void	do_float(const std::string &s);
 		static void	do_double(const std::string &s);
-		static void	do_other(void);
+		static void	do_other(const std::string &s);
 		static bool	is_float(const std::string &s);
 		static bool	is_double(const std::string &s);
 };

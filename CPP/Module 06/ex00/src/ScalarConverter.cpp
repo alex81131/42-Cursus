@@ -69,7 +69,7 @@ void	ScalarConverter::convert(std::string s)
 			do_double(s);
 			break;
 		default:
-			do_other();
+			do_other(s);
 			break;
 	}
 }
