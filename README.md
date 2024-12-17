@@ -5,7 +5,7 @@
 |00| [Libft](https://github.com/alex81131/42-Cursus/tree/main/Libft) | C | C library for 42 projects | 125% |
 |01| [ft_printf](https://github.com/alex81131/42-Cursus/tree/main/ft_printf) | C | Recode printf | 100% |
 |01| [Get Next Line](https://github.com/alex81131/42-Cursus/tree/main/get_next_line) | C | Function that returns a line read from a file descriptor | 125% |
-|01| [Born2beroot](https://github.com/alex81131/42-Cursus/tree/main/Born2beRoot) | Network & system administration | System administration | 103% |
+|01| [Born2beroot](https://github.com/alex81131/42-Cursus/tree/main/Born2beRoot) | Network & system administration | Virtual Machine | 103% |
 |02| [Exam 02](https://github.com/alex81131/42-Cursus/tree/main/Exam%20Rank%2002) | C | Final piscine exam  | 100% |
 |02| [Pipex](https://github.com/alex81131/42-Cursus/tree/main/pipex) | C | Replicate shell's pipe functionality (cmd1 \| cmd2) | 125% |
 |02| [Push Swap](https://github.com/alex81131/42-Cursus/tree/main/push_swap) | C | Sorting data algorithms | 125% |
@@ -20,7 +20,7 @@
 |04| [C++](https://github.com/alex81131/42-Cursus/tree/main/CPP) | C++ | C++ concepts | ???% |
 |05| [Exam Rank 05](https://github.com/pasqualerossi/42-School-Exam-Rank-05) | C++ | 3 questions in C++ |  ???% |
 |05| [ft_irc](https://github.com/El-cmd/ft_irc) | C++ | Internet relay chat |  ???% |
-|05| [Webserv](https://github.com/BenjaminHThomas/WebServer) | C++ | HTTP server | 100% |
-|05| [Inception](https://github.com/BenjaminHThomas/DockerInception) | Docker | system administration | ???% |
+|05| [Webserv](https://github.com/BenjaminHThomas/WebServer) | C++ | HTTPS server | 100% |
+|05| [Inception](https://github.com/BenjaminHThomas/DockerInception) | Network & system administration | Docker | ???% |
 |06| [Exam Rank 06] | C | |  ???% |
 |06| [ft_transcendence] | ||  ???% |
