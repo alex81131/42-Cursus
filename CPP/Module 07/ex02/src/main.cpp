@@ -1,39 +1,81 @@
-#include "iter.hpp"
+#include <iostream>
+#include <Array.hpp>
+#include <cstdlib>	// rand and srand
+#include <string>	// string test
 
-int	main() {
-	std::cout << "_____________ Int test _____________" << std::endl;
-	int		int_arr[5] = {1, 2, 3, 4, 5};
-	iter<int>(int_arr, 5, print_one<int>);
-	std::cout<< std::endl << "Triple:" << std::endl;
-	iter<int>(int_arr, 5, triple<int>);
-	iter<int>(int_arr, 5, print_one<int>);
-	std::cout << std::endl << "Next:" << std::endl;
-	iter<int>(int_arr, 5, print_next<int>);
+#define MAX_VAL 750
+int main(int, char**)
+{
+/* * * * * * * * test from the subject * * * * * * * */
+	Array<int> numbers(MAX_VAL);
+	int* mirror = new int[MAX_VAL];
+	srand(time(NULL));
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		const int value = rand();
+		numbers[i] = value;
+		mirror[i] = value;
+	}
+	//SCOPE
+	{
+		Array<int> tmp = numbers;
+		Array<int> test(tmp);
+	}
 
-	std::cout << "__________ const int test __________" << std::endl;
-	int	const	int_arr_c[5] = {12, 11, 6378, 2, 299792458};
-	iter<int>(int_arr_c, 5, print_one_const<int>);
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		if (mirror[i] != numbers[i])
+		{
+			std::cerr << "didn't save the same value!!" << std::endl;
+			return 1;
+		}
+	}
+	try
+	{
+		numbers[-2] = 0;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	try
+	{
+		numbers[MAX_VAL] = 0;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
-	std::cout << "____________ Float test ____________" << std::endl;
-	float	float_arr[6] = {0.11, 2.21, 3.03, 11.11, -2.04, -1.23};
-	iter<float>(float_arr, 6, print_one<float>);
-	std::cout<< std::endl << "Triple:" << std::endl;
-	iter<float>(float_arr, 6, triple<float>);
-	iter<float>(float_arr, 6, print_one<float>);
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		numbers[i] = rand();
+	}
+	delete [] mirror;
 
-	std::cout << "____________ Char test _____________" << std::endl;
-	char	char_arr[3] = {'!', '&', '#'};
-	iter<char>(char_arr, 3, print_one<char>);
-	std::cout<< std::endl << "Triple:" << std::endl;
-	iter<char>(char_arr, 3, triple<char>);
-	iter<char>(char_arr, 3, print_one<char>);
-	
-	std::cout << "___________ String test ____________" << std::endl;
-	std::string		str[2] = {"Eleonore", "is having so much fun in Vienna."};
-	iter<std::string>(str, 2, print_one<std::string>);
-	
-	std::cout << "________ const string test _________" << std::endl;
-	std::string	const	str_c[2] = {"Anne", "is lost in Taiwan."};
-	iter<std::string>(str_c, 2, print_one_const<std::string>);
+/* * * * * * * * more tests * * * * * * * */
+	std::cout << std::endl << "______________More Tests______________" << std::endl;
+	Array<std::string>	message(11);
+	// Create index-based messages
+	for (int i = 0; i < 11; i++)
+	{
+		message[i] = "This is message_";
+		std::stringstream	ss;
+		ss << i;
+		message[i].append(ss.str());
+	}
+	std::cout << "Array size: " << message.size() << std::endl;
+	std::cout << "Array content:" << std::endl << message << std::endl;
+
+	std::cout << "_______Copy and Memory Check__________" << std::endl;
+	Array<std::string>	arr(2);
+	arr[0] = "Eleonore";
+	arr[1] = "Anne";
+	std::cout << "Array size: " << arr.size() << std::endl;
+	std::cout << "Array content: " << std::endl << arr << std::endl;
+	std::cout << "* * * ↑Before  ↓After Copy Assignment * * *" << std::endl;
+	arr = message;
+	std::cout << "Array size: " << arr.size() << std::endl;
+	std::cout << "Array content:" << std::endl << arr << std::endl;
 	return 0;
 }

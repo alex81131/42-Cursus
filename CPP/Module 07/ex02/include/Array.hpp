@@ -1,57 +1,38 @@
 #pragma once
 
-# include <iostream>	// cout
-# include <iomanip>		// setprecision for double
+# include <iostream>	// cout, exception
+# include <sstream>		// ostream
 
 template <typename T>
-void	iter(T *arr, int size, void (*f)(T))
+class	Array
 {
-	for (int i = 0; i < size; i++)
-	{
-		f(arr[i]);
-	}
-}
+	public:
+		Array(void);							// Default constructor
+		Array(unsigned int n);					// Parameterized Constructor
+		Array(const Array& src);				// Copy constructor
+		Array&	operator = (const Array& src);	// Assignment operator
+		~Array(void);							// Destructor
 
-// Need the (*f)(T &) and (*f)(const T &) version,
-// because the functions below may take T & or const T & as an argument.
-template <typename T>
-void	iter(T *arr, int size, void (*f)(T &))
-{
-	for (int i = 0; i < size; i++)
-	{
-		f(arr[i]);
-	}
-}
+		T&				operator [] (unsigned int i);
+		const T&		operator [] (unsigned int i) const;
+		unsigned int	size(void) const;
+		class			OutOfRangeException;
 
-template <typename T>
-void	iter(const T *arr, int size, void (*f)(const T &))
-{
-	for (int i = 0; i < size; i++)
-	{
-		f(arr[i]);
-	}
-}
+	private:
+		unsigned int	_size;
+		T				*_arr;
+};
 
 template <typename T>
-void	triple(T &element)
+class Array<T>::OutOfRangeException: public std::exception
 {
-	element *= 3;
-}
+	public:
+		virtual const char*	what() const throw();
+};
 
 template <typename T>
-void	print_one(T &element)
-{
-	std::cout << std::fixed <<std::setprecision(2) << element << std::endl;
-}
+std::ostream&	operator << (std::ostream &o, const Array<T> &src);
 
-template <typename T>
-void	print_one_const(const T &element)
-{
-	std::cout << std::fixed <<std::setprecision(2) << element << std::endl;
-}
-
-template <typename T>
-void	print_next(T element)
-{
-	std::cout << std::fixed <<std::setprecision(2) << element + 1 << std::endl;
-}
+# include "Array.tpp"
+// Either you write everything in a single hpp (implementation after declaration),
+// 	or you write the declaration and then #include the implementation afterwards, as shown above.
