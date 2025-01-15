@@ -1,5 +1,5 @@
 # Name
-NAME	= easyfind
+NAME	= MutantStack
 
 # Compiler and flags
 CC		= c++
@@ -11,7 +11,7 @@ SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
 # Headers
-H_FILES		=	easyfind.hpp	easyfind.tpp
+H_FILES		=	MutantStack.hpp	MutantStack.tpp
 H_PATH		=	include/
 HEADER		=	$(addprefix $(H_PATH), $(H_FILES))
 
@@ -56,7 +56,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $^ -lreadline -o  $@
-	@printf "	$(RESET_LINE)$(BLUE_LIGHT)easyfind\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
+	@printf "	$(RESET_LINE)$(BLUE_LIGHT)MutantStack\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@mkdir -p $(dir $@)
@@ -64,21 +64,21 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@$(CC) $(CFLAGS) -I $(H_PATH) -c $< -o $@
 
 clean:
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting easyfind src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting MutantStack src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting easyfind src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting MutantStack src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting easyfind src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting MutantStack src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting easyfind src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting MutantStack src/...	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting easyfind src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting MutantStack src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting easyfind src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting MutantStack src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting easyfind src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting MutantStack src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting easyfind src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting MutantStack src/...	$(GREY)"
 	@sleep 0.1
 	@$(RM) $(OBJ_PATH)
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"
