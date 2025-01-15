@@ -1,11 +1,11 @@
 #include "Span.hpp"
 
-Span::Span(void): _n(100), _stored(0)
+Span::Span(void): _maxSize(100)
 {
 	// std::cout << "[Span] Default constructor called." << std::endl;
 }
 
-Span::Span(unsigned int n): _n(n), _stored(0)
+Span::Span(unsigned int n): _maxSize(n)
 {
 	// std::cout << "[Span] Parameterized constructor called." << std::endl;
 }
@@ -21,8 +21,7 @@ Span&	Span::operator = (const Span& src)
 	// std::cout << "[Span] Assignment constructor called." << std::endl;
 	if (this != &src)
 	{
-		this->_n = src._n;
-		this->_stored = src._stored;
+		this->_maxSize = src._maxSize;
 		this->_cont = src._cont;
 	}
 	return *this;
@@ -33,51 +32,57 @@ Span::~Span(void)
 	// std::cout << "[SPAN] Destructor called." << std::endl;
 }
 
-void	Span::addNumber(int nb)
+void	Span::addNumber(int value)
 {
-	if (_stored >= _n)
-		throw  OutOfRangeException();
-	std::vector<int>::iterator	it;
+	if (_cont.size() >= _maxSize)
+		throw OutOfRangeException();
 
-	for (it = _cont.begin(); it != _cont.end(); ++it)
-		if (nb < *it)
-			break;
-	if (it == _cont.end())
-		_cont.push_back(nb);
-	else
-		_cont.insert(it, 1, nb);
-	_stored += 1;
+	std::vector<int>::iterator	it = std::lower_bound(_cont.begin(), _cont.end(), value);
+	_cont.insert(it, value);
+}
+// std::lower_bound performs a binary search, making it faster (O(log n)) than a linear search.
+// 	It returns an iterator to the first element that is not less than value.
+// 	If all elements are smaller, it returns the end iterator,
+// 	indicating that value should be inserted at the end.
+
+// _cont.insert(pos, value):
+// 	insert "value" at the "position".
+
+void	Span::addNumber(int value, int n)
+{
+	if (_cont.size() + n > _maxSize)
+		throw OutOfRangeException();
+
+	std::vector<int>::iterator	it = std::lower_bound(_cont.begin(), _cont.end(), value);
+	_cont.insert(it, n, value);
 }
 // _cont.insert(pos, times, value):
 // 	pos: position in the vector container
 // 	times: number of times of the insertion
 // 	value: value to be inserted
 
-unsigned int	Span::shortestSpan(void) const
+// std::sort(A, B):
+// 	sorts the elements between A and B in ascending order
+unsigned int	Span::shortestSpan(void)
 {
-	if (_stored < 2)
+	if (_cont.size() < 2)
 		throw NoRangeException();
-	unsigned int	range = *(_cont.begin() + 1) - *(_cont.begin());
-	if (!range)
-		return range;
+	std::sort(_cont.begin(), _cont.end());
+	unsigned int	min = std::numeric_limits<int>::max();
 
-	std::vector<int>::const_iterator	it;
-	for (it = _cont.begin() + 1; it + 1 != _cont.end(); ++it)
+	for (std::vector<int>::const_iterator it = _cont.begin(); it + 1 != _cont.end(); it++)
 	{
-		unsigned int	temp = *(it + 1) - *it;
-		if (temp < range)
-			range = temp;
-		if (range == 0)
-			return range;
+		unsigned int	range = *(it + 1) - *it;
+		min = min < range ? min : range;
 	}
-	return range;
+	return min;
 }
 
-unsigned int	Span::longestSpan(void) const
+unsigned int	Span::longestSpan(void)
 {
-	if (_stored < 2)
+	if (_cont.size() < 2)
 		throw NoRangeException();
-	return (_cont.back() - _cont.front());
+	return *(std::max_element(_cont.begin(), _cont.end())) - *(std::min_element(_cont.begin(), _cont.end()));
 }
 // .front():
 // 	first element in the container
@@ -89,12 +94,12 @@ void	Span::printAll(void) const
 	std::vector<int>::const_iterator	it;
 
 	for (it = _cont.begin(); it !=_cont.end(); ++it)
-		std:: cout << *it << std::endl;
+		std::cout << *it << std::endl;
 }
 
-void	Span::storeNumbers(unsigned int n)
+void	Span::storeNumbers(unsigned int n)		// Store n random numbers
 {
-	if (n > (_n - _stored))
+	if (n > (_maxSize - _cont.size()))
 		throw OutOfRangeException();
 	srand(time(NULL));
 	for (unsigned int i = 0; i < n; i++)

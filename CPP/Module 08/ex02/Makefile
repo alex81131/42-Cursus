@@ -11,7 +11,7 @@ SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
 # Headers
-H_FILES		=	MutantStack.hpp	MutantStack.tpp
+H_FILES		=	MutantStack.hpp
 H_PATH		=	include/
 HEADER		=	$(addprefix $(H_PATH), $(H_FILES))
 

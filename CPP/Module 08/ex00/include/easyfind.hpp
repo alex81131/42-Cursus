@@ -1,7 +1,7 @@
 #pragma once
 
 # include <iostream>	// cout
-# include <algorithm>
+# include <algorithm>	// STL (Standard Template Library) algorithms: std::find
 
 template <typename T>
 typename T::iterator	easyfind(T &cont, int i);
