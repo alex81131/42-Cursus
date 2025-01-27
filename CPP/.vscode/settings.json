@@ -52,6 +52,7 @@
 		"ranges": "cpp",
 		"span": "cpp",
 		"*.tpp": "cpp",
-		"list": "cpp"
+		"list": "cpp",
+		"map": "cpp"
 	}
 }
