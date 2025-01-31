@@ -2,8 +2,8 @@
 NAME	= Template
 
 # Compiler and flags
-CC		= c++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXX			= g++
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 
 # Source files
 SRC_FILES	=	main.cpp
@@ -55,13 +55,13 @@ RESET_LINE	= \e[2K\r
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $^ -o  $@
+	@$(CXX) $(CXXFLAGS) $^ -o  $@
 	@printf "	$(RESET_LINE)$(BLUE_LIGHT)Template\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@mkdir -p $(dir $@)
 	@printf "$(RESET_LINE)$(RED_FLASH)Compiling...	$(GREY)$<$(SKY)$(NOCOLOR)"
-	@$(CC) $(CFLAGS) -I $(H_PATH) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -I $(H_PATH) -c $< -o $@
 
 clean:
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Template src/	$(GREY)"
