@@ -63,7 +63,7 @@ RESET_LINE	= \e[2K\r
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) $^ -lreadline -o  $@
+	@$(CC) $(CFLAGS) $^ -o  $@
 	@printf "	$(RESET_LINE)$(BLUE_LIGHT)Identification\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
