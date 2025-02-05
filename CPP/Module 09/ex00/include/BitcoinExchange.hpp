@@ -1,13 +1,14 @@
 #pragma once
 
 # include <iostream>	// cout
-# include <ifstream>	// ifstream: input file stream
+# include <fstream>		// file stream: reading and writing file stream
 # include <sstream>		// string stream
 # include <string>		// getline
+# include <stdexcept>	// std::logic_error for logical mistakes, such as invalid arguments or precondition violations.
 # include <map>
 
 
-const std::string	database_path = "data.csv"
+const std::string	database = "data.csv";
 
 class	BitcoinExchange
 {
@@ -20,17 +21,18 @@ class	BitcoinExchange
 
 		std::map<std::string, double>	getMapExchangeRate(void) const;
 
-		void	readDataCSV(void);
-		void	readDataTXT(const std::string& fileName);
-		void	printBitcoin(const std::string& date, const std::string rateStr, double rate);
-		double	getRate(std::string date);
+		void	readDatabase(void);
+		void	readInput(const std::string& file);
 
-		bool	isAccessible(std::ifstream& input, const std::string& fileName) const;
+	private:
+		std::map<std::string, double>	_exRate;
+
+		// bool	isAccessible(std::ifstream& input, const std::string& file) const;
 		bool	isValidLine(const std::string& line) const;
 		bool	isValidDate(const std::string& date) const;
 		bool	isLeapYear(int year) const;
 		bool	isValidRate(const std::string& rateStr, double rate) const;
 
-	private:
-		std::map<std::string, double>	_mapExchangeRate;
+		void	printBitcoin(const std::string& date, const std::string rateStr, double rate);
+		double	getRate(std::string date);
 };
