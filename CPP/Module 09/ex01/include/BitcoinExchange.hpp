@@ -28,8 +28,6 @@ class	BitcoinExchange
 
 	private:
 		std::map<std::string, double>	_exRate;						// Database stored in map format
-		// Chose map because it automatically maintains keys in sorted order,
-		// which makes it easy to find the closest exchange rate to a given date.
 
 		bool	isAccessible(std::ifstream& input) const;
 		bool	isValidLine(const std::string& line) const;
