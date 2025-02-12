@@ -6,12 +6,12 @@ CXX			= g++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 
 # Source files
-SRC_FILES	=	main.cpp	BitcoinExchange.cpp
+SRC_FILES	=	main.cpp	RPN.cpp
 SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
 # Headers
-H_FILES		=	BitcoinExchange.hpp
+H_FILES		=	RPN.hpp
 H_PATH		=	include/
 HEADER		=	$(addprefix $(H_PATH), $(H_FILES))
 
