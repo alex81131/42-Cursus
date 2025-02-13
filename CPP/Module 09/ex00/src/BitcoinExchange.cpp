@@ -1,9 +1,6 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(void)
-{
-	// std::cout << "[BitcoinExchange] Default constructor called." << std::endl;
-}
+BitcoinExchange::BitcoinExchange(void) {}
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& src): _exRate(src._exRate)
 {
@@ -19,10 +16,7 @@ BitcoinExchange&	BitcoinExchange::operator = (const BitcoinExchange& src)
 	return *this;
 }
 
-BitcoinExchange::~BitcoinExchange(void)
-{
-	// std::cout << "[BITCOINEXCHANGE] Destructor called." << std::endl;
-}
+BitcoinExchange::~BitcoinExchange(void) {}
 
 std::map<std::string, double>	BitcoinExchange::getMapExchangeRate(void) const
 {
@@ -110,6 +104,9 @@ bool	BitcoinExchange::isValidLine(const std::string& line) const
 	}
 	return true;
 }
+// std::logic_error: 是在程式執行前能夠檢查出來的錯誤，通常代表程式邏輯本身的錯誤。
+// std::runtime_error: 是在程式執行期間發生的錯誤，無法在編譯時預知的錯誤。
+// 當檢查到用戶輸入不正確（如日期格式錯誤或非法數字）時，使用 std::logic_error 更合適。
 
 bool	BitcoinExchange::isValidDate(const std::string& date) const
 {
@@ -119,13 +116,11 @@ bool	BitcoinExchange::isValidDate(const std::string& date) const
 			throw std::logic_error("Bad input (date format) => " + date);
 		for (int i = 0; i < 10; i++)
 		{
-			if (i == 4 || i == 7)
-			{
+			if (i == 4 || i == 7) {
 				if (date[i] != '-')
 					throw std::logic_error("Bad input (date format) => " + date);
 			}
-			else
-			{
+			else {
 				if (!std::isdigit(date[i]))
 					throw std::logic_error("Bad input (date format) => " + date);
 			}

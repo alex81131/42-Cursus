@@ -16,7 +16,6 @@ class	BitcoinExchange
 {
 	public:
 		BitcoinExchange(void);											// Default constructor
-		BitcoinExchange(const std::string& name);						// Parameterized Constructor
 		BitcoinExchange(const BitcoinExchange& src);					// Copy constructor
 		BitcoinExchange&	operator = (const BitcoinExchange& src);	// Assignment operator
 		~BitcoinExchange(void);											// Destructor
