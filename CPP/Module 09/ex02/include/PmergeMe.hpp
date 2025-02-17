@@ -14,6 +14,27 @@
 # include <ctime>		// clock()
 # include <exception>
 
+// Merge-Insertion Sort:
+// Let us say we are sorting the numbers {8, 3, 10, 1, 5, 4, 7, 6, 2, 9}.
+// The process follows these steps:
+// 1. Pair elements → {(8,3), (10,1), (5,4), (7,6), (2,9)}
+// 	- Take the larger of each pair as the initial sorted list: {8, 10, 5, 7, 9}
+// 	- The smaller elements ({3, 1, 4, 6, 2}) are "pending" insertions.
+// 2. Insert "pending" elements using the Jacobsthal sequence
+// 	- The insertion order follows J(n): {1, 3, 5, 11, ...}
+// 	- This means we insert in this order:
+// 		- First pending element goes into position 1
+// 		- Second pending element goes into position 3
+// 		- Third pending element goes into position 5
+// 		- And so on...
+// By spacing out insertions this way, we preserve sorted order efficiently
+// 	rather than doing a lot of unnecessary shifting.
+
+// Summary
+// 	1. Jacobsthal sequence spaces out insertions to reduce the number of shifts and comparisons needed.
+// 	2. Binary insertion makes each insertion efficient by using binary search instead of scanning one-by-one.
+// 	3. Combining both techniques leads to an efficient sorting method!
+
 class	PmergeMe
 {
 	public:
@@ -34,10 +55,10 @@ class	PmergeMe
 template <typename T>
 std::ostream& operator << (std::ostream& o, const std::vector<T>& src);
 
-std::vector<size_t>	generateJacobSeq(size_t n);		// Create a sequence of insertion indices (where to insert)
-std::vector<size_t>	getInsertionIndices(size_t n);	// Use the Jacobsthal numbers (sequence above) to calculate the optimal order of insertions.
+std::vector<size_t>	generateJacobSeq(size_t n);		// Create the Jacobsthal to help structure insertion efficiently. (where to insert)
+std::vector<size_t>	getInsertionIndices(size_t n);	// Build the actual insertion index list and decide where to insert.
 
-template <typename Iter, typename T>
+template <typename Iter, typename T>				// 用二分法尋找比較快
 Iter	binarySearch(Iter first, Iter last, const T& value, size_t* compares);
 
 template <template <typename, typename> class Container, typename T, typename Alloc>
