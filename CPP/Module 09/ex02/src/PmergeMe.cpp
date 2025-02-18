@@ -75,38 +75,38 @@ std::vector<size_t>	generateJacobSeq(size_t n)
 	return JacobSeq;
 }
 
-std::vector<size_t>	getInsertionIndices(size_t n)
+std::vector<size_t>	getInsertionindex(size_t n)
 {
 	std::vector<size_t>	JacobSeq = generateJacobSeq(n);
-	std::vector<size_t>	indices;
+	std::vector<size_t>	index;
 
 	if (n == 0)
-		return indices;
-	indices.push_back(1);
+		return index;
+	index.push_back(1);
 	if (n == 1)
-		return indices;
+		return index;
 	for (size_t i = 1; i < JacobSeq.size(); i++)
 	{
-		if (indices.back() < JacobSeq[i])
+		if (index.back() < JacobSeq[i])
 		{
 			size_t	tmp = JacobSeq[i - 1];
-			indices.push_back(JacobSeq[i]);
+			index.push_back(JacobSeq[i]);
 			for (size_t j = JacobSeq[i] - 1; j > tmp; j--)
-				indices.push_back(j);
+				index.push_back(j);
 		}
 	}
 	for (size_t k = n; k > JacobSeq.back(); k--)
-		indices.push_back(k);
-	return indices;
+		index.push_back(k);
+	return index;
 }
 // Take n = 10 for example. JacobSeq = {1, 3, 5}.
 // 1. Iteration 1 (i = 1, JacobSeq[1] = 3)
-// 	- indices.back() = 1
+// 	- index.back() = 1
 // 	- Since 1 < 3, we:
 // 		- Push 3: {1, 3}
 // 		- Fill the gap from 3-1 = 2 to tmp = 1 (numbers between 1~3) → Push 2: {1, 3, 2}.
 // 2. Iteration 2 (i = 2, JacobSeq[2] = 5)
-// 	- indices.back() = 2
+// 	- index.back() = 2
 // 	- Since 2 < 5, we:
 // 		- Push 5: {1, 3, 2, 5, 4}
 // 		- Fill the gap from 5-1 = 4 to tmp = 3 → Push 4: {1, 3, 2, 5, 4}.
@@ -120,24 +120,78 @@ std::vector<size_t>	getInsertionIndices(size_t n)
 // 		This ensures that each number is inserted into a more structured array,
 // 		reducing the overall number of comparisons.
 
+// binarySearch(first element in the group, last element, value to look for, number of comparison)
 template <typename Iter, typename T>
-Iter	binarySearch(Iter first, Iter last, const T& value, size_t* compares)
+Iter	binarySearch(Iter first, Iter last, const T& value, size_t* compare_nb)
 {
 	Iter	it;
-	typename	std::iterator_traits<Iter>::difference_type	count, step;
-	count = std::distance(first, last);
+	typename std::iterator_traits<Iter>::difference_type	range, mid;
+	range = std::distance(first, last);
 
-	while (count > 0)
+	while (range > 0)
 	{
 		it = first;
-		step = count / 2;
-		std::adcance(it, step);
+		mid = range / 2;
+		std::advance(it, mid);		// Put the iterator at the half point
+
+		*compare_nb += 1;
+		if (*it < value)			// If the middle < value, the value is on the right half
+		{
+			first = ++it;			// Ignoring the left half, ++it is now the first element on the right half
+			range -= mid + 1;		// Remove the old middle
+		}
+		else
+			range = mid;
 	}
+	return first;
 }
+// std::iterator_traits<Iter>:
+// 	A trait class that extracts information about an iterator 
+// difference_type:
+// 	The type used to measure distances between iterators.
 
 template <template <typename, typename> class Container, typename T, typename Alloc>
 size_t	merge_insertion_sort(Container<T, Alloc>& cont,
-	typename Container<T, Alloc>::iterator first, typename Container<T, Alloc>::iterator last)
+	typename Container<T, Alloc>::iterator first,
+	typename Container<T, Alloc>::iterator last)
 {
-	
+	typedef typename Container<T, Alloc>::iterator					cont_it;
+	typedef typename Alloc::template rebind<std::pair<T, T>::other	PairAlloc;
+	typedef typename Conatiner<std::pair<T, T>, PairAlloc>::iterator	pair_it;
+	(void)cont;
+	size_t	compare_nb= = 0;
+
+	dize_t	diff = std::distance(first, last);
+	if (diff <= 1)
+		return compare_nb;
+
+	/* * * * Step 1: Create n/2 pairs * * * */
+	Container<std::pair<T, T>, PairAlloc>	pairs;
+	Container<T, Alloc>						remaining;
+
+	cont_it = first;
+	while (std::distance(it, last) > 1)
+	{
+		T	val_first = *(it++);
+		T	val_second = *(it++);
+		compare_nb++;
+		if (val_second < val_first)
+			std::swap(val_first, val_second);
+		pairs.push_back(std::make_pair(val_first, val_second));
+	}
+	if (it != last)
+		remaining.push_back(*it);
+
+	/* * * * Step 2: Sort the pairs by the larger number * * * */
+	Container<T, Alloc>	mainGroup;
+
+	for (pair_it	itp = pairs.begin(); itp != pairs.end(); ++itp)
+		mainGroup.push_back(itp->second);
+	if (mainGroup.size() > 1)		// Sort recursively
+		compare_nb += merge_insertion_sort(mainGroup, mainGroup.begin(), mainGroup.end())
+
+	/* * * * Step 3: Sort the pairs by the larger number * * * */
+
+	/* * * * Step 4: Sort the pairs by the larger number * * * */
+	std::vector<size_t>	index = getInsertionindex()
 }

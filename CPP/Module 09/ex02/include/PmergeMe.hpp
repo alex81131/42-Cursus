@@ -56,7 +56,7 @@ template <typename T>
 std::ostream& operator << (std::ostream& o, const std::vector<T>& src);
 
 std::vector<size_t>	generateJacobSeq(size_t n);		// Create the Jacobsthal to help structure insertion efficiently. (where to insert)
-std::vector<size_t>	getInsertionIndices(size_t n);	// Build the actual insertion index list and decide where to insert.
+std::vector<size_t>	getInsertionindex(size_t n);	// Build the actual insertion index list and decide where to insert.
 
 template <typename Iter, typename T>				// 用二分法尋找比較快
 Iter	binarySearch(Iter first, Iter last, const T& value, size_t* compares);
