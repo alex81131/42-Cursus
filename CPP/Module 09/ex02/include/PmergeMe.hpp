@@ -19,8 +19,9 @@
 // The process follows these steps:
 // 1. Pair elements → {(8,3), (10,1), (5,4), (7,6), (2,9)}
 // 	- Take the larger of each pair as the initial sorted list: {8, 10, 5, 7, 9}
+// 	- SOrt recursively: → {5, 7, 8, 9, 10}
 // 	- The smaller elements ({3, 1, 4, 6, 2}) are "pending" insertions.
-// 2. Insert "pending" elements using the Jacobsthal sequence
+// 2. Insert "pending" elements using the Jacobsthal sequence (and this is called Binary Insertion).
 // 	- The insertion order follows J(n): {1, 3, 5, 11, ...}
 // 	- This means we insert in this order:
 // 		- First pending element goes into position 1

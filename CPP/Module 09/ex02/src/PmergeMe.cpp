@@ -159,10 +159,10 @@ size_t	merge_insertion_sort(Container<T, Alloc>& cont,
 	typedef typename Alloc::template rebind<std::pair<T, T>::other	PairAlloc;
 	typedef typename Conatiner<std::pair<T, T>, PairAlloc>::iterator	pair_it;
 	(void)cont;
-	size_t	compare_nb= = 0;
+	size_t	compare_nb = 0;
 
 	dize_t	diff = std::distance(first, last);
-	if (diff <= 1)
+	if (diff <= 1)@@@@@@@@@@@@@@@@@@@@@@@@@@@@@        whyyyy?
 		return compare_nb;
 
 	/* * * * Step 1: Create n/2 pairs * * * */
@@ -182,16 +182,59 @@ size_t	merge_insertion_sort(Container<T, Alloc>& cont,
 	if (it != last)
 		remaining.push_back(*it);
 
-	/* * * * Step 2: Sort the pairs by the larger number * * * */
+	/* * * * Step 2: Recursively sort the larger number (called main) from the pairs * * * */
 	Container<T, Alloc>	mainGroup;
 
 	for (pair_it	itp = pairs.begin(); itp != pairs.end(); ++itp)
 		mainGroup.push_back(itp->second);
 	if (mainGroup.size() > 1)		// Sort recursively
-		compare_nb += merge_insertion_sort(mainGroup, mainGroup.begin(), mainGroup.end())
+		compare_nb += merge_insertion_sort(mainGroup, mainGroup.begin(), mainGroup.end());
 
-	/* * * * Step 3: Sort the pairs by the larger number * * * */
+	/* * * * Step 3: Put the smaller number (pend) from the pairs in pendGroup * * * */
+	Container<T, Alloc>	pendGroup;
 
-	/* * * * Step 4: Sort the pairs by the larger number * * * */
-	std::vector<size_t>	index = getInsertionindex()
+	for (cont_it it = mainGroup.begin(); it != mainGroup.end(); ++it)
+		for (pair_it itp = pair_it.begin(); itp != pair_it.end(); ++itp)
+			if (itp->second == *it)
+			{
+				pendGroup.push_back(*itp->first);
+				break ;
+			}
+
+	/* * * * Step 4: Insert the pend elements using Binary Insertion Sort * * * */
+	std::vector<size_t>	index = getInsertionindex(pendGroup.size());
+
+	for (size_t i = 0; i < index.size(); i++)
+	{
+		size_t	insertIndex = index[i];
+		cont_it	pend_it = pendGroup.begin();
+		if (insertIndex == 1)
+			mainGroup.insert(mainGroup.begin(), *pend_it);		// .insert(pos, value): insert "value" at the "position".
+		else
+		{
+			std::advance(pend_id, insertIndex - 1);
+			T	pend;
+			for (pair_it itp = pairs.begin(); itp != pairs.end(); ++itp)
+				if (itp->first == *pend_it)
+				{
+					pend = itp->second;
+					break ;
+				}
+		}
+		cont_it	searchEnd;
+		for (searchEnd = mainGroup.begin(); searchEnd = mainGroup.end(); ++searchEnd)
+			if (*searchEnd == pend)
+				break ;
+		cont_it	insertPos = binarySearch(mainGroup.begin(), searchEnd, *pend_it, &compare_nb);
+		mainGroup.insert(insertPos, *pend_it)
+	}
+	if (!remaining.empty())
+	{
+		cont_it	insertPos = binarySearch(mainGroup.begin(), mainGroup.end(), *remaining.begin(), &compare_nb);
+		mainGroup.insert(insertPos, *remaining.begin());
+	}
+
+	// Step 5: Copy back to the original container
+	std::copy(mainGroup.begin(), mainGroup.end(), first);
+	return compare_nb;
 }
