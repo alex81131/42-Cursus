@@ -127,6 +127,11 @@ Iter	binarySearch(Iter first, Iter last, const T& value, size_t* compare_nb)
 	Iter	it;
 	typename std::iterator_traits<Iter>::difference_type	range, mid;
 	range = std::distance(first, last);
+	// range and mid are distances whose type is determined after the specific iterator type Iter is provided.
+	// std::distance gives a half-open range of the container.
+	// 	ie. vec = {11, 12, 13}, vec.begin() = 11, vec.end() = nothingness after 13.
+	// 	distance includes the element pointed to by first(11), but excludes the position pointed to by last (nothingness),
+	// 	counting 11, 12 and 13, therefore giving the range/length/size of 3.
 
 	while (range > 0)
 	{
@@ -155,21 +160,21 @@ size_t	merge_insertion_sort(Container<T, Alloc>& cont,
 	typename Container<T, Alloc>::iterator first,
 	typename Container<T, Alloc>::iterator last)
 {
-	typedef typename Container<T, Alloc>::iterator					cont_it;
-	typedef typename Alloc::template rebind<std::pair<T, T>::other	PairAlloc;
-	typedef typename Conatiner<std::pair<T, T>, PairAlloc>::iterator	pair_it;
+	typedef typename Container<T, Alloc>::iterator						cont_it;
+	typedef typename Alloc::template rebind<std::pair<T, T> >::other	PairAlloc;
+	typedef typename Container<std::pair<T, T>, PairAlloc>::iterator	pair_it;
 	(void)cont;
 	size_t	compare_nb = 0;
 
-	dize_t	diff = std::distance(first, last);
-	if (diff <= 1)@@@@@@@@@@@@@@@@@@@@@@@@@@@@@        whyyyy?
+	size_t	diff = std::distance(first, last);
+	if (diff <= 1)				// 0 or only 1 element
 		return compare_nb;
 
 	/* * * * Step 1: Create n/2 pairs * * * */
 	Container<std::pair<T, T>, PairAlloc>	pairs;
 	Container<T, Alloc>						remaining;
 
-	cont_it = first;
+	cont_it	it = first;
 	while (std::distance(it, last) > 1)
 	{
 		T	val_first = *(it++);
@@ -194,10 +199,10 @@ size_t	merge_insertion_sort(Container<T, Alloc>& cont,
 	Container<T, Alloc>	pendGroup;
 
 	for (cont_it it = mainGroup.begin(); it != mainGroup.end(); ++it)
-		for (pair_it itp = pair_it.begin(); itp != pair_it.end(); ++itp)
+		for (pair_it itp = pairs.begin(); itp != pairs.end(); ++itp)
 			if (itp->second == *it)
 			{
-				pendGroup.push_back(*itp->first);
+				pendGroup.push_back(itp->first);
 				break ;
 			}
 
@@ -206,27 +211,40 @@ size_t	merge_insertion_sort(Container<T, Alloc>& cont,
 
 	for (size_t i = 0; i < index.size(); i++)
 	{
-		size_t	insertIndex = index[i];
+		size_t	insertIndex = index[i];		// index of the pendGroup, used to pick the element in pendGroup to insert next.
 		cont_it	pend_it = pendGroup.begin();
-		if (insertIndex == 1)
-			mainGroup.insert(mainGroup.begin(), *pend_it);		// .insert(pos, value): insert "value" at the "position".
+
+		// Step 4-1: Insert the first pend element.
+		if (insertIndex == 1)		// Squeeze in the first element in pendGroup, which is smaller than all the other elements in the mainGroup for now
+			mainGroup.insert(mainGroup.begin(), *pend_it);	// .insert(pos, value): insert "value" at the "position".
+
+		// Step 4-2: Select the correct (insertIndex - 1)-th element in pendGroup to insert.
 		else
 		{
-			std::advance(pend_id, insertIndex - 1);
-			T	pend;
+			std::advance(pend_it, insertIndex - 1);		//pend_it is 0-based and insertIndex is 1-based.
+			T	pairMain;
 			for (pair_it itp = pairs.begin(); itp != pairs.end(); ++itp)
 				if (itp->first == *pend_it)
 				{
-					pend = itp->second;
+					pairMain = itp->second;
 					break ;
 				}
+
+			// Step 4-3:
+			// 	To make the insertion more efficient, we find the end,
+			// 	which is the pend's corresponding main of the pair, being the bigger element.
+			// 	→the pend must be inserted somewhere before pairMain.
+			cont_it	searchEnd;
+			for (searchEnd = mainGroup.begin(); searchEnd != mainGroup.end(); ++searchEnd)
+				if (*searchEnd == pairMain)
+					break ;
+
+			// Step 4-4: Find the insertion position
+			cont_it	insertPos = binarySearch(mainGroup.begin(), searchEnd, *pend_it, &compare_nb);
+
+			// Step 4-5: Insert
+			mainGroup.insert(insertPos, *pend_it);
 		}
-		cont_it	searchEnd;
-		for (searchEnd = mainGroup.begin(); searchEnd = mainGroup.end(); ++searchEnd)
-			if (*searchEnd == pend)
-				break ;
-		cont_it	insertPos = binarySearch(mainGroup.begin(), searchEnd, *pend_it, &compare_nb);
-		mainGroup.insert(insertPos, *pend_it)
 	}
 	if (!remaining.empty())
 	{
@@ -237,4 +255,36 @@ size_t	merge_insertion_sort(Container<T, Alloc>& cont,
 	// Step 5: Copy back to the original container
 	std::copy(mainGroup.begin(), mainGroup.end(), first);
 	return compare_nb;
+}
+
+void	PmergeMe::sort(void)
+{
+	std::cout << "Before: " << _c_vec << std::endl;
+	// do vector merge-insertion sort
+	clock_t	vec_start = clock();
+	size_t num_compares_vec = merge_insertion_sort(_c_vec, _c_vec.begin(), _c_vec.end());
+	clock_t	vec_end = clock();
+	std::cout << "After:  " << _c_vec << std::endl;
+
+	// do deque merge-insertion sort
+	clock_t	deque_start = clock();
+	size_t num_compares_deq = merge_insertion_sort(_c_deq, _c_deq.begin(), _c_deq.end());
+	clock_t deque_end = clock();
+
+	// do list merge-insertion sort
+	clock_t	list_start = clock();
+	size_t num_compares_lst = merge_insertion_sort(_c_lst, _c_lst.begin(), _c_lst.end());
+	clock_t list_end = clock();
+
+	std::cout << "Time to process a range of " << _c_vec.size() << " elements with std::[vector] : ";
+	std::cout << std::fixed << std::setprecision(5) << static_cast<double>(vec_end - vec_start) / CLOCKS_PER_SEC << " s. "
+			<< "Number of compares: " << num_compares_vec << std::endl;
+
+	std::cout << "Time to process a range of " << _c_deq.size() << " elements with std::[deque]  : ";
+	std::cout << std::fixed << std::setprecision(5) << static_cast<double>(deque_end - deque_start) / CLOCKS_PER_SEC << " s. "
+			<< "Number of compares: " << num_compares_deq << std::endl;
+
+	std::cout << "Time to process a range of " << _c_lst.size() << " elements with std::[list]   : ";
+	std::cout << std::fixed << std::setprecision(5) << static_cast<double>(list_end - list_start) / CLOCKS_PER_SEC << " s. "
+			<< "Number of compares: " << num_compares_lst << std::endl;
 }

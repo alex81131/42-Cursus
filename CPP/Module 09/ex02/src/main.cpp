@@ -1,23 +1,25 @@
-#include "RPN.hpp"
+#include "PmergeMe.hpp"
 
 int	main(int ac, char **av)
 {
-	if (ac != 2)
+	if (ac < 2)
 	{
-		std::cerr << "[Error] Usage: " << av[0] << " <RPN>" << std::endl;
+		std::cerr << "Error: Insufficienty input." << std::endl;
 		return 1;
 	}
-	try
-	{
-		RPN	r;
 
-		std::cout  << r.calculation(av[1]) << std::endl;
-	}
-	catch(const std::logic_error& e)
+	std::vector<int>	value;
+	for (int i = 1; i < ac; i++)
 	{
-		std::cerr << e.what() << std::endl;
-		return 1;
+		if (!PmergeMe::isPositiveNum(av[i]))
+		{
+			std::cerr << "Error: Only accept natural numbers (positive integers)." << std::endl;
+			return 1;
+		}
+		value.push_back(std::atoi(av[i]));
 	}
+	PmergeMe	sorter(value);
+	sorter.sort();
 	return 0;
 }
 // 1. Simple:
