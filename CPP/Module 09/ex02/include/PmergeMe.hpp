@@ -12,7 +12,6 @@
 
 # include <algorithm>	// std::sort, std::min, std::max, std::lower_bound, std::copy...
 # include <ctime>		// clock()
-# include <exception>
 
 // Merge-Insertion Sort:
 // Let us say we are sorting the numbers {8, 3, 10, 1, 5, 4, 7, 6, 2, 9}.

@@ -267,7 +267,7 @@ void	PmergeMe::sort(void)
 	size_t	num_compares_vec = merge_insertion_sort(_c_vec, _c_vec.begin(), _c_vec.end());
 	clock_t	vec_end = clock();
 	std::cout << "After: " << _c_vec << std::endl << std::endl;
-	std::cout << " Container | Time(s) | Comparison" << std::endl;
+	std::cout << " Container | Time(ms) | Comparison" << std::endl;
 	std::cout << "----------------------------------" << std::endl;
 
 	// do deque
@@ -280,15 +280,15 @@ void	PmergeMe::sort(void)
 	size_t	num_compares_lst = merge_insertion_sort(_c_lst, _c_lst.begin(), _c_lst.end());
 	clock_t lst_end = clock();
 
-	std::cout << "   Vector  | "
-			<< std::fixed << std::setprecision(5) << static_cast<double>(vec_end - vec_start) / CLOCKS_PER_SEC << " |"
+	std::cout << "   Vector  |   "
+			<< std::fixed << std::setprecision(3) << static_cast<double>(vec_end - vec_start) / CLOCKS_PER_SEC * 1000 << "  |"
 			<< "    " << num_compares_vec << std::endl;
 
-	std::cout << "   Deque   | "
-			<< std::fixed << std::setprecision(5) << static_cast<double>(deq_end - deq_start) / CLOCKS_PER_SEC << " |"
+	std::cout << "   Deque   |   "
+			<< std::fixed << std::setprecision(3) << static_cast<double>(deq_end - deq_start) / CLOCKS_PER_SEC * 1000 << "  |"
 			<< "    " << num_compares_deq << std::endl;
 
-	std::cout << "   List    | "
-			<< std::fixed << std::setprecision(5) << static_cast<double>(lst_end - lst_start) / CLOCKS_PER_SEC << " |"
+	std::cout << "   List    |   "
+			<< std::fixed << std::setprecision(3) << static_cast<double>(lst_end - lst_start) / CLOCKS_PER_SEC * 1000 << "  |"
 			<< "    " << num_compares_lst << std::endl;
 }
