@@ -22,18 +22,17 @@ int	main(int ac, char **av)
 	sorter.sort();
 	return 0;
 }
-// 1. Simple:
-// 	3 4 +
-// 		7
-// 2. Multiply:
-// 	2 3 + 5 *
-// 		25
-// 3. All:
-// 	9 3 / 2 + 4 *
-// 		20
-// 4. Priorities:
-// 	3 4 + 5 6 + *
-// 		77
-// 5. Any number:
-// 	99 11 / -2 + 4 *
-// 		28
+// https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php
+
+// 1. vector: Input dependant
+// 	a. Structure: One contiguous block of elements (e.g., [1, 2, 3, 4] at consecutive addresses).
+// 	b. Fast when: Cache locality shines with a good input; fewer reallocations or shifts amplify this.
+// 2. deque: Overall balanced
+// 	a. Structure: A dynamic array of pointers (the "spine") where each pointer points to a block of elements
+// 	(e.g., [ptr1, ptr2] where ptr1 → [1, 2] and ptr2 → [3, 4]).
+// 	b. Efficient insert near ends helps with a tougher input, balancing block overhead.
+// 3. list: Always slowest
+// 	a. Structure: Scattered nodes linked by pointers.
+// 	b. Cheap inserts, but traversal and cache misses kill performance.
+// 	(cache miss: when the next node is not in the cache (integrated in the CPU),
+// 				the PC has to withdraw it from the RAM (on the motherboard), which is much slower than caches)

@@ -259,32 +259,36 @@ size_t	merge_insertion_sort(Container<T, Alloc>& cont,
 
 void	PmergeMe::sort(void)
 {
-	std::cout << "Before: " << _c_vec << std::endl;
-	// do vector merge-insertion sort
-	clock_t	vec_start = clock();
-	size_t num_compares_vec = merge_insertion_sort(_c_vec, _c_vec.begin(), _c_vec.end());
-	clock_t	vec_end = clock();
-	std::cout << "After:  " << _c_vec << std::endl;
+	std::cout << "\nSize = " << _c_vec.size() << "." << std::endl;
+	std::cout << "Before:" << _c_vec << std::endl;
 
-	// do deque merge-insertion sort
-	clock_t	deque_start = clock();
-	size_t num_compares_deq = merge_insertion_sort(_c_deq, _c_deq.begin(), _c_deq.end());
-	clock_t deque_end = clock();
+	// do vector
+	clock_t	vec_start = clock();
+	size_t	num_compares_vec = merge_insertion_sort(_c_vec, _c_vec.begin(), _c_vec.end());
+	clock_t	vec_end = clock();
+	std::cout << "After: " << _c_vec << std::endl << std::endl;
+	std::cout << " Container | Time(s) | Comparison" << std::endl;
+	std::cout << "----------------------------------" << std::endl;
+
+	// do deque
+	clock_t	deq_start = clock();
+	size_t	num_compares_deq = merge_insertion_sort(_c_deq, _c_deq.begin(), _c_deq.end());
+	clock_t deq_end = clock();
 
 	// do list merge-insertion sort
-	clock_t	list_start = clock();
-	size_t num_compares_lst = merge_insertion_sort(_c_lst, _c_lst.begin(), _c_lst.end());
-	clock_t list_end = clock();
+	clock_t	lst_start = clock();
+	size_t	num_compares_lst = merge_insertion_sort(_c_lst, _c_lst.begin(), _c_lst.end());
+	clock_t lst_end = clock();
 
-	std::cout << "Time to process a range of " << _c_vec.size() << " elements with std::[vector] : ";
-	std::cout << std::fixed << std::setprecision(5) << static_cast<double>(vec_end - vec_start) / CLOCKS_PER_SEC << " s. "
-			<< "Number of compares: " << num_compares_vec << std::endl;
+	std::cout << "   Vector  | "
+			<< std::fixed << std::setprecision(5) << static_cast<double>(vec_end - vec_start) / CLOCKS_PER_SEC << " |"
+			<< "    " << num_compares_vec << std::endl;
 
-	std::cout << "Time to process a range of " << _c_deq.size() << " elements with std::[deque]  : ";
-	std::cout << std::fixed << std::setprecision(5) << static_cast<double>(deque_end - deque_start) / CLOCKS_PER_SEC << " s. "
-			<< "Number of compares: " << num_compares_deq << std::endl;
+	std::cout << "   Deque   | "
+			<< std::fixed << std::setprecision(5) << static_cast<double>(deq_end - deq_start) / CLOCKS_PER_SEC << " |"
+			<< "    " << num_compares_deq << std::endl;
 
-	std::cout << "Time to process a range of " << _c_lst.size() << " elements with std::[list]   : ";
-	std::cout << std::fixed << std::setprecision(5) << static_cast<double>(list_end - list_start) / CLOCKS_PER_SEC << " s. "
-			<< "Number of compares: " << num_compares_lst << std::endl;
+	std::cout << "   List    | "
+			<< std::fixed << std::setprecision(5) << static_cast<double>(lst_end - lst_start) / CLOCKS_PER_SEC << " |"
+			<< "    " << num_compares_lst << std::endl;
 }
