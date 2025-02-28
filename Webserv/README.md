@@ -1,5 +1,5 @@
 # Webserv
-A HTTP 1.1 server in C++ 98, designed to handle HTTP requests, responses, and dynamic content generation through CGI scripts.
+A HTTP/1.1 server in C++ 98, designed to handle HTTP requests, responses, and dynamic content generation through CGI scripts.
 
 # Grok: Where to start
 Roadmap given by AI Grok:
