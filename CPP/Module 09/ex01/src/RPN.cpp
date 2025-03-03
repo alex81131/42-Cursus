@@ -26,6 +26,8 @@ double	RPN::calculation(const std::string& str)
 		else
 			do_number(token);
 	}
+	// Check only 2 numbers before an operator,
+	// 	rendering the _stack.size() == 1.
 	if (_stack.size() != 1)
 		throw std::logic_error("Error: Invalid input.");
 	return _stack.top();
