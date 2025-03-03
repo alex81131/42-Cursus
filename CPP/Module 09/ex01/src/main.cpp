@@ -35,3 +35,6 @@ int	main(int ac, char **av)
 // 5. Any number:
 // 	99 11 / -2 + 4 *
 // 		28
+// 6.
+// 	1 3 5 2 / * *
+// 		7.5
