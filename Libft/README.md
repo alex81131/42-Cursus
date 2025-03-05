@@ -1,13 +1,13 @@
 # Libft
 This project aims to code a C library regrouping usual functions that we’ll be allowed to use in all our other 42 projects.
 
-# Resources
-1. https://github.com/48d31kh413k/1337-Libft-42
-2. https://github.com/pasqualerossi/Libft?tab=readme-ov-file#functions-from-ctypeh
-
-# Libft Functions
-
-### Functions from `<ctype.h>`
+## Libft Functions
+<details>
+  <summary>
+    
+#### Functions from `<ctype.h>`
+  </summary>
+  
 - [`ft_isalpha`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_isalpha.c) - checks for an alphabetic character.
 - [`ft_isdigit`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_isdigit.c) - checks for a digit (0 through 9).
 - [`ft_isalnum`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_isalnum.c) - checks for an alphanumeric character.
@@ -15,8 +15,13 @@ This project aims to code a C library regrouping usual functions that we’ll be
 - [`ft_isprint`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_isprint.c) - checks for any printable character.
 - [`ft_toupper`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_toupper.c) - convert char to uppercase.
 - [`ft_tolower`](https://github.com/alex81131/42-Cursus/blob/main/Libft/ctype.h/ft_tolower.c) - convert char to lowercase.
+</details>
+<details>
+  <summary>
+    
+#### Functions from `<string.h>`
+  </summary>
 
-### Functions from `<string.h>`
 - [`ft_memset`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_memset.c) - fill memory with a constant byte.
 - [`ft_strlen`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strlen.c) - calculate the length of a string.
 - [`ft_bzero`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_bzero.c) - zero a byte string.
@@ -32,8 +37,13 @@ This project aims to code a C library regrouping usual functions that we’ll be
 - [`ft_memcmp`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_memcmp.c) - compare memory areas.
 - [`ft_strnstr`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strnstr.c) - locate a substring in a string.
 - [`ft_strdup`](https://github.com/alex81131/42-Cursus/blob/main/Libft/string.h/ft_strdup.c) - creates a duplicate for the string passed as parameter.
+</details>
+<details>
+  <summary>
+    
+#### Functions from `<stdlib.h>`
+  </summary>
 
-### Functions from `<stdlib.h>`
 - [`ft_atoi`](https://github.com/alex81131/42-Cursus/blob/main/Libft/stdlib.h/ft_atoi.c) - convert a string to an integer.
 - [`ft_calloc`](https://github.com/alex81131/42-Cursus/blob/main/Libft/stdlib.h/ft_calloc.c) - allocates memory and sets its bytes' values to 0.
 
@@ -49,8 +59,13 @@ This project aims to code a C library regrouping usual functions that we’ll be
 - [`ft_putstr_fd`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Non-standard%20functions/ft_putstr_fd.c) - output a string to a file descriptor.
 - [`ft_putendl_fd`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Non-standard%20functions/ft_putendl_fd.c) - output a string to a file descriptor, followed by a new line.
 - [`ft_putnbr_fd`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Non-standard%20functions/ft_putnbr_fd.c) - output a number to a file descriptor.
-
-### Linked list functions
+</details>
+<details>
+  <summary>
+    
+#### Linked list functions
+  </summary>
+  
 - [`ft_lstnew`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Linked%20list%20functions/ft_lstnew_bonus.c) - creates a new list element.
 - [`ft_lstadd_front`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Linked%20list%20functions/ft_lstadd_front_bonus.c) - adds an element at the beginning of a list.
 - [`ft_lstsize`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Linked%20list%20functions/ft_lstsize_bonus.c) - counts the number of elements in a list.
@@ -59,4 +74,14 @@ This project aims to code a C library regrouping usual functions that we’ll be
 - [`ft_lstdelone`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Linked%20list%20functions/ft_lstdelone_bonus.c) - deletes and free list.
 - [`ft_lstclear`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Linked%20list%20functions/ft_lstclear_bonus.c) - deletes and free list.
 - [`ft_lstiter`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Linked%20list%20functions/ft_lstiter_bonus.c) - applies a function to each element of a list.
-- [`ft_lstmap`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Linked%20list%20functions/ft_lstmap_bonus.c) - applies a function to each element of a list. 
+- [`ft_lstmap`](https://github.com/alex81131/42-Cursus/blob/main/Libft/Linked%20list%20functions/ft_lstmap_bonus.c) - applies a function to each element of a list.
+</details>
+<details>
+  <summary>
+    
+##### Resources
+  </summary>
+  
+1. https://github.com/48d31kh413k/1337-Libft-42
+2. https://github.com/pasqualerossi/Libft?tab=readme-ov-file#functions-from-ctypeh
+</details>
