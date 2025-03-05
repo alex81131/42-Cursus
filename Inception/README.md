@@ -1,9 +1,14 @@
 # Inception
 Setting up containerised infrastructure in Docker.
-<br><br><br>
+<br><br>
 
----
-#### Step 0: Set up a [`Virtual Machine`](https://baigal.medium.com/born2beroot-e6e26dfb50ac)(Debian). <br>
+
+<details>
+<summary>
+
+#### Step 0: Set up a [`Virtual Machine`](https://baigal.medium.com/born2beroot-e6e26dfb50ac)(Debian).
+</summary>
+
 Because we need sudo to use Docker.
 1. 6144 MB RAM, 3 CPU, 40 GB hard disk.
 2. Graphical Install<br>
@@ -20,18 +25,32 @@ Because we need sudo to use Docker.
 10. (optional) [Activate mutual clipboard](https://github.com/alex81131/42-Cursus/blob/main/Inception/Activate_mutual_clipboard.md)
 <br><br>
 ---
+</details>
+<details>
+<summary>
+
 #### Step 1: Install Docker
+</summary>
+
 1. ```
    sudo apt install -y docker.io docker-compose
    sudo systemctl enable docker
    sudo usermod -aG docker username
    ```
-3. Check:
+3. Check1:
    ```
    docker --version
    docker-compose --version
    ```
+4. Check2:
+   ```
+   docker run hello-world
+   ```
+   If the result of `groups` and `groups login` are not consistent, reboot.
 <br><br>
+---
+</details>
+
 Reference:
 - [`Benjamin`](https://github.com/BenjaminHThomas/DockerInception/tree/main)
 - https://mariadb.com/kb/en/creating-a-custom-container-image/
