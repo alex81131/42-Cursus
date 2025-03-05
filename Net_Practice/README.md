@@ -2,12 +2,6 @@
 Configure small-scale networks. <br>
 - Click [here](https://ricardoreves.github.io/42-net-practice/) to start training.<br>
 (There's a problem in ex.8 on this site)<br>
-## Resources
-[`Simple Guide`](https://github.com/ricardoreves/42-net-practice) <br>
-[`Tutorial`](https://github.com/tblaase/Net_Practice) <br>
-[`Detailed Tutorial`](https://github.com/lpaube/NetPractice) <br>
-[`Evaluation Sheet`](https://web.archive.org/web/20231228101420/https://rphlr.github.io/42-Evals/Cursus/NetPractice/)<br>
-
 ## Levels
 (modified with ChatGPT based on Detailed Tutorial above)<br>
 <details>
@@ -448,6 +442,16 @@ So we have 64×2 = **128** in `73.110.128.0/18` as the address of the network, a
 A simple **default** or **70.101.30.0/24** would work.<br>
 <br>
 **6.** Lastly, for everyone to have access to the Internet, we simple assign the full range of the network **70.101.30.0/24**. (default doesn't work here)
+</details>
+<br><br>
+<details>
+  <summary>
+    
+###### Resources
+  </summary>
 
-
+1. [`Simple Guide`](https://github.com/ricardoreves/42-net-practice) <br>
+2. [`Tutorial`](https://github.com/tblaase/Net_Practice) <br>
+3. [`Detailed Tutorial`](https://github.com/lpaube/NetPractice) <br>
+4. [`Evaluation Sheet`](https://web.archive.org/web/20231228101420/https://rphlr.github.io/42-Evals/Cursus/NetPractice/)<br>
 </details>
