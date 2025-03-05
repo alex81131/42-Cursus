@@ -1,4 +1,4 @@
 # miniRT
 Introduction to ray tracing.
-# Resources
+## Resources
 [`Reference`](https://github.com/martingarcialopez/miniRT) <br>

@@ -96,5 +96,5 @@ Once the basics work, add features incrementally:
 3. **Compare with NGINX**: When in doubt, see how NGINX handles a request or config setting.
 4. **Debugging**: Use `strerror(errno)` for errors, but remember not to check `errno` after I/O calls per the rules.
 5. **Time Management**: This project is big—start small and aim to finish core features first (static serving, config parsing).<br><br>
-# Resources
+##### Resources
 - [`Reference`](https://github.com/BenjaminHThomas/WebServer) <br>
