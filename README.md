@@ -17,10 +17,10 @@
 |04| [Cub3D](https://github.com/alex81131/42-Cursus/tree/main/cub3d) | C | Ray-casting game | 125% |
 |04| [MiniRT](https://github.com/alex81131/42-Cursus/tree/main/miniRT) | C | Introduction to ray tracing | ???% |
 |04| [Net_Practice](https://github.com/alex81131/42-Cursus/tree/main/Net_Practice) | Network |  Networking | 100% |
-|04| [C++](https://github.com/alex81131/42-Cursus/tree/main/CPP) | C++ | C++ concepts | ???% |
+|04| [C++](https://github.com/alex81131/42-Cursus/tree/main/CPP) | C++ | C++ concepts | 100+% |
 |05| [Exam Rank 05](https://github.com/pasqualerossi/42-School-Exam-Rank-05) | C++ | 3 questions in C++ |  ???% |
 |05| [ft_irc](https://github.com/El-cmd/ft_irc) | C++ | Internet relay chat |  ???% |
-|05| [Webserv](https://github.com/BenjaminHThomas/WebServer) | C++ | HTTPS server | 100% |
+|05| [Webserv](https://github.com/BenjaminHThomas/WebServer) | C++ | HTTPS server | ???% |
 |05| [Inception](https://github.com/BenjaminHThomas/DockerInception) | Network & system administration | Docker | ???% |
 |06| [Exam Rank 06] | C | |  ???% |
 |06| [ft_transcendence] | ||  ???% |
