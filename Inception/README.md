@@ -17,7 +17,7 @@ Because we need sudo to use Docker.
 8. Install GRUB → /dev/sda
 9. Configure sudo
     (link above: 2.1. Installing sudo)<br>
-10. (optional) [Activate mutual clipboard]()
+10. (optional) [Activate mutual clipboard](https://github.com/alex81131/42-Cursus/blob/main/Inception/Activate_mutual_clipboard.md)
 <br><br>
 ---
 #### Step 1: Install Docker
