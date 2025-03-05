@@ -23,6 +23,7 @@ Because we need sudo to use Docker.
 9. Configure sudo
     (link above: 2.1. Installing sudo)<br>
 10. (optional) [Activate mutual clipboard](https://github.com/alex81131/42-Cursus/blob/main/Inception/Activate_mutual_clipboard.md)
+
 <br><br>
 ---
 </details>
@@ -46,7 +47,8 @@ Because we need sudo to use Docker.
    ```
    docker run hello-world
    ```
-   If the result of `groups` and `groups login` are not consistent, reboot.
+If `groups` and `groups username` are inconsistent, reboot.
+
 <br><br>
 ---
 </details>
