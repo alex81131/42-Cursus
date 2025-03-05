@@ -1,9 +1,12 @@
-# Inception
-Setting up containerised infrastructure in Docker.
-<br><br><br>
-Step 0: Set up a [`Virtual Machine`](https://baigal.medium.com/born2beroot-e6e26dfb50ac). <br><br>
-Reference:
-- [`Benjamin`](https://github.com/BenjaminHThomas/DockerInception/tree/main)
-- https://mariadb.com/kb/en/creating-a-custom-container-image/
-- https://docs.docker.com/compose/intro/compose-application-model/
-- https://hub.docker.com/r/fauria/vsftpd/
+1. Go to the folder corresponding to your debian version.
+2. Download the .iso and mount it on your VirtualBox.
+   (裝置→光碟機→Choose/Create a Disk Image)
+3. ```
+   sudo mount /dev/cdrom /media/cdrom0
+   cd /media/cdrom0
+   sudo ./VBoxLinuxAdditions.run
+   ```
+4. Reboot
+   ```
+   sudo reboot
+   ```
