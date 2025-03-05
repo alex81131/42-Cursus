@@ -8,5 +8,5 @@ Moulinette doesn't check read_error.txt nor open, error, open tests in fsoares.
 
 Tests from fsoares suggested that I have multiple static variables, yet my bpnus still passed.
 
-# Resources
+## Resources
 https://github.com/48d31kh413k/1337-Get_Next_Line-42
