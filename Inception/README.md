@@ -70,6 +70,20 @@ If `groups` and `groups username` are inconsistent, reboot.
 ---
 </details>
 <details>
+<summary>
+
+#### Step 2: Configure Docker
+</summary>
+
+1. Set up a `docker-compose.yml`.<br>
+> Information for Docker to build the containers.
+2. Set up a `Dockerfile` for each service.<br>
+> Dockerfile is a script with instructions to build a Docker image, just like a Makefile to build a program.
+
+<br><br>
+---
+</details>
+<details>
    <summary>
       
 ##### References
