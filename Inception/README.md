@@ -47,24 +47,33 @@ Because we need sudo to use Docker.
 <details>
 <summary>
 
-#### Step 1: Install Docker
+#### Step 1: Install Docker V2
 </summary>
 
 1. ```
-   sudo apt install -y docker.io docker-compose
+   sudo apt update
+   sudo apt install -y ca-certificates curl gnupg lsb-release
+   sudo mkdir -p /etc/apt/keyrings
+   curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+   echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   sudo apt update
+   sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin (or sudo apt install -y docker.io docker-compose-plugin if you are using the distro version)
    sudo systemctl enable docker
+   sudo systemctl start docker
    sudo usermod -aG docker username
    ```
-3. Check1:
+2. Check1:
    ```
    docker --version
+   docker compose version
    docker-compose --version
    ```
-4. Check2:
+   The last one should be an error, because it checks if you installed a Docker V1.
+3. Check2:
    ```
    docker run hello-world
    ```
-If `groups` and `groups username` are inconsistent, reboot.
+   If `groups` and `groups username` are inconsistent, reboot.
 
 <br><br>
 ---
