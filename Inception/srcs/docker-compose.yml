@@ -1,97 +1,185 @@
+networks:
+  inception-network:
+    driver: bridge
+
+volumes:
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${HOME}/data/wordpress_data
+      o: bind
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${HOME}/data/mariadb_data
+      o: bind
+  prometheus_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${HOME}/data/monitoring_data/prometheus
+      o: bind
+
 services:
   nginx:  # A web server to handle HTTP/HTTPS requests.
-    networks:
-      - inception
+    container_name: nginx
     build:
       context: requirements/nginx
-      dockerfile: "Dockerfile"
-    image: nginx
-    pull_policy: never    # Won’t pull from a remote registry.
-    container_name: nginx
-    depends_on:           # Waits for the wordpress service to start first.
-      - wordpress
+      dockerfile: Dockerfile
+    init: true
+    networks:
+      - inception-network
     ports:
       - "443:443"
     volumes:
-      - web:/var/www/html
-    restart: always
-  
+      - wordpress_data:/var/www/html
+    depends_on:                   # Waits for the wordpress service to start first.
+      - wordpress
+      - static-website
+      - adminer
+      - prometheus
+      - grafana
+    pull_policy: never            # Won’t pull from a remote registry.
+    restart: unless-stopped       # Ensures the container restarts if it stops or crunless-stopped
+
   wordpress:  # The PHP-based content management system.
-    networks:
-      - inception
+    container_name: wordpress
     build:
       context: requirements/wordpress
-      dockerfile: "Dockerfile"
-    image: wordpress
-    container_name: wordpress
-    pull_policy: never
+      dockerfile: Dockerfile
+    init: true
+    env_file:
+      - .env
+    networks:
+      - inception-network
+    volumes:
+      - wordpress_data:/var/www/html
     depends_on:
       - mariadb
       - redis
-    volumes:
-      - web:/var/www/html
-    environment:    # Configuration
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_SITE_URL: ${WORDPRESS_SITE_URL}
-
-      WORDPRESS_SITE_TITLE: ${WORDPRESS_SITE_TITLE}
-      WORDPRESS_ADM_USER: ${WORDPRESS_ADM_USER}
-      WORDPRESS_ADM_PASS: ${WORDPRESS_ADM_PASS}
-      WORDPRESS_ADM_EMAIL: ${WORDPRESS_ADM_EMAIL}
-
-      WORDPRESS_USERNAME: ${WORDPRESS_USERNAME}
-      WORDPRESS_PASS: ${WORDPRESS_PASS}
-      WORDPRESS_EMAIL: ${WORDPRESS_EMAIL}
-
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASS}
-      MYSQL_DATABASE: ${MYSQL_DB}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASS}
-    restart: always
+    pull_policy: never
+    restart: unless-stopped
 
   mariadb:  # A MySQL-compatible database for WordPress data.
-    networks:
-      - inception
-    volumes:
-      - db:/var/lib/mysql
+    container_name: mariadb
     build:
       context: requirements/mariadb
-      dockerfile: "Dockerfile"
-    image: mariadb
-    pull_policy: never
-    container_name: mariadb
-    environment:
-      MYSQL_DATABASE: ${MYSQL_DB}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASS}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASS}
-    restart: always
-  
-  redis:  # A caching layer to improve WordPress performance.
+      dockerfile: Dockerfile
+    init: true
+    env_file:
+      - .env
     networks:
-      - inception
+      - inception-network
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    pull_policy: never
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${MYSQL_ROOT_PASS}"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  redis:  # A caching layer to improve WordPress performance.
+    container_name: redis
     build:
       context: requirements/bonus/redis
-      dockerfile: "Dockerfile"
-    image: redis
+      dockerfile: Dockerfile
+    init: true
+    env_file:
+      - .env
+    networks:
+      - inception-network
     pull_policy: never
-    container_name: redis
-    restart: always   # Ensures the container restarts if it stops or crashes.
+    restart: unless-stopped
 
-volumes:
-  web:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${HOME}/data/web
-      o: bind
-  db:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${HOME}/data/db
-      o: bind
+  ftp:  # File transfer capability.
+    container_name: ftp
+    build:
+      context: requirements/bonus/ftp
+      dockerfile: Dockerfile
+      args:
+        - FTP_USER=${FTP_USER}
+        - FTP_PASS=${FTP_PASS}
+    init: true
+    env_file:
+      - .env
+    networks:
+      - inception-network
+    ports:
+      - "20-21:20-21"
+      - "30000-30100:30000-30100"
+    volumes:
+      - wordpress_data:/var/www/html
+    pull_policy: never
+    restart: unless-stopped
 
-networks:
-  inception:
-    driver: bridge
+  static-website:
+    container_name: static-website
+    build:
+      context: requirements/bonus/static_website
+      dockerfile: Dockerfile
+    init: true
+    networks:
+      - inception-network
+    volumes:
+      - wordpress_data:/var/www/html
+    pull_policy: never
+    restart: on-failure:2
+
+  adminer:  # Graphical User Interface to manage MariaDB, useful for debugging WordPress.
+    container_name: adminer
+    build:
+      context: requirements/bonus/adminer
+      dockerfile: Dockerfile
+    init: true
+    networks:
+      - inception-network
+    volumes:
+      - wordpress_data:/var/www/html
+    depends_on:
+      - mariadb
+    pull_policy: never
+    restart: unless-stopped
+
+  prometheus: # Time-series database and monitoring system that scrapes metrics from configured targets.
+    container_name: prometheus
+    build:
+      context: requirements/bonus/prometheus
+      dockerfile: Dockerfile
+    init: true
+    env_file:
+      - .env
+    networks:
+      - inception-network
+    volumes:
+      - prometheus_data:/prometheus
+    pull_policy: never
+    restart: unless-stopped
+
+  grafana:  # Paired with Prometheus, a visualization tool for monitoring metrics.
+    container_name: grafana
+    build:
+      context: requirements/bonus/grafana
+      dockerfile: Dockerfile
+    init: true
+    env_file:
+      - .env
+    networks:
+      - inception-network
+    volumes:
+      - ./requirements/bonus/grafana/provisioning:/usr/share/grafana/provisioning
+    pull_policy: never
+    restart: unless-stopped
+
+  node-exporter:  # Prometheus exporter that collects system-level metrics (e.g., CPU, memory, disk) from the host.
+    container_name: node-exporter
+    build:
+      context: requirements/bonus/node_exporter
+      dockerfile: Dockerfile
+    init: true
+    networks:
+      - inception-network
+    restart: unless-stopped
