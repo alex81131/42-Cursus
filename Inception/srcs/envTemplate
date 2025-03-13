@@ -4,18 +4,18 @@
 WORDPRESS_SITE_URL=kyeh.42.fr
 WORDPRESS_SITE_TITLE=kyeh_inception
 WORDPRESS_ADM_USER=kyeh
-WORDPRESS_ADM_PASS=  
+WORDPRESS_ADM_PASS=wordpress_adm
 WORDPRESS_ADM_EMAIL=kyeh@student.42.fr
 
 WORDPRESS_USERNAME=new_user
-WORDPRESS_PASS=  
+WORDPRESS_PASS=wordpress
 WORDPRESS_EMAIL=new_user@student.42.fr
 
 # mariadb
-MYSQL_ROOT_PASS=  
+MYSQL_ROOT_PASS=mariadb_root
 MYSQL_DATABASE=wordpress
 MYSQL_USER=user
-MYSQL_PASS=  
+MYSQL_PASS=mariadb
 
 # ftp, password cannot be spaces
 FTP_USER=kyeh

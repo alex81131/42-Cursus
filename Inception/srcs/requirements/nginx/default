@@ -30,7 +30,7 @@ http {
 
     server {
         listen 443 ssl;
-        server_name bthomas.42.fr;
+        server_name kyeh.42.fr;
 
         # SSL Cert
         ssl_certificate /etc/nginx/ssl/server.crt;
