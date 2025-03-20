@@ -7,9 +7,9 @@ Setting up containerised infrastructure in Docker.
    <summary>
 
    #### Step 0: Set up a [`Virtual Machine`](https://baigal.medium.com/born2beroot-e6e26dfb50ac)(Debian).
+Because we need sudo to use Docker.
    </summary>
 
-Because we need sudo to use Docker.
 1. 6144 MB RAM, 3 CPU, 40 GB hard disk.
 2. Graphical Install<br>
    (otherwise is tricky to access the containers outside the VM)
