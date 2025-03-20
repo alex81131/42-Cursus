@@ -27,6 +27,10 @@ re:	clean up
 
 # docker-compose ps:
 #	make status
+# log in MariaDB:
+#	docker exec -it mariadb bash
+#	mysql -u root
+#	(mysql -u root -pmariadb_root)
 
 # Docker:
 # 	A tool to make containers.

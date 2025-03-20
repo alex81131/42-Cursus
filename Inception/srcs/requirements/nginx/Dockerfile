@@ -20,7 +20,7 @@ RUN mkdir -p /var/www/html && \
 	chmod -R 777 /var/www/html && \
 	chown -R www-data:www-data /var/www/html
 
-COPY ./default /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR /var/www/html
 
