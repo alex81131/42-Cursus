@@ -92,6 +92,10 @@ Because we need sudo to use Docker.
 <br><br>
 ---
 </details>
+
+#### Step 3: Register the SSH key
+- [42 Tutorial](https://www.youtube.com/watch?v=qu8vjw5xwLA)
+
 <details>
    <summary>
       
