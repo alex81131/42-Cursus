@@ -111,9 +111,28 @@ echo "127.0.0.1 kyeh.42.fr adminer.kyeh.42.fr prometheus.kyeh.42.fr grafana.kyeh
 curl -k -I https://login.42.fr
 ```
 </details>
+
 <details>
    <summary>
-      
+
+#### Step 5: Install FTP for the bonus
+   </summary>
+
+1. install ftp:
+```
+sudo apt update
+sudo apt install ftp -y
+```
+2. Verify:
+```
+ftp --version
+```
+</details>
+
+
+<details>
+   <summary>
+
 ##### References
    </summary>
 
