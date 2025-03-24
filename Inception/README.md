@@ -104,7 +104,7 @@ Because we need sudo to use Docker.
 
 1. Inside VM:
 ```
-echo "127.0.0.1 kyeh.42.fr adminer.kyeh.42.fr prometheus.kyeh.42.fr grafana.kyeh.42.fr" | sudo tee -a /etc/hosts
+echo "127.0.0.1 login.42.fr adminer.login.42.fr prometheus.login.42.fr grafana.login.42.fr" | sudo tee -a /etc/hosts
 ```
 2. Check:
 ```
