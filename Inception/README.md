@@ -129,6 +129,10 @@ ftp --version
 ```
 </details>
 
+#### Step -1: Before the Evaluation
+1. `make clean` <br>
+   Clean up everything before building from evaluator's git repo. Existing containers of the same name cause conflicts.
+2. Do **NOT** push .env onto git.
 
 <details>
    <summary>
