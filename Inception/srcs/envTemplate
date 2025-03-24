@@ -1,4 +1,4 @@
-# .env
+# Rename this file to .env
 
 # Wordpress
 WORDPRESS_SITE_URL=kyeh.42.fr
@@ -23,9 +23,6 @@ FTP_PASS=ftp
 
 # redis
 # REDIS_PASS=  
-
-# USER_ID=1002
-# GROUP_ID=1002
 
 # grafana
 GF_SECURITY_ADMIN_USER=kyeh
