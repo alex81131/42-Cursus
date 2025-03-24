@@ -35,6 +35,13 @@ clean: down
 	@docker system prune -f
 re:	clean up
 
+fclean:
+	@docker stop $(docker ps -qa) 2>/dev/null || true
+	@docker rm $(docker ps -qa) 2>/dev/null || true
+	@docker rmi -f $(docker images -qa) 2>/dev/null || true
+	@docker volume rm $(docker volume ls -q) 2>/dev/null || true
+	@docker network rm $(docker network ls -q) 2>/dev/null || true
+
 # Adminer:
 #	https://adminer.kyeh.42.fr/
 # Grafana: (need to wait a bit to start)
