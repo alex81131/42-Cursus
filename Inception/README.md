@@ -98,6 +98,21 @@ Because we need sudo to use Docker.
 
 <details>
    <summary>
+
+#### Step 4: Fix DNS for login.42.fr
+   </summary>
+
+1. Inside VM:
+```
+echo "127.0.0.1 login.42.fr" | sudo tee -a /etc/hosts
+```
+2. Check:
+```
+curl -k -I https://login.42.fr
+```
+</details>
+<details>
+   <summary>
       
 ##### References
    </summary>
