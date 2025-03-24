@@ -3,8 +3,8 @@ curl -L -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.
 chmod +x wp-cli.phar && \
 mv ./wp-cli.phar /bin/wp
 
-wp core download --allow-root
-wp config create --dbname="$MYSQL_DATABASE" --dbuser="$MYSQL_USER" --dbpass="$MYSQL_PASSWORD" --dbhost=mariadb --allow-root
+wp core download --allow-root || { echo "WP core download failed"; exit 1; }
+wp config create --dbname="$MYSQL_DATABASE" --dbuser="$MYSQL_USER" --dbpass="$MYSQL_PASS" --dbhost=mariadb --allow-root || { echo "WP config create failed"; exit 1; }
 wp config set WP_CACHE true --raw --allow-root
 wp config set WP_DEBUG true --raw --allow-root
 wp config set WP_REDIS_HOST redis --allow-root
