@@ -1,30 +1,24 @@
 # Name
-NAME	= DeepCopy
+NAME	= webserv
 
 # Compiler and flags
 CXX			= g++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -g3
+# MMD integrates the related header files into a dependency file (.d),
+# 	 while generating .o files, automating the header file management.
 
 # Source files
-SRC_FILES	=	main.cpp \
-				Animal.cpp \
-				Dog.cpp \
-				Cat.cpp \
-				WrongAnimal.cpp \
-				WrongCat.cpp \
-				Brain.cpp
+SRC_FILES	=	main.cpp	webserv.cpp
 SRC_PATH	=	src/
 SRC			=	$(addprefix $(SRC_PATH), $(SRC_FILES))
 
 # Headers
-H_FILES		=	Animal.hpp \
-				Dog.hpp \
-				Cat.hpp \
-				WrongAnimal.hpp \
-				WrongCat.hpp \
-				Brain.hpp
-H_PATH		=	include/
-HEADER		=	$(addprefix $(H_PATH), $(H_FILES))
+
+INC			=	-I include \
+				-I include/parser \
+				-I include/multiplexer \
+				-I include/http \
+				-I include/cluster
 
 # Object files
 OBJ_FILES	=	$(SRC_FILES:%.cpp=%.o)
@@ -67,29 +61,29 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CXX) $(CXXFLAGS) $^ -o  $@
-	@printf "	$(RESET_LINE)$(BLUE_LIGHT)DeepCopy\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
+	@printf "	$(RESET_LINE)$(BLUE_LIGHT)webserv\t: $(GREEN_LIGHT)Updated\n$(NOCOLOR)"
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
+$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(INC) Makefile
 	@mkdir -p $(dir $@)
 	@printf "$(RESET_LINE)$(RED_FLASH)Compiling...	$(GREY)$<$(SKY)$(NOCOLOR)"
 	@$(CXX) $(CXXFLAGS) -I $(H_PATH) -c $< -o $@
 
 clean:
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy obj/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting webserv src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy obj/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting webserv src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy obj/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting webserv src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy obj/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting webserv src/...	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy obj/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting webserv src/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy obj/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting webserv src/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy obj/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting webserv src/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting DeepCopy obj/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting webserv src/...	$(GREY)"
 	@sleep 0.1
 	@$(RM) $(OBJ_PATH)
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"

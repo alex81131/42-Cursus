@@ -61,21 +61,21 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp Makefile
 	@$(CC) $(CFLAGS) -I $(HEADER) -c $< -o $@
 
 clean:
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone obj/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone obj/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone obj/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone obj/...	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone obj/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone obj/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone obj/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting megaphone obj/...	$(GREY)"
 	@sleep 0.1
 	@$(RM) $(OBJ_PATH)
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"

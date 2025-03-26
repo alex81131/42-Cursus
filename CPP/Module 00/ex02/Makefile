@@ -65,21 +65,21 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@$(CC) $(CFLAGS) -I $(H_PATH) -c $< -o $@
 
 clean:
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery obj/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery obj/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery obj/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery obj/...	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery obj/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery obj/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery obj/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting Recovery obj/...	$(GREY)"
 	@sleep 0.1
 	@$(RM) $(OBJ_PATH)
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"

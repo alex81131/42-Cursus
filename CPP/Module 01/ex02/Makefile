@@ -64,21 +64,21 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp $(HEADER) Makefile
 	@$(CXX) $(CXXFLAGS) -I $(H_PATH) -c $< -o $@
 
 clean:
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain obj/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain obj/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain obj/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain obj/...	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain src/	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain obj/	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain src/.	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain obj/.	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain src/..	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain obj/..	$(GREY)"
 	@sleep 0.1
-	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain src/...	$(GREY)"
+	@printf "$(RESET_LINE)$(RED_FLASH)Deleting brain obj/...	$(GREY)"
 	@sleep 0.1
 	@$(RM) $(OBJ_PATH)
 	@printf "$(RESET_LINE)$(RED_FLASH)Deleted successfully!\n$(NOCOLOR)"
