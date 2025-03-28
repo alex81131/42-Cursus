@@ -1,32 +1,48 @@
-FROM debian:bullseye
+FROM	debian:bullseye
 
-RUN apt update && apt upgrade -y && apt install -y \
-	wget \
-	curl \
-	bash \
-	php7.4 \
-	php7.4-cgi \
-	php7.4-mysql \
-	php7.4-fpm \
-	php7.4-pdo \
-	php7.4-gd \
-	php7.4-cli \
-	php7.4-mbstring \
-	default-mysql-client && \
-	php-fpm7.4 --version
+RUN	apt-get update -y && apt-get upgrade -y && \
+	apt-get install -y \
+		wget \
+		curl \
+		bash \
+		php7.4 \
+		php-cgi \
+		php7.4-mysql \
+		php7.4-fpm \
+		php7.4-pdo \
+		php7.4-gd \
+		php7.4-cli \
+		php7.4-mbstring \
+		redis \
+		php-redis \
+		default-mysql-client
 
-RUN sed -i 's|^listen = /run/php/php7.4-fpm.sock|listen = 0.0.0.0:9000|' /etc/php/7.4/fpm/pool.d/www.conf
+RUN	rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /var/www/html/wordpress && \
-	chmod -R 755 /var/www/html/wordpress && \
-	chown -R www-data:www-data /var/www/html/wordpress && \
-	mkdir -p /run/php
+# Install wp_cli command and put it in the /usr/local/bin/wp
+RUN	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+	chmod +x wp-cli.phar && \
+	mv wp-cli.phar /usr/local/bin/wp
 
-WORKDIR /var/www/html/wordpress
+# RUN	php-fpm7.4 --version
 
-COPY ./script.sh /usr/local/bin/wp_config.sh
-RUN chmod +x /usr/local/bin/wp_config.sh
+COPY	www.conf /etc/php/7.4/fpm/pool.d/
 
-EXPOSE 9000
+RUN	mkdir /run/php
 
-CMD ["/usr/local/bin/wp_config.sh"]
+COPY	startup.sh /usr/local/bin/startup.sh
+
+RUN	chmod +x /usr/local/bin/startup.sh
+
+ENTRYPOINT	["/usr/local/bin/startup.sh"]
+
+RUN	mkdir -p /var/www/html && \
+	chmod -R 777 /var/www/html && \
+	chown -R www-data:www-data /var/www/html
+
+WORKDIR	/var/www/html/wordpress
+
+EXPOSE	9000
+
+# Launch PHP FPM in foreground and ignore daemonize from conf file (-F)
+CMD	["php-fpm7.4", "-F"]

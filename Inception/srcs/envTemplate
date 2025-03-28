@@ -1,4 +1,4 @@
-# Rename this file to .env
+# .env
 
 # Wordpress
 WORDPRESS_SITE_URL=kyeh.42.fr
@@ -12,6 +12,7 @@ WORDPRESS_PASS=wordpress
 WORDPRESS_EMAIL=new_user@student.42.fr
 
 # mariadb
+MYSQL_HOSTNAME=mariadb
 MYSQL_ROOT_PASS=mariadb_root
 MYSQL_DATABASE=wordpress
 MYSQL_USER=user
@@ -23,6 +24,9 @@ FTP_PASS=ftp
 
 # redis
 # REDIS_PASS=  
+
+# USER_ID=1002
+# GROUP_ID=1002
 
 # grafana
 GF_SECURITY_ADMIN_USER=kyeh
