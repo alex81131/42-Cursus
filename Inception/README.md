@@ -141,7 +141,7 @@ ftp --version
 ##### References
    </summary>
 
-- [`Benjamin`](https://github.com/BenjaminHThomas/DockerInception/tree/main) (mariadb set-up is flawed
+- [`Benjamin`](https://github.com/BenjaminHThomas/DockerInception/tree/main) (mariadb and wordpress set-ups are flawed
 - [`Tsung-Hao`](https://github.com/Tsunghao-C/Inception/tree/main)
 - https://mariadb.com/kb/en/creating-a-custom-container-image/
 - https://docs.docker.com/compose/intro/compose-application-model/
