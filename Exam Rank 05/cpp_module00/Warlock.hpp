@@ -16,11 +16,10 @@ class	Warlock
 		void				introduce() const;
 
 	private:
-		std::string	name;
-		std::string	title;
+		std::string	_name;
+		std::string	_title;
 
 		Warlock();		// Private default constructor to prevent instantiation without name and title
 		Warlock(const Warlock& other);					// Warlock bob(jim);
 		Warlock&	operator = (const Warlock& other);	// bob = jim;
-
 };

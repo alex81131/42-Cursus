@@ -66,7 +66,7 @@ Add to the Warlock the following member functions:
   launches the spell on the selected target. If it's not a known spell, does
   nothing.
 
-You will need a new attribute to store the spells your Warlock knows. Several
+You will need a new attribute to store the _spells your Warlock knows. Several
 types fit the bill, it's up to you to choose the best one.
 
 Below is a possible test main and its expected output:

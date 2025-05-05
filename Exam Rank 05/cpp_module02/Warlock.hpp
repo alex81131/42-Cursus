@@ -3,6 +3,7 @@
 # include <iostream>
 # include <map>
 # include "ASpell.hpp"
+# include "SpellBook.hpp"
 
 class	Warlock
 {
@@ -20,9 +21,9 @@ class	Warlock
 		void				launchSpell(const std::string spellName, const ATarget& target);
 
 	private:
-		std::string						_name;
-		std::string						_title;
-		std::map<std::string, ASpell*>	_spells;
+		std::string	_name;
+		std::string	_title;
+		SpellBook*	_spellBook;
 
 		Warlock();		// Private default constructor to prevent instantiation without name and title
 		Warlock(const Warlock& other);					// Warlock bob(jim);
