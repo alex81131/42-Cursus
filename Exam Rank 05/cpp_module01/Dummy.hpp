@@ -8,8 +8,4 @@ class	Dummy: public ATarget
 		~Dummy();
 
 		ATarget*	clone() const;
-
-	private:
-		Dummy(const Dummy& other);
-		Dummy&	operator = (const Dummy& other);
 };

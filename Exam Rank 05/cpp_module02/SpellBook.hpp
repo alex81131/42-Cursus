@@ -1,7 +1,6 @@
 #pragma once
-# include <string>
-# include <map>
 # include "ASpell.hpp"
+# include <map>
 
 class	SpellBook
 {

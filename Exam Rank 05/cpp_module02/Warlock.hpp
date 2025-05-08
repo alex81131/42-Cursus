@@ -1,7 +1,6 @@
 #pragma once
 # include <string>
 # include <iostream>
-# include <map>
 # include "ASpell.hpp"
 # include "SpellBook.hpp"
 
@@ -23,7 +22,7 @@ class	Warlock
 	private:
 		std::string	_name;
 		std::string	_title;
-		SpellBook*	_spellBook;
+		SpellBook*	_spellbook;
 
 		Warlock();		// Private default constructor to prevent instantiation without name and title
 		Warlock(const Warlock& other);					// Warlock bob(jim);

@@ -46,7 +46,7 @@ void	Warlock::forgetSpell(const std::string spellName)
 }
 // std::map stores key-value pairs:
 // 	first: The key of the pair, ie. the name of the spell.
-// 	second: The value associated with that key, ie. ASPell*
+// 	second: The value associated with that key, ie. ASpell*
 
 void	Warlock::launchSpell(const std::string spellName, const ATarget& target)
 {

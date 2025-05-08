@@ -4,11 +4,8 @@
 class	Fwoosh: public ASpell
 {
 	public:
-	Fwoosh();
-	~Fwoosh();
-	ASpell*	clone() const;
+		Fwoosh();
+		~Fwoosh();
 
-	private:
-		Fwoosh(const Fwoosh& other);
-		Fwoosh&	operator = (const Fwoosh& other);
+		ASpell*	clone() const;
 };

@@ -3,8 +3,8 @@
 #include "Dummy.hpp"
 #include "Fireball.hpp"
 #include "Polymorph.hpp"
-#include "SpellBook.hpp"
 #include "BrickWall.hpp"
+#include "SpellBook.hpp"
 #include "TargetGenerator.hpp"
 
 int main()
@@ -33,4 +33,4 @@ int main()
   delete fireball;
   delete wall;
 }
-// g++ -Wall -Wextra -Werror -std=c++98 main.cpp Warlock.cpp ASpell.cpp ATarget.cpp Dummy.cpp Fwoosh.cpp Fireball.cpp Polymorph.cpp SpellBook.cpp BrickWall.cpp TargetGenerator.cpp
+// g++ -Wall -Wextra -Werror -std=c++98 *.cpp

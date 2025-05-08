@@ -1,7 +1,6 @@
 #pragma once
-# include <string>
-# include <map>
 # include "ATarget.hpp"
+# include <map>
 
 class	TargetGenerator
 {

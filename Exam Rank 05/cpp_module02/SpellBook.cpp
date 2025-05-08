@@ -1,4 +1,4 @@
-# include "SpellBook.hpp"
+#include "SpellBook.hpp"
 
 SpellBook::SpellBook() {}
 
@@ -26,6 +26,7 @@ void	SpellBook::forgetSpell(const std::string& spellName)
 		_spells.erase(it);
 	}
 }
+
 // Need to learn the spell so as to create it.
 ASpell*	SpellBook::createSpell(const std::string& spellName)
 {

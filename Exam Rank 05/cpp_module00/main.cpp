@@ -15,4 +15,4 @@ int main()
 
   return (0);
 }
-// g++ -Wall -Wextra -Werror -std=c++98 main.cpp Warlock.cpp
+// g++ -Wall -Wextra -Werror -std=c++98 *.cpp
