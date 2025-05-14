@@ -10,7 +10,7 @@ class	Animal
 		Animal(void);							// Default constructor
 		Animal(const std::string& type);		// Parameterized Constructor
 		Animal(const Animal& src);				// Copy constructor
-		Animal&	operator = (const Animal& src);	// Assignment operator
+		Animal&	operator=(const Animal& src);	// Assignment operator
 		virtual ~Animal(void);					// Destructor
 
 		virtual void			makeSound() const;

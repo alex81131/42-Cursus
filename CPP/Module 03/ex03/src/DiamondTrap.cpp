@@ -38,12 +38,12 @@ DiamondTrap::DiamondTrap(const DiamondTrap& src): ClapTrap(src), ScavTrap(src), 
 	std::cout << "[DiamondTrap] An object is copied from " << src._name << "." << std::endl;
 }
 
-DiamondTrap&	DiamondTrap::operator = (const DiamondTrap& src)
+DiamondTrap&	DiamondTrap::operator=(const DiamondTrap& src)
 {
 	if (this != &src)
 	{
 		this->_name = src._name + "_clap_trap";
-		ClapTrap::operator = (src);
+		ClapTrap::operator=(src);
 	}
 	std::cout << "[DiamondTrap] Copy assignment operator is called." << std::endl;
 	return *this;

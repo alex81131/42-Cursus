@@ -50,7 +50,7 @@ Data::Data(const Data& src)
 	*this = src;
 }
 
-Data&	Data::operator = (const Data& src)
+Data&	Data::operator=(const Data& src)
 {
 	if (this != &src)
 	{

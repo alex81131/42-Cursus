@@ -12,7 +12,7 @@ Cat::Cat(const Cat& src): Animal(src)
 	*this = src;
 }
 
-Cat&	Cat::operator = (const Cat& src)
+Cat&	Cat::operator=(const Cat& src)
 {
 	std::cout << "[Cat] Assignment operator called." << std::endl;
 	if (this != &src)

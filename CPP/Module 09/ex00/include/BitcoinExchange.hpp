@@ -17,7 +17,7 @@ class	BitcoinExchange
 	public:
 		BitcoinExchange(void);											// Default constructor
 		BitcoinExchange(const BitcoinExchange& src);					// Copy constructor
-		BitcoinExchange&	operator = (const BitcoinExchange& src);	// Assignment operator
+		BitcoinExchange&	operator=(const BitcoinExchange& src);	// Assignment operator
 		~BitcoinExchange(void);											// Destructor
 
 		std::map<std::string, double>	getMapExchangeRate(void) const;	// Unused

@@ -7,7 +7,7 @@ Point::Point(const float x, const float y): _x(x), _y(y) {}
 // Copy constructor: a duplicate instance of the existing object
 Point::Point(const Point& src):_x(src._x), _y(src._y) {}
 
-Point&	Point::operator = (const Point& src)
+Point&	Point::operator=(const Point& src)
 {
 	// if (this != &src)
 	// {

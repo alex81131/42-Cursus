@@ -18,7 +18,7 @@ Array<T>::Array(const Array& src): _size(0), _arr(new T[_size]())
 }
 
 template <typename T>
-Array<T>&	Array<T>::operator = (const Array<T>& src)
+Array<T>&	Array<T>::operator=(const Array<T>& src)
 {
 	// std::cout << "[Array] Assignment constructor called." << std::endl;
 	if (this != &src)
@@ -40,7 +40,7 @@ Array<T>::~Array(void)
 }
 
 template <typename T>
-T&	Array<T>::operator [] (unsigned int i)
+T&	Array<T>::operator[](unsigned int i)
 {
 	if (i >= this->_size)
 		throw Array<T>::OutOfRangeException();
@@ -48,7 +48,7 @@ T&	Array<T>::operator [] (unsigned int i)
 }
 
 template <typename T>
-const T&	Array<T>::operator [] (unsigned int i) const
+const T&	Array<T>::operator[](unsigned int i) const
 {
 	if (i >= this->_size)
 		throw Array<T>::OutOfRangeException();
@@ -68,7 +68,7 @@ const char*	Array<T>::OutOfRangeException::what() const throw()
 }
 
 template <typename T>
-std::ostream&	operator << (std::ostream &o, const Array<T> &src)
+std::ostream&	operator<<(std::ostream &o, const Array<T> &src)
 {
 	for (unsigned int i = 0; i < src.size(); i++)
 		o << "\tArray " << i << ": " << src[i] << std::endl;

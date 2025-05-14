@@ -21,7 +21,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat& src)
 	*this = src;
 }
 
-Bureaucrat&	Bureaucrat::operator = (const Bureaucrat& src)
+Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& src)
 {
 	std::cout << "[Bureaucrat] Assignment operator called." << std::endl;
 	if (this != &src)
@@ -72,7 +72,7 @@ const char*	Bureaucrat::GradeTooLowException::what() const throw()
 	return "[Exception] Grade too low.";
 }
 
-std::ostream&	operator << (std::ostream& os, const Bureaucrat& src)
+std::ostream&	operator<<(std::ostream& os, const Bureaucrat& src)
 {
 	os << src.getName() << ", bureaucrat grade " << src.getGrade() << "." << std::endl;
 	return os;

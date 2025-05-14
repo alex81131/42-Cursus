@@ -19,7 +19,7 @@ class	RPN
 	public:
 		RPN(void);								// Default constructor
 		RPN(const RPN& src);					// Copy constructor
-		RPN&	operator = (const RPN& src);	// Assignment operator
+		RPN&	operator=(const RPN& src);	// Assignment operator
 		~RPN(void);								// Destructor
 
 		double	calculation(const std::string& str);

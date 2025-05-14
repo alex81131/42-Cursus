@@ -10,7 +10,7 @@ class	ClapTrap
 		ClapTrap(void);									// Default constructor
 		ClapTrap(std::string name);						// Parameterized Constructor
 		ClapTrap(const ClapTrap& src);					// Copy constructor
-		ClapTrap&	operator = (const ClapTrap& src);	// Assignment operator
+		ClapTrap&	operator=(const ClapTrap& src);	// Assignment operator
 		~ClapTrap(void);								// Destructor
 
 		void				attack(const std::string& target);

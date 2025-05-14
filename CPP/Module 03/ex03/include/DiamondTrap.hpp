@@ -23,7 +23,7 @@ class	DiamondTrap: public ScavTrap, public FragTrap			// Need to put "virtual" i
 		DiamondTrap(void);										// Default constructor
 		DiamondTrap(std::string name);							// Parameterized Constructor
 		DiamondTrap(const DiamondTrap& src);					// Copy constructor
-		DiamondTrap&	operator = (const DiamondTrap& src);	// Assignment operator
+		DiamondTrap&	operator=(const DiamondTrap& src);	// Assignment operator
 		virtual ~DiamondTrap(void);										// Destructor
 
 		using ScavTrap::attack;

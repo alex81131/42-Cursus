@@ -9,7 +9,7 @@ class	WrongCat: public WrongAnimal
 		WrongCat(void);									// Default constructor
 		WrongCat(const std::string& type);				// Parameterized Constructor
 		WrongCat(const WrongCat& src);					// Copy constructor
-		WrongCat&	operator = (const WrongCat& src);	// Assignment operator
+		WrongCat&	operator=(const WrongCat& src);	// Assignment operator
 		~WrongCat(void);						// Destructor
 
 		using WrongAnimal::makeSound;

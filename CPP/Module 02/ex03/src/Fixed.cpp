@@ -19,7 +19,7 @@ Fixed::Fixed(const Fixed& src) {
 	*this = src;
 }
 
-Fixed&	Fixed::operator = (const Fixed& src)
+Fixed&	Fixed::operator=(const Fixed& src)
 {
 	// std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &src)
@@ -32,34 +32,34 @@ Fixed::~Fixed(void) {
 }
 
 /*_______________comparison operator overloads_______________*/
-bool	Fixed::operator > (const Fixed& src) const
+bool	Fixed::operator>(const Fixed& src) const
 {
 	return this->_raw > src._raw;
 }
 // reusing the > operator:
-bool	Fixed::operator < (const Fixed& src) const
+bool	Fixed::operator<(const Fixed& src) const
 {
 	return src > *this;
 }
-bool	Fixed::operator >= (const Fixed& src) const
+bool	Fixed::operator>=(const Fixed& src) const
 {
 	return !(src > *this);
 }
-bool	Fixed::operator <= (const Fixed& src) const
+bool	Fixed::operator<=(const Fixed& src) const
 {
 	return !(*this > src);
 }
-bool	Fixed::operator == (const Fixed& src) const
+bool	Fixed::operator==(const Fixed& src) const
 {
 	return this->_raw == src._raw;
 }
-bool	Fixed::operator != (const Fixed& src) const
+bool	Fixed::operator!=(const Fixed& src) const
 {
 	return this->_raw != src._raw;
 }
 
 /*_______________arithmetic operator overloads_______________*/
-Fixed	Fixed::operator + (const Fixed& src) const
+Fixed	Fixed::operator+(const Fixed& src) const
 {
 	Fixed	res = *this;
 
@@ -67,17 +67,17 @@ Fixed	Fixed::operator + (const Fixed& src) const
 	return res;
 }
 
-Fixed	Fixed::operator - (const Fixed& src) const
+Fixed	Fixed::operator-(const Fixed& src) const
 {
 	return Fixed(this->toFloat() - src.toFloat());
 }
 
-Fixed	Fixed::operator * (const Fixed& src) const
+Fixed	Fixed::operator*(const Fixed& src) const
 {
 	return Fixed(this->toFloat() * src.toFloat());
 }
 
-Fixed	Fixed::operator / (const Fixed& src) const
+Fixed	Fixed::operator/(const Fixed& src) const
 {
 	if (src.getRawBits() != 0)
 		return Fixed(this->toFloat() / src.toFloat());
@@ -89,19 +89,19 @@ Fixed	Fixed::operator / (const Fixed& src) const
 }
 
 /*_______________increment and decrement overlaods_______________*/
-Fixed&	Fixed::operator ++ (void)
+Fixed&	Fixed::operator++(void)
 {
 	this->_raw += 1;
 	return *this;
 }
 
-Fixed&	Fixed::operator -- (void)
+Fixed&	Fixed::operator--(void)
 {
 	--(this->_raw);
 	return *this;
 }
 
-Fixed	Fixed::operator ++ (int)
+Fixed	Fixed::operator++(int)
 {
 	Fixed	temp = *this;
 
@@ -109,7 +109,7 @@ Fixed	Fixed::operator ++ (int)
 	return temp;
 }
 
-Fixed	Fixed::operator -- (int)
+Fixed	Fixed::operator--(int)
 {
 	Fixed	prev(*this);
 
@@ -162,7 +162,7 @@ int	Fixed::toInt( void ) const
 	return (this->getRawBits() >> Fixed::_fraction_bit);
 }
 
-std::ostream&	operator << (std::ostream& ostream, const Fixed& fp_number)
+std::ostream&	operator<<(std::ostream& ostream, const Fixed& fp_number)
 {
 	return ostream << fp_number.toFloat();
 }

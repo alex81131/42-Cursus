@@ -12,7 +12,7 @@ class	Bureaucrat
 		Bureaucrat(void);								// Default constructor
 		Bureaucrat(const std::string& name, int grade);	// Parameterized Constructor
 		Bureaucrat(const Bureaucrat& src);				// Copy constructor
-		Bureaucrat&	operator = (const Bureaucrat& src);	// Assignment operator
+		Bureaucrat&	operator=(const Bureaucrat& src);	// Assignment operator
 		~Bureaucrat(void);								// Destructor
 
 		/*_______________Get info_______________*/
@@ -50,7 +50,7 @@ class	Bureaucrat::GradeTooLowException: public std::exception
 		virtual const char*	what() const throw();
 };
 
-std::ostream&	operator << (std::ostream& os, const Bureaucrat& src);
+std::ostream&	operator<<(std::ostream& os, const Bureaucrat& src);
 
 #endif
 
@@ -61,6 +61,6 @@ std::ostream&	operator << (std::ostream& os, const Bureaucrat& src);
 // 	Writing throw() after a function declaration was intended to signal that the function does not throw any exceptions,
 // 	making it useful for functions like what() that must be exception-safe (e.g., those called during exception handling).
 
-// std::ostream&	operator << (std::ostream& os, const Bureaucrat& src);
+// std::ostream&	operator<<(std::ostream& os, const Bureaucrat& src);
 // 	os: reference to the destination stream
 // 	src: constant reference to the object to be printed

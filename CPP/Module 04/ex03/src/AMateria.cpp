@@ -17,7 +17,7 @@ AMateria::AMateria(const AMateria& src)
 	*this = src;
 }
 
-AMateria&	AMateria::operator = (const AMateria& src)
+AMateria&	AMateria::operator=(const AMateria& src)
 {
 	std::cout << "[AMateria] Assignment operator called." << std::endl;
 	if (this != &src)

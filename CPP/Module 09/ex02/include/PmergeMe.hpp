@@ -41,7 +41,7 @@ class	PmergeMe
 		PmergeMe();										// Default constructor
 		PmergeMe(const std::vector<int>& input);		// Parameterized Constructor
 		PmergeMe(const PmergeMe& src);					// Copy constructor
-		PmergeMe&	operator = (const PmergeMe& src);	// Assignment operator
+		PmergeMe&	operator=(const PmergeMe& src);	// Assignment operator
 		~PmergeMe();									// Destructor
 
 		static bool	isPositiveNum(std::string av);
@@ -54,7 +54,7 @@ class	PmergeMe
 };
 
 template <typename T>
-std::ostream& operator << (std::ostream& o, const std::vector<T>& src);
+std::ostream& operator<<(std::ostream& o, const std::vector<T>& src);
 
 std::vector<size_t>	generateJacobSeq(size_t n);		// Create the Jacobsthal to help structure insertion efficiently. (where to insert)
 std::vector<size_t>	getInsertionindex(size_t n);	// Build the actual insertion index list and decide where to insert.

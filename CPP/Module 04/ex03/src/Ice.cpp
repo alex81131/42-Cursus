@@ -11,7 +11,7 @@ Ice::Ice(const Ice& src): AMateria("ice")
 	*this = src;
 }
 
-Ice&	Ice::operator = (const Ice& src)
+Ice&	Ice::operator=(const Ice& src)
 {
 	std::cout << "[Ice] Assignment operator called." << std::endl;
 	if (this != &src)

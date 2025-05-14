@@ -10,11 +10,11 @@ class	Array
 		Array(void);							// Default constructor
 		Array(unsigned int n);					// Parameterized Constructor
 		Array(const Array& src);				// Copy constructor
-		Array&	operator = (const Array& src);	// Assignment operator
+		Array&	operator=(const Array& src);	// Assignment operator
 		~Array(void);							// Destructor
 
-		T&				operator [] (unsigned int i);
-		const T&		operator [] (unsigned int i) const;
+		T&				operator[](unsigned int i);
+		const T&		operator[](unsigned int i) const;
 		unsigned int	size(void) const;
 		class			OutOfRangeException;
 
@@ -31,7 +31,7 @@ class Array<T>::OutOfRangeException: public std::exception
 };
 
 template <typename T>
-std::ostream&	operator << (std::ostream &o, const Array<T> &src);
+std::ostream&	operator<<(std::ostream &o, const Array<T> &src);
 
 # include "Array.tpp"
 // Either you write everything in a single hpp (implementation after declaration),

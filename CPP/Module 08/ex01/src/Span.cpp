@@ -16,7 +16,7 @@ Span::Span(const Span& src)
 	*this = src;
 }
 
-Span&	Span::operator = (const Span& src)
+Span&	Span::operator=(const Span& src)
 {
 	// std::cout << "[Span] Assignment constructor called." << std::endl;
 	if (this != &src)

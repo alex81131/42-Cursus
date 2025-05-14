@@ -12,7 +12,7 @@ WrongCat::WrongCat(const WrongCat& src): WrongAnimal(src)
 	*this = src;
 }
 
-WrongCat&	WrongCat::operator = (const WrongCat& src)
+WrongCat&	WrongCat::operator=(const WrongCat& src)
 {
 	std::cout << "[WrongCat] Assignment operator called." << std::endl;
 	if (this != &src)

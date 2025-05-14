@@ -26,5 +26,5 @@ class	Warlock
 
 		Warlock();		// Private default constructor to prevent instantiation without name and title
 		Warlock(const Warlock& other);					// Warlock bob(jim);
-		Warlock&	operator = (const Warlock& other);	// bob = jim;
+		Warlock&	operator=(const Warlock& other);	// bob = jim;
 };

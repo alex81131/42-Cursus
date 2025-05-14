@@ -16,5 +16,5 @@ class	SpellBook
 		std::map<std::string, ASpell*>	_spells;
 
 		SpellBook(const SpellBook& other);					// SpellBook bob(jim);
-		SpellBook&	operator = (const SpellBook& other);	// bob = jim;
+		SpellBook&	operator=(const SpellBook& other);	// bob = jim;
 };

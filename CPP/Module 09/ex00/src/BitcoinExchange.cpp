@@ -8,7 +8,7 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange& src): _exRate(src._exRat
 	// *this = src;
 }
 
-BitcoinExchange&	BitcoinExchange::operator = (const BitcoinExchange& src)
+BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& src)
 {
 	// std::cout << "[BitcoinExchange] Assignment constructor called." << std::endl;
 	if (this != &src)

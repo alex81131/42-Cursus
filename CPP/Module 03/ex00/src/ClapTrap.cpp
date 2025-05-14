@@ -18,7 +18,7 @@ ClapTrap::ClapTrap(const ClapTrap& src)
 	std::cout << "An object is copied from " << src._name << "." << std::endl;
 }
 
-ClapTrap&	ClapTrap::operator = (const ClapTrap& src)
+ClapTrap&	ClapTrap::operator=(const ClapTrap& src)
 {
 	if (this != &src)
 	{

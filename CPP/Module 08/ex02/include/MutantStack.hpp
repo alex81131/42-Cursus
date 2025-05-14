@@ -17,9 +17,9 @@ class	MutantStack: public std::stack<T, Container>
 		MutantStack(void): std::stack<T, Container>() {}						// Default constructor
 		// The std::stack constructor doesn't require void as an argument; it just needs to be default-initialized.
 		MutantStack(const MutantStack& src): std::stack<T, Container>(src) {}	// Copy constructor
-		MutantStack&	operator = (const MutantStack& src)						// Assignment operator
+		MutantStack&	operator=(const MutantStack& src)						// Assignment operator
 		{
-			std::stack<T, Container>::operator = (src);
+			std::stack<T, Container>::operator=(src);
 			return *this;
 		}
 		~MutantStack(void) {}													// Destructor

@@ -4,7 +4,7 @@ RPN::RPN(void) {}
 
 RPN::RPN(const RPN& src): _stack(src._stack) {}
 
-RPN&	RPN::operator = (const RPN& src)
+RPN&	RPN::operator=(const RPN& src)
 {
 	// std::cout << "[RPN] Assignment constructor called." << std::endl;
 	if (this != &src)

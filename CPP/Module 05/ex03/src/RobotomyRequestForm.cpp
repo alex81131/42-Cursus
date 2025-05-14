@@ -19,7 +19,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& src):
 	*this = src;
 }
 
-RobotomyRequestForm&	RobotomyRequestForm::operator = (const RobotomyRequestForm& src)
+RobotomyRequestForm&	RobotomyRequestForm::operator=(const RobotomyRequestForm& src)
 {
 	std::cout << "[RobotomyRequestForm] Assignment operator called." << std::endl;
 	if (this == &src)

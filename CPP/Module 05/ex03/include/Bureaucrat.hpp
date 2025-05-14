@@ -11,7 +11,7 @@ class	Bureaucrat
 		Bureaucrat(void);								// Default constructor
 		Bureaucrat(const std::string& name, int grade);	// Parameterized Constructor
 		Bureaucrat(const Bureaucrat& src);				// Copy constructor
-		Bureaucrat&	operator = (const Bureaucrat& src);	// Assignment operator
+		Bureaucrat&	operator=(const Bureaucrat& src);	// Assignment operator
 		~Bureaucrat(void);								// Destructor
 
 		/*_______________Get info_______________*/
@@ -49,4 +49,4 @@ class	Bureaucrat::GradeTooLowException: public std::exception
 		virtual const char*	what() const throw();
 };
 
-std::ostream&	operator << (std::ostream& os, const Bureaucrat& src);
+std::ostream&	operator<<(std::ostream& os, const Bureaucrat& src);

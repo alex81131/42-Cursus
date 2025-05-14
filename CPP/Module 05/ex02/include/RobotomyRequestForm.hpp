@@ -11,7 +11,7 @@ class	RobotomyRequestForm: public AForm
 		RobotomyRequestForm(void);													// Default constructor
 		RobotomyRequestForm(const std::string& target);								// Parameterized Constructor
 		RobotomyRequestForm(const RobotomyRequestForm& src);						// Copy constructor
-		RobotomyRequestForm&	operator = (const RobotomyRequestForm& src);		// Assignment operator
+		RobotomyRequestForm&	operator=(const RobotomyRequestForm& src);		// Assignment operator
 		~RobotomyRequestForm(void);													// Destructor
 
 		/*______________Execution_______________*/

@@ -11,7 +11,7 @@ Cure::Cure(const Cure& src): AMateria("cure")
 	*this = src;
 }
 
-Cure&	Cure::operator = (const Cure& src)
+Cure&	Cure::operator=(const Cure& src)
 {
 	std::cout << "[Cure] Assignment operator called." << std::endl;
 	if (this != &src)

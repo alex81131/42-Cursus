@@ -12,7 +12,7 @@ class	Fixed
 		Fixed(const int i);
 		Fixed(const float f);
 		Fixed(const Fixed& src);
-		Fixed&	operator = (const Fixed& src);
+		Fixed&	operator=(const Fixed& src);
 		~Fixed(void);
 
 		int		getRawBits( void ) const;
@@ -25,14 +25,14 @@ class	Fixed
 		static const int	_fraction_bit = 8;
 };
 
-std::ostream&	operator << (std::ostream& ostream, const Fixed& fp_number);
+std::ostream&	operator<<(std::ostream& ostream, const Fixed& fp_number);
 
 #endif
 
 // Declare operator<< outside of the class declaration is that operator<< is not inherently part of the Fixed class's functionality.
 // 	Instead, it's a function that facilitates interaction between Fixed and std::ostream (like std::cout).
 
-// Overload the insertion («) operator = implement a new functionality on the operator <<
+// Overload the insertion («) operator=implement a new functionality on the operator <<
 // 	Before overloading, << couldn’t print a fixed-point number assigned by the subject.
 // 	By overloading, you define how << should print a custom data type such as "Fixed".
 // ie. in main.cpp

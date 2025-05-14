@@ -23,7 +23,7 @@ Form::Form(const Form& src):
 	*this = src;
 }
 
-Form&	Form::operator = (const Form& src)
+Form&	Form::operator=(const Form& src)
 {
 	std::cout << "[Form] Assignment operator called." << std::endl;
 	if (this != &src)
@@ -80,7 +80,7 @@ void	Form::beSigned(const Bureaucrat& b)
 	std::cout << b.getName() << " signed " << this->_name << ".\n";
 }
 
-std::ostream&	operator << (std::ostream& os, const Form& src)
+std::ostream&	operator<<(std::ostream& os, const Form& src)
 {
 	os << "Form name: " << src.getName() << "\n" 
 		<< "\tSign status: " << src.getSignStatus() << "\n" 

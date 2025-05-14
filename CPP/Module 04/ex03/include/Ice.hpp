@@ -8,7 +8,7 @@ class	Ice: public AMateria
 	public:
 		Ice(void);								// Default constructor
 		Ice(const Ice& src);					// Copy constructor
-		Ice&	operator = (const Ice& src);	// Assignment operator
+		Ice&	operator=(const Ice& src);	// Assignment operator
 		~Ice(void);								// Destructor, treated as virtual by default
 
 		Ice*	clone() const;

@@ -19,7 +19,7 @@ class	ASpell
 	private:
 		ASpell();
 		ASpell(const ASpell& other);
-		ASpell&	operator = (const ASpell& other);
+		ASpell&	operator=(const ASpell& other);
 
 	protected:
 		std::string	_name;

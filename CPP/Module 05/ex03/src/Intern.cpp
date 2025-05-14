@@ -11,7 +11,7 @@ Intern::Intern(const Intern& src)
 	*this = src;
 }
 
-Intern&	Intern::operator = (const Intern& src)
+Intern&	Intern::operator=(const Intern& src)
 {
 	std::cout << "[Intern] Assignment operator called." << std::endl;
 	if (this == &src)

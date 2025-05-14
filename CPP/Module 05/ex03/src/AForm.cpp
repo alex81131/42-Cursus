@@ -23,7 +23,7 @@ AForm::AForm(const AForm& src):
 	*this = src;
 }
 
-AForm&	AForm::operator = (const AForm& src)
+AForm&	AForm::operator=(const AForm& src)
 {
 	std::cout << "[AForm] Assignment operator called." << std::endl;
 	if (this != &src)
@@ -106,7 +106,7 @@ void	AForm::execute(Bureaucrat const& executor) const
 	this->doExe();
 }
 
-std::ostream&	operator << (std::ostream& os, const AForm& src)
+std::ostream&	operator<<(std::ostream& os, const AForm& src)
 {
 	os << "AForm name: " << src.getName() << "\n" 
 		<< "\tSign status: " << src.getSignStatus() << "\n" 

@@ -10,7 +10,7 @@ class	Character: public ICharacter
 		Character(void);								// Default constructor
 		Character(std::string const& _name);			// Parameterized Constructor
 		Character(const Character& src);				// Copy constructor
-		Character&	operator = (const Character& src);	// Assignment operator
+		Character&	operator=(const Character& src);	// Assignment operator
 		~Character(void);								// Destructor
 
 		std::string const&	getName() const;

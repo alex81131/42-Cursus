@@ -26,7 +26,7 @@ FragTrap::FragTrap(const FragTrap& src): ClapTrap(src)
 	std::cout << "[FragTrap] An object is copied from " << src._name << "." << std::endl;
 }
 
-FragTrap&	FragTrap::operator = (const FragTrap& src)
+FragTrap&	FragTrap::operator=(const FragTrap& src)
 {
 	if (this != &src)
 	{

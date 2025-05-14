@@ -13,7 +13,7 @@ PmergeMe::PmergeMe(const std::vector<int>& input): _c_vec(input)
 
 PmergeMe::PmergeMe(const PmergeMe& src) { *this = src; }
 
-PmergeMe&	PmergeMe::operator = (const PmergeMe& src)
+PmergeMe&	PmergeMe::operator=(const PmergeMe& src)
 {
 	if (this != &src)
 	{
@@ -37,7 +37,7 @@ bool	PmergeMe::isPositiveNum(std::string av)
 }
 
 template <typename T>
-std::ostream& operator << (std::ostream& o, const std::vector<T>& src)
+std::ostream& operator<<(std::ostream& o, const std::vector<T>& src)
 {
 	for (typename std::vector<T>::const_iterator	it = src.begin(); it != src.end(); ++it)
 		o << " " << *it;

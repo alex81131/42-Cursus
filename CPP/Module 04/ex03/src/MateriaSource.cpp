@@ -13,12 +13,12 @@ MateriaSource::MateriaSource(const MateriaSource& src)
 	*this = src;
 }
 
-MateriaSource&	MateriaSource::operator = (const MateriaSource& src)
+MateriaSource&	MateriaSource::operator=(const MateriaSource& src)
 {
 	std::cout << "[MateriaSource] Assignment operator called." << std::endl;
 	if (this != &src)
 	{
-		IMateriaSource::operator = (src);
+		IMateriaSource::operator=(src);
 		for (int i = 0; i < 4; i++)
 		{
 			if (this->_inventory[i])

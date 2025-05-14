@@ -9,7 +9,7 @@ class	Point
 		Point(void);								// Default constructor
 		Point(const float x, const float y);		// Parameterized Constructor
 		Point(const Point& src);					// Copy constructor
-		Point&	operator = (const Point& src);		// Assignment operator
+		Point&	operator=(const Point& src);		// Assignment operator
 		~Point(void);								// Destructor
 
 		// Return a reference to the Fixed object: _x and _y

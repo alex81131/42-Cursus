@@ -9,7 +9,7 @@ class	Fixed
 	public:
 		Fixed(void);
 		Fixed(const Fixed& src);
-		Fixed&	operator = (const Fixed& src);
+		Fixed&	operator=(const Fixed& src);
 		~Fixed(void);
 
 		int		getRawBits( void ) const;
@@ -37,3 +37,8 @@ class	Fixed
 // 		It typically returns a reference to the current object to allow for chaining assignments.
 // for classes that manage resources.
 // This approach enhances flexibility and prevents issues related to resource management.
+
+// <Fixed&	operator=(...)>:
+// 	Return type:	Fixed&
+// 	function:		operator=
+// 			(function is the [operator "="])

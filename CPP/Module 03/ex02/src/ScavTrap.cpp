@@ -27,7 +27,7 @@ ScavTrap::ScavTrap(const ScavTrap& src): ClapTrap(src)
 	std::cout << "[ScavTrap] An object is copied from " << src._name << "." << std::endl;
 }
 
-ScavTrap&	ScavTrap::operator = (const ScavTrap& src)
+ScavTrap&	ScavTrap::operator=(const ScavTrap& src)
 {
 	if (this != &src)
 	{

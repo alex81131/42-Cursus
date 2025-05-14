@@ -14,7 +14,7 @@ class	Span
 		Span(void);								// Default constructor
 		Span(unsigned int n);					// Parameterized Constructor
 		Span(const Span& src);					// Copy constructor
-		Span&	operator = (const Span& src);	// Assignment operator
+		Span&	operator=(const Span& src);	// Assignment operator
 		~Span(void);							// Destructor
 
 		void			addNumber(int value);

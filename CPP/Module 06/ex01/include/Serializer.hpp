@@ -15,7 +15,7 @@ class	Serializer
 	private:	// Must not be instanciable by users
 		Serializer(void);								// Default constructor
 		Serializer(const Serializer& src);				// Copy constructor
-		Serializer&	operator = (const Serializer& src);	// Assignment operator
+		Serializer&	operator=(const Serializer& src);	// Assignment operator
 		~Serializer(void);								// Destructor
 };
 

@@ -19,7 +19,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& src
 	*this = src;
 }
 
-PresidentialPardonForm&	PresidentialPardonForm::operator = (const PresidentialPardonForm& src)
+PresidentialPardonForm&	PresidentialPardonForm::operator=(const PresidentialPardonForm& src)
 {
 	std::cout << "[PresidentialPardonForm] Assignment operator called." << std::endl;
 	if (this == &src)

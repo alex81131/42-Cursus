@@ -17,7 +17,7 @@ class	Data
 		Data(char c, int i, double d, const std::string &s, void *ptr);
 
 		Data(const Data& src);					// Copy constructor
-		Data&	operator = (const Data& src);	// Assignment operator
+		Data&	operator=(const Data& src);	// Assignment operator
 		~Data(void);							// Destructor
 
 		void	printData(void);

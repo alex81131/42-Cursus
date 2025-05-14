@@ -9,7 +9,7 @@ class	Dog: public Animal
 	public:
 		Dog(void);								// Default constructor
 		Dog(const Dog& src);					// Copy constructor
-		Dog&	operator = (const Dog& src);	// Assignment operator
+		Dog&	operator=(const Dog& src);	// Assignment operator
 		~Dog(void);								// Destructor, treated as virtual by default
 
 		void	makeSound() const;

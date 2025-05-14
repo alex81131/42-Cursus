@@ -11,7 +11,7 @@ Brain::Brain(const Brain& src)
 	*this = src;
 }
 
-Brain&	Brain::operator = (const Brain& src)
+Brain&	Brain::operator=(const Brain& src)
 {
 	std::cout << "[Brain] Assignment operator called." << std::endl;
 	if (this != &src)

@@ -16,5 +16,5 @@ class	TargetGenerator
 		std::map<std::string, ATarget*>	_targets;
 
 		TargetGenerator(const TargetGenerator& other);					// TargetGenerator bob(jim);
-		TargetGenerator&	operator = (const TargetGenerator& other);	// bob = jim;
+		TargetGenerator&	operator=(const TargetGenerator& other);	// bob = jim;
 };

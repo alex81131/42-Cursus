@@ -12,7 +12,7 @@ Animal::Animal(const Animal& src)
 	*this = src;
 }
 
-Animal&	Animal::operator = (const Animal& src)
+Animal&	Animal::operator=(const Animal& src)
 {
 	std::cout << "[Animal] Assignment operator called." << std::endl;
 	if (this != &src)

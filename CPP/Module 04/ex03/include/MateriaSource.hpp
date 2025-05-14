@@ -8,7 +8,7 @@ class	MateriaSource: public IMateriaSource
 	public:
 		MateriaSource(void);									// Default constructor
 		MateriaSource(const MateriaSource& src);				// Copy constructor
-		MateriaSource&	operator = (const MateriaSource& src);	// Assignment operator
+		MateriaSource&	operator=(const MateriaSource& src);	// Assignment operator
 		~MateriaSource(void);									// Destructor, treated as virtual by default
 
 		void		learnMateria(AMateria* m);

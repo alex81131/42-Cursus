@@ -12,7 +12,7 @@ class	Form
 		Form(void);													// Default constructor
 		Form(const std::string& name, int signGrade, int exeGrade);	// Parameterized Constructor
 		Form(const Form& src);										// Copy constructor
-		Form&	operator = (const Form& src);						// Assignment operator
+		Form&	operator=(const Form& src);						// Assignment operator
 		~Form(void);												// Destructor
 
 		/*_______________Get info_______________*/
@@ -43,6 +43,6 @@ class	Form
 		const int			_exeGrade;
 };
 
-std::ostream&	operator << (std::ostream& os, const Form& src);
+std::ostream&	operator<<(std::ostream& os, const Form& src);
 
 #endif

@@ -11,7 +11,7 @@ class	AForm
 		AForm(void);													// Default constructor
 		AForm(const std::string& name, const std::string& target, int signGrade, int exeGrade);	// Parameterized Constructor
 		AForm(const AForm& src);										// Copy constructor
-		AForm&	operator = (const AForm& src);							// Assignment operator
+		AForm&	operator=(const AForm& src);							// Assignment operator
 		virtual ~AForm(void);											// Destructor
 
 		/*_______________Get info_______________*/
@@ -55,7 +55,7 @@ class	AForm
 		const int			_exeGrade;
 };
 
-std::ostream&	operator << (std::ostream& os, const AForm& src);
+std::ostream&	operator<<(std::ostream& os, const AForm& src);
 
 // #pragma once:
 // 	a preprocessor directive in C++ that ensures a header file is included only once in a single compilation.

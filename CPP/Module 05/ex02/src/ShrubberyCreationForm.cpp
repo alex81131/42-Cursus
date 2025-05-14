@@ -19,7 +19,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src):
 	*this = src;
 }
 
-ShrubberyCreationForm&	ShrubberyCreationForm::operator = (const ShrubberyCreationForm& src)
+ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& src)
 {
 	std::cout << "[ShrubberyCreationForm] Assignment operator called." << std::endl;
 	if (this == &src)

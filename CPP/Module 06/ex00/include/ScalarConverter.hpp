@@ -31,7 +31,7 @@ class	ScalarConverter
 	private:	// Must not be instanciable by users
 		ScalarConverter(void);											// Default constructor
 		ScalarConverter(const ScalarConverter& src);					// Copy constructor
-		ScalarConverter&	operator = (const ScalarConverter& src);	// Assignment operator
+		ScalarConverter&	operator=(const ScalarConverter& src);	// Assignment operator
 		~ScalarConverter(void);											// Destructor
 
 		static Type	getLiteralType(const std::string &s);

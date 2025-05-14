@@ -18,7 +18,7 @@ Character::Character(const Character& src)
 	*this = src;
 }
 
-Character&	Character::operator = (const Character& src)
+Character&	Character::operator=(const Character& src)
 {
 	std::cout << "[Character] Assignment operator called." << std::endl;
 	if (this != &src)
