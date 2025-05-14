@@ -8,7 +8,7 @@
 
 void	handle_sigint(int _sig) {throw (int)_sig;}
 
-int	main(int ac, char **av)
+int	main(int ac, char** av)
 {
 	if (ac != 2)
 		return 1;
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 	{
 		signal(SIGINT, handle_sigint);
 		signal(SIGPIPE, SIG_IGN);
-		JsonValue	json = JSONParser::parse(input);
+		JsonValue	json = JsonParser::parse(input);
 		std::cout << json << std::endl;
 		Cluster	cluster(json);
 
@@ -36,7 +36,7 @@ int	main(int ac, char **av)
 			return v;
 		std::cerr << "\n("<< v << ") Exit successful." << std::endl;
 	}
-	catch (std::exception &e)
+	catch (std::exception& e)
 	{
 		std::cerr << "Error: " << e.what();
 	}

@@ -1,8 +1,8 @@
 #pragma once
-#include <string>
+# include <string>
 
-bool	is_directory(const std::string &path);
-bool	end_with_json(const std::string &c);
+bool	is_directory(const std::string& path);
+bool	end_with_json(const std::string& s);
 enum	CgiResult
 {
 	SUCCESS,

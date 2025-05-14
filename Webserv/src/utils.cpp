@@ -2,7 +2,7 @@
 #include <sys/stat.h>
 #include "utils.hpp"
 
-bool	is_directory(const std::string &path)
+bool	is_directory(const std::string& path)
 {
 	struct stat	s;
 
@@ -12,11 +12,11 @@ bool	is_directory(const std::string &path)
 	return false;
 }
 
-bool	end_with_json(const std::string &c)
+bool	end_with_json(const std::string& s)
 {
 	std::string	suffix = ".json";
 
-	if (c.length() >= suffix.length())
-		return (c.compare(c.length() - suffix.length(), suffix.length(), suffix) == 0);
+	if (s.length() >= suffix.length())
+		return (s.compare(s.length() - suffix.length(), suffix.length(), suffix) == 0);
 	return false;
 	}
