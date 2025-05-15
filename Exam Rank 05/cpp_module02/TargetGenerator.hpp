@@ -1,6 +1,5 @@
 #pragma once
-# include "ATarget.hpp"
-# include <map>
+# include "Warlock.hpp"
 
 class	TargetGenerator
 {
