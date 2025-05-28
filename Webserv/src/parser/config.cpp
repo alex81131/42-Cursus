@@ -67,9 +67,7 @@ Config::Config(const JsonValue& j): _addr(NULL), _json(j)
 		{
 			throw Config::BadValue();
 		}
-		catch (const std::exception& e)
-		{
-		}
+		catch (const std::exception& e) {}
 
 		if (j["routes"].get_arr().size() < 1)
 			throw Config::BadValue("need at least 1 route");
@@ -167,9 +165,7 @@ Config::Route::Route(const JsonValue& j): dir_listing(true), is_redirection(fals
 			cgi.insert(el);
 		}
 	}
-	catch (const std::out_of_range& e)
-	{
-	}
+	catch (const std::out_of_range& e) {}
 	catch (const std::exception& e)
 	{
 		std::cerr << "CGI: " << e.what() << std::endl;

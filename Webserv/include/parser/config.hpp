@@ -1,3 +1,5 @@
+// 將解析後的 JSON 資料（JsonValue 物件）轉為 伺服器配置（Config 和 Route 物件）。
+
 #pragma once
 # include "json.hpp"
 # include <netdb.h>

@@ -1,3 +1,7 @@
+// 定義 JsonValue 類的成員函數，提供 JSON 資料的操作和儲存：
+// 	將解析後的 JSON 資料結構儲存為 JsonValue 物件，
+// 	並支援操作（例如 operator[] 存取鍵值、operator<< 輸出）。
+
 #pragma once
 # include "lexer.hpp"
 # include <sys/types.h>

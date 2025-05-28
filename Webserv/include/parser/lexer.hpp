@@ -1,3 +1,6 @@
+// 將 JSON 檔案（例如 host.json）的字串分解為 token 流（例如 {、"name"、"kyeh-server"）。
+// 	相當於“斷句”，將原始文字轉為結構化的語法單位，供 parser 使用。
+
 #pragma once
 # include <vector>
 # include <string>

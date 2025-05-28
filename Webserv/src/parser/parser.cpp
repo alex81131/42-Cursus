@@ -85,9 +85,9 @@ JsonValue	JsonParser::handle_tokens(const_iter& begin, const const_iter& end)
 
 JsonValue	JsonParser::parse(std::ifstream& stream)
 {
-	JsonLexer::Tokens tokens = JsonLexer::lex(stream);
-	JsonLexer::Tokens::const_iterator it = tokens.begin();
-	JsonValue val;
+	JsonLexer::Tokens					tokens = JsonLexer::lex(stream);
+	JsonLexer::Tokens::const_iterator	it = tokens.begin();
+	JsonValue							val;
 	try
 	{
 		val = handle_tokens(it, tokens.end());

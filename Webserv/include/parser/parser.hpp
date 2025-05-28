@@ -1,9 +1,10 @@
+// 將 lexer.cpp 產生的 token 流“翻譯”為 JsonValue 物件，構建 JSON 的層次結構（物件、陣列、字串等）。
+
 #pragma once
 # include "json.hpp"
 # include "lexer.hpp"
 # include <fstream>
 # include <iostream>
-# include <stdexcept>
 
 class	JsonParser
 {

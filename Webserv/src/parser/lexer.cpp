@@ -1,4 +1,3 @@
-
 #include "lexer.hpp"
 
 static const std::string	whitespace = "\t\r\n ";
