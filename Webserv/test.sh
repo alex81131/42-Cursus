@@ -1,6 +1,11 @@
+# config.hurl:
+#     which php-cgi
+#     sudo apt-get install php-cgi
+# dir_listing:
+#     Need the upload folder
+
 #!/bin/bash
 
-# set -e
 set -e
 
 exit_code=0
