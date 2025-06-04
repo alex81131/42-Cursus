@@ -1,6 +1,6 @@
 #pragma once
-# include "EventHandler.hpp"
 # include "utils.hpp"
+# include "EventHandler.hpp"
 # include "Request.hpp"
 
 class	ClientConnection

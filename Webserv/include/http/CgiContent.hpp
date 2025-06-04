@@ -7,6 +7,7 @@ class	CgiContent: public AHttpData
 		CgiContent(const std::string& str);
 		CgiContent(const CgiContent& other);
 		CgiContent&	operator=(const CgiContent& other);
+		virtual ~CgiContent();
 
 		void	parseHead();
 };

@@ -2,11 +2,11 @@
 # include "cluster.hpp"				// Server: config: json
 # include "CGIManager.hpp"
 # include "ClientConnection.hpp"	// utils, Request
-# include "Response.hpp"
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <sstream>
 # include <stdexcept>
+# include "Request.hpp"
 
 # define BUFFER_SIZE 30720
 # define TIMEOUT_TIME 3
@@ -15,6 +15,7 @@ extern char**	environ;
 
 class	ClientConnection;
 class	CGIManager;
+class	Cluster;
 
 enum	reqType
 {

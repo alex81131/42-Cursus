@@ -1,4 +1,20 @@
 #include "EventHandler.hpp"
+#include "Response.hpp"
+
+// Erros need to be compiled first.
+class	EventHandler::epollInitFailure: public std::exception
+{
+	public:
+		const char* what() const throw()
+		{return "Error: could not initialise epoll\n";}
+};
+
+class	EventHandler::epollWaitFailure: public std::exception
+{
+	public:
+		const char* what() const throw()
+		{return "Error: epoll_wait failed\n";}
+};
 
 EventHandler::EventHandler(const Cluster& cluster): _cluster(cluster)
 {
@@ -66,7 +82,7 @@ bool	EventHandler::addToEpoll(int fd)
 
 bool	EventHandler::deleteFromEpoll(int fd)
 {
-	if (epoll_ctl(_epollFd, EPOLL_CTL_DEL, fd, NULL) == -1)=
+	if (epoll_ctl(_epollFd, EPOLL_CTL_DEL, fd, NULL) == -1)
 	{
 		std::cerr << "Error: Can't delete fd " << fd << "\n";
 		return false;
@@ -127,7 +143,7 @@ bool	EventHandler::isMultiPartReq(int clientFd)
 
 bool	EventHandler::isMultiPartReqFinished(int clientFd)
 {
-	const std::string&		eq = _clients.at(clientFd)->_requestBuffer;
+	const std::string&		req = _clients.at(clientFd)->_requestBuffer;
 	std::string::size_type	boundaryPos = req.find("boundary=");
 
 	if (boundaryPos == std::string::npos)
@@ -422,17 +438,3 @@ const Config&	EventHandler::get_config(const std::string& host, int clientFd) co
 		return _clients.at(clientFd)->_config;
 	return **found;
 }
-
-class	EventHandler::epollInitFailure: public std::exception
-{
-	public:
-		const char* what() const throw()
-		{return "Error: could not initialise epoll\n";}
-};
-
-class	EventHandler::epollWaitFailure: public std::exception
-{
-	public:
-		const char* what() const throw()
-		{return "Error: epoll_wait failed\n";}
-};

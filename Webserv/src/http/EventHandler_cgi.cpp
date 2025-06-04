@@ -89,7 +89,7 @@ CgiResult	EventHandler::startCGI(int clientFd, std::vector<std::string> argument
 		dup2(fd[1], STDOUT_FILENO);
 		dup2(fd_body[0], STDIN_FILENO);
 		close_all(fd, fd_body);
-		const char*	args[] =
+		char *const	args[] =
 		{
 			const_cast<char *>(arguments[0].c_str()),
 			const_cast<char *>(arguments[1].c_str()),
@@ -127,7 +127,7 @@ CgiResult	EventHandler::startCGI(int clientFd, std::vector<std::string> argument
 					std::cout << "Child timeout after: " << TIMEOUT_TIME << std::endl;
 					kill(pid, SIGTERM);
 					waitpid(pid, NULL, 0);
-					return TIMEOUT_TIME;
+					return TIMEOUT;
 				}
 			}
 			else

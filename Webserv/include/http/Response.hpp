@@ -3,7 +3,7 @@
 # include "EventHandler.hpp"	// cluster: Server: config: json; CGIManager: ClientConnection: utils, Request
 # include <ctime>
 
-class Response
+class	Response
 {
 	public:
 		enum	TimeForm

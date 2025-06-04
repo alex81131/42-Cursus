@@ -1,5 +1,27 @@
 #include "Server.hpp"
 
+// Erros need to be compiled first.
+class	Server::socketCreationFailure: public std::exception
+{
+	public:
+		const char* what() const throw()
+		{return "Error: Can not create socket.\n";}
+};
+
+class	Server::socketBindFailure: public std::exception
+{
+	public:
+		const char* what() const throw()
+		{return "Error: Can not bind socket.\n";}
+};
+
+class	Server::socketListenFailure: public std::exception
+{
+	public:
+		const char* what() const throw()
+		{return "Error: Can not listen on port.\n";}
+};
+
 Server::Server(Config& config):
 	_config(config),
 	_maxClients(MAX_CLIENTS),
@@ -54,24 +76,3 @@ int	Server::getMaxEvents() const
 
 const Config&	Server::getConfig() const
 {return _config;}
-
-class Server::socketCreationFailure: public std::exception
-{
-	public:
-		const char* what() const throw()
-		{return "Error: Can not create socket.\n";}
-};
-
-class Server::socketBindFailure: public std::exception
-{
-	public:
-		const char* what() const throw()
-		{return "Error: Can not bind socket.\n";}
-};
-
-class Server::socketListenFailure: public std::exception
-{
-	public:
-		const char* what() const throw()
-		{return "Error: Can not listen on port.\n";}
-};
