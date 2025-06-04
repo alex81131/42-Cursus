@@ -1,16 +1,15 @@
 #pragma once
-# include "cluster.hpp"
+# include "cluster.hpp"				// Server: config: json
 # include "CGIManager.hpp"
-# include "Server.hpp"
-# include "ClientConnection.hpp"
+# include "ClientConnection.hpp"	// utils, Request
 # include "Response.hpp"
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <sstream>
-#include <stdexcept>
+# include <stdexcept>
 
 # define BUFFER_SIZE 30720
-# define TIMEOUT 3
+# define TIMEOUT_TIME 3
 
 extern char**	environ;
 

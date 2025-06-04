@@ -122,7 +122,10 @@ fclean: clean
 
 re:	fclean all
 
-.PHONY: all clean fclean re
+test:	all
+	bash test.sh all
+
+.PHONY: all clean fclean re test
 
 # Notes:
 # 1. @ suppresses the command being printed to the terminal when executed.

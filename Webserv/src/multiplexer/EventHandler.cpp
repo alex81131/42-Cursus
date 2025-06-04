@@ -267,7 +267,7 @@ void	EventHandler::handleClientRequest(int clientFd)
 
 		// Get corresponding Config and Route based on Client Request
 		const Config&			conf = get_config(rqs->getHeaderValue("Host"), clientFd);
-		const Config::Routes&	route = Response::find_match(conf, rqs->getUrl());
+		const Config::Route&	route = Response::find_match(conf, rqs->getUrl());
 
 		std::map<std::string, std::string>::const_iterator cgi_route;
 		if ((cgi_route = Response::check_cgi(route, rqs->getUrl())) != route.cgi.end())

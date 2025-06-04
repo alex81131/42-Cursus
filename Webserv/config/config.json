@@ -5,10 +5,11 @@
 		"port": 8080,
 		"max_body": 10000000,
 		"error": {
-				"404": "./error-pages/not_found_404.html",
-				"405": "./error-pages/method_not_allowed_405.html"
+				"404": "./error-page/not_found_404.html",
+				"405": "./error-page/method_not_allowed_405.html"
 		},
-		"routes": [
+		"routes":
+		[
 			{
 				"method": ["GET", "POST", "DELETE"],
 				"route": "/",
@@ -16,7 +17,8 @@
 				"dir_listing": true,
 				"directory": "./website",
 				"upload": "./upload",
-				"cgi": [
+				"cgi":
+				[
 					{
 						"extension": "py",
 						"exec": "/usr/bin/python3"
@@ -34,9 +36,7 @@
 				"index": "index.html",
 				"directory": "./website/another_folder/",
 				"upload": "./upload",
-				"cgi": [
-					{ "extension": "py", "exec": "/usr/bin/python3"}
-				]
+				"cgi": [{ "extension": "py", "exec": "/usr/bin/python3"}]
 			}
 		]
 	},
@@ -44,11 +44,11 @@
 		"name": "second server",
 		"host": "0.0.0.0",
 		"port": 8081,
-		"error": {
-				"404": "./error-pages/not_found_404.html"
-		},
+		"error":
+		{"404": "./error-page/not_found_404.html"},
 		"max_body": 2000,
-		"routes": [
+		"routes":
+		[
 			{
 				"method": ["GET", "POST"],
 				"route": "/",
@@ -63,10 +63,10 @@
 		"name": "random server",
 		"host": "0.0.0.0",
 		"port": 9999,
-		"error": {
-				"404": "./error-pages/not_found_404.html"
-		},
-		"routes": [
+		"error":
+		{"404": "./error-page/not_found_404.html"},
+		"routes":
+		[
 			{
 				"method": ["GET", "POST"],
 				"route": "/",
