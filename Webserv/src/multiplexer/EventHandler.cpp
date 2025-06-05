@@ -50,17 +50,18 @@ void	EventHandler::changeToRead(int clientFd)
 	struct epoll_event	ev;
 
 	ev.data.fd = clientFd;
-	ev.events = EPOLLIN;
+	ev.events = EPOLLIN;		// Readable
 	if (epoll_ctl(_epollFd, EPOLL_CTL_MOD, clientFd, &ev) == -1)
 		std::cerr << "Error: Can't mark fd " << clientFd << " as EPOLLIN\n";
 }
+// epoll_ctl(returned fd, operation, target fd, event)
 
 void	EventHandler::changeToWrite(int clientFd)
 {
 	struct epoll_event	ev;
 
 	ev.data.fd = clientFd;
-	ev.events = EPOLLOUT;
+	ev.events = EPOLLOUT;		// Writable
 	if (epoll_ctl(_epollFd, EPOLL_CTL_MOD, clientFd, &ev) == -1)
 		std::cerr << "Error: Can't mark fd " << clientFd << " as EPOLLOUT\n";
 }
@@ -356,7 +357,7 @@ void	EventHandler::handleResponse(int clientFd)
 	{
 		std::cerr << "CHECK HERE FOR SURE IF YOU EVER GET THIS DURING DEBUG" << std::endl;
 		remove_client(clientFd);
-		return ;	// could be temporary full socket, but not allowed to check err code to confirm :(
+		return ;	// Could be temporary full socket, but not allowed to check err code to confirm :(
 	}
 	else if (bytes_written == bytes_remaining)
 	{
