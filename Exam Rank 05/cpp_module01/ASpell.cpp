@@ -2,6 +2,15 @@
 
 ASpell::ASpell(const std::string& name, const std::string& effects): _name(name), _effects(effects) {}
 
+ASpell::ASpell(const ASpell& other)
+{*this = other;}
+
+ASpell&	ASpell::operator=(const ASpell& other)
+{
+	(void) other;
+	return *this;
+}
+
 ASpell::~ASpell() {}
 
 const std::string&	ASpell::getName() const
