@@ -228,12 +228,12 @@ std::string	Response::getPostContent(const Request& request)
 		path.append("/");
 	try
 	{
-		_contentType = request.getHeaderValue("Content-Type");	// throw outof range if no content_type in request
+		_contentType = request.getHeaderValue("Content-Type");	// Throw outof range if no content_type in request
 		filename = getCurrentTime(SIMPLE) + check_postFile(_contentType); // throw 403 if not allowed file format
 		path += filename;
 		std::ofstream	ofs(path.c_str(), std::ofstream::out | std::ofstream::trunc);
 		if (!ofs)
-			throw (401); // not authorized to create a file
+			throw (401); // Not authorized to create a file
 		ofs << request.getBody();
 		_statusCode = 201;
 		content << filename << " is created successfully at [" << _route.upload << "]\r\n";

@@ -22,7 +22,8 @@ AHttpData&	AHttpData::operator=(const AHttpData& other)
 
 AHttpData::~AHttpData() {}
 
-const std::string&	AHttpData::getHeaderValue(const std::string& key) const{
+const std::string&	AHttpData::getHeaderValue(const std::string& key) const
+{
 	std::multimap<std::string, std::string>::const_iterator	it = this->_headers.find(key);
 
 	if (it != this->_headers.end())

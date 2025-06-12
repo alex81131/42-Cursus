@@ -85,7 +85,7 @@ bool	EventHandler::deleteFromEpoll(int fd)
 {
 	if (epoll_ctl(_epollFd, EPOLL_CTL_DEL, fd, NULL) == -1)
 	{
-		std::cerr << "Error: Can't delete fd " << fd << "\n";
+		std::cerr << "Error: Can't delete fd " << fd << ".\n";
 		return false;
 	}
 	return true;
@@ -116,7 +116,7 @@ void	EventHandler::addServer(Server& s)
 void	EventHandler::handleNewConnection(Server& s)
 {
 	int					serverFd = s.getSockFd();
-	std::cout << "New connection from " << serverFd << "\n";
+	std::cout << "New connection from " << serverFd << ".\n";
 
 	struct sockaddr_in	clientAddr;
 	socklen_t			clientAddrLen = sizeof(clientAddr);
@@ -124,7 +124,7 @@ void	EventHandler::handleNewConnection(Server& s)
 	int					clientFd = accept(serverFd, (struct sockaddr *)&clientAddr, &clientAddrLen);
 	if (clientFd == -1)
 	{
-		std::cerr << "Error: Can't accept new connection from fd " << serverFd << "\n";
+		std::cerr << "Error: Can't accept new connection from fd " << serverFd << ".\n";
 		return ;
 	}
 	if (!addToEpoll(clientFd))
@@ -255,11 +255,17 @@ void	EventHandler::handleClientRequest(int clientFd)
 	char	buffer[BUFFER_SIZE];
 	int		bytes_read;
 
-	std::cout << "Handling client request from " << clientFd << "\n";
+	std::cout << "Handling client request from " << clientFd << ".\n";
 	bytes_read = read(clientFd, buffer, sizeof(buffer) - 1);
-	if (bytes_read <= 0)
+	if (bytes_read < 0)
 	{
-		std::cerr << "Error: Failed to read or client closed connection.\n";
+		std::cerr << "Error: Failed to read from client.\n";
+		remove_client(clientFd);
+		return ;
+	}
+	else if (bytes_read == 0)
+	{
+		std::cout << "Client " << clientFd << " closed connection.\n";
 		remove_client(clientFd);
 		return ;
 	}
@@ -349,7 +355,7 @@ void	EventHandler::remove_client(int clientFd)
 
 void	EventHandler::handleResponse(int clientFd)
 {
-	std::cout << "Sending response to client " << clientFd << "\n";
+	std::cout << "Sending response to client " << clientFd << ".\n";
 	ssize_t	bytes_remaining = _clients.at(clientFd)->_responseBuffer.size();
 	ssize_t	bytes_written = write(clientFd, _clients.at(clientFd)->_responseBuffer.c_str(), _clients.at(clientFd)->_responseBuffer.length());
 
@@ -359,6 +365,7 @@ void	EventHandler::handleResponse(int clientFd)
 		remove_client(clientFd);
 		return ;	// Could be temporary full socket, but not allowed to check err code to confirm :(
 	}
+	// bytes == 0: no data to write or written
 	else if (bytes_written == bytes_remaining)
 	{
 		if (_clients.at(clientFd)->_errorCode == 413)

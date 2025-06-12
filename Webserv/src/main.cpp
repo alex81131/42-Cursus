@@ -42,3 +42,9 @@ int	main(int ac, char** av)
 	}
 	return 0;
 }
+
+// 1. ./webserv config/config.json
+// 	This terminal will show the server log.
+// 	Need to open another terminal to use.
+// 2. ./webserv config/config.json &
+// 	Run in background. Can directly use the terminal.
