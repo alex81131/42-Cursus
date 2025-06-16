@@ -24,7 +24,7 @@ class	Response
 		static const std::map<std::string, std::string>				initAcceptedFile();
 		static const std::map<std::string, std::string>				initAcceptedFileReversed();
 		static bool													check_extension(const std::string& url);
-		static Config::Route const&								find_match(const Config& config, const std::string& url);
+		static Config::Route const&									find_match(const Config& config, const std::string& url);
 		static std::map<std::string, std::string>::const_iterator	check_cgi(const Config::Route& route, const std::string& url);
 		static std::string											check_postFile(const std::string& type);
 		std::string													getErrorContent(int errCode);
@@ -42,6 +42,7 @@ class	Response
 		std::string								readFile(const std::string& filename);
 		std::string								getFileContent(const std::string& url);
 		std::string								getPostContent(const Request& request);
+		std::string								getDeleteContent(const Request& request);
 
 		/* static functions */
 		static std::string						toLower(std::string s);

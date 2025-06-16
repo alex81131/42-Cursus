@@ -57,7 +57,7 @@ void	EventHandler::handle_environment(const Request& req, const std::string& arg
 		setenv("SERVER_NAME", req.getHeaderValue("Host").c_str(), 1);
 	}
 	catch (const std::exception &e)
-	{std::cerr << "[log] setenv, can ignore" << std::endl;}
+	{std::cerr << "[Log] setenv, can ignore." << std::endl;}
 }
 
 // void	alarm_handler(int _sig) { (void)_sig; throw (1); }

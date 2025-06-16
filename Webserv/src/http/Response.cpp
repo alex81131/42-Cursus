@@ -20,6 +20,8 @@ Response::Response(Request const &request, Config const &config):
 			_statusCode = 301;
 		else if (request.getMethod() == "POST")
 			_content = getPostContent(request);
+		// else if (request.getMethod() == "DELETE")
+		// 	_content = getDeleteContent(request);
 		else if (check_extension(request.getUrl()))
 			throw(502);
 		else
@@ -218,7 +220,6 @@ std::string	Response::getFileContent(const std::string& url)
 
 std::string	Response::getPostContent(const Request& request)
 {
-	// std::string	content;
 	std::ostringstream	content;
 	std::string			filename;
 	std::string			path = _route.upload;
@@ -251,6 +252,20 @@ std::string	Response::getPostContent(const Request& request)
 	}
 	return content.str();
 }
+
+// std::string Response::getDeleteContent(const Request& request)
+// {
+// 	std::ostringstream	content;
+// 	std::string			path = "./";
+
+// 	// Check path
+// 	// Not under ./website or ./upload:
+// 	if (.find("./website") != 0 && resolved.find("./upload") != 0)
+// 		throw 403;
+// 	// Files don't exist
+// 	// Deletion failed
+// 	return content.str();
+// }
 
 // return the iterator of cgi found in the current _route
 std::map<std::string, std::string>::const_iterator	Response::check_cgi(const Config::Route& route, const std::string& url)
