@@ -50,11 +50,11 @@ std::string::size_type EventHandler::getChunkSize(std::string::size_type& chunkS
 	
 	chunkEnd = reqBuffer.find("\r\n", chunkStart);
 	if (chunkEnd == std::string::npos)
-		throw std::runtime_error("Invalid chunked encoding: chunk size not found\n");
+		throw std::runtime_error("Invalid chunked encoding: Chunk size not found.\n");
 	iss.str(reqBuffer.substr(chunkStart, chunkEnd - chunkStart));
 	iss.clear();			// clear err flags
 	if (!(iss >> std::hex >> chunkSize))
-		throw std::runtime_error("Invalid chunked encoding: Cannot parse chunk size");
+		throw std::runtime_error("Invalid chunked encoding: Cannot parse chunk size.\n");
 	return chunkSize;
 }
 

@@ -15,7 +15,7 @@ addrinfo*	Config::ini_addrinfo(const std::string& host, const std::string& port)
 	hints.ai_socktype = SOCK_STREAM;
 
 	if (getaddrinfo(host.c_str(), port.c_str(), &hints, &r) != 0)
-			throw Config::BadValue("invalid host in config");
+			throw Config::BadValue("Invalid host in config.\n");
 	return r;
 }
 
@@ -46,35 +46,27 @@ Config::Config(const JsonValue& j): _addr(NULL), _json(j)
 			throw Config::BadValue();
 		_port = j["port"].as_number();
 		try
-		{
-			_max_body_size = j["max_body"].as_number();
-		}
+		{_max_body_size = j["max_body"].as_number();}
 		catch (const std::exception& e)
-		{
-			_max_body_size = 0;
-		}
+		{_max_body_size = 0;}
 
 		try
 		{
-			for (JsonValue::const_iter_obj err = j["error"].begin_obj(); err != j["error"].end_obj(); err++)
+			for (JsonValue::const_iter_obj	err = j["error"].begin_obj(); err != j["error"].end_obj(); err++)
 			{
 				check_error_page(std::atoi(err->first.c_str()));
-				std::pair<int, std::string> pair(std::atoi(err->first.c_str()), err->second.as_string());
+				std::pair<int, std::string>	pair(std::atoi(err->first.c_str()), err->second.as_string());
 				_error_pages.insert(pair);
 			}
 		}
 		catch (const Config::BadValue& e)
-		{
-			throw Config::BadValue();
-		}
+		{throw Config::BadValue();}
 		catch (const std::exception& e) {}
 
 		if (j["routes"].get_arr().size() < 1)
-			throw Config::BadValue("need at least 1 route");
+			throw Config::BadValue("Need at least 1 route.\n");
 		for (JsonValue::const_iter_arr it_route = j["routes"].begin_arr(); it_route < j["routes"].end_arr(); it_route++)
-		{
 			_routes.push_back(Route(*it_route));
-		}
 
 		_addr = ini_addrinfo(_host, j["port"].as_string());
 
@@ -85,7 +77,7 @@ Config::Config(const JsonValue& j): _addr(NULL), _json(j)
 	}
 	catch (const std::out_of_range& e)
 	{
-		throw std::out_of_range("missing field in config file");
+		throw std::out_of_range("Missing field in config file.\n");
 	}
 }
 
@@ -133,7 +125,7 @@ Config::Route::Route(const JsonValue& j): dir_listing(true), is_redirection(fals
 	try
 	{
 		if (j["method"].get_arr().size() < 1)
-			throw Config::BadValue("need at least 1 method allowed");
+			throw Config::BadValue("Need at least 1 method allowed.\n");
 		for (JsonValue::const_iter_arr it_method = j["method"].begin_arr(); it_method < j["method"].end_arr(); it_method++)
 			method.insert(it_method->as_string());
 	}
@@ -150,18 +142,18 @@ Config::Route::Route(const JsonValue& j): dir_listing(true), is_redirection(fals
 
 	try
 	{
-		const JsonValue &rt = j["cgi"];
+		const JsonValue&	rt = j["cgi"];
 		if (rt.get_arr().size() < 1)
-			throw Config::BadValue("not enough cgi's in the array");
+			throw Config::BadValue("Not enough cgi's in the array.\n");
 
 		for (JsonValue::const_iter_arr it_cgi = rt.begin_arr(); it_cgi != rt.end_arr(); it_cgi++)
 		{
 			const JsonValue &c = (*it_cgi);
 			if (std::distance(c.begin_obj(), c.end_obj()) != 2)
-				throw Config::BadValue("too many cgi arguments");
+				throw Config::BadValue("Too many cgi arguments.\n");
 			std::pair<std::string, std::string> el(c["extension"].as_string(), c["exec"].as_string());
 			if (el.first != "py" && el.first != "php")
-				throw Config::BadValue("invalid extension");
+				throw Config::BadValue("Invalid extension.\n");
 			cgi.insert(el);
 		}
 	}

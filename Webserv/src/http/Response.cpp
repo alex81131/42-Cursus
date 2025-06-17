@@ -9,14 +9,14 @@ Response::Response(Config const &config, int errCode):
 Response::Response(Request const &request, Config const &config):
 	_statusCode(200), _contentType("text/html"), _config(config)
 {
-	_route = find_match(_config, request.getUrl());
+	_routes = find_match(_config, request.getUrl());
 	try
 	{
-		if (!std::count(_route.method.begin(), _route.method.end(), request.getMethod()))
+		if (!std::count(_routes.method.begin(), _routes.method.end(), request.getMethod()))
 			throw(405);
 		else if (request.getHttpVersion() != "HTTP/1.1")
 			throw(505);
-		else if (_route.is_redirection == true)
+		else if (_routes.is_redirection == true)
 			_statusCode = 301;
 		else if (request.getMethod() == "POST")
 			_content = getPostContent(request);
@@ -39,10 +39,10 @@ Response::Response(Request const &request, Config const &config):
 Response::Response(const Request& request, const Config& config, const std::string& cgi_content, CgiResult cgi_res):
 	_statusCode(200), _contentType("text/html"), _config(config)
 {
-	_route = find_match(_config, request.getUrl());
+	_routes = find_match(_config, request.getUrl());
 	try
 	{
-		if (!std::count(_route.method.begin(), _route.method.end(), request.getMethod()))
+		if (!std::count(_routes.method.begin(), _routes.method.end(), request.getMethod()))
 			throw (405);
 		switch (cgi_res)
 		{
@@ -85,8 +85,8 @@ std::string	Response::generateResponse()
 	std::ostringstream	response;
 
 	response << "HTTP/1.1 " << _statusCodes.at(_statusCode) << "\r\n";
-	if (_route.is_redirection)
-		response << "Location: " << _route.redirection << "\r\n";
+	if (_routes.is_redirection)
+		response << "Location: " << _routes.redirection << "\r\n";
 	response << "Content-Type: " << _contentType << "\r\n";
 	response << "Content-Length: " << _content.length() << "\r\n";
 	response << "Date: " << getCurrentTime(STANDARD) << "\r\n";
@@ -160,15 +160,27 @@ std::string	Response::getFileContent(const std::string& url)
 {
 	std::string	filename;
 	std::string	appended;
-	std::string	file = url.substr(_route.path.length());
+	std::string	file = url.substr(_routes.path.length());
 
-	filename = _route.directory;
-	if (file != "/")
+	// Check if going to upload
+	if (file.find("upload/") == 0)
 	{
-		if (*file.begin() == '/' && *filename.rbegin() == '/')
-			filename += file.substr(1);
-		else
-			filename += file;
+		filename = _routes.upload;
+		if (*filename.rbegin() != '/')
+			filename += "/";
+		filename += file.substr(7);
+	}
+	// Otherwise goes to website
+	else
+	{
+		filename = _routes.directory;
+		if (file != "/")
+		{
+			if (*file.begin() == '/' && *filename.rbegin() == '/')
+				filename += file.substr(1);
+			else
+				filename += file;
+		}
 	}
 	std::string	content;
 	try
@@ -181,18 +193,18 @@ std::string	Response::getFileContent(const std::string& url)
 				appended = filename;
 				if (*appended.rbegin() != '/')
 					appended += '/';
-				appended += _route.index;
+				appended += _routes.index;
 				content = readFile(appended);
 			}
 			catch (int)
 			{
-				if (!_route.dir_listing)
+				if (!_routes.dir_listing)
 					throw 403;
 				content = directory_listing(filename, url);
 			}
 			catch (const std::exception &e)
 			{
-				if (!_route.dir_listing)
+				if (!_routes.dir_listing)
 					throw 403;
 				content = directory_listing(filename, url);
 			}
@@ -222,7 +234,7 @@ std::string	Response::getPostContent(const Request& request)
 {
 	std::ostringstream	content;
 	std::string			filename;
-	std::string			path = _route.upload;
+	std::string			path = _routes.upload;
 
 
 	if (*path.rbegin() != '/')
@@ -237,7 +249,7 @@ std::string	Response::getPostContent(const Request& request)
 			throw (401); // Not authorized to create a file
 		ofs << request.getBody();
 		_statusCode = 201;
-		content << filename << " is created successfully at [" << _route.upload << "]\r\n";
+		content << filename << " is created successfully at [" << _routes.upload << "]\r\n";
 	}
 	catch(int statusCode)
 	{
@@ -267,7 +279,7 @@ std::string	Response::getPostContent(const Request& request)
 // 	return content.str();
 // }
 
-// return the iterator of cgi found in the current _route
+// return the iterator of cgi found in the current _routes
 std::map<std::string, std::string>::const_iterator	Response::check_cgi(const Config::Route& route, const std::string& url)
 {
 	std::string				ext;

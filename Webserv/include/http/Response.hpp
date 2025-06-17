@@ -34,7 +34,7 @@ class	Response
 		std::string								_content;
 		int										_statusCode;
 		std::string								_contentType;
-		Config::Route							_route;
+		Config::Route							_routes;
 		std::multimap<std::string, std::string>	_extraHeaders;
 		Config const&							_config;
 

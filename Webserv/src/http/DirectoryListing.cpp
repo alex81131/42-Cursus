@@ -82,7 +82,7 @@ std::string	Response::directory_listing(const std::string& path, const std::stri
 		closedir(dir);
 	}
 	else
-		throw std::runtime_error("directory could not be opened");
+		throw std::runtime_error("directory could not be opened.\n");
 
 	size_t	pos = content.find("<!-- {DIRECTORY_ITEMS} -->");
 	content.replace(pos, 28, items);

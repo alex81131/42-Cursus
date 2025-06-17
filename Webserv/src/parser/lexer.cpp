@@ -78,7 +78,7 @@ JsonLexer::Token	JsonLexer::handle_string(std::string::iterator& begin, const st
 {
 	std::string s;
 	if (std::find(begin++, end, '"') == end)
-		throw std::runtime_error("error syntax: no closing quote [handle_string()]");
+		throw std::runtime_error("Syntax Error: No closing quote [handle_string()].\n");
 	while (begin < end)
 	{
 		if (*begin == '"')
@@ -113,7 +113,7 @@ JsonLexer::Token	JsonLexer::handle_complete(iter& begin, const iter& end)
 		token.value = word;
 	}
 	else
-		throw std::runtime_error("Error syntax: invalid 'word' token [handle_complete()]");
+		throw std::runtime_error("Syntax Error: Invalid 'word' token [handle_complete()].\n");
 	return token;
 }
 

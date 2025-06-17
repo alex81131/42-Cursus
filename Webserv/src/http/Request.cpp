@@ -42,16 +42,16 @@ void	Request::parseHead()
 	/* Parse Method */
 	std::size_t	mtd_end = _raw.find(" ");
 	if (mtd_end == std::string::npos)
-		throw std::runtime_error("Method Not Found");
+		throw std::runtime_error("Method Not Found.\n");
 	_method = _raw.substr(0, mtd_end);
 
 	/* Parse URL */
 	std::size_t	url_start = _raw.find_first_not_of(" ", mtd_end + 1);
 	if (url_start == std::string::npos)
-		throw std::runtime_error("URL Not Found");
+		throw std::runtime_error("URL Not Found.\n");
 	std::size_t url_end = _raw.find(" ", url_start);
 	if (url_end == std::string::npos)
-		throw std::runtime_error("URL Not Found");
+		throw std::runtime_error("URL Not Found.\n");
 	_url = _raw.substr(url_start, url_end - url_start);
 	std::size_t query_start = _url.find('?');
 	if (query_start != std::string::npos)
@@ -61,10 +61,10 @@ void	Request::parseHead()
 	/* Parse HTTP version */
 	std::size_t http_start = _raw.find_first_of("HTTP/", url_end + 1);
 	if (http_start == std::string::npos)
-		throw std::runtime_error("HTTP version Not Found");
+		throw std::runtime_error("HTTP version Not Found.\n");
 	std::size_t http_end = _raw.find('\n', http_start);
 	if (http_end == std::string::npos)
-		throw std::runtime_error("HTTP version Not Found");
+		throw std::runtime_error("HTTP version Not Found.\n");
 	_http_version = _raw.substr(http_start, http_end - http_start);
 	if (!_http_version.empty() && _http_version[_http_version.length() - 1] == '\r')
 		_http_version.erase(_http_version.length() - 1);

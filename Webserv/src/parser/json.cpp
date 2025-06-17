@@ -78,29 +78,23 @@ JsonValue::JsonValue(JsonLexer::Token token)
 	}
 }
 
-JsonValue::JsonValue(bool data): _type(JsonType::TBOOLEAN) {
-	_boolean = data;
-}
+JsonValue::JsonValue(bool data): _type(JsonType::TBOOLEAN)
+{_boolean = data;}
 
-JsonValue::JsonValue(const string_type& data, JsonType::Value type): _type(type) {
-	_string = new std::string(data);
-}
+JsonValue::JsonValue(const string_type& data, JsonType::Value type): _type(type)
+{_string = new std::string(data);}
 
-JsonValue::JsonValue(const string_type& value): _type(JsonType::TSTRING) {
-	_string = new std::string(value);
-}
+JsonValue::JsonValue(const string_type& value): _type(JsonType::TSTRING)
+{_string = new std::string(value);}
 
-JsonValue::JsonValue(const char* str): _type(JsonType::TSTRING) {
-	_string = new std::string(str);
-}
+JsonValue::JsonValue(const char* str): _type(JsonType::TSTRING)
+{_string = new std::string(str);}
 
-JsonValue::JsonValue(const object_type& value): _type(JsonType::TOBJECT) {
-	_object = new object_type(value);
-}
+JsonValue::JsonValue(const object_type& value): _type(JsonType::TOBJECT)
+{_object = new object_type(value);}
 
-JsonValue::JsonValue(const array_type& value): _type(JsonType::TARRAY) {
-	_array = new array_type(value);
-}
+JsonValue::JsonValue(const array_type& value): _type(JsonType::TARRAY)
+{_array = new array_type(value);}
 
 JsonValue::~JsonValue()
 {
@@ -114,14 +108,13 @@ JsonValue::~JsonValue()
 	}
 }
 
-JsonValue::JsonType::Value	JsonValue::get_type() const {
-	return _type;
-}
+JsonValue::JsonType::Value	JsonValue::get_type() const
+{return _type;}
 
 JsonValue	&JsonValue::push_back(JsonValue value)
 {
 	if (_type != JsonType::TARRAY)
-		throw std::runtime_error("invalid json type: expected array");
+		throw std::runtime_error("Invalid json type: expected array.\n");
 	_array->push_back(value);
 	return *this;
 }
@@ -129,9 +122,9 @@ JsonValue	&JsonValue::push_back(JsonValue value)
 JsonValue&	JsonValue::insert(member_type value)
 {
 	if (_type != JsonType::TOBJECT)
-		throw std::runtime_error("invalid json type: expected object");
+		throw std::runtime_error("Invalid json type: expected object.\n");
 	if (_object->find(value.first) != _object->end())
-		throw std::runtime_error("duplicate keys in object.");
+		throw std::runtime_error("Duplicate keys in object.\n");
 	this->_object->insert(value);
 	return *this;
 }
@@ -143,13 +136,11 @@ bool	JsonValue::to_bool(const std::string& str) const
 	return str == "true" ? true : false;
 }
 
-double	JsonValue::to_double(const std::string&	str) const {
-	return std::atof(str.c_str());
-}
+double	JsonValue::to_double(const std::string&	str) const
+{return std::atof(str.c_str());}
 
-int64_t	JsonValue::to_number(const std::string& str) const {
-	return std::atoll(str.c_str());
-}
+int64_t	JsonValue::to_number(const std::string& str) const
+{return std::atoll(str.c_str());}
 
 std::ostream&	operator<<(std::ostream& s, const JsonValue& json)
 {

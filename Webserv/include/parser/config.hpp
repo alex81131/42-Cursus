@@ -18,7 +18,7 @@ class	Config
 		class	BadValue: public std::exception
 		{
 			public:
-				BadValue(): _message("Bad value in config.") {}
+				BadValue(): _message("Bad value in config.\n") {}
 				BadValue(const std::string& s): _message(s) {}
 				virtual ~BadValue() throw() {}
 

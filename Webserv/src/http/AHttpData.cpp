@@ -28,7 +28,7 @@ const std::string&	AHttpData::getHeaderValue(const std::string& key) const
 
 	if (it != this->_headers.end())
 		return it->second;
-	throw std::runtime_error("Key not found in _headers");
+	throw std::runtime_error("Key not found in _headers.\n");
 }
 
 const std::multimap<std::string, std::string>&	AHttpData::getHeaders() const

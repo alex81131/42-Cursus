@@ -5,9 +5,20 @@ Cluster::Cluster(const JsonValue& json)
 	try
 	{
 		if (json.get_arr().size() < 1)
-			throw Config::BadValue("not enough configs");
+			throw Config::BadValue("Not enough configs.\n");
+
+		std::set<int>	used_ports;
 		for (JsonValue::const_iter_arr it = json.begin_arr(); it < json.end_arr(); it++)
 		{
+			// Port duplicate check
+			int	port = (*it)["port"].as_number();
+			if (!used_ports.insert(port).second)
+			{
+				std::stringstream	ss;
+				ss << "Duplicate port: " << port << "." << std::endl;
+				throw Config::BadValue(ss.str());
+			}
+
 			Config	*current = new Config(*it);
 			_configs.push_back(current);
 			_servers.push_back(new Server(*current));
