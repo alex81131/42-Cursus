@@ -398,7 +398,7 @@ const std::map<std::string, std::string>	Response::initAcceptedFile()
 	tmp["text/plain"] = ".txt";
 	tmp["text/javascript"] = ".js";
 	tmp["image/gif"] = ".gif";
-	tmp["image/jpeg"] = ".jpeg";
+	tmp["image/jpg"] = ".jpg";
 	tmp["image/png"] = ".png";
 	tmp["audio/mpeg"] = ".mp3";
 	tmp["video/mp4"] = ".mp4";
@@ -421,7 +421,7 @@ const std::map<std::string, std::string>	Response::initAcceptedFileReversed()
 	tmp["txt"] = "text/plain";
 	tmp["js"] = "text/javascript";
 	tmp["gif"] = "image/gif";
-	tmp["jpeg"] = "image/jpeg";
+	tmp["jpg"] = "image/jpg";
 	tmp["png"] = "image/png";
 	tmp["mp3"] = "audio/mpeg";
 	tmp["mp4"] = "video/mp4";
