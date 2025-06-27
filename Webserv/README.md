@@ -1,12 +1,55 @@
-# Webserv
-A HTTP/1.1 server in C++ 98, designed to handle HTTP requests, responses, and dynamic content generation through CGI scripts.
+# 📖 Webserv
+**Webserv** is a fully functional HTTP server written in **C++98**, designed to deepen understanding of network programming and the HTTP protocol. This project involves implementing essential web server functionality from scratch, including handling connections, parsing HTTP requests, generating responses, and supporting configuration-based behavior.
 
+The server supports the **GET**, **POST**, and **DELETE** methods, serves static websites, allows file uploads, and is compatible with modern browsers. Configuration is done through a JSON-based file, inspired by the structure of NGINX, allowing specification of ports, hosts, server names, error pages, client body size limits, and route-specific behaviors (e.g., allowed methods, redirection, directory listing, CGI execution).
+
+<p align="center">
+  <img src="assets/http_server.png" alt="HTTP-server" />
+</p>
+
+[`Credit`](https://github.com/42-mates/webserv/)
+
+## 📦 Installation & Usage
+
+🖥️ **System:** Linux
+
+🛠️ **Requirements:** C++98 compiler, Make
+
+```bash
+git clone https://github.com/42-mates/webserv.git
+cd webserv
+make
+```
+or
+```
 docker compse up --build
+```
+- Run in foreground:
+```bash
+# with default configuration
+./webserv
 
+# with a custom configuration file
+./webserv config/redirection.json
+```
+This will show server logs directly in the terminal.
+To interact with the server (e.g., using `curl` or browser), open **another terminal**.
+
+- Run in background:
+```bash
+./webserv config/config.json &
+```
+This runs the server in the background, allowing you to use the same terminal for other tasks.
+Use `fg` or `kill` if you need to bring it back or stop it.
+
+<br><br>
+<details>
+  <summary>
+    
 ## Grok: Where to start
 Roadmap given by AI Grok:
-<br>
-<br>
+  </summary>
+
 <details>
   <summary>
     
@@ -31,9 +74,8 @@ Before jumping into coding, you need to grasp the concepts and tools involved. T
 - Learn the allowed system calls (e.g., `socket`, `accept`, `poll`, `read`, `write`). These are POSIX functions for networking and I/O—check their man pages (e.g., `man 2 socket` on Linux).
 </details>
 
-<br><br>
 ---
-<br>
+
 <details>
   <summary>
  
@@ -58,9 +100,8 @@ Break the project into components based on the requirements. This will guide you
 - Ensure the server doesn’t crash under stress or bad requests.
 </details>
 
-<br><br>
 ---
-<br>
+
 <details>
   <summary>
  
@@ -78,9 +119,8 @@ Get your tools ready so you can test as you go.     </summary>
 - A simple static site (e.g., an `index.html` file) to serve initially.
 </details>
 
-<br><br>
 ---
-<br>
+
 <details>
   <summary>
  
@@ -105,9 +145,8 @@ Begin with the simplest working version and build up.
 - Replace the "Hello, World!" with contents of an `index.html` file using `open` and `read`.
 </details>
 
-<br><br>
 ---
-<br>
+
 <details>
   <summary>
  
@@ -122,9 +161,7 @@ Once the basics work, add features incrementally.
 5. Implement multiple ports and routes from the config.
 </details>
 
-<br><br>
 ---
-<br>
 
 ### Tips to Succeed
 1. **Read the Man Pages**: For every system call (e.g., `man 2 poll`), understand arguments and return values.
@@ -132,6 +169,7 @@ Once the basics work, add features incrementally.
 3. **Compare with NGINX**: When in doubt, see how NGINX handles a request or config setting.
 4. **Debugging**: Use `strerror(errno)` for errors, but remember not to check `errno` after I/O calls per the rules.
 5. **Time Management**: This project is big—start small and aim to finish core features first (static serving, config parsing).
+</details>
 </details>
 
 <br><br>
