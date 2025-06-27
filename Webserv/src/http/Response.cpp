@@ -9,21 +9,29 @@ Response::Response(Config const &config, int errCode):
 Response::Response(Request const &request, Config const &config):
 	_statusCode(200), _contentType("text/html"), _config(config)
 {
+	// Find the best matching route for this URL
 	_routes = find_match(_config, request.getUrl());
 	try
 	{
+		// Check if HTTP method is allowed for this route
 		if (!std::count(_routes.method.begin(), _routes.method.end(), request.getMethod()))
-			throw(405);
+			throw(405);  // Method Not Allowed
+		// Only support HTTP/1.1
 		else if (request.getHttpVersion() != "HTTP/1.1")
-			throw(505);
+			throw(505);  // HTTP Version Not Supported
+		// Handle redirections (301 Moved Permanently)
 		else if (_routes.is_redirection == true)
 			_statusCode = 301;
+		// Handle POST requests (file uploads)
 		else if (request.getMethod() == "POST")
 			_content = getPostContent(request);
-		// else if (request.getMethod() == "DELETE")
-		// 	_content = getDeleteContent(request);
+		// Handle DELETE requests (file deletion)
+		else if (request.getMethod() == "DELETE")
+			_content = getDeleteContent(request);
+		// Check if this is a CGI request (.py, .php)
 		else if (check_extension(request.getUrl()))
-			throw(502);
+			throw(502);  // Bad Gateway (CGI will be handled separately)
+		// Default: GET request for static files
 		else
 			_content = getFileContent(request.getUrl());
 	}
@@ -82,23 +90,31 @@ const Config::Route&	Response::find_match(const Config& config, const std::strin
 
 std::string	Response::generateResponse()
 {
+	// Build complete HTTP response with headers and body
 	std::ostringstream	response;
 
+	// Status line: "HTTP/1.1 200 OK\r\n"
 	response << "HTTP/1.1 " << _statusCodes.at(_statusCode) << "\r\n";
+	// Add Location header for redirections
 	if (_routes.is_redirection)
 		response << "Location: " << _routes.redirection << "\r\n";
+	// Essential headers
 	response << "Content-Type: " << _contentType << "\r\n";
 	response << "Content-Length: " << _content.length() << "\r\n";
 	response << "Date: " << getCurrentTime(STANDARD) << "\r\n";
 	response << "Server: 3GoatServer/1.0\r\n";
+	// Close connection for 413 Payload Too Large
 	if (_statusCode == 413)
 		response << "Connection: close\r\n";
 	// else
 	// 	response << "Connection: keep-alive\r\n";
+	// Add any extra headers from CGI
 	if (!_extraHeaders.empty())
 		for (std::multimap<std::string, std::string>::iterator	it = _extraHeaders.begin(); it != _extraHeaders.end(); ++it)
 			response << it->first << ": " << it->second << "\r\n";
+	// Empty line between headers and body
 	response << "\r\n";
+	// Add response body
 	response << _content;
 	return response.str();
 }
@@ -143,7 +159,7 @@ std::string	Response::getErrorContent(int errCode)
 		content.append("<html><body>");
 		content.append("<h2>Oops! Got an error: </h2><h1>");
 		content.append(_statusCodes.at(_statusCode));
-		content.append("</h1></body></html>");
+		content.append("</h1></body></html>\n");
 	}
 	catch(const std::exception& e)
 	{
@@ -151,31 +167,35 @@ std::string	Response::getErrorContent(int errCode)
 		content.append("<html><body>");
 		content.append("<h2>Oops! Got an error: </h2><h1>");
 		content.append(_statusCodes.at(_statusCode));
-		content.append("</h1></body></html>");
+		content.append("</h1></body></html>\n");
 	}
 	return content;
 }
 
 std::string	Response::getFileContent(const std::string& url)
 {
+	// Convert URL path to actual file path on disk
 	std::string	filename;
 	std::string	appended;
-	std::string	file = url.substr(_routes.path.length());
+	std::string	file = url.substr(_routes.path.length());  // Remove route prefix
 
-	// Check if going to upload
+	// Check if accessing upload directory
 	if (file.find("upload/") == 0)
 	{
+		// Build path: upload_directory + filename
 		filename = _routes.upload;
 		if (*filename.rbegin() != '/')
 			filename += "/";
-		filename += file.substr(7);
+		filename += file.substr(7);  // Remove "upload/" prefix
 	}
-	// Otherwise goes to website
+	// Otherwise accessing website directory
 	else
 	{
+		// Build path: root_directory + file
 		filename = _routes.directory;
 		if (file != "/")
 		{
+			// Avoid double slashes in path
 			if (*file.begin() == '/' && *filename.rbegin() == '/')
 				filename += file.substr(1);
 			else
@@ -196,6 +216,8 @@ std::string	Response::getFileContent(const std::string& url)
 				appended += _routes.index;
 				content = readFile(appended);
 			}
+			// If the default page index.html is not there, we give the list of directories.
+            // If dir_listing is set to false, then it gives 403 Forbidden.
 			catch (int)
 			{
 				if (!_routes.dir_listing)
@@ -232,23 +254,28 @@ std::string	Response::getFileContent(const std::string& url)
 
 std::string	Response::getPostContent(const Request& request)
 {
+	// Handle POST requests (file uploads)
 	std::ostringstream	content;
 	std::string			filename;
 	std::string			path = _routes.upload;
 
-
+	// Ensure upload path ends with '/'
 	if (*path.rbegin() != '/')
 		path.append("/");
 	try
 	{
-		_contentType = request.getHeaderValue("Content-Type");	// Throw outof range if no content_type in request
-		filename = getCurrentTime(SIMPLE) + check_postFile(_contentType); // throw 403 if not allowed file format
+		// Get Content-Type from request headers
+		_contentType = request.getHeaderValue("Content-Type");	// Throw out_of_range if no content_type
+		// Generate unique filename: timestamp + extension based on MIME type
+		filename = getCurrentTime(SIMPLE) + check_postFile(_contentType); // throw 403 if not allowed
 		path += filename;
+		// Create/overwrite file
 		std::ofstream	ofs(path.c_str(), std::ofstream::out | std::ofstream::trunc);
 		if (!ofs)
 			throw (401); // Not authorized to create a file
+		// Write request body to file
 		ofs << request.getBody();
-		_statusCode = 201;
+		_statusCode = 201;  // Created
 		content << filename << " is created successfully at [" << _routes.upload << "]\r\n";
 	}
 	catch(int statusCode)
@@ -259,25 +286,74 @@ std::string	Response::getPostContent(const Request& request)
 	catch(const std::exception& e)
 	{
 		std::cerr << "Other Post Error: " << e.what() << '\n';
-		_statusCode = 400;
+		_statusCode = 400;  // Bad Request
 		content << getErrorContent(_statusCode);
 	}
 	return content.str();
 }
 
-// std::string Response::getDeleteContent(const Request& request)
-// {
-// 	std::ostringstream	content;
-// 	std::string			path = "./";
+std::string Response::getDeleteContent(const Request& request)
+{
+	std::ostringstream	content;
+	std::string			path;
+	std::string			url = request.getUrl();
+	
+	// Build the complete file path
+	if (url.find("/upload/") == 0)
+	{
+		std::string relative = url.substr(std::string("/upload").length());
+		if (!relative.empty() && relative[0] == '/')
+			relative = relative.substr(1);
+		path = _routes.upload;
+		if (!path.empty() && path[path.length() - 1] != '/')
+			path += "/";
+		path += relative;
+	}
+	else
+	{
+		path = _routes.directory;
+		if (!path.empty() && path[path.length() - 1] != '/' && url[0] != '/')
+			path += "/";
+		path += url;
+	}
 
-// 	// Check path
-// 	// Not under ./website or ./upload:
-// 	if (.find("./website") != 0 && resolved.find("./upload") != 0)
-// 		throw 403;
-// 	// Files don't exist
-// 	// Deletion failed
-// 	return content.str();
-// }
+	try
+	{
+		// Security: check that path is within authorized directories
+		if (path.find("./website") != 0 && path.find("./upload") != 0)
+			throw 403; // Forbidden - attempt to access outside authorized zone
+		
+		// Check that file exists before deletion
+		if (access(path.c_str(), F_OK) != 0)
+			throw 404; // Not Found - file does not exist
+		
+		// Check deletion permissions
+		if (access(path.c_str(), W_OK) != 0)
+			throw 403; // Forbidden - no write permission
+		
+		// Delete the file
+		if (unlink(path.c_str()) != 0)
+			throw 500; // Internal Server Error - deletion failed
+		
+		// Success: return confirmation message
+		_statusCode = 204; // No Content (deletion successful)
+		std::cout << "[DELETE] Deleted: " << path << std::endl;
+		content << "File " << url << " deleted successfully\r\n";
+	}
+	catch(int statusCode)
+	{
+		_statusCode = statusCode;
+		content << getErrorContent(_statusCode);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Delete Error: " << e.what() << '\n';
+		_statusCode = 500;
+		content << getErrorContent(_statusCode);
+	}
+	
+	return content.str();
+}
 
 // return the iterator of cgi found in the current _routes
 std::map<std::string, std::string>::const_iterator	Response::check_cgi(const Config::Route& route, const std::string& url)
@@ -306,10 +382,11 @@ std::map<std::string, std::string>::const_iterator	Response::check_cgi(const Con
 
 std::string	Response::check_postFile(const std::string& type)
 {
+	// Validate Content-Type and return appropriate file extension
 	if (type.empty())
-		// missing content-type header in the request
-		throw (400); //Bad request
-	if (_acceptedFile.count(type) > 0)
+		// Missing Content-Type header in the request
+		throw (400); // Bad Request
+	if (_acceptedFile.count(type) > 0)  // Check if MIME type is allowed
 		return _acceptedFile.at(type);
 	else
 		throw (403); //Forbidden file type
@@ -398,7 +475,7 @@ const std::map<std::string, std::string>	Response::initAcceptedFile()
 	tmp["text/plain"] = ".txt";
 	tmp["text/javascript"] = ".js";
 	tmp["image/gif"] = ".gif";
-	tmp["image/jpg"] = ".jpg";
+	tmp["image/jpeg"] = ".jpeg";
 	tmp["image/png"] = ".png";
 	tmp["audio/mpeg"] = ".mp3";
 	tmp["video/mp4"] = ".mp4";
@@ -421,7 +498,8 @@ const std::map<std::string, std::string>	Response::initAcceptedFileReversed()
 	tmp["txt"] = "text/plain";
 	tmp["js"] = "text/javascript";
 	tmp["gif"] = "image/gif";
-	tmp["jpg"] = "image/jpg";
+	tmp["jpeg"] = "image/jpeg";
+	tmp["jpg"] = "image/jpeg";
 	tmp["png"] = "image/png";
 	tmp["mp3"] = "audio/mpeg";
 	tmp["mp4"] = "video/mp4";

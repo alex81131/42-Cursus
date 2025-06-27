@@ -124,7 +124,7 @@ JsonValue&	JsonValue::insert(member_type value)
 	if (_type != JsonType::TOBJECT)
 		throw std::runtime_error("Invalid json type: expected object.\n");
 	if (_object->find(value.first) != _object->end())
-		throw std::runtime_error("Duplicate keys in object.\n");
+		throw std::runtime_error("Duplicate key: \"" + value.first + "\" in object.\n");
 	this->_object->insert(value);
 	return *this;
 }
@@ -209,15 +209,19 @@ JsonValue&	JsonValue::operator[](int idx) const
 JsonValue&	JsonValue::operator[](const char* str) const
 {
 	validate(JsonType::TOBJECT);
-	JsonValue &val = _object->at(str);
-	return val;
+	object_type::iterator it = _object->find(str);
+	if (it == _object->end())
+		throw std::runtime_error(std::string("Missing key \"") + str + "\" in object\n");
+	return it->second;
 }
 
 JsonValue&	JsonValue::operator[](const std::string& s) const
 {
 	validate(JsonType::TOBJECT);
-	JsonValue &val = _object->at(s);
-	return val;
+	object_type::iterator it = _object->find(s);
+	if (it == _object->end())
+		throw std::runtime_error("Missing key \"" + s + "\" in object\n");
+	return it->second;
 }
 
 const std::string&	JsonValue::as_string() const

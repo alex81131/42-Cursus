@@ -6,7 +6,7 @@ NAME	= webserv
 # -------------------
 # Compiler & Flags
 # -------------------
-CXX			= g++
+CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -MMD -g3
 # -MMD generates .d files for header dependencies while compiling .o files
 
