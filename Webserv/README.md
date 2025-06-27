@@ -171,6 +171,106 @@ Once the basics work, add features incrementally.
 5. **Time Management**: This project is big—start small and aim to finish core features first (static serving, config parsing).
 </details>
 </details>
+<br><br>
+<details>
+  <summary>
+    
+## 🚀 Guide Complet du Projet Webserv - École 42
+
+## 📋 Table des matières
+
+1. [Vue d'ensemble du projet](#vue-densemble)
+2. [Architecture du serveur](#architecture)
+3. [Le protocole HTTP expliqué](#http-protocole)
+4. [Implémentation du parsing HTTP](#parsing-http)
+5. [Gestion des réponses HTTP](#reponses-http)
+6. [Configuration du serveur](#configuration)
+7. [Fonctionnalités clés](#fonctionnalites)
+8. [Guide pratique pour comprendre le code](#guide-pratique)
+9. [Tests et validation](#tests)
+
+[`Credit`](https://github.com/rogalio)
+</summary>
+
+---
+
+## 🎯 Vue d'ensemble du projet {#vue-densemble}
+
+### Objectif
+
+Créer un serveur HTTP/1.1 fonctionnel en C++98, compatible avec les navigateurs web réels et conforme aux RFC 7230-7235.
+
+### Contraintes principales
+
+- **C++98 uniquement** (pas de C++11/14/17)
+- **Non-bloquant** : Un seul `select()` ou `epoll()` pour toutes les I/O
+- **Pas de fork** sauf pour CGI
+- **Gestion d'erreurs robuste** : Le serveur ne doit jamais crash
+- **Pas de memory leaks**
+
+### Méthodes HTTP obligatoires
+
+- ✅ **GET** : Récupération de ressources
+- ✅ **POST** : Upload de fichiers et données
+- ✅ **DELETE** : Suppression de fichiers
+
+---
+
+## 🏗️ Architecture du serveur {#architecture}
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                     main.cpp                            │
+│  • Parse arguments et signaux                           │
+│  • Charge la configuration JSON                         │
+│  • Lance le Cluster                                     │
+└────────────────────────┬───────────────────────────────-┘
+                         │
+┌────────────────────────▼───────────────────────────────┐
+│                    Cluster                             │
+│  • Gère plusieurs serveurs sur différents ports        │
+│  • Vérifie les conflits de ports                       │
+│  • Initialise EventHandler                             │
+└────────────────────────┬───────────────────────────────┘
+                         │
+┌────────────────────────▼───────────────────────────────┐
+│                 EventHandler                           │
+│  • Boucle d'événements avec epoll                      │
+│  • Gère 3 types de connexions:                         │
+│    - EP_SERVER : Nouvelles connexions                  │
+│    - EP_CLIENT : Clients existants                     │
+│    - EP_CGI : Scripts CGI                              │
+└────────────────────────┬───────────────────────────────┘
+                         │
+     ┌───────────────────┼───────────────────┐
+     │                   │                   │
+┌────▼──────┐    ┌──────▼──────┐    ┌──────▼──────┐
+│  Server   │    │   Client    │    │     CGI     │
+│           │    │ Connection  │    │   Manager   │
+└───────────┘    └──────┬──────┘    └─────────────┘
+                        │
+                ┌───────┴───────┐
+                │               │
+           ┌────▼───┐    ┌─────▼────┐
+           │Request │    │ Response │
+           └────────┘    └──────────┘
+```
+
+### Classes principales
+
+| Classe               | Rôle                                | Fichiers                   |
+| -------------------- | ----------------------------------- | -------------------------- |
+| **Cluster**          | Gestionnaire principal des serveurs | `cluster.hpp/cpp`          |
+| **EventHandler**     | Boucle d'événements (epoll)         | `EventHandler.hpp/cpp`     |
+| **Server**           | Serveur écoutant sur un port        | `Server.hpp/cpp`           |
+| **ClientConnection** | Connexion client active             | `ClientConnection.hpp/cpp` |
+| **Request**          | Parse les requêtes HTTP             | `Request.hpp/cpp`          |
+| **Response**         | Génère les réponses HTTP            | `Response.hpp/cpp`         |
+| **Config**           | Configuration du serveur            | `config.hpp/cpp`           |
+
+---
+[`Plus`](https://github.com/kaierhyeh/42-Cursus/tree/main/Webserv/assets)
+  </details>
 
 <br><br>
 ##### Resources
