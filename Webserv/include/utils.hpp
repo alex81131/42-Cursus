@@ -8,5 +8,6 @@ enum	CgiResult
 	SUCCESS,
 	TIMEOUT,
 	NOTFOUND,
+	FORBIDDEN,
 	ERROR
 };
