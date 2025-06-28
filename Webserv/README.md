@@ -42,7 +42,7 @@ To interact with the server (e.g., using `curl` or browser), open **another term
 This runs the server in the background, allowing you to use the same terminal for other tasks.
 Use `fg` or `kill` if you need to bring it back or stop it.
 
-<br><br>
+---
 <details>
   <summary>
     
@@ -171,7 +171,8 @@ Once the basics work, add features incrementally.
 5. **Time Management**: This project is big—start small and aim to finish core features first (static serving, config parsing).
 </details>
 </details>
-<br><br>
+
+---
 <details>
   <summary>
     
@@ -272,6 +273,7 @@ Créer un serveur HTTP/1.1 fonctionnel en C++98, compatible avec les navigateurs
 [`Plus`](https://github.com/kaierhyeh/42-Cursus/tree/main/Webserv/assets)
   </details>
 
-<br><br>
+---
 ##### Resources
 - [`Reference`](https://github.com/BenjaminHThomas/WebServer) <br>
+- [`Evaluation manuel`](https://docs.google.com/document/d/15rVtBJjsAnlXslXF2IS7P0K5ShJ6xSN1miXvrMO01_4/edit?usp=sharing)
