@@ -1,7 +1,6 @@
 #include "Response.hpp"
 #include "CgiContent.hpp"
 
-
 Response::Response(Config const &config, int errCode):
 	_statusCode(errCode), _contentType("text/html"), _config(config)
 {_content = getErrorContent(_statusCode);}
