@@ -187,3 +187,5 @@ int	main(int ac, char **av)
 	}
 	return 0;
 }
+// SOMAXCONN: Socket Maximum Connections
+// 	Maximum number of pending connections that can be queued for a listening socket.
