@@ -81,6 +81,11 @@ int	create_socket()
 // FD_SET(max_fd, &afds):
 // 	Sets max_fd as an afds.
 
+// max_fd is used to track all the fds.
+// 	一開始的 max_fd 是 socket fd (sockfd, we have only one socket)。
+// 	在"register_client"中接受客戶時會有其他的fd，若比sockfd大，
+// 	則會更新max_fd，來方便確認所有已使用的fd，儘管每次新增的fd不一定是連續的。
+
 void	notify_other(int author, char *str)
 {
 	for (int	fd = 0; fd <= max_fd; fd++)
@@ -141,27 +146,24 @@ int	main(int ac, char **av)
 
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_addr.s_addr = htonl(2130706433);
-	servaddr.sin_port = htons(atoi(av[1]));	// replace 8080
+	servaddr.sin_port = htons(atoi(av[1]));	// Replace 8080.
 
 	if (bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)))
 		fatal_error();
-	if (listen(sockfd, SOMAXCONN))	// the main uses 10, SOMAXCONN is 180 on my machine
+	if (listen(sockfd, SOMAXCONN))	// The main uses 10, SOMAXCONN is 180 on my machine.
 		fatal_error();
 	/* * * END copy-paste * * */
 
 	while (1)
 	{
-		rfds = wfds = afds;
-
+		rfds = wfds = afds;		// Copy afds to rfds and wfds.
 		if (select(max_fd + 1, &rfds, &wfds, NULL, NULL) < 0)
 			fatal_error();
-
 		for (int	fd = 0; fd <= max_fd; fd++)
 		{
 			if (!FD_ISSET(fd, &rfds))
-				continue;
-
-			if (fd == sockfd)
+				continue ;		// Skip the unreadable fds.
+			if (fd == sockfd)	// Server: new connections
 			{
 				socklen_t	addr_len = sizeof(servaddr);
 				int			client_fd = accept(sockfd, (struct sockaddr *)&servaddr, &addr_len);
@@ -171,7 +173,7 @@ int	main(int ac, char **av)
 					break ;
 				}
 			}
-			else
+			else	// Server receives new data from clients.
 			{
 				int	read_bytes = recv(fd, buf_read, 1000, 0);
 				if (read_bytes <= 0)
@@ -187,5 +189,31 @@ int	main(int ac, char **av)
 	}
 	return 0;
 }
+// gcc -Wall -Wextra -Werror *.c
+// 	Server:		./a.out 8080
+// 	1st client:	nc localhost 8080
+// 	2nd client:	nc localhost 8080
+// 	...
+
 // SOMAXCONN: Socket Maximum Connections
 // 	Maximum number of pending connections that can be queued for a listening socket.
+
+// select(max_fd + 1, &rfds, &wfds, NULL, NULL): manage all fds and check which are readable/writable.
+// 	+ 1: starts from 0.
+
+// unreadable fds:
+// 	1. sockfd:		no new clients
+// 	2. client_fd:	no new data to read
+// 	3. others:		unassigned or closed fds
+
+// ssize_t recv(int client_fd, void *buf/storage, size_t length, int flags)
+// 	returns the size read:
+// 	1. active client: always > 0
+// 	2. client closed: = 0
+// 	3. error: < 0
+
+// msg[fd] = str_join(msg[fd], buf_read):
+// 	each client has a msg string to store the data to be sent to the server.
+// 	msg[fd] is initialized upon "register_client".
+// Whenever a client talks to the server, the server broadcasts it.
+// 	Therefore, to some extent, the clients talk to each other.
