@@ -86,7 +86,7 @@ int	create_socket()
 // 	在"register_client"中接受客戶時會有其他的fd，若比sockfd大，
 // 	則會更新max_fd，來方便確認所有已使用的fd，儘管每次新增的fd不一定是連續的。
 
-void	notify_other(int author, char *str)
+void	notify_others(int author, char *str)
 {
 	for (int	fd = 0; fd <= max_fd; fd++)
 		if (FD_ISSET(fd, &wfds) && fd != author)
@@ -100,7 +100,7 @@ void	register_client(int fd)
 	msg[fd] = NULL;
 	FD_SET(fd, &afds);
 	sprintf(buf_write, "server: client %d just arrived\n", id[fd]);
-	notify_other(fd, buf_write);
+	notify_others(fd, buf_write);
 }
 // sprintf: [stdio] string print formatted
 // 	printf into a designated string instead of directly onto stdout.
@@ -108,7 +108,7 @@ void	register_client(int fd)
 void	remove_client(int fd)
 {
 	sprintf(buf_write, "server: client %d just left\n", id[fd]);
-	notify_other(fd, buf_write);
+	notify_others(fd, buf_write);
 	free(msg[fd]);
 	FD_CLR(fd, &afds);
 	close(fd);
@@ -123,8 +123,8 @@ void	send_msg(int fd)
 	while (extract_message(&(msg[fd]), &line))
 	{
 		sprintf(buf_write, "client %d: ", id[fd]);
-		notify_other(fd, buf_write);
-		notify_other(fd, line);
+		notify_others(fd, buf_write);
+		notify_others(fd, line);
 		free(line);
 	}
 }
@@ -167,7 +167,7 @@ int	main(int ac, char **av)
 			{
 				socklen_t	addr_len = sizeof(servaddr);
 				int			client_fd = accept(sockfd, (struct sockaddr *)&servaddr, &addr_len);
-				if (client_fd >= 0)
+				if (client_fd >= 0)		// accept almost has the same syntax as bind.
 				{
 					register_client(client_fd);
 					break ;
