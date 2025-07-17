@@ -8,7 +8,7 @@ int		count = 0, max_fd = 0;
 int		id[65536];
 char	*msg[65536];
 
-fd_set	rfds, wfds, afds;
+fd_set	afds, rfds, wfds;		// active/readable/writable file descriptors
 char	buf_read[1001], buf_write[42];
 
 /* * * START copy-paste from given main * * */
@@ -150,7 +150,7 @@ int	main(int ac, char **av)
 
 	if (bind(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)))
 		fatal_error();
-	if (listen(sockfd, SOMAXCONN))	// The main uses 10, SOMAXCONN is 180 on my machine.
+	if (listen(sockfd, SOMAXCONN))	// The main uses 10. SOMAXCONN is a constant defined in <sys/socket.h>.
 		fatal_error();
 	/* * * END copy-paste * * */
 
