@@ -162,7 +162,7 @@ int	main(int ac, char **av)
 		for (int	fd = 0; fd <= max_fd; fd++)
 		{
 			if (!FD_ISSET(fd, &rfds))
-				continue ;		// Skip the unreadable fds.
+				continue ;		// Skip not-readable fds.
 			if (fd == sockfd)	// Server: new connections
 			{
 				socklen_t	addr_len = sizeof(servaddr);
@@ -201,7 +201,7 @@ int	main(int ac, char **av)
 // select(max_fd + 1, &rfds, &wfds, NULL, NULL): manage all fds and check which are readable/writable.
 // 	+ 1: starts from 0.
 
-// unreadable fds:
+// Not-readable fds:
 // 	1. sockfd:		no new clients
 // 	2. client_fd:	no new data to read
 // 	3. others:		unassigned or closed fds
